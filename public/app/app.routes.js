@@ -11,9 +11,9 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('work-orders', {
       url: '/work-orders',
       templateUrl: '/components/home/work-ordersView.html',
-      controller: 'homeCtrl'
+      controller: 'workOrdersCtrl'
     })
 
     $urlRouterProvider.otherwise('/home');
-    
+
 });

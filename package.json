@@ -1,0 +1,25 @@
+{
+  "name": "dev-housing",
+  "version": "1.0.0",
+  "description": "Dev Mountain housing web-app.",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevHauzin/dev-housing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevHauzin/dev-housing/issues"
+  },
+  "homepage": "https://github.com/DevHauzin/dev-housing#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "mongoose": "^4.4.19"
+  }
+}

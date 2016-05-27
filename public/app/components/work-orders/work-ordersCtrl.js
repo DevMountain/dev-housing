@@ -1,4 +1,4 @@
 angular.module('devHousing')
-  .controller('workOrders', function ($scope) {
+  .controller('workOrdersCtrl', function ($scope) {
 
   });
