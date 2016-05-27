@@ -1,7 +1,6 @@
 angular.module("devHousing").config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-    $urlRouterProvider.otherwise('/home');
 
     .state('home', {
       url: '/home',
@@ -15,4 +14,6 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       controller: 'homeCtrl'
     })
 
+    $urlRouterProvider.otherwise('/home');
+    
 });
