@@ -9,6 +9,7 @@ var config = require('./config');
 
 //CONTROLLERS//
 var UserCtrl = require('./controllers/UserCtrl');
+var WorkOrdCtrl = require('./controllers/WorkOrdCtrl');
 
 //SERVICES//
 var passport = require('./services/passport');
@@ -33,6 +34,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //ENDPOINTS//
+//=====User Endpoints==========================
 app.post('/users', UserCtrl.register);
 app.get('/me', isAuthed, UserCtrl.me);
 app.put('/users/:_id', isAuthed, UserCtrl.update);
@@ -44,6 +46,12 @@ app.get('/logout', function(req, res, next) {
   req.logout();
   return res.status(200).send('logged out');
 });
+//=====WorkOrders Endpoints=====================
+app.post('/work-orders', WorkOrdCtrl.create);
+app.get('/work-orders', WorkOrdCtrl.read);
+app.get('/work-orders/:_id', WorkOrdCtrl.readById);
+app.put('/work-orders/:_id', WorkOrdCtrl.update);
+app.delete('/work-orders/:_id', WorkOrdCtrl.delete);
 
 
 //CONNECTIONS//
