@@ -1,1 +1,1 @@
-angular.module('devHousing', ['ui.router']);
+angular.module('devHousing', ['ui.router', 'ngMessages']);
