@@ -8,17 +8,25 @@ var User = new Schema ({
   birthdate: {type: Date, required: true}, //convert to date first
   gender: {type: String, required: true},
   devmtnID: {type: Number},
+  campus: {type: String},
   email: {type: String, index: true, trim: true, required: true},
-  password: {type: String},
-  cohortID: {type: Number, required: true},
+  password: {type: String, required: true},
+  cohortID: [{type: Number}],
   role: {type: String, required: true, default: 'student'}, //default
+  adminAccess: [{type: String}],
+  adminDefaultView: [{type: String}],
   adminNotes: {type: String},
   phone: {type: String, required: true},
   licenseOnFile: {type: Boolean},
   backgroundCheck: {type: Boolean},
+  rent: {
+    isRenter: {type: Boolean, default: false},
+    price: {type: Number},
+    paid: [{type: Date}]
+  },
   currentAddress: {
     street1: {type: String, required: true},
-    street2: {type: String, required: true},
+    street2: {type: String},
     city: {type: String, required: true},
     state: {type: String, required: true},
     zip: {type: Number, required: true},
