@@ -13,12 +13,12 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       controller: 'homeCtrl'
     })
 
-    .state('workorders', {
-      url: '/workorders',
-      templateUrl: './app/components/workorders/workordersView.html',
-      controller: 'workordersCtrl'
+    .state('workorder', {
+      url: '/workorder',
+      templateUrl: './app/components/workorder/workorderView.html',
+      controller: 'workorderCtrl'
     })
 
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/home'); //change back to '/login'
 
 });
