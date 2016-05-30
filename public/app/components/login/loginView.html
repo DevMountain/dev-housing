@@ -1,0 +1,79 @@
+<h1>this is a login</h1>
+
+<!-- <div class="sign-up-form">
+
+
+<input ng-model="user.firstName" placeholder="first name" type="required"></input>
+<input ng-model="user.lastName" placeholder="last name" type="required"></input>
+<input ng-model="user.email" placeholder="email" type="email" type="required"></input>
+<input ng-model="user.password" placeholder="password" type="password" minlength="6" maxlength="15" type="required"></input>
+<input ng-model="user.birthdate" placeholder="birthdate" type="date" type="required"></input>
+<input ng-model="user.gender" name="gender" type="radio" value="male" />male
+<input ng-model="user.gender" name="gender" type="radio" value="female" />female<br />
+<input ng-model="user.cohortID" placeholder="cohort ID" type="required"></input>
+<input ng-model="user.phone" placeholder="phone number" type="tel" type="required"></input>
+<input ng-model="user.currentAddress.street1" placeholder="Address line 1" type="required"></input>
+<input ng-model="user.currentAddress.street2" placeholder="Address line 2"></input>
+<input ng-model="user.currentAddress.city" placeholder="City" type="required"></input>
+<input ng-model="user.currentAddress.state" placeholder="State" maxlength="2" type="required"></input>
+<input ng-model="user.currentAddress.zip" placeholder="ZIP" maxlength="5" type="required"></input>
+<button type="button" ng-click="submitSignUp(user)">submit</button>
+</div> -->
+
+
+<div class="sign-up-div">
+
+<form name="signupForm" ng-submit="submitSignUp(signupForm.$valid)" novalidate>
+
+<input ng-model="user.firstName" name="firstName" placeholder="first name" ng-maxlength="5" required></input>
+<div ng-messages="signupForm.firstName.$error" ng-if="signupForm.firstName.$dirty || signupForm.$submitted" role="alert">
+  <p ng-message="required" class="error">Please enter a first name.</p>
+</div>
+
+<input ng-model="user.lastName" name="lastName" placeholder="last name" required></input>
+<div ng-messages="signupForm.lastName.$error" ng-if="signupForm.lastName.$dirty || signupForm.$submitted" role="alert">
+  <p ng-message="required" class="error">Please enter a last name.</p>
+</div>
+
+<input ng-model="user.email" name="email" placeholder="email" type="email" required></input>
+<div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
+  <p ng-message="required" class="error">Please enter a valid email address.</p>
+  <p ng-message="email" class="error">Please enter a valid email address.</p>
+</div>
+
+
+<input ng-model="user.password" name="password" placeholder="password" type="password" ng-minlength="6" ng-maxlength="15" required></input>
+<div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
+  <p ng-message="required" class="error">Please enter a valid password address.</p>
+  <p ng-message="minlength" class="error">Minimum length is 6 characters.</p>
+  <p ng-message="maxlength" class="error">Maximum length is 15 characters.</p>
+</div>
+
+<input ng-model="user.birthdate" placeholder="birthdate" type="date" required></input>
+<div ng-messages="signupForm.birthdate.$error" ng-if="signupForm.birthdate.$dirty || signupForm.$submitted" role="alert">
+  <p ng-message="required" class="error">Please select a birthdate.</p>
+</div>
+
+<input ng-model="user.cohortID" placeholder="cohort ID" required></input>
+<div ng-messages="signupForm.cohortID.$error" ng-if="signupForm.cohortID.$dirty || signupForm.$submitted" role="alert">
+  <p ng-message="required" class="error">Please enter a cohort ID.</p>
+</div>
+
+<input ng-model="user.phone" placeholder="phone number" type="tel" required></input>
+<div ng-messages="signupForm.phone.$error" ng-if="signupForm.phone.$dirty || signupForm.$submitted" role="alert">
+  <p ng-message="required" class="error">Please enter a phone number.</p>
+</div>
+
+
+<!-- <input ng-model="user.gender" name="gender" type="radio" value="male" />male
+<input ng-model="user.gender" name="gender" type="radio" value="female" />female<br />
+<input ng-model="user.currentAddress.street1" placeholder="Address line 1" required></input>
+<input ng-model="user.currentAddress.street2" placeholder="Address line 2"></input>
+<input ng-model="user.currentAddress.city" placeholder="City" required></input>
+<input ng-model="user.currentAddress.state" placeholder="State" maxlength="2" required></input>
+<input ng-model="user.currentAddress.zip" placeholder="ZIP" maxlength="5" required></input> -->
+<button type="submit" ng-disabled="signupForm.$invalid">submit</button>
+
+</form>
+
+</div>

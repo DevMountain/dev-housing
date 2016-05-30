@@ -3,19 +3,26 @@ var bcrypt = require('bcryptjs')
 var Schema = mongoose.Schema;
 
 var User = new Schema ({
-  name: {type: String, required: true},
+  firstName: {type: String, required: true, trim: true},
+  lastName: {type: String, required: true, trim: true},
   birthdate: {type: Date, required: true}, //convert to date first
   gender: {type: String, required: true},
-  DevmtnID: {type: String},
+  devmtnID: {type: Number},
   email: {type: String, index: true, trim: true, required: true},
   password: {type: String},
-  cohortID: {type: String, required: true},
+  cohortID: {type: Number, required: true},
   role: {type: String, required: true, default: 'student'}, //default
   adminNotes: {type: String},
-  phone: {type: Number, required: true},
-  currentAddress: {type: String, required: true},
+  phone: {type: String, required: true},
   licenseOnFile: {type: Boolean},
   backgroundCheck: {type: Boolean},
+  currentAddress: {
+    street1: {type: String, required: true},
+    street2: {type: String, required: true},
+    city: {type: String, required: true},
+    state: {type: String, required: true},
+    zip: {type: Number, required: true},
+  },
   car: {
     make: {type: String},
     model: {type: String},

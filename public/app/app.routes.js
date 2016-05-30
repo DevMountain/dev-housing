@@ -1,19 +1,24 @@
 angular.module("devHousing").config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
 
+  $stateProvider
+    .state('login', {
+      url: '/login',
+      templateUrl: './app/components/login/loginView.html',
+      controller: 'loginCtrl'
+    })
 
     .state('home', {
       url: '/home',
-      templateUrl: '/components/home/homeView.html',
+      templateUrl: './app/components/home/homeView.html',
       controller: 'homeCtrl'
     })
 
-    .state('work-orders', {
-      url: '/work-orders',
-      templateUrl: '/components/home/work-ordersView.html',
-      controller: 'workOrdersCtrl'
+    .state('workorders', {
+      url: '/workorders',
+      templateUrl: './app/components/workorders/workordersView.html',
+      controller: 'workordersCtrl'
     })
 
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/login');
 
 });

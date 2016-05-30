@@ -23,7 +23,7 @@ var isAuthed = function(req, res, next) {
 var app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + 'public'));
+app.use(express.static(__dirname + '/../public'));
 app.use(session({
   secret: config.SESSION_SECRET,
   saveUninitialized: false,
