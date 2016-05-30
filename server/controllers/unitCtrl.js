@@ -10,7 +10,7 @@ module.exports = {
   },
 
   read: function(req, res, next) {
-    Unit.find(function (err, response) {
+    Unit.find(req.query, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
         res.status(200).send(response)
