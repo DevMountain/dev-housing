@@ -1,4 +1,4 @@
-var User = require('../models/UserModel');
+var User = require('../models/UserModel.js');
 
 module.exports = {
 
@@ -7,14 +7,14 @@ module.exports = {
         if(err) return res.status(500).send(err);
         newUser = result.toObject();
         newUser.password = null;
-        res.status(200).json(newUser);
+        res.status(200).send(newUser);
       });
     },
 
     me: function(req, res, next) {
       if (!req.user) return res.status(401).send('current user not defined');
       req.user.password = null;
-      return res.status(200).json(req.user);
+      return res.status(200).send(req.user);
     },
 
     update: function(req, res, next) {
