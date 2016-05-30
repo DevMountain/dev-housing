@@ -49,9 +49,9 @@ app.get('/logout', function(req, res, next) {
 //=====WorkOrders Endpoints=====================
 app.post('/work-orders', WorkOrdCtrl.create);
 app.get('/work-orders', WorkOrdCtrl.read);
-app.get('/work-orders/:_id', WorkOrdCtrl.readById);
-app.put('/work-orders/:_id', WorkOrdCtrl.update);
-app.delete('/work-orders/:_id', WorkOrdCtrl.delete);
+app.get('/work-orders/:id', WorkOrdCtrl.readById);
+app.put('/work-orders/:id', WorkOrdCtrl.update);
+app.delete('/work-orders/:id', WorkOrdCtrl.delete);
 
 
 //CONNECTIONS//

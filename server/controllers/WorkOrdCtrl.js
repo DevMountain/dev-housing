@@ -3,24 +3,16 @@ var Workorders = require('../models/workorders.js');
 module.exports = {
 
   create: function(req, res, next) {
-    Workorders.create(req.body, function(err, results) {
-      console.log("reaching WO create before er");
+    Workorders.create(req.body, function (err, response) {
       if(err) return res.status(500).send(err);
-      var newWorkOrder = new Workorders(req.body);
-      newWorkOrder.save(function(err, response) {
-        if(err) {
-          res.status(500).json(err)
-        } else {
-          console.log('Creating new work order.');
-          res.json(response)
-        }
-      });
+      newWorkOrder = response.toObject();
+      console.log("Created workorder.");
+      res.status(200).json(newWorkOrder);
     });
   },
 
   read: function(req, res, next) {
     Workorders.find(req.query, function (err, response) {
-      console.log("reaching WO read before err");
       if(err) { res.status(500).json(err)
       } else {
         console.log("Getting work orders to read.");
@@ -31,28 +23,26 @@ module.exports = {
 
   readById: function(req, res, next) {
     Workorders.findById(req.params.id, function (err, response) {
-      console.log('reaching WO readById before err');
       if(err) { res.status(500).json(err)
       } else {
-        console.log("reading by id: ", res.json(response));
+        console.log("reading by id: ",req.params.id);
         res.json(response)
       }
     });
   },
 
   update: function(req, res, next) {
-    Workorders.findByIdAndUpdate(req.params._id, req.body, function(err, result) {
-      console.log('reaching WO update before err');
+    Workorders.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
       if(err) {res.status(500).json(err)
       } else {
-      res.status(200).send('Work Order updated');
+        console.log("Updated work order.");
+      res.status(200).send(response);
     }
     });
   },
 
   delete: function(req, res, next) {
-    Workorders.findByIdandRemove(req.params.id, function (err, response) {
-      console.log('reaching WO delete before err');
+    Workorders.findByIdAndRemove(req.params.id, function (err, response) {
       if(err) {
         res.status(500).json(err)
       } else {
