@@ -11,7 +11,7 @@ module.exports = {
   },
 
   read: function(req, res, next) {
-    Workorder.find(function (err, response) {
+    Workorder.find(req.query, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
         console.log("Getting work orders to read.");
