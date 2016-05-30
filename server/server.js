@@ -8,8 +8,9 @@ var mongoose     = require('mongoose');
 var config = require('./config');
 
 //CONTROLLERS//
-var UserCtrl = require('./controllers/UserCtrl');
-var WorkOrdCtrl = require('./controllers/WorkOrdCtrl');
+var userCtrl = require('./controllers/userCtrl.js');
+var workorderCtrl = require('./controllers/workorderCtrl.js');
+var unitCtrl = require('./controllers/unitCtrl.js')
 
 //SERVICES//
 var passport = require('./services/passport');
@@ -35,9 +36,9 @@ app.use(passport.session());
 
 //ENDPOINTS//
 //=====User Endpoints==========================
-app.post('/users', UserCtrl.register);
-app.get('/me', isAuthed, UserCtrl.me);
-app.put('/users/:_id', isAuthed, UserCtrl.update);
+app.post('/user', userCtrl.register);
+app.get('/me', isAuthed, userCtrl.me);
+app.put('/user/:_id', isAuthed, userCtrl.update);
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'
@@ -47,11 +48,16 @@ app.get('/logout', function(req, res, next) {
   return res.status(200).send('logged out');
 });
 //=====WorkOrders Endpoints=====================
-app.post('/work-orders', WorkOrdCtrl.create);
-app.get('/work-orders', WorkOrdCtrl.read);
-app.get('/work-orders/:id', WorkOrdCtrl.readById);
-app.put('/work-orders/:id', WorkOrdCtrl.update);
-app.delete('/work-orders/:id', WorkOrdCtrl.delete);
+app.post('/workorder', workorderCtrl.create);
+app.get('/workorders', workorderCtrl.read);
+app.get('/workorder/:id', workorderCtrl.readById);
+app.put('/workorder/:id', workorderCtrl.update);
+app.delete('/workorder/:id', workorderCtrl.delete);
+
+//=====Units Endpoints=====================
+app.post('/unit', unitCtrl.create);
+app.get('/units', unitCtrl.read);
+
 
 
 //CONNECTIONS//
