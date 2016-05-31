@@ -16,6 +16,7 @@ var userCtrl = require('./controllers/userCtrl.js');
 var workorderCtrl = require('./controllers/workorderCtrl.js');
 var unitCtrl = require('./controllers/unitCtrl.js');
 var faqCtrl = require('./controllers/faqCtrl.js');
+var checkinoutCtrl = require('./controllers/checkinoutCtrl.js');
 
 //SERVICES//
 var passport = require('./services/passport');
@@ -38,6 +39,8 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+mongoose.set('debug', true)
+
 
 //ENDPOINTS//
 //=====User Endpoints==========================
@@ -69,6 +72,13 @@ app.get('/faqs', faqCtrl.read);
 app.get('/faq/:id', faqCtrl.readById);
 app.put('/faq/:id', faqCtrl.update);
 app.delete('/faq/:id', faqCtrl.delete);
+
+//=====CheckInOut Endpoints====================================
+app.post('/checkinout', checkinoutCtrl.create);
+app.get('/checkinouts', checkinoutCtrl.read);
+app.get('/checkinout/:id', checkinoutCtrl.readById);
+app.put('/checkinout/:id', checkinoutCtrl.update);
+app.delete('/checkinout/:id', checkinoutCtrl.delete);
 
 //CONNECTIONS//
 var mongoURI = config.MONGO_URI;
