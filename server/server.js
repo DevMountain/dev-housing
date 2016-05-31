@@ -1,12 +1,8 @@
-//for ES6 integration//
-// var polyfill = require('babel-polyfill');
-// import 'babel-polyfill';
-require("babel-core").transform("code");
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
+
 
 //CONFIG//
 var config = require('./config');
