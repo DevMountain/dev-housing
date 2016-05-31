@@ -7,19 +7,20 @@
 <div class="admin_faq_input">
     <input ng-model="newFaq.question" placeholder="Add question"></input>
     <input ng-model="newFaq.answer" placeholder="Add answer"></input>
-    <button ng-click="addNewFaq(newFaq)">Submit</button>
+    <button class="admin_faq_input_align" ng-click="addNewFaq(newFaq)">Submit</button>
 </div>
 
 <!--Inputs to edit or remove FAQ-->
 <div class="admin_faq_input">
-    <input ng-model="selected.question" placeholder="Edit or remove question"></input>
-    <input ng-model="selected.answer" placeholder="Edit or remove answer"></input>
-    <button ng-click="updateFaq(selected)">Edit</button><button ng-click="deleteFaq(selected)">Remove</button>
+    <input ng-model="selected.question" placeholder="Edit question"></input>
+    <input ng-model="selected.answer" placeholder="Edit answer"></input>
+    <button class="admin_faq_button_align" ng-click="updateFaq(selected)">Edit</button>
 </div>
 
 <!--Container of active FAQ-->
 <div class="admin_faq_cards_container">
     <div ng-repeat="faqs in Faq" ng-click="selectFaq(faqs)" class="admin_faq_cards">
-        <p>Question: {{faqs.question}}</p><br><p>Answer: {{faqs.answer}}</p>
+        <div class="admin_faq_cards_head"><p>FAQ</p><i class="fa fa-times fa-lg" ng-click="selectFaq(faqs); deleteFaq(selected)"></i></div>
+        <p class="admin_faq_cards_text">Question: {{faqs.question}}</p><br><p>Answer: {{faqs.answer}}</p>
     </div>
 </div>
