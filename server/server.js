@@ -1,8 +1,7 @@
-var express      = require('express');
-var bodyParser   = require('body-parser');
-var session      = require('express-session');
-
-var mongoose     = require('mongoose');
+var express = require('express');
+var bodyParser = require('body-parser');
+var session = require('express-session');
+var mongoose = require('mongoose');
 
 //CONFIG//
 var config = require('./config');
@@ -10,7 +9,8 @@ var config = require('./config');
 //CONTROLLERS//
 var userCtrl = require('./controllers/userCtrl.js');
 var workorderCtrl = require('./controllers/workorderCtrl.js');
-var unitCtrl = require('./controllers/unitCtrl.js')
+var unitCtrl = require('./controllers/unitCtrl.js');
+var faqCtrl = require('./controllers/faqCtrl.js');
 
 //SERVICES//
 var passport = require('./services/passport');
@@ -58,7 +58,12 @@ app.delete('/workorder/:id', workorderCtrl.delete);
 app.post('/unit', unitCtrl.create);
 app.get('/units', unitCtrl.read);
 
-
+//======FAQ Endpoints===================================
+app.post('/faq', faqCtrl.create);
+app.get('/faqs', faqCtrl.read);
+app.get('/faq/:id', faqCtrl.readById);
+app.put('/faq/:id', faqCtrl.update);
+app.delete('/faq/:id', faqCtrl.delete);
 
 //CONNECTIONS//
 var mongoURI = config.MONGO_URI;
@@ -70,5 +75,5 @@ mongoose.connection.once('open', function() {
   console.log('Connected to Mongo DB at', mongoURI);
   app.listen(config.PORT, function () {
     console.log('Listening on port ', config.PORT);
-  })
+});
 });
