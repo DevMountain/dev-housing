@@ -71,8 +71,8 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('admin-faq', {
       url: '/admin/faq',
       templateUrl: './app/components/admin/faq/faq.html',
-      // controller: 'faqCtrl'
-    })
+      controller: 'faqController'
+  });
 
     $urlRouterProvider.otherwise('/login');
 
