@@ -2,14 +2,18 @@ angular.module('devHousing')
   .service('workorderSvc', function ($http) {
 
     this.workorderCreate = (obj) => {
+      console.log('-----now at Service: Create: ' + obj);
       return $http({
         method: 'POST',
         url: '/workorder',
         data: obj
-      }).then( (response) => response.data);
+      }).then( (response) => {
+        console.log('****Still Service, .then: ' + response.data);
+        response.data});
     };
 
     this.workorderRead = () => {
+      console.log('-----now at Service: READ');
       return $http({
         method: 'GET',
         url: '/workorders'

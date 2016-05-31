@@ -8,22 +8,44 @@
 <br/>
 <br/>
 <div>
-  <form ng-model="workorder" action="" method="post">
-    <input ng-model="workorderUnit" type="text" value="201">
-    <select ng-model="workorderType">
+  <form name="workorderForm" novalidate>
+
+    <!-- <input ng-model="workorder.unit" name="unit" value="201" required></input>
+    <div ng-messages="workorderForm.unit.$error" ng-if="workorderForm.unit.$dirty || workorderForm.$submitted" role="alert">
+      <p ng-message="required" class="error">Please enter your unit number</p>
+    </div>
+
+    <input ng-model="workorder.room" name="room" value="A" required></input>
+    <div ng-messages="workorderForm.room.$error" ng-if="workorderForm.room.$dirty || workorderForm.$submitted" role="alert">
+      <p ng-message="required" class="error">Please enter your room number</p>
+    </div> -->
+
+    <select ng-model="workorder.problemType" name="type" required>
       <option value="plumbing">plumbing</option>
       <option value="appliance">appliance</option>
       <option value="electrical">electrical</option>
       <option value="other">other</option>
     </select>
-    <input ng-click="workorderDescription" name="name" placeholder="Description">
-    <input ng-click="workorderCreate(workorder)" type="button" name="Submit" value="">
+    <div ng-messages="workorderForm.type.$error" ng-if="wordorderForm.type.$dirty || workorderForm.$submitted" role="alert">
+      <p ng-message="required" class="error">Please select problem category type</p>
+    </div>
+
+    <input ng-model="workorder.description" name="description" placeholder="Description" required></input>
+    <div ng-messages="workorderForm.description.$error" ng-if="workorderForm.description.$dirty || workorderForm.$submitted" role="alert">
+      <p ng-message="required" class="error">Please describe the problem</p>
+    </div>
+    <!-- <button ng-click="workorderRead()" type="button">GET</button> -->
+
+    <button type="submit" ng-disabled="workorder.$invalid"
+        ng-click="workorderCreate(workorder)">submit</button>
+
   </form>
 
 </div>
 
 <div ng-repeat="workorder in list">
   <div>
-    {{workorder}}
+    {{workorder.description}}
+    {{workorder.problemType}}
   </div>
 </div>

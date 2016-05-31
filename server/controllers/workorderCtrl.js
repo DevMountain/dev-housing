@@ -4,6 +4,7 @@ module.exports = {
 
   create: function(req, res, next) {
     Workorder.create(req.body, function (err, response) {
+      console.log('*_*_*_*_*: backend CTRL: ' + req.body.description);
       if(err) return res.status(500).send(err);
       console.log("Created workorder.");
       res.status(200).send(response);
