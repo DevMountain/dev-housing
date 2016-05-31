@@ -1,0 +1,31 @@
+<side-bar-nav></side-bar-nav>
+<div>
+  <h1>hello, i'm a work order</h1>
+  <br/>
+  <input ng-model="workorderSeach" type="text" placeholder="search">
+  <input ng-model="workorderCampus" type="text" placeholder="campus">
+  <input ng-model="workorderStatus" type="text" placeholder="status">
+</div>
+<br/>
+<br/>
+<div>
+  <form ng-model="workorder" action="" method="post">
+    <input ng-model="workorder.unit" type="text" value="201">
+    <select ng-model="workorder.type">
+      <option value="plumbing">plumbing</option>
+      <option value="appliance">appliance</option>
+      <option value="electrical">electrical</option>
+      <option value="other">other</option>
+    </select>
+    <input ng-click="workorder.description" name="name" placeholder="Description">
+    <button ng-click="workorderCreate(workorder)" type="button" >Creat</button>
+    <button ng-click="workorderRead()" type="button" name="GET" value="">Read</button>
+  </form>
+
+</div>
+
+<div ng-repeat="workorder in list">
+  <div>
+    {{workorder}}
+  </div>
+</div>
