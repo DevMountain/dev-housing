@@ -20,6 +20,11 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     })
 
     //ADMIN ROUTES ============================
+    .state('admin-home', {
+      url: '/admin/home',
+      templateUrl: './app/components/admin/adminHome/adminHome.html',
+      // controller: 'adminHomeCtrl'
+    })
 
     .state('admin-workorders', {
       url: '/admin/workorders',
@@ -45,18 +50,6 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       // controller: 'rentCtrl'
     })
 
-    .state('admin-addEditUser', {
-      url: '/admin/addedituser',
-      templateUrl: './app/components/admin/addEditUser/addEditUser.html',
-      // controller: 'addEditUserCtrl'
-    })
-
-    .state('admin-options', {
-      url: '/admin/options',
-      templateUrl: './app/components/admin/options/options.html',
-      // controller: 'optionsCtrl'
-    })
-
     .state('admin-check-in', {
       url: '/admin/check-in',
       templateUrl: './app/components/admin/check-in/check-in.html',
@@ -69,12 +62,17 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       // controller: 'check-outCtrl'
     })
 
-    .state('admin-home', {
-      url: '/admin/home',
-      templateUrl: './app/components/admin/adminHome/adminHome.html',
-      // controller: 'adminHomeCtrl'
+    .state('admin-housing-protocols', {
+      url: '/admin/housing-protocols',
+      templateUrl: './app/components/admin/housingProtocols/housingProtocols.html',
+      // controller: 'housingProtocolsCtrl'
     })
 
+    .state('admin-faq', {
+      url: '/admin/faq',
+      templateUrl: './app/components/admin/faq/faq.html',
+      // controller: 'faqCtrl'
+    })
 
     $urlRouterProvider.otherwise('/login');
 
