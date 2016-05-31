@@ -3,7 +3,13 @@ angular.module('devHousing')
 
     $scope.workorderCreate = (obj) => {
       console.log(obj);
-      workorderSvc.workorderCreate();
+      workorderSvc.workorderCreate(obj).then($scope.workorderRead());
+    };
+
+    $scope.workorderRead = () => {
+      workorderSvc.workorderRead().then( (response) => {
+        $scope.list = response.data;
+      });
     }
 
 
