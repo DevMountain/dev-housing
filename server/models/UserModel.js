@@ -21,7 +21,7 @@ var User = new Schema ({
   backgroundCheck: {type: Boolean},
   rent: {
     isRenter: {type: Boolean, default: false},
-    price: {type: Number},
+    price: {type: Number, default: 0},
     paid: [{type: Date}]
   },
   currentAddress: {

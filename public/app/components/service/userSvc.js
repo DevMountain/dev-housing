@@ -10,7 +10,15 @@ this.createUser = function(user) {
   })
 };
 
-
+this.loginUser = function(login) {
+  return $http({
+    method: 'POST',
+    url: '/login',
+    data: login
+  }).then(function(response){
+    console.log(response);
+  })
+}
 
 
 
