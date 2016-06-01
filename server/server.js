@@ -42,8 +42,8 @@ mongoose.set('debug', true)
 //ENDPOINTS//
 //=====User Endpoints==========================
 app.post('/user', userCtrl.register);
-app.get('/me', isAuthed, userCtrl.me);
-app.put('/user/:_id', isAuthed, userCtrl.update);
+app.get('/me', isAuthed, userCtrl.me); //test
+app.put('/user/:_id', isAuthed, userCtrl.update); //test
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'
@@ -59,7 +59,7 @@ app.get('/workorder/:id', workorderCtrl.readById);
 app.put('/workorder/:id', workorderCtrl.update);
 app.delete('/workorder/:id', workorderCtrl.delete);
 
-//=====Units Endpoints===============================
+//=====Units Endpoints=============================== //add more endpoints?
 app.post('/unit', unitCtrl.create);
 app.get('/units', unitCtrl.read);
 
@@ -77,9 +77,10 @@ app.get('/checkinout/:id', checkinoutCtrl.readById);
 app.put('/checkinout/:id', checkinoutCtrl.update);
 app.delete('/checkinout/:id', checkinoutCtrl.delete);
 
-//=====Cohort Endpoints==============================
+//=====Cohort Endpoints==============================  //add more endpoints?
 app.post('/cohort', cohortCtrl.create);
 app.get('/cohorts', cohortCtrl.read);
+app.put('/cohorts/:id', cohortCtrl.update)
 
 
 
