@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('currentHousingCtrl', function($scope, unitSvc){
+angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc){
 
 var loadHousing = function() {
   console.log('loading housing');

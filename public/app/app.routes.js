@@ -7,25 +7,47 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       controller: 'loginCtrl'
     })
 
-    .state('home', {
-      url: '/home',
-      templateUrl: './app/components/home/homeView.html',
-      controller: 'homeCtrl'
+    //STUDENT ROUTES ============================
+
+    .state('student-home', {
+      url: '/student/home',
+      templateUrl: './app/components/student/home/studentHome.html',
+      // controller: 'studentHomeCtrl'
     })
 
-    .state('workorder', {
-      url: '/workorder',
-      templateUrl: './app/components/workorder/workorderView.html',
-      controller: 'workorderCtrl'
+    .state('student-workorders', {
+      url: '/student/workorders',
+      templateUrl: './app/components/student/workorder/studentWorkorder.html',
+      controller: 'studentWorkorderCtrl'
+    })
+
+    .state('student-rent', {
+      url: '/student/rent',
+      templateUrl: './app/components/student/rent/studentRent.html',
+      // controller: 'studentCentCtrl'
+    })
+
+    .state('student-check-in', {
+      url: '/student/check-in',
+      templateUrl: './app/components/student/check-in/studentCheck-in.html',
+      // controller: 'studentCheck-inCtrl'
+    })
+
+    .state('student-check-out', {
+      url: '/student/check-out',
+      templateUrl: './app/components/student/check-out/studentCheck-out.html',
+      // controller: 'studentCheck-outCtrl'
     })
 
     .state('student-faq', {
         url: '/student/faq',
-        templateUrl: './app/components/admin/faq/faq-student.html',
-        controller: 'faqController'
+        templateUrl: './app/components/student/faq/studentFaq.html',
+        controller: 'adminFaqController'
     })
 
+
     //ADMIN ROUTES ============================
+
     .state('admin-home', {
       url: '/admin/home',
       templateUrl: './app/components/admin/adminHome/adminHome.html',
@@ -35,55 +57,56 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('admin-workorders', {
       url: '/admin/workorders',
       templateUrl: './app/components/admin/workorder/workorder.html',
-      // controller: 'workorderCtrl' //conflicts with other workorder stuff???
+      controller: 'adminWorkorderCtrl'
     })
 
     .state('admin-currentHousing', {
       url: '/admin/currenthousing',
       templateUrl: './app/components/admin/currentHousing/currentHousing.html',
-      controller: 'currentHousingCtrl'
+      controller: 'adminCurrentHousingCtrl'
     })
 
     .state('admin-futureHousing', {
       url: '/admin/futurehousing',
       templateUrl: './app/components/admin/futureHousing/futureHousing.html',
-      controller: 'futureHousingCtrl'
+      controller: 'adminFutureHousingCtrl'
+
     })
 
     .state('admin-rent', {
       url: '/admin/rent',
       templateUrl: './app/components/admin/rent/rent.html',
-      // controller: 'rentCtrl'
+      // controller: 'adminRentCtrl'
     })
 
     .state('admin-check-in', {
       url: '/admin/check-in',
       templateUrl: './app/components/admin/check-in/check-in.html',
-      // controller: 'check-inCtrl'
+      // controller: 'adminCheck-inCtrl'
     })
 
     .state('admin-check-out', {
       url: '/admin/check-out',
       templateUrl: './app/components/admin/check-out/check-out.html',
-      // controller: 'check-outCtrl'
+      // controller: 'adminCheck-outCtrl'
     })
 
     .state('admin-housing-protocols', {
       url: '/admin/housing-protocols',
       templateUrl: './app/components/admin/housingProtocols/housingProtocols.html',
-      // controller: 'housingProtocolsCtrl'
+      // controller: 'adminHousingProtocolsCtrl'
     })
 
     .state('admin-faq', {
       url: '/admin/faq',
       templateUrl: './app/components/admin/faq/faq.html',
-      controller: 'faqController'
+      controller: 'adminFaqController'
     })
 
     .state('admin-options', {
       url: '/admin/options',
       templateUrl: './app/components/admin/options/options.html',
-      controller: 'optionsCtrl'
+      controller: 'adminOptionsCtrl'
   });
 
     $urlRouterProvider.otherwise('/login');
