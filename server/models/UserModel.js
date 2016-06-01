@@ -25,11 +25,8 @@ var User = new Schema ({
     paid: [{type: Date}]
   },
   currentAddress: {
-    street1: {type: String, required: true},
-    street2: {type: String},
     city: {type: String, required: true},
-    state: {type: String, required: true},
-    zip: {type: Number, required: true},
+    state: {type: String, required: true}
   },
   car: {
     make: {type: String},
