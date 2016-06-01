@@ -41,13 +41,13 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('admin-currentHousing', {
       url: '/admin/currenthousing',
       templateUrl: './app/components/admin/currentHousing/currentHousing.html',
-      // controller: 'currentHousingCtrl'
+      controller: 'currentHousingCtrl'
     })
 
     .state('admin-futureHousing', {
       url: '/admin/futurehousing',
       templateUrl: './app/components/admin/futureHousing/futureHousing.html',
-      // controller: 'futureHousingCtrl'
+      controller: 'futureHousingCtrl'
     })
 
     .state('admin-rent', {

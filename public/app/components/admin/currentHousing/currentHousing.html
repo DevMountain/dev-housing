@@ -1,1 +1,27 @@
 <side-bar-nav></side-bar-nav>
+<h1>current housing</h1>
+
+<input class="housing-search-bar" placeholder="search" ng-model="query[queryBy]"/>
+
+<select ng-model="queryBy" />                       //fix default value to not be blank
+  <option value="unitNumber">Unit Number</option>
+  <option value="campus">Campus</option>
+  <option value="propertyName">Property Name</option>
+</select>
+
+
+<div class="provo-housing-list" ng-repeat="unit in currentHousing | filter: query">
+   {{unit.campus}} - {{unit.unitNumber}}
+</div>
+
+<div class="default_cards_container">
+   <div class="default_repeat_cards">
+       <div class="default_cards_head"><div><p>Provo</p></div></div>
+       <p class="default_cards_text">
+           senior: <input ng-model="allCohorts.provo.senior">
+           junior: <input ng-model="allCohorts.provo.junior">
+           future: <input ng-model="allCohorts.provo.future">
+           <button ng-click="saveCohorts(allCohorts)">Save</button>
+       </p>
+   </div>
+</div>
