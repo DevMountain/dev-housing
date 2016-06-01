@@ -72,6 +72,12 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       url: '/admin/faq',
       templateUrl: './app/components/admin/faq/faq.html',
       controller: 'faqController'
+  })
+
+    .state('admin-options', {
+      url: '/admin/options',
+      templateUrl: './app/components/admin/options/options.html',
+      controller: 'optionsCtrl'
   });
 
     $urlRouterProvider.otherwise('/login');
