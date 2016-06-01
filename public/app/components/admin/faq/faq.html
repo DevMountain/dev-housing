@@ -1,29 +1,30 @@
 <side-bar-nav></side-bar-nav>
+<user-info></user-info>
 
-<!--Leave space for a directive of user info in corner-->
-<div class="temp">Placeholder for user info</div>
-
-<div class="admin_faq_cards_container">
-    <div class="admin_faq_cards">
-        <div class="admin_faq_cards_head"><div><p>Add a new FAQ</p></div></div>
-        <div class="admin_faq_cards_new">
-            <textarea ng-model="newFaq.question" placeholder="Add a new question"></textarea>
-            <textarea ng-model="newFaq.answer" placeholder="Add a new answer"></textarea><br>
-            <button ng-click="addNewFaq(newFaq)">Submit</button>
+<div class="main-wrapper">
+    
+    <div class="admin_faq_cards_container">
+        <div class="admin_faq_cards">
+            <div class="admin_faq_cards_head"><div><p>Add a new FAQ</p></div></div>
+            <div class="admin_faq_cards_new">
+                <textarea ng-model="newFaq.question" placeholder="Add a new question"></textarea>
+                <textarea ng-model="newFaq.answer" placeholder="Add a new answer"></textarea><br>
+                <button ng-click="addNewFaq(newFaq)">Submit</button>
+            </div>
         </div>
     </div>
-</div>
-
-<!--Container of current FAQs-->
-<div class="admin_faq_cards_container">
-    <div ng-repeat="faqs in Faq | orderBy: '-'" class="admin_faq_cards">
-        <div class="admin_faq_cards_head"><div><p>FAQ</p></div><div><i ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id" class="fa fa-pencil"></i><i class="fa fa-times" ng-click="selectFaq(faqs); deleteFaq(selected)"></i></div></div>
-        <!-- <div class="admin_faq_cards_head"><div class="admin_faq_cards_title_adjust"><p>FAQ</p></div><div><img src="./assets/img/add_icon.svg" ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id"></img><img src="./assets/img/delete_icon.svg" ng-click="selectFaq(faqs); deleteFaq(selected)"></img></div></div> -->
-        <p class="admin_faq_cards_text">Question:&nbsp;&nbsp;{{faqs.question}}</p><br><p>Answer:&nbsp;&nbsp;{{faqs.answer}}</p>
-        <div class="admin_faq_cards_wrench" ng-show="toggleUpdate">
-            <textarea ng-model="faq.question" placeholder="Edit question"></textarea>
-            <textarea ng-model="faq.answer" placeholder="Edit answer"></textarea><br>
-            <button ng-click="updateFaq(faq)">Edit</button>
+    
+    <!--Container of current FAQs-->
+    <div class="admin_faq_cards_container">
+        <div ng-repeat="faqs in Faq" class="admin_faq_cards">
+            <div class="admin_faq_cards_head"><div><p>FAQ</p></div><div><i ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id" class="fa fa-pencil fa-lg"></i><i class="fa fa-times fa-lg" ng-click="selectFaq(faqs); deleteFaq(selected)"></i></div></div>
+            <!-- <div class="admin_faq_cards_head"><div class="admin_faq_cards_title_adjust"><p>FAQ</p></div><div><img src="./assets/img/add_icon.svg" ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id"></img><img src="./assets/img/delete_icon.svg" ng-click="selectFaq(faqs); deleteFaq(selected)"></img></div></div> -->
+            <p class="admin_faq_cards_text">Question:&nbsp;&nbsp;{{faqs.question}}</p><br><p>Answer:&nbsp;&nbsp;{{faqs.answer}}</p>
+            <div class="admin_faq_cards_wrench" ng-show="toggleUpdate">
+                <textarea ng-model="faq.question" placeholder="Edit question"></textarea>
+                <textarea ng-model="faq.answer" placeholder="Edit answer"></textarea><br>
+                <button ng-click="updateFaq(faq)">Edit</button>
+            </div>
         </div>
     </div>
-</div>
+</div> <!--main-wrapper closing div -->

@@ -1,43 +1,43 @@
 <side-bar-nav></side-bar-nav>
-
-<!--Leave space for a directive of user info in corner-->
-<div class="temp">Placeholder for user info</div>
+<user-info></user-info>
 
 <!--PROVO CAMPUS-->
-<div class="default_cards_container">
-    <div class="default_repeat_cards">
-        <div class="default_cards_head"><div><p>Provo</p></div></div>
-        <p class="default_cards_text">
-            senior: <input ng-model="allCohorts.provo.senior">
-            junior: <input ng-model="allCohorts.provo.junior">
-            future: <input ng-model="allCohorts.provo.future">
-            <button ng-click="saveCohorts(allCohorts)">Save</button>
-        </p>
-    </div>
-</div>
-
-<!--SLC CAMPUS-->
-<div class="default_cards_container">
-    <div class="default_repeat_cards">
-        <div class="default_cards_head"><div><p>SLC</p></div></div>
-        <p class="default_cards_text">
-            senior: <input ng-model="allCohorts.slc.senior">
-            junior: <input ng-model="allCohorts.slc.junior">
-            future: <input ng-model="allCohorts.slc.future">
-            <button ng-click="saveCohorts(allCohorts)">Save</button>
-        </p>
-    </div>
-</div>
-
-<!--DALLAS CAMPUS-->
-<div class="default_cards_container">
-    <div class="default_repeat_cards">
-        <div class="default_cards_head"><div><p>Dallas</p></div></div>
-        <p class="default_cards_text">
-            senior: <input ng-model="allCohorts.dallas.senior">
-            junior: <input ng-model="allCohorts.dallas.junior">
-            future: <input ng-model="allCohorts.dallas.future">
-            <button ng-click="saveCohorts(allCohorts)">Save</button>
-        </p>
-    </div>
-</div>
+<div class="main-wrapper">
+	<div class="default_cards_container">
+	    <div class="default_repeat_cards">
+	        <div class="default_cards_head"><div><p>Provo</p></div></div>
+	        <p class="default_cards_text">
+	            senior: <input ng-model="allCohorts.provo.senior">
+	            junior: <input ng-model="allCohorts.provo.junior">
+	            future: <input ng-model="allCohorts.provo.future">
+	            <button ng-click="saveCohorts(allCohorts)">Save</button>
+	        </p>
+	    </div>
+	</div>
+	
+	<!--SLC CAMPUS-->
+	<div class="default_cards_container">
+	    <div class="default_repeat_cards">
+	        <div class="default_cards_head"><div><p>SLC</p></div></div>
+	        <p class="default_cards_text">
+	            senior: <input ng-model="allCohorts.slc.senior">
+	            junior: <input ng-model="allCohorts.slc.junior">
+	            future: <input ng-model="allCohorts.slc.future">
+	            <button ng-click="saveCohorts(allCohorts)">Save</button>
+	        </p>
+	    </div>
+	</div>
+	
+	<!--DALLAS CAMPUS-->
+	<div class="default_cards_container">
+	    <div class="default_repeat_cards">
+	        <div class="default_cards_head"><div><p>Dallas</p></div></div>
+	        <p class="default_cards_text">
+	            senior: <input ng-model="allCohorts.dallas.senior">
+	            junior: <input ng-model="allCohorts.dallas.junior">
+	            future: <input ng-model="allCohorts.dallas.future">
+	            <button ng-click="saveCohorts(allCohorts)">Save</button>
+	        </p>
+	    </div>
+	</div>
+</div> <!--main-wrapper closing div -->
