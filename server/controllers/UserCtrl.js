@@ -22,6 +22,21 @@ module.exports = {
         if (err) next(err);
         res.status(200).send('user updated');
       });
-    }
+    },
+
+    read: function(req, res, next) {
+      User.find({}, function(err, response) {
+        if (err) {
+          return res.status(500).send(err);
+        } else {
+          for (var i = 0; i < response.length; i++) {
+            response[i].password = null;
+          }
+        }
+        res.status(200).send(response)
+      });
+    },
+
+
 
 };

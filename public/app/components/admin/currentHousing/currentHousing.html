@@ -3,6 +3,7 @@
 
 <div class="main-wrapper">
 
+  {{allUsers}}
     <h1>current housing</h1>
 
     <input class="housing-search-bar" placeholder="search" ng-model="query[queryBy]" />
@@ -19,7 +20,7 @@
         <div class="default_repeat_cards" ng-repeat="unit in currentHousing | filter: query">
             <div class="default_cards_head">
                 <div>
-                    <p>{{unit.campus}} - {{unit.unitNumber}}</p> 
+                    <p>{{unit.campus}} - {{unit.unitNumber}}</p>
                 </div>
             </div>
             <p class="default_cards_text">
@@ -35,5 +36,6 @@
             </p>
         </div>
     </div>
+
 
 </div> <!--main-wrapper closing div -->
