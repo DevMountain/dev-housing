@@ -1,14 +1,13 @@
 angular.module('devHousing')
-  .controller('workorderAdminCtrl', function ($scope, workorderSvc) {
+  .controller('studentWorkorderCtrl', function ($scope, workorderSvc) {
 
     $scope.workorderRead = () => {
       workorderSvc.workorderRead().then( (response) => {
-        console.log(`***Ctrl Read: ${JSON.stringify(response)}`);
-        $scope.adminList = response;
+        $scope.list = response;
       });
     }
 
-    setTimeout($scope.workorderRead(), 1000);
+    setTimeout($scope.workorderRead(), 5000);
 
     // $scope.getAll = () => workorderSvc.workorderRead();
 
