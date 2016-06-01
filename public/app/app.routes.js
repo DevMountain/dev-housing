@@ -35,7 +35,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('admin-workorders', {
       url: '/admin/workorders',
       templateUrl: './app/components/admin/workorder/workorder.html',
-      // controller: 'workorderCtrl' //conflicts with other workorder stuff???
+      controller: 'workorderAdminCtrl' //conflicts with other workorder stuff???
     })
 
     .state('admin-currentHousing', {
