@@ -18,8 +18,16 @@ angular.module('devHousing').service('userSvc', function($http) {
         }).then(function(response) {
             return response.data
         })
-    }
+    };
 
+    this.getUsers = function() {
+      return $http({
+        method: 'GET',
+        url: '/users'
+      }).then(function(response){
+        return response.data
+      })
+    };
 
 
 })
