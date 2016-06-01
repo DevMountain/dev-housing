@@ -44,7 +44,7 @@ mongoose.set('debug', true)
 app.post('/user', userCtrl.register);
 app.get('/me', isAuthed, userCtrl.me); //test
 app.put('/user/:_id', isAuthed, userCtrl.update); //test
-
+//add endpoint to get all users
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'
 }));
@@ -62,6 +62,7 @@ app.delete('/workorder/:id', workorderCtrl.delete);
 //=====Units Endpoints=============================== //add more endpoints?
 app.post('/unit', unitCtrl.create);
 app.get('/units', unitCtrl.read);
+app.put('/unit/:id', unitCtrl.update)
 
 //======FAQ Endpoints================================
 app.post('/faq', faqCtrl.create);
