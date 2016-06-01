@@ -19,6 +19,12 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       controller: 'workorderCtrl'
     })
 
+    .state('student-faq', {
+        url: '/student/faq',
+        templateUrl: './app/components/admin/faq/faq-student.html',
+        controller: 'faqController'
+    })
+
     //ADMIN ROUTES ============================
     .state('admin-home', {
       url: '/admin/home',
@@ -72,7 +78,6 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       url: '/admin/faq',
       templateUrl: './app/components/admin/faq/faq.html',
       controller: 'faqController'
-
     })
 
     .state('admin-options', {
