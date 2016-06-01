@@ -2,18 +2,15 @@ angular.module('devHousing')
   .service('workorderSvc', function ($http) {
 
     this.workorderCreate = (obj) => {
-      console.log('-----now at Service: Create: ' + obj);
       return $http({
         method: 'POST',
         url: '/workorder',
         data: obj
       }).then( (response) => {
-        console.log('****Still Service, .then: ' + response.data);
         response.data});
     };
 
     this.workorderRead = () => {
-      console.log('-----now at Service: READ');
       return $http({
         method: 'GET',
         url: '/workorders'
@@ -27,18 +24,20 @@ angular.module('devHousing')
       }).then( (response) => response.data );
     };
 
-    this.workorderUpdate = (obj, id) => {
+    this.workorderUpdate = (obj) => {
       return $http({
         method: 'PUT',
-        url: `/workorder/:${id}`,
+        url: `/workorder/${obj._id}`,
         data: obj
-      }).then( (response) => response.data);
+      }).then( (response) => {
+        response.data
+      });
     };
 
     this.workorderDelete = (id) => {
       return $http({
         method: 'DELETE',
-        url: `/workorder/:${id}`
+        url: `/workorder/${id}`
       }).then( (response) => response.data);
     };
 

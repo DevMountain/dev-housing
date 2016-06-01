@@ -8,7 +8,10 @@
 <br/>
 <br/>
 <div>
+
   <form name="workorderForm" novalidate>
+
+    <!-- <button ng-click="getAll()">GET ALL</button> -->
 
     <!-- <input ng-model="workorder.unit" name="unit" value="201" required></input>
     <div ng-messages="workorderForm.unit.$error" ng-if="workorderForm.unit.$dirty || workorderForm.$submitted" role="alert">
@@ -30,7 +33,7 @@
       <p ng-message="required" class="error">Please select problem category type</p>
     </div>
 
-    <input ng-model="workorder.description" name="description" placeholder="Description" required></input>
+    <textarea ng-model="workorder.description" name="description" placeholder="Description" required></textarea>
     <div ng-messages="workorderForm.description.$error" ng-if="workorderForm.description.$dirty || workorderForm.$submitted" role="alert">
       <p ng-message="required" class="error">Please describe the problem</p>
     </div>
@@ -43,9 +46,26 @@
 
 </div>
 
-<div ng-repeat="workorder in list">
-  <div>
-    {{workorder.description}}
-    {{workorder.problemType}}
-  </div>
+<!--Container of active Workorder-->
+<div style="padding:50px">
+   <div ng-repeat="workorder in list" class="student_workorder_list">
+       <div class=""><div><p>IDK</p></div><div>
+         <i ng-click="toggleUpdate = !toggleUpdate; workorders.description = workorder.description;
+          workorders.problemType = workorder.problemType; workorders._id = workorder._id"
+          class="fa fa-wrench fa-lg"></i>
+          <i class="fa fa-times fa-lg"
+          ng-click="workorderDelete(workorder._id)"></i></div></div>
+       <p class="">{{workorder.description}}</p><br><p>{{workorder.problemType}}</p>
+       <div class="workorder_cards_wrench" ng-show="toggleUpdate">
+           <textarea ng-model="workorder.description" placeholder="Edit description"></textarea>
+           <select ng-model="workorder.problemType" name="type" required>
+             <option value="plumbing">plumbing</option>
+             <option value="appliance">appliance</option>
+             <option value="electrical">electrical</option>
+             <option value="other">other</option>
+           </select><br>
+           <hr/>
+           <button ng-click="workorderUpdate(workorder)">Edit</button>
+       </div>
+   </div>
 </div>

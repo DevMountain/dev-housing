@@ -15,7 +15,7 @@ module.exports = {
     Workorder.find(req.query, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
-        console.log("Getting work orders to read.");
+        console.log(`Getting work orders to read. ${response}`);
         res.status(200).send(response);
       }
     });
@@ -32,7 +32,9 @@ module.exports = {
   },
 
   update: function(req, res, next) {
+    console.log(`backend CTRL: ${req.params.id}`);
     Workorder.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
+      console.log(`backend CTRL: ${err}`);
       if(err) {res.status(500).send(err)
       } else {
         console.log("Updated work order.");
