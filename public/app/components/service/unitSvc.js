@@ -5,11 +5,11 @@ angular.module('devHousing').service('unitSvc', function($http){
       method: 'GET',
       url: '/units'
     }).then(function(response){
-      return response.data
-    })
+      return response.data;
+  });
   };
 
   //should we add ability to add housing later?
 
 
-})
+});

@@ -3,19 +3,9 @@
 
 <div class="main-wrapper">
 
-    <div class="default_cards_container">
-        <h1>hello, i'm a work order</h1>
-        <br/>
-        <input ng-model="workdorderSeach" type="text" placeholder="search">
-        <input ng-model="workorderCampus" type="text" placeholder="campus">
-        <input ng-model="workorderStatus" type="text" placeholder="status">
-
-        <br/>
-        <br/>
+    <!-- <div class="default_cards_container">
         <div>
-
             <form class="default_cards_container" name="workorderForm" novalidate>
-
                 <select ng-model="workorder.problemType" name="type" required>
                     <option value="" disabled selected>Select your option</option>
                     <option value="plumbing">plumbing</option>
@@ -26,72 +16,79 @@
                 <div ng-messages="workorderForm.type.$error" ng-if="wordorderForm.type.$dirty || workorderForm.$submitted" role="alert">
                     <p ng-message="required" class="error">Please select problem category type</p>
                 </div>
-
                 <textarea ng-model="workorder.description" name="description" placeholder="Description" required></textarea>
                 <div ng-messages="workorderForm.description.$error" ng-if="workorderForm.description.$dirty || workorderForm.$submitted" role="alert">
                     <p ng-message="required" class="error">Please describe the problem</p>
                 </div>
-
                 <button type="submit" ng-disabled="workorder.$invalid" ng-click="workorderCreate(workorder)">submit</button>
-
             </form>
+        </div> -->
 
-        </div>
 
-        <!--Container of active Workorder-->
-        <div class="default_cards_container workorder_cards_container">
-            <div class="default_repeat_cards workorder_repeat_cards" ng-repeat="workorder in adminList">
-                <div class="default_cards_head">
-
-                    <div class="admin_faq_cards_head">
-                        <div>
-                            <p>Work Order</p>
-                        </div>
-                        <div>
-                            <i ng-click="toggleUpdate = !toggleUpdate; workorders.description = workorder.description;
-                      workorders.problemType = workorder.problemType; workorders._id = workorder._id" class="fa fa-pencil"></i>
-                            <i class="fa fa-times" ng-click="workorderDelete(workorder._id)"></i>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- <i ng-click="toggleUpdate = !toggleUpdate; workorders.description = workorder.description;
-          workorders.problemType = workorder.problemType; workorders._id = workorder._id" class="fa fa-wrench fa-lg"></i>
-            <i class="fa fa-times fa-lg" ng-click="selectFaq(faqs); workorderDelete(workorder._id)"></i> -->
-
-                <p class="default_cards_text workorder_cards_text">{{workorder.description}}</p><br>
-                <p>{{workorder.problemType}}</p>
-                <div class="workorder_cards_wrench" ng-show="toggleUpdate">
-                    <textarea ng-model="workorder.description" placeholder="Edit description"></textarea>
-                    <select ng-model="workorder.problemType" name="type" required>
-                        <option value="plumbing">plumbing</option>
-                        <option value="appliance">appliance</option>
-                        <option value="electrical">electrical</option>
-                        <option value="other">other</option>
-                    </select><br>
-                    <hr/>
-                    <button ng-click="workorderUpdate(workorder)">Edit</button>
-                </div>
+    <!--Top card with search options-->
+    <div class="default_cards_container">
+        <div class="workorder_repeat_cards">
+            <div class="default_cards_head"><div><p>Sort Workorders</p></div></div>
+            <div class="workorder_sort_container">
+                <div><input placeholder="search"></input></div>
+                <div><select>
+                    <option value="" disabled selected>Select</option>
+                    <option value="appliance">appliance</option>
+                    <option value="electrical">electrical</option>
+                    <option value="plumbing">plumbing</option>
+                    <option value="other">other</option>
+                </select>
+                <button ng-click="toggleWorkorderDashboard = !toggleWorkorderDashboard; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id">Add New Workorder</button>
+            </div>
+            </div>
+            <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
+                <textarea ng-model="workorder.description" placeholder="Description"></textarea><br>
+                <select ng-model="workorder.problemType" name="type" required>
+                    <option value="plumbing">plumbing</option>
+                    <option value="appliance">appliance</option>
+                    <option value="electrical">electrical</option>
+                    <option value="other">other</option>
+                </select>
+                <button ng-click="workorderCreate(workorder)">Create</button>
             </div>
         </div>
     </div>
-    <!-- ********************************EXAMPLE*********** -->
+
+
+    <!--Repeating cards of work orders-->
     <div class="default_cards_container">
-        <div class="default_repeat_cards">
+        <div class="workorder_repeat_cards" ng-repeat="workorder in adminList | orderBy: '-'">
             <div class="default_cards_head">
-                <div>
-                    <p>Provo</p>
+                <div><p>Work Order Campus Unit#</p></div>
+                <div><i ng-click="toggleUpdate = !toggleUpdate; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id" class="fa fa-pencil"></i><i class="fa fa-times" ng-click="workorderDelete(workorder._id)"></i></div>
+            </div>
+
+            <div class="default_cards_divider_container">
+                <div class="workorder_cards_text left">
+                    <p>User</p>
+                    <p>Date</p>
+                    <p>Permission</p>
+                    <p>{{workorder.problemType}}</p>
+                    <p>{{workorder.description}}</p>
+                </div>
+                <div class="workorder_cards_text">
+                    <p>Admin Update</p>
+                    <p>Insert Status</p>
+                    <p>Admin Notes</p>
+                    <textarea></textarea>
                 </div>
             </div>
-            <p class="default_cards_text">
-                senior:
-                <input ng-model="allCohorts.provo.senior">
-                junior:
-                <input ng-model="allCohorts.provo.junior">
-                future:
-                <input ng-model="allCohorts.provo.future">
-                <button ng-click="saveCohorts(allCohorts)">Save</button>
-            </p>
+
+            <div class="workorder_faq_cards_edit" ng-show="toggleUpdate">
+                <textarea ng-model="workorder.description" placeholder="Edit description"></textarea><br>
+                <select ng-model="workorder.problemType" name="type" required>
+                    <option value="plumbing">plumbing</option>
+                    <option value="appliance">appliance</option>
+                    <option value="electrical">electrical</option>
+                    <option value="other">other</option>
+                </select>
+                <button ng-click="workorderUpdate(workorder)">Edit</button>
+            </div>
         </div>
     </div>
 
