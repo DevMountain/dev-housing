@@ -10,6 +10,6 @@ status: {type: String, required: true, default: 'pending'},
 submittedBy: {type: Schema.Types.ObjectId, ref: 'User'},
 unit: {type: Schema.Types.ObjectId, ref: 'Unit'}//,
 // room: {type: String, required: true}
-})
+});
 
-module.exports = mongoose.model('Workorder', WorkorderSchema)
+module.exports = mongoose.model('Workorder', WorkorderSchema);
