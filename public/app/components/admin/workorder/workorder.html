@@ -3,36 +3,14 @@
 
 <div class="main-wrapper">
 
-    <!-- <div class="default_cards_container">
-        <div>
-            <form class="default_cards_container" name="workorderForm" novalidate>
-                <select ng-model="workorder.problemType" name="type" required>
-                    <option value="" disabled selected>Select your option</option>
-                    <option value="plumbing">plumbing</option>
-                    <option value="appliance">appliance</option>
-                    <option value="electrical">electrical</option>
-                    <option value="other">other</option>
-                </select>
-                <div ng-messages="workorderForm.type.$error" ng-if="wordorderForm.type.$dirty || workorderForm.$submitted" role="alert">
-                    <p ng-message="required" class="error">Please select problem category type</p>
-                </div>
-                <textarea ng-model="workorder.description" name="description" placeholder="Description" required></textarea>
-                <div ng-messages="workorderForm.description.$error" ng-if="workorderForm.description.$dirty || workorderForm.$submitted" role="alert">
-                    <p ng-message="required" class="error">Please describe the problem</p>
-                </div>
-                <button type="submit" ng-disabled="workorder.$invalid" ng-click="workorderCreate(workorder)">submit</button>
-            </form>
-        </div> -->
-
-
     <!--Top card with search options-->
     <div class="default_cards_container">
         <div class="workorder_repeat_cards">
-            <div class="default_cards_head"><div><p>Sort Workorders</p></div></div>
+            <div class="default_cards_head"><div><p>Create Workorder</p></div></div>
             <div class="workorder_sort_container">
-                <div><input placeholder="search"></input></div>
-                <div><select>
-                    <option value="" disabled selected>Select</option>
+                <div><input ng-model="workorder" placeholder="search"></input></div>
+                <div><select ng-model="workorder.problemType">
+                    <option value="" selected>Select</option>
                     <option value="appliance">appliance</option>
                     <option value="electrical">electrical</option>
                     <option value="plumbing">plumbing</option>
@@ -42,14 +20,15 @@
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
-                <textarea ng-model="workorder.description" placeholder="Description"></textarea><br>
-                <select ng-model="workorder.problemType" name="type" required>
-                    <option value="plumbing">plumbing</option>
+                <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
+                <select ng-model="adminWorkorder.problemType" name="type" required>
+                    <option value="" disabled selected>Select</option>
                     <option value="appliance">appliance</option>
                     <option value="electrical">electrical</option>
+                    <option value="plumbing">plumbing</option>
                     <option value="other">other</option>
                 </select>
-                <button ng-click="workorderCreate(workorder)">Create</button>
+                <button ng-click="workorderCreate(adminWorkorder)">Create</button>
             </div>
         </div>
     </div>
@@ -57,24 +36,26 @@
 
     <!--Repeating cards of work orders-->
     <div class="default_cards_container">
-        <div class="workorder_repeat_cards" ng-repeat="workorder in adminList | orderBy: '-'">
+        <div class="workorder_repeat_cards" ng-repeat="workorder in adminList | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
-                <div><p>Work Order Campus Unit#</p></div>
+                <div><p>Work Order Campus Unit #</p></div>
                 <div><i ng-click="toggleUpdate = !toggleUpdate; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id" class="fa fa-pencil"></i><i class="fa fa-times" ng-click="workorderDelete(workorder._id)"></i></div>
             </div>
 
             <div class="default_cards_divider_container">
                 <div class="workorder_cards_text left">
-                    <p>User</p>
-                    <p>Date</p>
-                    <p>Permission</p>
-                    <p>{{workorder.problemType}}</p>
-                    <p>{{workorder.description}}</p>
+                    <p><span class="bold">Submitted</span>&nbsp;&nbsp;insert date</p>
+                    <p>Time of submit and user</p>
+                    <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
+                    <p><span class="bold">Description:</span>&nbsp;&nbsp;{{workorder.description}}</p>
+                    <p><span class="bold">Permission</span>&nbsp;&nbsp;Placeholder for permission agreement</p>
                 </div>
                 <div class="workorder_cards_text">
-                    <p>Admin Update</p>
-                    <p>Insert Status</p>
-                    <p>Admin Notes</p>
+                    <p class="bold">Admin Update</p>
+                    <div class="workorder_admin_status">
+                        <div><p>Recieved</p></div><div><p>In Progress</p></div><div><p>Completed</p></div>
+                    </div>
+                    <p class="bold">Admin Notes</p>
                     <textarea></textarea>
                 </div>
             </div>
@@ -82,9 +63,10 @@
             <div class="workorder_faq_cards_edit" ng-show="toggleUpdate">
                 <textarea ng-model="workorder.description" placeholder="Edit description"></textarea><br>
                 <select ng-model="workorder.problemType" name="type" required>
-                    <option value="plumbing">plumbing</option>
+                    <option value="" selected>Select</option>
                     <option value="appliance">appliance</option>
                     <option value="electrical">electrical</option>
+                    <option value="plumbing">plumbing</option>
                     <option value="other">other</option>
                 </select>
                 <button ng-click="workorderUpdate(workorder)">Edit</button>

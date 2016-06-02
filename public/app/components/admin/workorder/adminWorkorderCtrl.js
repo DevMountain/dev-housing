@@ -10,7 +10,7 @@ angular.module('devHousing')
     setTimeout($scope.workorderRead(), 1000);
 
     // $scope.getAll = () => workorderSvc.workorderRead();
-
+    $scope.adminWorkorder = {};
     $scope.workorderCreate = (obj) => {
         console.log(`***Ctrl Create: ${JSON.stringify(obj)}`);
     //   if($scope.workorderForm.$valid){  Figure out how to make validation work
@@ -18,6 +18,7 @@ angular.module('devHousing')
         //After workorder is created, only return most recent work order for student view.
         workorderSvc.workorderCreate(obj).then((response) => {
           $scope.workorderRead();
+          $scope.adminWorkorder = {};
         });
     //   }
     };
