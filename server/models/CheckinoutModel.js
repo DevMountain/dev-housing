@@ -3,12 +3,12 @@ var Schema = mongoose.Schema;
 
 var CheckInOutSchema = new Schema ({
 checkInDate: {type: Date, required: true},
+campus: {type: String},
 checkInDetails:
 [{
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   unit: {type: Number},
   room: {type: String},
-  campus: {type: String},
   timeSlot: {type: String}
 }]
 

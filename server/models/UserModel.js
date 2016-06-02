@@ -32,7 +32,7 @@ var User = new Schema ({
     depositReturned: {type: Date}
   },
   singleRoom: {
-    wantsSingleRoom: {type: Boolean, defualt: false},
+    wantsSingleRoom: {type: Boolean, default: false},
     hasSingleRoom: {type: Boolean, default: false},
     singleRoomFee: {
       roomFeePaid: {type: Boolean, default: false},
