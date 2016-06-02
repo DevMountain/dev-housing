@@ -2,15 +2,24 @@
     font-family: 'Proxima'
     src: url('./assets/fonts/proxima/proximaNova-Light.otf')
 
+@font-face
+    font-family: 'Bold'
+    src: url('./assets/fonts/proxima/ProximaNova-Semibold_1.otf')
 
-$font: Proxima
+
+$regularText: Proxima
+$boldText: Bold
+
+.bold
+    font-family: $boldText
 
 body
-    font-family: $font
+    font-family: $regularText
+    line-height: 1.5
 
 textarea
     font-size: 16px
-    font-family: $font
+    font-family: $regularText
 
 .temp
     width: 100%
