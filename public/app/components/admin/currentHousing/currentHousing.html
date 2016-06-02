@@ -3,7 +3,55 @@
 
 <div class="main-wrapper">
 
-  {{allUsers}}
+
+
+<p>
+  Males &#9794;
+</p>
+<p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}}">
+  {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+</p>
+<br>
+<p>
+  Want private room
+</p>
+<p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}}">
+{{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+</p>
+<br>
+<br>
+
+<p>
+  Females &#9792;;
+</p>
+<p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}}">
+{{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+</p>
+<br>
+<p>
+  Want private room
+</p>
+<p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}}">
+{{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+</p>
+
+<!--
+<p ng-repeat="person in needHousing | filter: {singleRoom: {wantsSingleRoom: true}} ">
+    {{person.firstName}} {{person.lastName}} - {{person.gender}} - P
+</p>
+<p ng-repeat="person in needHousing | filter: {singleRoom: {wantsSingleRoom: false}} ">
+    {{person.firstName}} {{person.lastName}} - {{person.gender}}
+</p>
+ -->
+
+
+
+
+
+
+
+
+
     <h1>current housing</h1>
 
     <input class="housing-search-bar" placeholder="search" ng-model="query[queryBy]" />
