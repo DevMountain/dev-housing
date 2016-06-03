@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminCheckinCtrl', function($scope, checkinSvc) {
+angular.module('devHousing').controller('adminCheckinCtrl', function($scope, checkinSvc, cohortSvc) {
 
     var start;
     var end;
@@ -7,15 +7,37 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, che
     var slots;
     var campus;
     var schedule = [];
+    var cohort;
+
+//LOAD ALL COHORTS FOR NG-OPTIONS
+    var getCohorts = function(){
+      cohortSvc.getCohorts().then(function(response){
+        $scope.allCohorts = response;
+      })
+    };
+    getCohorts();
+
+//LOAD EXISTING CHECK INS
+  var getCheckins = function(){
+    checkinSvc.getCheckins().then(function(response){
+      console.log(response);
+      $scope.allCheckins = response;
+    })
+  };
+
+  getCheckins();
+
+
+
 
     $scope.createCheckin = function(info) {
         start = moment(info.start);
         end = moment(info.end)
         interval = info.interval;
         campus = info.campus
+        cohort = info.cohort
         createSchedule();
     }
-
 
     var createSchedule = function(slots) {
         duration = end.diff(start, 'minutes');
@@ -32,7 +54,7 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, che
           checkinEnd: end.format(),
           slotInterval: interval,
           campus: campus,
-          cohort: 'DM-10',
+          cohort: cohort,
           checkinAppointments: schedule
         }
 

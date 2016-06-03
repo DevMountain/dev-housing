@@ -3,18 +3,54 @@
 
 <div class="main-wrapper">
 
+
+<!-- CREATE CHECK IN -->
   <p>
     check in options
   </p>
-
   <input type="datetime-local" name="name" ng-model="checkin.start">start date and time</input><br>
   <input type="datetime-local" name="name" ng-model="checkin.end">end date and time</input><br>
-  <input type="number" name="name" ng-model="checkin.interval">length of each appointment in minutes</input>
+  <input type="number" name="name" ng-model="checkin.interval">length of each appointment in minutes</input><br>
+  <input ng-model="checkin.cohort" placeholder="cohort"></input><br>
   <select ng-model="checkin.campus" /> //fix default value to not be blank using ng-options
   <option value="provo">Provo</option>
   <option value="SLC">SLC</option>
   <option value="dallas">Dallas</option>
-  </select>
+ </select><br>
   <button type="button" name="button" ng-click="createCheckin(checkin)">create checkin</button>
+
+
+<!-- VIEW EXISTING CHECK IN SCHEUDLE -->
+
+
+
+
+<!-- <div class="cards_list_container">
+
+   <div class="current_housing_cards_container">
+       <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: query">
+           <div class="current_housing_cards_head">
+               <div>
+                   <p>{{unit.campus}} - {{unit.unitNumber}}</p>
+               </div>
+           </div>
+           <p class="current_housing_cards_text">
+             {{unit.propertyName}} {{unit.address.street1}} {{unit.address.street2}}<br>
+             {{unit.currentBedrooms.roomNumber}} <br>
+             <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
+             <div ng-repeat="bedroom in unit.currentBedrooms">
+               Room: {{bedroom.roomNumber}}
+               <div ng-repeat="person in bedroom.currentOccupants">
+                 Occupant: {{person.firstName}} {{person.lastName}}
+               </div>
+             </div>
+           </p>
+       </div>
+   </div> -->
+
+
+
+
+
 
 </div> <!--main-wrapper closing div -->

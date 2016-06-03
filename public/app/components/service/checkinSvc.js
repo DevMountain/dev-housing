@@ -10,5 +10,15 @@ this.createCheckin = function(data){
   })
 };
 
+this.getCheckins = function(){
+  return $http({
+    method: 'GET',
+    url: '/checkins'
+  }).then(function(response){
+    return response.data
+  })
+}
+
+
 
 })
