@@ -80,15 +80,15 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     })
 
     .state('admin-check-in', {
-      url: '/admin/check-in',
-      templateUrl: './app/components/admin/check-in/check-in.html',
-      controller: 'adminCheck-inCtrl'
+      url: '/admin/checkin',
+      templateUrl: './app/components/admin/check-in/checkin.html',
+      controller: 'adminCheckinCtrl'
     })
 
     .state('admin-check-out', {
-      url: '/admin/check-out',
-      templateUrl: './app/components/admin/check-out/check-out.html',
-      // controller: 'adminCheck-outCtrl'
+      url: '/admin/checkout',
+      templateUrl: './app/components/admin/check-out/checkout.html',
+      controller: 'adminCheckoutCtrl'
     })
 
     .state('admin-housing-protocols', {

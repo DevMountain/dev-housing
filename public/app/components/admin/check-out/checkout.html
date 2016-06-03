@@ -1,0 +1,48 @@
+<side-bar-nav></side-bar-nav>
+<user-info></user-info>
+
+<div class="main-wrapper">
+
+  <p>
+    check out options
+  </p>
+  <input type="datetime-local" name="name" ng-model="checkout.start">start date and time</input><br>
+  <input type="datetime-local" name="name" ng-model="checkout.end">end date and time</input><br>
+  <input type="number" name="name" ng-model="checkout.interval">length of each appointment in minutes</input><br>
+  <input ng-model="checkout.cohort" placeholder="cohort"></input><br>
+  <select ng-model="checkout.campus" /> //fix default value to not be blank using ng-options
+  <option value="provo">Provo</option>
+  <option value="SLC">SLC</option>
+  <option value="dallas">Dallas</option>
+</select><br>
+  <button type="button" name="button" ng-click="createCheckout(checkout)">create checkout</button>
+
+  <!-- VIEW EXISTING CHECK OUT SCHEUDLE -->
+
+  <div ng-repeat="check in allCheckouts">
+  Start: {{check.checkoutStart}}<br>
+  End: {{check.checkoutEnd}}<br>
+  Appointment length: {{check.slotInterval}}<br>
+  Campus: {{check.campus}}<br>
+  Cohort: {{check.cohort}}<br>
+
+  <br>
+
+  </div>
+
+  <div class="cards_list_container">
+
+     <div class="current_housing_cards_container" ng-repeat="check in allCheckouts">
+         <div class="current_housing_repeat_cards" ng-repeat="slot in check.checkoutAppointments">
+             <div class="current_housing_cards_head" >
+                 <div>
+                     <p>{{slot.timeSlot}}</p>
+                 </div>
+             </div>
+             <!-- <p class="current_housing_cards_text" ng-repeat="slot in check.checkinAppointments">
+               {{slot.user}} - {{slot.unit}} Room:{{slot.room}}
+             </p> -->
+         </div>
+     </div>
+
+</div> <!--main-wrapper closing div -->
