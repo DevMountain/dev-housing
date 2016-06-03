@@ -44,7 +44,6 @@ mongoose.set('debug', true);
 app.post('/user', userCtrl.register);
 app.get('/me', isAuthed, userCtrl.me); //test
 app.put('/user/:_id', isAuthed, userCtrl.update); //test
-app.put('/user/update', userCtrl.updateUser);
 app.get('/users', userCtrl.read);
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'

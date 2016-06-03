@@ -30,10 +30,10 @@ angular.module('devHousing').service('userSvc', function($http) {
     };
 
     //update user
-    this.updateUser = function(user) {
+    this.update = function(user) {
         return $http({
             method: 'PUT',
-            url: '/user/update' + user._id,
+            url: '/user/' + user._id,
             data: user
         }).then(function(response) {
             return response.data;

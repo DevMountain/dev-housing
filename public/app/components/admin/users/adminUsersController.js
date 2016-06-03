@@ -13,7 +13,7 @@ $scope.displayUsers();
 // update single user
 $scope.updateUser = function(user) {
     console.log(user);
-    userSvc.updateUser(user).then(function(response) {
+    userSvc.update(user).then(function(response) {
         $scope.displayUsers();
     });
 };

@@ -24,18 +24,6 @@ module.exports = {
       });
     },
 
-    updateUser: function(request, response, next) {
-        User.findByIdAndUpdate(request.params.id, request.body, function(error, serverResponse) {
-            if (error) {
-                return response.status(500).send(error);
-            }
-            else {
-                console.log('Updating ' + request.params.id);
-                response.status(200).send(serverResponse);
-            }
-        });
-    },
-
     read: function(req, res, next) {
       User.find({}, function(err, response) {
         if (err) {
