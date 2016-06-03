@@ -37,7 +37,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-mongoose.set('debug', true)
+mongoose.set('debug', true);
 
 
 //ENDPOINTS//
@@ -45,7 +45,7 @@ mongoose.set('debug', true)
 app.post('/user', userCtrl.register);
 app.get('/me', isAuthed, userCtrl.me); //test
 app.put('/user/:_id', isAuthed, userCtrl.update); //test
-app.get('/users', userCtrl.read)
+app.get('/users', userCtrl.read);
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'
 }));
@@ -89,7 +89,7 @@ app.delete('/checkout/:id', checkoutCtrl.delete);
 //=====Cohort Endpoints==============================  //add more endpoints?
 app.post('/cohort', cohortCtrl.create);
 app.get('/cohorts', cohortCtrl.read);
-app.put('/cohorts/:id', cohortCtrl.update)
+app.put('/cohorts/:id', cohortCtrl.update);
 
 
 

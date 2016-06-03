@@ -33,7 +33,7 @@ module.exports = {
             response[i].password = null;
           }
         }
-        res.status(200).send(response)
+        res.status(200).send(response);
       });
     },
 
