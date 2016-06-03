@@ -5,45 +5,114 @@
 
     <div class="users_cards_container">
         <div class="users_cards">
-            <div class="users_cards_head"><div><p>Search Users</p></div></div>
+            <div class="users_cards_head"><div><p>Search Users</p></div>
+                <!-- <div><span>Add User</span><i ng-click="addModal = !addModal" class="fa fa-plus"></i></div> -->
+            </div>
             <div class="users_cards_new">
                 <input ng-model="user" placeholder="Search by name"></input>
             </div>
+            <!-- <div class="users_edit" ng-show="addModal">
+                <p class="bold">Add a new user</p>
+                <input ng-model="newUser.firstName" placeholder="name"></input><br>
+                <input ng-model="newUser.lastName" placeholder="name"></input><br>
+                <input ng-model="newUser.age" placeholder="age"></input><br>
+                <input ng-model="newUser.adminAccess" placeholder="Admin"></input><br>
+                <input ng-model="newUser.campus" placeholder="campus"></input><br>
+                <input ng-model="newUser.cohortID" placeholder="cohort"></input><br>
+                <input ng-model="newUser.role" placeholder="role"></input><br>
+                <input ng-model="newUser.inHousing" placeholder="housing"></input><br>
+                <input ng-model="newUser.rent.isRenter" placeholder="pays rent"></input><br>
+                <input ng-model="newUser.rent.rentPaid.rentPrice" placeholder="rent amount"></input><br>
+                <input ng-model="newUser.singleRoom.hasSingleRoom" placeholder="private room"></input><br>
+                <input ng-model="newUser.email" placeholder="email"></input><br>
+                <input ng-model="newUser.phone" placeholder="phone"></input><br>
+                <textarea ng-model="newUser.adminNotes" placeholder="Notes"></textarea><br>
+                <button ng-click="addUser(newUser)">Add new user</button>
+            </div> -->
         </div>
     </div>
 
     <!--Container of current FAQs-->
     <div class="users_cards_container">
         <div ng-repeat="user in users | filter: user" class="users_cards">
-            <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i class="fa fa-times"></i></div></div>
-                <p class="users_cards_text"><span class="bold">Name:</span>&nbsp;&nbsp;{{user.firstName}} {{user.lastName}}<br>
-                    Admin: {{user.adminAccess}}<br>
-                    Campus: {{user.campus}}<br>
-                    Cohort: {{user.cohortID}}<br>
-                    Role: {{user.role}}<br>
-                    In Housing: {{user.inHousing}}<br>
-                    Rent: {{user.rent.isRenter}}<br>
-                    Rent: {{user.rent.rentPaid.rentPrice}}<br>
-                    Private Room: {{user.singleRoom.hasSingleRoom}}<br>
-                    Email: {{user.email}}<br>
-                    Phone: {{user.phone}}<br>
-                    Notes: {{user.adminNotes}}
-                </p>
+            <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
+
+            <div class="user_edit_container" ng-hide="editUser">
+                <div class="user_edit_left"
+                    <p class="users_cards_text">
+                        <span class="bold">Basic info</span><br>
+                        Name: {{user.firstName}} {{user.lastName}}<br>
+                        Age: {{user.age}}<br>
+                        Gender: {{user.gender}}<br>
+                        Email: {{user.email}}<br>
+                        Phone: {{user.phone}}<br>
+                        Home City/State: {{user.currentAddress.city}}, {{user.currentAddress.state}}<br><br>
+                        <span class="bold">Admin</span><br>
+                        Admin Access: {{user.adminAccess}}<br>
+                        Admin Default: {{user.adminDefaultView}}<br><br>
+                        <span class="bold">Cohort</span><br>
+                        Campus: {{user.campus}}<br>
+                        Cohort: {{user.cohortID}}<br>
+                        DevMtnID: {{user.devmtnID}}<br>
+                        Role: {{user.role}}<br><br>
+                </div>
+                <div class="user_edit_right">
+                        <span class="bold">Housing</span><br>
+                        In Housing: {{user.inHousing}}<br>
+                        Rent Status: {{user.rent.isRenter}}<br>
+                        Rent Amount: {{user.rent.rentPrice}}<br>
+                        Rent Paid: {{user.rent.rentPaid}}<br>
+                        Private Room Requested: {{user.singleRoom.wantsSingleRoom}}<br>
+                        Private Room Occupant: {{user.singleRoom.hasSingleRoom}}<br>
+                        Checkin Date: {{user.checkInOut.checkInDate}}<br>
+                        Checkin Status: {{user.checkInOut.checkInStatus}}<br>
+                        Checkout Date: {{user.checkInOut.checkOutDate}}<br>
+                        Checkout Status: {{user.checkInOut.checkOutStatus}}<br><br>
+                        <span class="bold">Vehicles</span><br>
+                        Drivers License on File: {{user.licenseOnFile}}<br>
+                        Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}}  {{user.car.license}}<br><br>
+                        <span class="bold">User Notes</span><br>
+                        Notes: {{user.adminNotes}}
+                    </p>
+                </div>
+            </div>
+
             <div class="users_edit" ng-show="editUser">
-                <input ng-model="user.firstName" placeholder="name"></input><br>
-                <input ng-model="user.lastName" placeholder="name"></input><br>
-                <input ng-model="user.adminAccess" placeholder="Admin"></input><br>
-                <input ng-model="user.campus" placeholder="campus"></input><br>
-                <input ng-model="user.cohortID" placeholder="cohort"></input><br>
-                <input ng-model="user.role" placeholder="role"></input><br>
-                <input ng-model="user.inHousing" placeholder="housing"></input><br>
-                <input ng-model="user.rent.isRenter" placeholder="pays rent"></input><br>
-                <input ng-model="user.rent.rentPaid.rentPrice" placeholder="rent amount"></input><br>
-                <input ng-model="user.singleRoom.hasSingleRoom" placeholder="private room"></input><br>
-                <input ng-model="user.email" placeholder="email"></input><br>
-                <input ng-model="user.phone" placeholder="phone"></input><br>
-                <textarea ng-model="user.adminNotes" placeholder="Notes"></textarea><br>
-                <button ng-click="updateUser(user)">Submit Changes</button>
+                <div class="user_edit_container">
+                    <div class="user_edit_left">
+                        <p>Email&nbsp;&nbsp;</p><input ng-model="user.email" placeholder="email"></input><br>
+                        <p>Phone&nbsp;&nbsp;</p><input ng-model="user.phone" placeholder="phone"></input><br>
+                        <p>Admin Access&nbsp;&nbsp;</p><input ng-model="user.adminAccess" placeholder="Admin Access"></input><br>
+                        <p>Admin Default View&nbsp;&nbsp;</p><input ng-model="user.adminDefaultView" placeholder="Admin Default"></input><br>
+                        <p>Campus&nbsp;&nbsp;</p><input ng-model="user.campus" placeholder="campus"></input><br>
+                        <p>Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID" placeholder="cohort"></input><br>
+                        <p>Devmtn ID&nbsp;&nbsp;</p><input ng-model="user.devmtnID" placeholder="DevMtn ID"></input></br>
+                        <p>Role&nbsp;&nbsp;</p><input ng-model="user.role" placeholder="role"></input><br>
+                        <p>Housing Status&nbsp;&nbsp;</p><input ng-model="user.inHousing" placeholder="housing"></input><br>
+                        <p>Renter Status&nbsp;&nbsp;</p><input ng-model="user.rent.isRenter" placeholder="pays rent"></input><br>
+                        <p>Rent Amount&nbsp;&nbsp;</p><input ng-model="user.rent.rentPrice" placeholder="rent amount"></input><br>
+                        <p>Rent Paid&nbsp;&nbsp;</p><input ng-model="user.rent.rentPaid" placeholder="rent paid"></input></br>
+                    </div>
+
+                    <div class="user_edit_right"
+                        <p>Private Room Requested&nbsp;&nbsp;</p><input ng-model="user.singleRoom.wantsSingleRoom" placeholder="private room requested"></input></br>
+                        <p>Private Room Occupant&nbsp;&nbsp;</p><input ng-model="user.singleRoom.hasSingleRoom" placeholder="private room occupant"></input><br>
+                        <p>Checkin Date&nbsp;&nbsp;</p><input ng-model="user.checkInOut.checkInDate" placeholder="check in date"></input></br>
+                        <p>Checkin Status&nbsp;&nbsp;</p><input ng-model="user.checkInOut.checkInStatus" placeholder="check in status"></input></br>
+                        <p>Checkout Date&nbsp;&nbsp;</p><input ng-model="user.checkInOut.checkOutDate" placeholder="check out date"></input></br>
+                        <p>Checkout Status&nbsp;&nbsp;</p><input ng-model="user.checkInOut.checkOutStatus" placeholder="check out status"></input></br>
+                        <p>Vehicle Make&nbsp;&nbsp;</p><input ng-model="user.car.make" placeholder="vehicle make"></input></br>
+                        <p>Vehicle Model&nbsp;&nbsp;</p><input ng-model="user.car.model" placeholder="vehicle model"></input></br>
+                        <p>Vehicle Year&nbsp;&nbsp;</p><input ng-model="user.car.year" placeholder="vehicle year"></input></br>
+                        <p>Vehicle License&nbsp;&nbsp;</p><input ng-model="user.car.license" placeholder="vehicle license"></input></br>
+                        <p>Admin Notes&nbsp;&nbsp;</p><textarea ng-model="user.adminNotes" placeholder="Notes"></textarea><br>
+                        <button ng-click="updateUser(user)">Submit Changes</button>
+                    </div>
+                </div>
+            </div>
+            <div class="users_edit" ng-show="deleteModal">
+                <p class="bold">Are you sure you want to delete this user from the database?</p>
+                <button ng-click="deleteUser(user)">Delete User</button>
             </div>
         </div>
     </div>
