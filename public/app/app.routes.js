@@ -42,7 +42,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-faq', {
         url: '/student/faq',
         templateUrl: './app/components/student/faq/studentFaq.html',
-        controller: 'adminFaqController'
+        controller: 'studentFaqCtrl'
     })
 
 
