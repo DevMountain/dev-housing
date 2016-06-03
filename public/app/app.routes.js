@@ -30,7 +30,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-check-in', {
       url: '/student/check-in',
       templateUrl: './app/components/student/check-in/studentCheck-in.html',
-      // controller: 'studentCheck-inCtrl'
+      controller: 'studentCheck-inCtrl'
     })
 
     .state('student-check-out', {

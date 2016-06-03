@@ -6,20 +6,16 @@
     <!--Top card with search options-->
     <div class="default_cards_container">
         <div class="workorder_repeat_cards">
-            <div class="default_cards_head"><div><p>Create Workorder</p></div></div>
+            <div class="default_cards_head"><div id="student_workorder_header_text"><p>Create Workorder</p></div></div>
             <div class="workorder_sort_container default_cards_text">
-                Search Existing Workorders: <div><input ng-model="workorder" placeholder="search"></input></div>
-                <br>
-                Search by type: <div><select ng-model="workorder.problemType">
+                <div><input ng-model="workorder" placeholder="search"></input></div>
+                <div><select ng-model="workorder.problemType">
                     <option value="" selected>Select</option>
                     <option value="appliance">appliance</option>
                     <option value="electrical">electrical</option>
                     <option value="plumbing">plumbing</option>
                     <option value="other">other</option>
                 </select>
-                <br>
-                Create a new workorder
-                <br>
                 <button ng-click="toggleWorkorderDashboard = !toggleWorkorderDashboard; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id">Add New Workorder</button>
             </div>
             </div>
