@@ -1,14 +1,15 @@
 <student-side-bar-nav></student-side-bar-nav>
 <user-info></user-info>
 
-<div class="main-wrapper">
+<div class="student-main-wrapper">
 
     <!--Top card with search options-->
     <div class="default_cards_container">
         <div class="workorder_repeat_cards">
             <div class="default_cards_head"><div><p>Create Workorder</p></div></div>
-            <div class="workorder_sort_container">
+            <div class="workorder_sort_container default_cards_text">
                 Search Existing Workorders: <div><input ng-model="workorder" placeholder="search"></input></div>
+                <br>
                 Search by type: <div><select ng-model="workorder.problemType">
                     <option value="" selected>Select</option>
                     <option value="appliance">appliance</option>
