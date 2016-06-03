@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('loginCtrl', function($scope, userSvc){
+angular.module('devHousing').controller('loginCtrl', function($scope, userSvc, $state){
 
 $scope.showLogin = true;
 
@@ -23,7 +23,12 @@ $scope.submitSignUp = function(user) {
       console.log('login valid');
       userSvc.loginUser(login).then(function(response){
 
-        console.log(response);
+        console.log(`the Role is: ${response.role}`);
+        if (response.role === 'student') {
+          $state.go('student-home');
+        } else {
+          $state.go('admin-home');
+        }
       })
     }
   }
