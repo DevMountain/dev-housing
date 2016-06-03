@@ -82,7 +82,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('admin-check-in', {
       url: '/admin/check-in',
       templateUrl: './app/components/admin/check-in/check-in.html',
-      // controller: 'adminCheck-inCtrl'
+      controller: 'adminCheck-inCtrl'
     })
 
     .state('admin-check-out', {

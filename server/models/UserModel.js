@@ -20,9 +20,9 @@ var User = new Schema ({
   role: {type: String, required: true, default: 'student'},
   //not required
   devmtnID: {type: Number},
-  cohortID: [{type: String}],
-  adminAccess: [{type: String}],
-  adminDefaultView: [{type: String}],
+  cohortID: {type: String},
+  adminAccess: [{type: String}], //make object?
+  adminDefaultView: {type: String},
   adminNotes: {type: String},
   licenseOnFile: {type: Boolean},
   backgroundCheck: {type: Boolean},
