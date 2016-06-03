@@ -1,51 +1,51 @@
-var CheckInOut = require('../models/CheckinoutModel.js');
+var Checkout = require('../models/CheckoutModel.js');
 
 module.exports = {
 
   create: function(req, res, next) {
-    CheckInOut.create(req.body, function (err, response) {
+    Checkout.create(req.body, function (err, response) {
       if(err) return res.status(500).send(err);
-      console.log("Created new CheckInOut.");
+      console.log("Created new Checkout.");
       res.status(200).send(response);
     });
   },
 
   read: function(req, res, next) {
-    CheckInOut.find(req.query, function (err, response) {
+    Checkout.find(req.query, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
-        console.log("Reading CheckInOut.");
+        console.log("Reading Checkout.");
         res.status(200).send(response);
       }
     });
   },
 
   readById: function(req, res, next) {
-    CheckInOut.findById(req.params.id, function (err, response) {
+    Checkout.findById(req.params.id, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
-        console.log("Reading CheckInOut by id: ",req.params.id);
+        console.log("Reading Checkout by id: ",req.params.id);
         res.send(response)
       }
     });
   },
 
   update: function(req, res, next) {
-    CheckInOut.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
+    Checkout.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
       if(err) {res.status(500).send(err)
       } else {
-        console.log("Updated CheckInOut.");
+        console.log("Updated Checkout.");
       res.status(200).send(response);
     }
     });
   },
 
   delete: function(req, res, next) {
-    CheckInOut.findByIdAndRemove(req.params.id, function (err, response) {
+    Checkout.findByIdAndRemove(req.params.id, function (err, response) {
       if(err) {
         res.status(500).send(err)
       } else {
-          console.log('Deleted CheckInOut');
+          console.log('Deleted Checkout');
           res.send(response)
       }
     });

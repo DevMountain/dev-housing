@@ -12,7 +12,8 @@ var userCtrl = require('./controllers/userCtrl.js');
 var workorderCtrl = require('./controllers/workorderCtrl.js');
 var unitCtrl = require('./controllers/unitCtrl.js');
 var faqCtrl = require('./controllers/faqCtrl.js');
-var checkinoutCtrl = require('./controllers/checkinoutCtrl.js');
+var checkinCtrl = require('./controllers/checkinCtrl.js');
+var checkoutCtrl = require('./controllers/checkoutCtrl.js');
 var cohortCtrl = require('./controllers/cohortCtrl.js');
 
 //SERVICES//
@@ -71,12 +72,19 @@ app.get('/faq/:id', faqCtrl.readById);
 app.put('/faq/:id', faqCtrl.update);
 app.delete('/faq/:id', faqCtrl.delete);
 
-//=====CheckInOut Endpoints==========================
-app.post('/checkinout', checkinoutCtrl.create);
-app.get('/checkinouts', checkinoutCtrl.read);
-app.get('/checkinout/:id', checkinoutCtrl.readById);
-app.put('/checkinout/:id', checkinoutCtrl.update);
-app.delete('/checkinout/:id', checkinoutCtrl.delete);
+//=====Checkin Endpoints========================== //UPDATE ALL ENDPOINTS MATT
+app.post('/checkin', checkinCtrl.create);
+app.get('/checkins', checkinCtrl.read);
+app.get('/checkin/:id', checkinCtrl.readById);
+app.put('/checkin/:id', checkinCtrl.update);
+app.delete('/checkin/:id', checkinCtrl.delete);
+
+//=====Checkout Endpoints========================== //UPDATE ALL ENDPOINTS MATT
+app.post('/checkout', checkoutCtrl.create);
+app.get('/checkouts', checkoutCtrl.read);
+app.get('/checkout/:id', checkoutCtrl.readById);
+app.put('/checkout/:id', checkoutCtrl.update);
+app.delete('/checkout/:id', checkoutCtrl.delete);
 
 //=====Cohort Endpoints==============================  //add more endpoints?
 app.post('/cohort', cohortCtrl.create);
