@@ -10,5 +10,13 @@ this.createCheckout = function(data){
   })
 };
 
+this.getCheckouts = function(){
+  return $http({
+    method: 'GET',
+    url: '/checkouts'
+  }).then(function(response){
+    return response.data
+  })
+};
 
 })

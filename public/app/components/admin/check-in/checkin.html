@@ -22,31 +22,31 @@
 
 <!-- VIEW EXISTING CHECK IN SCHEUDLE -->
 
+<div ng-repeat="check in allCheckins">
+Start: {{check.checkinStart}}<br>
+End: {{check.checkinEnd}}<br>
+Appointment length: {{check.slotInterval}}<br>
+Campus: {{check.campus}}<br>
+Cohort: {{check.cohort}}<br>
 
+<br>
 
+</div>
 
-<!-- <div class="cards_list_container">
+<div class="cards_list_container">
 
-   <div class="current_housing_cards_container">
-       <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: query">
-           <div class="current_housing_cards_head">
+   <div class="current_housing_cards_container" ng-repeat="check in allCheckins">
+       <div class="current_housing_repeat_cards" ng-repeat="slot in check.checkinAppointments">
+           <div class="current_housing_cards_head" >
                <div>
-                   <p>{{unit.campus}} - {{unit.unitNumber}}</p>
+                   <p>{{slot.timeSlot}}</p>
                </div>
            </div>
-           <p class="current_housing_cards_text">
-             {{unit.propertyName}} {{unit.address.street1}} {{unit.address.street2}}<br>
-             {{unit.currentBedrooms.roomNumber}} <br>
-             <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
-             <div ng-repeat="bedroom in unit.currentBedrooms">
-               Room: {{bedroom.roomNumber}}
-               <div ng-repeat="person in bedroom.currentOccupants">
-                 Occupant: {{person.firstName}} {{person.lastName}}
-               </div>
-             </div>
-           </p>
+           <!-- <p class="current_housing_cards_text" ng-repeat="slot in check.checkinAppointments">
+             {{slot.user}} - {{slot.unit}} Room:{{slot.room}}
+           </p> -->
        </div>
-   </div> -->
+   </div>
 
 
 

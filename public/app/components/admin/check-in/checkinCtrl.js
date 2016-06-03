@@ -13,14 +13,21 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, che
     var getCohorts = function(){
       cohortSvc.getCohorts().then(function(response){
         $scope.allCohorts = response;
+
       })
     };
     getCohorts();
 
-//LOAD EXISTING CHECK INS
+//LOAD EXISTING CHECK INS AND FORMAT DATES
   var getCheckins = function(){
     checkinSvc.getCheckins().then(function(response){
-      console.log(response);
+      for (var i = 0; i < response.length; i++){
+        response[i].checkinStart = moment(response[i].checkinStart).format('dddd MMMM Do YYYY - h:mm A');
+        response[i].checkinEnd = moment(response[i].checkinEnd).format('dddd MMMM Do YYYY - h:mm A');
+        for (var j = 0; j < response[i].checkinAppointments.length; j++){
+          response[i].checkinAppointments[j].timeSlot = moment(response[i].checkinAppointments[j].timeSlot).format('h:mm A')
+        }
+      }
       $scope.allCheckins = response;
     })
   };
