@@ -13,7 +13,7 @@ var workorderCtrl = require('./controllers/workorderCtrl.js');
 var unitCtrl = require('./controllers/unitCtrl.js');
 var faqCtrl = require('./controllers/faqCtrl.js');
 var checkinoutCtrl = require('./controllers/checkinoutCtrl.js');
-var cohortCtrl = require('./controllers/cohortCtrl.js')
+var cohortCtrl = require('./controllers/cohortCtrl.js');
 
 //SERVICES//
 var passport = require('./services/passport');
@@ -36,7 +36,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-mongoose.set('debug', true)
+mongoose.set('debug', true);
 
 
 //ENDPOINTS//
@@ -44,7 +44,8 @@ mongoose.set('debug', true)
 app.post('/user', userCtrl.register);
 app.get('/me', isAuthed, userCtrl.me); //test
 app.put('/user/:_id', isAuthed, userCtrl.update); //test
-app.get('/users', userCtrl.read)
+app.put('/user/update', userCtrl.updateUser);
+app.get('/users', userCtrl.read);
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'
 }));
@@ -81,7 +82,7 @@ app.delete('/checkinout/:id', checkinoutCtrl.delete);
 //=====Cohort Endpoints==============================  //add more endpoints?
 app.post('/cohort', cohortCtrl.create);
 app.get('/cohorts', cohortCtrl.read);
-app.put('/cohorts/:id', cohortCtrl.update)
+app.put('/cohorts/:id', cohortCtrl.update);
 
 
 
