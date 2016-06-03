@@ -20,6 +20,8 @@
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
+                <input ng-model="workorder.dateSubmitted" placeholder="Date"></input><br>
+                <input ng-model="Workorder.submittedBy" placeholder="Submitted by"></input><br>
                 <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Select</option>
@@ -38,17 +40,16 @@
     <div class="default_cards_container">
         <div class="workorder_repeat_cards" ng-repeat="workorder in adminList | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
-                <div><p>Work Order Campus Unit #</p></div>
+                <div><p>Work Order {{workorder.unit}}</p></div>
                 <div><i ng-click="toggleUpdate = !toggleUpdate; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id" class="fa fa-pencil"></i><i class="fa fa-times" ng-click="workorderDelete(workorder._id)"></i></div>
             </div>
 
             <div class="default_cards_divider_container">
                 <div class="workorder_cards_text left">
-                    <p><span class="bold">Submitted</span>&nbsp;&nbsp;insert date</p>
-                    <p>Time of submit and user</p>
+                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy}}</p><br>
+                    <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description:</span>&nbsp;&nbsp;{{workorder.description}}</p>
-                    <p><span class="bold">Permission</span>&nbsp;&nbsp;Placeholder for permission agreement</p>
                 </div>
                 <div class="workorder_cards_text">
                     <p class="bold">Admin Update</p>
