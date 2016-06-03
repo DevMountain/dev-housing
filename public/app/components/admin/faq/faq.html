@@ -19,7 +19,7 @@
         <div ng-repeat="faqs in Faq | orderBy: '-'" class="admin_faq_cards">
             <div class="admin_faq_cards_head"><div><p>FAQ</p></div><div><i ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id" class="fa fa-pencil"></i><i class="fa fa-times" ng-click="selectFaq(faqs); deleteFaq(selected)"></i></div></div>
             <!-- <div class="admin_faq_cards_head"><div class="admin_faq_cards_title_adjust"><p>FAQ</p></div><div><img src="./assets/img/add_icon.svg" ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id"></img><img src="./assets/img/delete_icon.svg" ng-click="selectFaq(faqs); deleteFaq(selected)"></img></div></div> -->
-            <p class="admin_faq_cards_text">Question:&nbsp;&nbsp;{{faqs.question}}</p><br><p>Answer:&nbsp;&nbsp;{{faqs.answer}}</p>
+            <p class="admin_faq_cards_text"><span class="bold">Question:</span>&nbsp;&nbsp;{{faqs.question}}</p><br><p><span class="bold">Answer:</span>&nbsp;&nbsp;{{faqs.answer}}</p>
             <div class="admin_faq_cards_wrench" ng-show="toggleUpdate">
                 <textarea ng-model="faq.question" placeholder="Edit question"></textarea>
                 <textarea ng-model="faq.answer" placeholder="Edit answer"></textarea><br>

@@ -6,8 +6,8 @@ angular.module('devHousing').service('userSvc', function($http) {
             url: '/user',
             data: user
         }).then(function(response) {
-            return response.data
-        })
+            return response.data;
+        });
     };
 
     this.loginUser = function(login) {
@@ -16,8 +16,8 @@ angular.module('devHousing').service('userSvc', function($http) {
             url: '/login',
             data: login
         }).then(function(response) {
-            return response.data
-        })
+            return response.data;
+        });
     };
 
     this.getUsers = function() {
@@ -25,9 +25,20 @@ angular.module('devHousing').service('userSvc', function($http) {
         method: 'GET',
         url: '/users'
       }).then(function(response){
-        return response.data
-      })
+        return response.data;
+    });
+    };
+
+    //update user
+    this.update = function(user) {
+        return $http({
+            method: 'PUT',
+            url: '/user/' + user._id,
+            data: user
+        }).then(function(response) {
+            return response.data;
+        });
     };
 
 
-})
+});  // closing tag

@@ -1,0 +1,50 @@
+<side-bar-nav></side-bar-nav>
+<user-info></user-info>
+
+<div class="main-wrapper">
+
+    <div class="users_cards_container">
+        <div class="users_cards">
+            <div class="users_cards_head"><div><p>Search Users</p></div></div>
+            <div class="users_cards_new">
+                <input ng-model="user" placeholder="Search by name"></input>
+            </div>
+        </div>
+    </div>
+
+    <!--Container of current FAQs-->
+    <div class="users_cards_container">
+        <div ng-repeat="user in users | filter: user" class="users_cards">
+            <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i class="fa fa-times"></i></div></div>
+                <p class="users_cards_text"><span class="bold">Name:</span>&nbsp;&nbsp;{{user.firstName}} {{user.lastName}}<br>
+                    Admin: {{user.adminAccess}}<br>
+                    Campus: {{user.campus}}<br>
+                    Cohort: {{user.cohortID}}<br>
+                    Role: {{user.role}}<br>
+                    In Housing: {{user.inHousing}}<br>
+                    Rent: {{user.rent.isRenter}}<br>
+                    Rent: {{user.rent.rentPaid.rentPrice}}<br>
+                    Private Room: {{user.singleRoom.hasSingleRoom}}<br>
+                    Email: {{user.email}}<br>
+                    Phone: {{user.phone}}<br>
+                    Notes: {{user.adminNotes}}
+                </p>
+            <div class="users_edit" ng-show="editUser">
+                <input ng-model="user.firstName" placeholder="name"></input><br>
+                <input ng-model="user.lastName" placeholder="name"></input><br>
+                <input ng-model="user.adminAccess" placeholder="Admin"></input><br>
+                <input ng-model="user.campus" placeholder="campus"></input><br>
+                <input ng-model="user.cohortID" placeholder="cohort"></input><br>
+                <input ng-model="user.role" placeholder="role"></input><br>
+                <input ng-model="user.inHousing" placeholder="housing"></input><br>
+                <input ng-model="user.rent.isRenter" placeholder="pays rent"></input><br>
+                <input ng-model="user.rent.rentPaid.rentPrice" placeholder="rent amount"></input><br>
+                <input ng-model="user.singleRoom.hasSingleRoom" placeholder="private room"></input><br>
+                <input ng-model="user.email" placeholder="email"></input><br>
+                <input ng-model="user.phone" placeholder="phone"></input><br>
+                <textarea ng-model="user.adminNotes" placeholder="Notes"></textarea><br>
+                <button ng-click="updateUser(user)">Submit Changes</button>
+            </div>
+        </div>
+    </div>
+</div> <!--main-wrapper closing div -->

@@ -107,7 +107,13 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       url: '/admin/options',
       templateUrl: './app/components/admin/options/options.html',
       controller: 'adminOptionsCtrl'
-  });
+  })
+
+    .state('admin-users', {
+        url: '/admin/users',
+        templateUrl: './app/components/admin/users/users.html',
+        controller: 'adminUsersController'
+    });
 
     $urlRouterProvider.otherwise('/login');
 

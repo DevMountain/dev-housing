@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs')
+var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
 
 var User = new Schema ({
@@ -57,7 +57,7 @@ var User = new Schema ({
     checkOutDate: {type: Date},
     checkOutStatus: {type: Boolean}
   }
-})
+});
 
 User.pre('save', function(next) {
 	var user = this;
@@ -73,4 +73,4 @@ User.methods.verifyPassword = function(reqBodyPassword) {
   return bcrypt.compareSync(reqBodyPassword, user.password);
 };
 
-module.exports = mongoose.model('User', User)
+module.exports = mongoose.model('User', User);

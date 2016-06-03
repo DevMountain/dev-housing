@@ -1,1 +1,23 @@
-studentHome.sass
+@font-face
+    font-family: 'Proxima'
+    src: url('./assets/fonts/proxima/proximaNova-Light.otf')
+
+@font-face
+    font-family: 'Bold'
+    src: url('./assets/fonts/proxima/ProximaNova-Semibold_1.otf')
+
+
+$regularText: Proxima
+$boldText: Bold
+
+.home_background_container
+    background: url('../assets/img/home.jpg')
+    background-size: cover
+    height: 100vh
+
+.home_text_container
+    text-align: center
+    font-family: $regularText
+    color: white
+    text-shadow: 1px 1px black
+    font-size: 9vw
