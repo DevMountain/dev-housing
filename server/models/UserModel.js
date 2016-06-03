@@ -17,7 +17,7 @@ var User = new Schema ({
     city: {type: String, required: true},
     state: {type: String, required: true}
   },
-  role: {type: String, required: true, default: 'student'},
+  role: {type: String, required: true, default: 'student'},  //enum???
   //not required
   devmtnID: {type: Number},
   cohortID: {type: String},
@@ -33,7 +33,7 @@ var User = new Schema ({
   },
   singleRoom: {
     wantsSingleRoom: {type: Boolean, default: false},
-    hasSingleRoom: {type: Boolean, default: false},
+    hasSingleRoom: {type: Boolean, default: false}, //how does this update?
     singleRoomFee: {
       roomFeePaid: {type: Boolean, default: false},
       amount: {type: Number},
