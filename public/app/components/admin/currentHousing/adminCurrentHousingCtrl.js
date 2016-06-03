@@ -9,7 +9,6 @@ var loadHousing = function() {
 loadHousing();
 
 var loadUsers = function() {
-
   userSvc.getUsers().then(function(response){
     $scope.allUsers = response;
     $scope.needHousing = [];
