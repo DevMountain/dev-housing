@@ -3,78 +3,30 @@
 
 <div class="main-wrapper">
 
-
-
-<p>
-  Males &#9794;
-</p>
-<p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}}">
-  {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
-</p>
-<br>
-<p>
-  Want private room
-</p>
-<p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}}">
-{{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
-</p>
-<br>
-<br>
-
-<p>
-  Females &#9792;;
-</p>
-<p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}}">
-{{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
-</p>
-<br>
-<p>
-  Want private room
-</p>
-<p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}}">
-{{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
-</p>
-
-<!--
-<p ng-repeat="person in needHousing | filter: {singleRoom: {wantsSingleRoom: true}} ">
-    {{person.firstName}} {{person.lastName}} - {{person.gender}} - P
-</p>
-<p ng-repeat="person in needHousing | filter: {singleRoom: {wantsSingleRoom: false}} ">
-    {{person.firstName}} {{person.lastName}} - {{person.gender}}
-</p>
- -->
-
-
-
-
-
-
-
-
-
-    <h1>current housing</h1>
-
-    <input class="housing-search-bar" placeholder="search" ng-model="query[queryBy]" />
-
+ <div class="current_housing_search_container">
+    <p class="bold">Current Housing</p>
+    <input class="housing-search-bar" placeholder="Campus/Room/Notes" ng-model="query" />
     <select ng-model="queryBy" /> //fix default value to not be blank
     <option value="unitNumber">Unit Number</option>
     <option value="campus">Campus</option>
     <option value="propertyName">Property Name</option>
     <!-- <option value="allCurrentOccupants">Occupant</option> -->
     </select>
+</div>
 
+<div class="cards_list_container">
 
-    <div class="default_cards_container">
-        <div class="default_repeat_cards" ng-repeat="unit in currentHousing | filter: query">
-            <div class="default_cards_head">
+    <div class="current_housing_cards_container">
+        <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: query">
+            <div class="current_housing_cards_head">
                 <div>
                     <p>{{unit.campus}} - {{unit.unitNumber}}</p>
                 </div>
             </div>
-            <p class="default_cards_text">
+            <p class="current_housing_cards_text">
               {{unit.propertyName}} {{unit.address.street1}} {{unit.address.street2}}<br>
               {{unit.currentBedrooms.roomNumber}} <br>
-              Admin Notes: {{unit.adminNotes}}<br>
+              <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
               <div ng-repeat="bedroom in unit.currentBedrooms">
                 Room: {{bedroom.roomNumber}}
                 <div ng-repeat="person in bedroom.currentOccupants">
@@ -85,5 +37,36 @@
         </div>
     </div>
 
+    <div class="wants_housing_container current_housing_repeat_cards">
+        <div class="requested_housing_cards_head">
+            <div>
+                <p>Requested Housing</p>
+            </div>
+        </div>
+        <div class="wants_housing_list">
+            <p class="bold">Men &#9794;</p>
+            <p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}}">
+              {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+            </p>
+            <br>
+            <p class="bold">Requested Private Room</p>
+            <p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}}">
+            {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+            </p>
+            <hr>
+            <br>
+            <p class="bold">Women &#9792;;</p>
+            <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}}">
+            {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+            </p>
+            <br>
+            <p class="bold">Requested Private Room</p>
+            <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}}">
+            {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}}
+            </p>
+        </div>
+    </div>
+
+</div>
 
 </div> <!--main-wrapper closing div -->
