@@ -40,5 +40,15 @@ angular.module('devHousing').service('userSvc', function($http) {
         });
     };
 
+    //delete user
+    this.delete = function(user) {
+        return $http({
+            method: 'DELETE',
+            url: '/user/' + user._id,
+        }).then(function(response) {
+            return response.data;
+        });
+    };
+
 
 });  // closing tag
