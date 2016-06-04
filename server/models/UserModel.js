@@ -3,27 +3,33 @@ var bcrypt = require('bcryptjs');
 var Schema = mongoose.Schema;
 
 var User = new Schema ({
-  //required properties
+  //REQUIRED
   firstName: {type: String, required: true, trim: true},
   lastName: {type: String, required: true, trim: true},
-  birthdate: {type: Date, required: true}, //convert to date first
-  gender: {type: String, required: true},
+  birthdate: {type: Date, required: true},
+  gender: {type: String, required: true, enum: ['male', 'female']},
   email: {type: String, index: true, trim: true, required: true},
   password: {type: String, required: true},
   phone: {type: String, required: true},
   inHousing:{type: Boolean, required: true, default: false},
-  campus: {type: String, required: true},
+  campus: {type: String, required: true, enum:['provo', 'slc', 'dallas']},
   currentAddress: {
     city: {type: String, required: true},
     state: {type: String, required: true}
   },
-  role: {type: String, required: true, default: 'student'},  //enum???
-  //not required
+  role: {type: String, required: true, default: 'student',
+    enum: ['student', 'mentor', 'graduate', 'admin']
+  },
+  //NOT REQUIRED
   devmtnID: {type: Number},
-  cohortID: {type: String},
-  adminAccess: [{type: String}], //make object?
-  adminDefaultView: {type: String},
-  adminNotes: {type: String},
+  cohortID: {type: String}, //make ref?
+  adminAccess: {
+    provo: {type: Boolean},
+    slc: {type: Boolean},
+    dallas: {type: Boolean}
+  },
+  adminDefaultView: {type: String, enum: ['provo', 'slc', 'dallas']},
+  adminNotes: {type: String}, //null this out same as password
   licenseOnFile: {type: Boolean},
   backgroundCheck: {type: Boolean},
   deposit: {

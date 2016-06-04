@@ -23,7 +23,7 @@ module.exports = {
             })
     },
 
-    addUserToUnit: function(req, res, next) {
+    addUserToUnitCurrent: function(req, res, next) {
         Unit.findOneAndUpdate({
             'currentBedrooms._id': req.params.id
         }, {
@@ -42,7 +42,7 @@ module.exports = {
         })
     },
 
-    removeUserFromUnit: function(req, res, next) {
+    removeUserFromUnitCurrent: function(req, res, next) {
       Unit.findOneAndUpdate({
           'currentBedrooms._id': req.params.id
       }, {
@@ -57,6 +57,44 @@ module.exports = {
               res.send(response);
           }
       })
+    },
+
+    addUserToUnitFuture: function(req, res, next) {
+        Unit.findOneAndUpdate({
+            'futureBedrooms._id': req.params.id
+        }, {
+            $addToSet: {
+                'futureBedrooms.$.futureOccupants': req.body._id
+            }, $push: {
+              'allFutureOccupants': req.body._id
+            }
+        }).populate('futureBedrooms.futureOccupants').exec(function(err, response) {
+            if (err) {
+                res.status(500).send(err);
+            } else {
+                console.log(response);
+                res.send(response);
+            }
+        })
+    },
+
+    removeUserFromUnitFuture: function(req, res, next) {
+      Unit.findOneAndUpdate({
+          'futureBedrooms._id': req.params.id
+      }, {
+          $pull: {'futureBedrooms.$.futureOccupants': req.body._id,
+          allFutureOccupants: req.body._id}
+      }).populate('futureBedrooms.futureOccupants').exec(function(err, response) {
+          if (err) {
+            console.log(err);
+              res.status(500).send(err);
+          } else {
+              console.log(response);
+              res.send(response);
+          }
+      })
 
     },
+
+
 }
