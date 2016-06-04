@@ -11,12 +11,15 @@ angular.module('devHousing')
 
     // $scope.getAll = () => workorderSvc.workorderRead();
 
+    $scope.studentWorkorder = {};
     $scope.workorderCreate = (obj) => {
+      // console.log('***Ctrl Create: ${JSON.stringify(obj)}');
     //   if($scope.workorderForm.$valid){
         // $scope.workorderForm.$setPristine(); //not working, and probably unnecessary anyway
         //After workorder is created, only return most recent work order for student view.
         workorderSvc.workorderCreate(obj).then((response) => {
           $scope.workorderRead();
+          $scope.studentWorkorder = {};
         });
     //   }
     };

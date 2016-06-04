@@ -1,18 +1,21 @@
-<student-side-bar-nav></student-side-bar-nav>
+<side-bar-nav></side-bar-nav>
 <user-info></user-info>
 
-<div class="student-main-wrapper">
+<div class="main-wrapper">
 
-  <div class="student_header default_cards_container">
-		<div class="default_repeat_cards">
-			<div class="default_cards_head">
-				<h1 id="student_header_text">Student Check-Out Page </h1>
-			</div>
-			<div class="student_text default_cards_text">
-				<h3 id="student_header_body_text">Please put stuff on here!</h3>
-			</div>
-		</div>
-	</div>
+  <p>
+    check out options
+  </p>
+  <input type="datetime-local" name="name" ng-model="checkout.start">start date and time</input><br>
+  <input type="datetime-local" name="name" ng-model="checkout.end">end date and time</input><br>
+  <input type="number" name="name" ng-model="checkout.interval">length of each appointment in minutes</input><br>
+  <input ng-model="checkout.cohort" placeholder="cohort"></input><br>
+  <select ng-model="checkout.campus" /> //fix default value to not be blank using ng-options
+  <option value="provo">Provo</option>
+  <option value="SLC">SLC</option>
+  <option value="dallas">Dallas</option>
+</select><br>
+  <button type="button" name="button" ng-click="createCheckout(checkout)">create checkout</button>
 
   <!-- VIEW EXISTING CHECK OUT SCHEUDLE -->
 

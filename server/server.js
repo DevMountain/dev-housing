@@ -46,13 +46,18 @@ app.post('/user', userCtrl.register);
 app.get('/me', isAuthed, userCtrl.me); //test
 app.put('/user/:_id', isAuthed, userCtrl.update); //test
 app.get('/users', userCtrl.read);
+app.delete('/user/:id', userCtrl.delete);
+
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/me'
 }));
+
 app.get('/logout', function(req, res, next) {
   req.logout();
   return res.status(200).send('logged out');
 });
+
+
 //=====Workorders Endpoints==========================
 app.post('/workorder', workorderCtrl.create);
 app.get('/workorders', workorderCtrl.read);

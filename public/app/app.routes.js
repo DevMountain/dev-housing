@@ -69,7 +69,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-check-in', {
       url: '/student/check-in',
       templateUrl: './app/components/student/check-in/studentCheck-in.html',
-      // controller: 'studentCheck-inCtrl',
+      controller: 'studentCheck-inCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
@@ -89,7 +89,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-check-out', {
       url: '/student/check-out',
       templateUrl: './app/components/student/check-out/studentCheck-out.html',
-      // controller: 'studentCheck-outCtrl',
+      controller: 'studentCheck-outCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
@@ -109,7 +109,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-faq', {
         url: '/student/faq',
         templateUrl: './app/components/student/faq/studentFaq.html',
-        controller: 'adminFaqController',
+        controller: 'studentFaqCtrl',
         resolve: {
           user: function(userSvc, $state) {
             return userSvc.getCurrentUser().then(function(response) {
@@ -231,9 +231,9 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     })
 
     .state('admin-check-in', {
-      url: '/admin/check-in',
-      templateUrl: './app/components/admin/check-in/check-in.html',
-      controller: 'adminCheck-inCtrl',
+      url: '/admin/checkin',
+      templateUrl: './app/components/admin/check-in/checkin.html',
+      controller: 'adminCheckinCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
@@ -251,9 +251,9 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     })
 
     .state('admin-check-out', {
-      url: '/admin/check-out',
-      templateUrl: './app/components/admin/check-out/check-out.html',
-      // controller: 'adminCheck-outCtrl',
+      url: '/admin/checkout',
+      templateUrl: './app/components/admin/check-out/checkout.html',
+      controller: 'adminCheckoutCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {

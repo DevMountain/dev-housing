@@ -38,6 +38,16 @@ module.exports = {
       });
     },
 
-
+    delete: function(request, response, next) {
+        User.findByIdAndRemove(request.params.id, function(error, serverResponse) {
+            if (error) {
+                return response.status(500).send(error);
+            }
+            else {
+                console.log('Deleted User' + request.params.id);
+                response.status(200).send(serverResponse);
+            }
+        });
+    },
 
 };
