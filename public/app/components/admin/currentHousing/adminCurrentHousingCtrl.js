@@ -34,6 +34,7 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
           console.log('update response ', response);
 
         })
+
     }
 
     var parseUsers = function(users){

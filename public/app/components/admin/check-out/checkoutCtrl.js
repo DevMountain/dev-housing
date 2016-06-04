@@ -1,5 +1,7 @@
-angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, checkoutSvc, cohortSvc) {
+angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, checkoutSvc, cohortSvc, user) {
 
+    $scope.user = user;
+    
     var start;
     var end;
     var interval;

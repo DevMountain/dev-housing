@@ -1,13 +1,13 @@
 <student-side-bar-nav></student-side-bar-nav>
 <user-info></user-info>
 
-<div class="main-wrapper">
+<div class="student-main-wrapper">
 
     <!--Top card with search options-->
     <div class="default_cards_container">
         <div class="workorder_repeat_cards">
-            <div class="default_cards_head"><div><p>Create Workorder</p></div></div>
-            <div class="workorder_sort_container">
+            <div class="default_cards_head"><div id="student_workorder_header_text"><p>Create Workorder</p></div></div>
+            <div class="workorder_sort_container default_cards_text">
                 <div><input ng-model="workorder" placeholder="search"></input></div>
                 <div><select ng-model="workorder.problemType">
                     <option value="" selected>Select</option>

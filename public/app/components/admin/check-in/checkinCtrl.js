@@ -1,4 +1,6 @@
-angular.module('devHousing').controller('adminCheckinCtrl', function($scope, checkinSvc, cohortSvc) {
+angular.module('devHousing').controller('adminCheckinCtrl', function($scope, user, checkinSvc, cohortSvc) {
+
+    $scope.user = user;
 
     var start;
     var end;

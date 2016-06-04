@@ -1,4 +1,6 @@
-angular.module('devHousing').controller('adminOptionsCtrl', function($scope, cohortSvc) {
+angular.module('devHousing').controller('adminOptionsCtrl', function($scope, cohortSvc, user) {
+
+    $scope.user = user;
 
     //get all cohorts on page load
     var callCohorts = function() {
