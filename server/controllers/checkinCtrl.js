@@ -11,10 +11,14 @@ module.exports = {
   },
 
   read: function(req, res, next) {
+    console.log("backend reading:  " + req.query);
     Checkin.find(req.query, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
-        console.log("Reading Checkin.");
+        // console.log("Reading Checkin:   " + JSON.stringify(response));
+        if (req.user.role === 'student') {
+          console.log("backend says:  " + req.user.role);
+        };
         res.status(200).send(response);
       }
     });
