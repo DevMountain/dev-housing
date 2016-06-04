@@ -46,12 +46,20 @@ module.exports = {
 
     update: function(req, res, next) {
         Checkin.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
-            if (err) {
-                res.status(500).send(err)
-            } else {
-                console.log("Updated Checkin.");
-                res.status(200).send(response);
-            }
+          console.log(`I'm in the back!  hehehehe`);
+          console.log(req.user.firstName);
+          console.log(req.body.checkinAppointments);
+          Checkin.findOneAndUpdate({
+            .populate()
+          });
+
+            //
+            // if (err) {
+            //     res.status(500).send(err)
+            // } else {
+            //     console.log("Updated Checkin.");
+            //     res.status(200).send(response);
+            // }
         });
     },
 

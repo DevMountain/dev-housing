@@ -4,7 +4,7 @@ angular.module('devHousing')
 $scope.user = user;
 
   //LOAD EXISTING CHECK INS AND FORMAT DATES
-    var getCheckins = function(){
+    let getCheckins = function(){
       checkinSvc.getCheckins().then(function(response){
         for (var i = 0; i < response.length; i++){
           response[i].checkinStart = moment(response[i].checkinStart).format('dddd MMMM Do YYYY - h:mm A');
@@ -18,5 +18,12 @@ $scope.user = user;
     };
 
     getCheckins();
+
+    $scope.updateCheckins = (obj) => {
+      console.log(`starting the controller process.....`);
+      checkinSvc.updateCheckins(obj).then( (response) => {
+        console.log(`in the controller.....after promise`);
+      })
+    }
 
 });
