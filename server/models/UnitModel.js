@@ -23,6 +23,7 @@ var UnitSchema = new Schema ({
     futureOccupants: [{type: Schema.Types.ObjectId, ref: 'User'}]
   }],
   allCurrentOccupants: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  allFutureOccupants: [{type: Schema.Types.ObjectId, ref: 'User'}],
   adminNotes: {type: String, required: false}
 });
 

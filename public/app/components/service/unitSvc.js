@@ -9,20 +9,40 @@ angular.module('devHousing').service('unitSvc', function($http){
   });
   };
 
-  this.addUserToUnit = function(data, id) {
+  this.addUserToUnitCurrent = function(data, id) {
     return $http({
       method: 'PUT',
-      url: '/unit/add/' + id,
+      url: '/unit/add/current/' + id,
       data: data
     }).then(function(response){
       return response.data
     });
   };
 
-  this.removeUserFromUnit = function(data, id) {
+  this.removeUserFromUnitCurrent = function(data, id) {
     return $http({
       method: 'PUT',
-      url: '/unit/remove/' + id,
+      url: '/unit/remove/current/' + id,
+      data: data
+    }).then(function(response){
+      return response.data
+    });
+  };
+
+  this.addUserToUnitFuture = function(data, id) {
+    return $http({
+      method: 'PUT',
+      url: '/unit/add/future/' + id,
+      data: data
+    }).then(function(response){
+      return response.data
+    });
+  };
+
+  this.removeUserFromUnitFuture = function(data, id) {
+    return $http({
+      method: 'PUT',
+      url: '/unit/remove/future/' + id,
       data: data
     }).then(function(response){
       return response.data
