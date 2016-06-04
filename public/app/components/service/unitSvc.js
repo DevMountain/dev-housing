@@ -9,7 +9,15 @@ angular.module('devHousing').service('unitSvc', function($http){
   });
   };
 
-  //should we add ability to add housing later?
+  this.updateUnit = function(data, id) {
+    return $http({
+      method: 'PUT',
+      url: '/unit/' + id,
+      data: data
+    }).then(function(response){
+      return response.data
+    });
+  };
 
 
 });

@@ -24,6 +24,7 @@ module.exports = {
     },
 
     update: function(req, res, next) {
+      console.log('this is a log ', req.body);
         Unit.findOneAndUpdate({
             'currentBedrooms._id': req.params.id
         }, {
