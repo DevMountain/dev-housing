@@ -1,4 +1,6 @@
-angular.module('devHousing').controller('adminCheck-inCtrl', function($scope) {
+angular.module('devHousing').controller('adminCheck-inCtrl', function($scope, user) {
+
+    $scope.user = user;
 
     var start = moment();
     var end = moment().add(2, 'hours')
