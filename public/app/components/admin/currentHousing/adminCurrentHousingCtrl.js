@@ -1,4 +1,6 @@
-angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc, userSvc){
+angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, user, unitSvc, userSvc){
+
+$scope.user = user;
 
 var loadHousing = function() {
   unitSvc.getUnits().then(function(response){

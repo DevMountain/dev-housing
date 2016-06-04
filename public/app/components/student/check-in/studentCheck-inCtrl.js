@@ -1,5 +1,7 @@
 angular.module('devHousing')
-.controller('studentCheck-inCtrl', function ($scope, checkinSvc) {
+.controller('studentCheck-inCtrl', function ($scope, checkinSvc, user) {
+
+$scope.user = user;
 
   //LOAD EXISTING CHECK INS AND FORMAT DATES
     var getCheckins = function(){

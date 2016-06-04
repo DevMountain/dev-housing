@@ -1,10 +1,12 @@
-angular.module('devHousing').controller('studentFaqCtrl', function ($scope, faqService ) {
+angular.module('devHousing').controller('studentFaqCtrl', function ($scope, user, faqService ) {
+
+$scope.user = user;
 
   // selecting an FAQ to edit/remove
   $scope.selectFaq = function(faq) {
       $scope.selected = faq;
   };
-  
+
   // add new FAQ
   $scope.newFaq = {};
   $scope.addNewFaq = function(newFaq) {

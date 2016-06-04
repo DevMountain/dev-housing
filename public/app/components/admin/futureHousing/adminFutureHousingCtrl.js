@@ -1,4 +1,6 @@
-angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc){
+angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user){
+
+    $scope.user = user;
 
     // Populate with all housing data
     var loadHousing = function() {

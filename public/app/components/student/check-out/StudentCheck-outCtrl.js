@@ -1,5 +1,7 @@
 angular.module('devHousing')
-.controller('studentCheck-outCtrl', function ($scope, checkoutSvc) {
+.controller('studentCheck-outCtrl', function ($scope, checkoutSvc, user) {
+
+$scope.user = user;
 
   //LOAD EXISTING CHECK OUTS AND FORMAT DATES
   var getCheckouts = function(){

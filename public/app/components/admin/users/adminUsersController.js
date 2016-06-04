@@ -1,4 +1,6 @@
-angular.module('devHousing').controller('adminUsersController', function($scope, userSvc) {
+angular.module('devHousing').controller('adminUsersController', function($scope, userSvc, user) {
+
+$scope.user = user;
 
 // display all users on view
 $scope.displayUsers = function() {

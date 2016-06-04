@@ -1,4 +1,6 @@
-angular.module('devHousing').controller('adminFaqController', function($scope, faqService) {
+angular.module('devHousing').controller('adminFaqController', function($scope, faqService, user) {
+
+    $scope.user = user;
 
     // selecting an FAQ to edit/remove
     $scope.selectFaq = function(faq) {

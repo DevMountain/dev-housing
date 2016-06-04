@@ -1,5 +1,7 @@
 angular.module('devHousing')
-  .controller('studentWorkorderCtrl', function ($scope, workorderSvc) {
+  .controller('studentWorkorderCtrl', function ($scope, workorderSvc, user) {
+
+    $scope.user = user;
 
     $scope.workorderRead = () => {
       workorderSvc.workorderRead().then( (response) => {
