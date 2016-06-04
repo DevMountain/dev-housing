@@ -30,19 +30,19 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-check-in', {
       url: '/student/check-in',
       templateUrl: './app/components/student/check-in/studentCheck-in.html',
-      // controller: 'studentCheck-inCtrl'
+      controller: 'studentCheck-inCtrl'
     })
 
     .state('student-check-out', {
       url: '/student/check-out',
       templateUrl: './app/components/student/check-out/studentCheck-out.html',
-      // controller: 'studentCheck-outCtrl'
+      controller: 'studentCheck-outCtrl'
     })
 
     .state('student-faq', {
         url: '/student/faq',
         templateUrl: './app/components/student/faq/studentFaq.html',
-        controller: 'adminFaqController'
+        controller: 'studentFaqCtrl'
     })
 
 

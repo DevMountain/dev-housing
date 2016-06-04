@@ -1,14 +1,27 @@
 <student-side-bar-nav></student-side-bar-nav>
 <user-info></user-info>
 
-<div class="main-wrapper">
+<div class="student-main-wrapper">
+
+	<div class="student_header default_cards_container">
+		<div class="default_repeat_cards">
+			<div class="default_cards_head">
+				<h1 id="student_header_text">Frequently Asked Questions (FAQ) </h1>
+			</div>
+			<div class="student_text default_cards_text">
+				<h3 id="student_header_body_text">If you have any further questions, please contact
+	    			Bri Rios.</h3>
+			</div>
+		</div>
+	</div>
 
 	<!--Container of current FAQs-->
 	<div class="default_cards_container">
    	 <div ng-repeat="faqs in Faq | orderBy: '-'" class="default_repeat_cards">
      	   <div class="default_cards_head"><div><p>FAQ</p></div></div>
-        <!-- <div class="admin_faq_cards_head"><div class="admin_faq_cards_title_adjust"><p>FAQ</p></div><div><img src="./assets/img/add_icon.svg" ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id"></img><img src="./assets/img/delete_icon.svg" ng-click="selectFaq(faqs); deleteFaq(selected)"></img></div></div> -->
+        <!-- <div class="student_cards_head"><div class="student_cards_title_adjust"><p>FAQ</p></div><div><img src="./assets/img/add_icon.svg" ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id"></img><img src="./assets/img/delete_icon.svg" ng-click="selectFaq(faqs); deleteFaq(selected)"></img></div></div> -->
       	  <p class="default_cards_text"><span class="bold">Question:</span>&nbsp;&nbsp;{{faqs.question}}</p><br><p><span class="bold">Answer:</span>&nbsp;&nbsp;{{faqs.answer}}</p>
    	 </div>
 	</div>
+
 </div> <!--main-wrapper closing div -->
