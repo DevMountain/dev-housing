@@ -32,7 +32,6 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
     }
 
     $scope.removeUser = function(unit, user) {
-      console.log('FUCK MY NAUGHTY ASS');
       console.log(unit);
       console.log(user);
       var occupant = {
