@@ -68,7 +68,8 @@ app.delete('/workorder/:id', workorderCtrl.delete);
 //=====Units Endpoints=============================== //add more endpoints?
 app.post('/unit', unitCtrl.create);
 app.get('/units', unitCtrl.read);
-app.put('/unit/:id', unitCtrl.update);
+app.put('/unit/add/:id', isAuthed, unitCtrl.addUserToUnit);
+app.put('/unit/remove/:id', isAuthed, unitCtrl.removeUserFromUnit);
 
 //======FAQ Endpoints================================
 app.post('/faq', faqCtrl.create);
