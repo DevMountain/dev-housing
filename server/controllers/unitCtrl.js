@@ -23,8 +23,7 @@ module.exports = {
             })
     },
 
-    update: function(req, res, next) {
-      console.log('this is a log ', req.body);
+    addUserToUnit: function(req, res, next) {
         Unit.findOneAndUpdate({
             'currentBedrooms._id': req.params.id
         }, {
@@ -43,4 +42,21 @@ module.exports = {
         })
     },
 
-};
+    removeUserFromUnit: function(req, res, next) {
+      Unit.findOneAndUpdate({
+          'currentBedrooms._id': req.params.id
+      }, {
+          $pull: {'currentBedrooms.$.currentOccupants': req.body._id,
+          allCurrentOccupants: req.body._id}
+      }).populate('currentBedrooms.currentOccupants').exec(function(err, response) {
+          if (err) {
+            console.log(err);
+              res.status(500).send(err);
+          } else {
+              console.log(response);
+              res.send(response);
+          }
+      })
+
+    },
+}

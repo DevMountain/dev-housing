@@ -13,7 +13,6 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
           parseUsers(response);
         });
     };
-
     loadUsers();
 
 
@@ -23,19 +22,31 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
           inHousing: true
         };
         var id = unit._id;
-
-        unitSvc.updateUnit(occupant, id).then(function(response) {
-            console.log('housing ctrl ', response);
+        unitSvc.addUserToUnit(occupant, id).then(function(response) {
             loadHousing();
-            loadUsers();
         })
-
         userSvc.update(occupant).then(function(response){
-          console.log('update response ', response);
-
+          loadUsers();
         })
 
     }
+
+    $scope.removeUser = function(unit, user) {
+      console.log('FUCK MY NAUGHTY ASS');
+      console.log(unit);
+      console.log(user);
+      var occupant = {
+        _id: user._id,
+        inHousing: false
+      };
+      var id = unit._id;
+      unitSvc.removeUserFromUnit(occupant, id).then(function(response) {
+        loadHousing();
+      });
+      userSvc.update(occupant).then(function(response){
+        loadUsers();
+      });
+    };
 
     var parseUsers = function(users){
       $scope.allUsers = users;
