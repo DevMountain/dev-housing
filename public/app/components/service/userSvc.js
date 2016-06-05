@@ -30,12 +30,10 @@ angular.module('devHousing').service('userSvc', function($http) {
     };
 
     this.getCurrentUser = () => {
-      // console.log(`from getCurrentUser`);
       return $http({
         method: 'GET',
         url: '/me'
       }).then( (response) => {
-        console.log(JSON.stringify(response));
         return response;
       })
     }

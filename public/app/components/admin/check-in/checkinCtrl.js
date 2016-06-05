@@ -36,9 +36,7 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
 
   getCheckins();
 
-
-
-
+//CREATE CHECKIN DAY WITH SLOTS 
     $scope.createCheckin = function(info) {
         start = moment(info.start);
         end = moment(info.end)
@@ -72,7 +70,6 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
 
     var setSchedule = function(checkinObj){
       checkinSvc.createCheckin(checkinObj).then(function(response){
-        console.log(response);
         $scope.checkin = response;
       })
 
