@@ -59,8 +59,6 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
     }
   // Removes a user from a unit and reloads housing and users data.
     $scope.removeUser = function(unit, user) {
-      console.log(unit);
-      console.log(user);
       var occupant = {
         _id: user._id,
         inHousing: false

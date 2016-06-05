@@ -22,7 +22,7 @@ var User = new Schema ({
   },
   //NOT REQUIRED
   devmtnID: {type: Number},
-  cohortID: {type: String}, //make ref?
+  cohortID: [{type: String}],
   adminAccess: {
     provo: {type: Boolean},
     slc: {type: Boolean},

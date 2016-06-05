@@ -20,81 +20,105 @@
 </form>
 
 <div class="sign-up-div" ng-show="!showLogin">
-    <h1>Dev Mountain Housing Application</h1>
 
     <form name="signupForm" novalidate>
-
+      <div class="sign_up_create_account">
+        <h1>Dev Mountain Housing Application</h1><br>
+        <p>Account info</p>
         <input ng-model="user.firstName" name="firstName" placeholder="first name" required></input>
         <div ng-messages="signupForm.firstName.$error" ng-if="signupForm.firstName.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your first name.</p>
+          <p ng-message="required" class="error">Please enter your first name.</p>
         </div>
 
         <input ng-model="user.lastName" name="lastName" placeholder="last name" required></input>
         <div ng-messages="signupForm.lastName.$error" ng-if="signupForm.lastName.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your last name.</p>
+          <p ng-message="required" class="error">Please enter your last name.</p>
         </div>
 
         <input ng-model="user.email" name="email" placeholder="email" type="email" required></input>
         <div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your email address.</p>
-            <p ng-message="email" class="error">Please enter a valid email address.</p>
+          <p ng-message="required" class="error">Please enter your email address.</p>
+          <p ng-message="email" class="error">Please enter a valid email address.</p>
         </div>
 
         <input ng-model="user.password" name="password" placeholder="password" type="password" ng-minlength="6" ng-maxlength="15" required></input>
         <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter a valid password.</p>
-            <p ng-message="minlength" class="error">Minimum length is 6 characters.</p>
-            <p ng-message="maxlength" class="error">Maximum length is 15 characters.</p>
+          <p ng-message="required" class="error">Please enter a valid password.</p>
+          <p ng-message="minlength" class="error">Minimum length is 6 characters.</p>
+          <p ng-message="maxlength" class="error">Maximum length is 15 characters.</p>
+        </div>
+        <div class="info_same_line">
+        campus: &nbsp <select ng-model="user.campus" name"campus" required>
+        <option value="provo">Provo</option>
+        <option value="slc">Salt Lake City</option>
+        <option value="dallas">Dallas</option></select>
         </div>
 
-        <input ng-model="user.birthdate" name="birthdate" placeholder="birthdate" type="date" required></input>
-        <div ng-messages="signupForm.birthdate.$error" ng-if="signupForm.birthdate.$dirty || signupForm.$submitted" role="alert">
+      </div><br>
+
+      <div class="sign_up_personal_info">
+        <p>Personal info</p>
+        <div class="info_same_line">
+          birthdate: &nbsp <input ng-model="user.birthdate" name="birthdate" placeholder="birthdate" type="date" required></input>
+          <div ng-messages="signupForm.birthdate.$error" ng-if="signupForm.birthdate.$dirty || signupForm.$submitted" role="alert">
             <p ng-message="required" class="error">Please select your birthdate.</p>
+          </div>
         </div>
 
         <input ng-model="user.phone" name="phone" placeholder="phone number" type="tel" required></input>
         <div ng-messages="signupForm.phone.$error" ng-if="signupForm.phone.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your phone number.</p>
+          <p ng-message="required" class="error">Please enter your phone number.</p>
         </div>
 
         <!-- <input ng-model="user.currentAddress.street1" name="street1" placeholder="Address line 1" required></input>
         <div ng-messages="signupForm.street1.$error" ng-if="signupForm.street1.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your street address.</p>
-        </div>
+        <p ng-message="required" class="error">Please enter your street address.</p>
+      </div>
 
-        <input ng-model="user.currentAddress.street2" placeholder="Address line 2"></input> -->
+      <input ng-model="user.currentAddress.street2" placeholder="Address line 2"></input> -->
 
-        <input ng-model="user.currentAddress.city" name="city" placeholder="Current city" required></input>
-        <div ng-messages="signupForm.city.$error" ng-if="signupForm.city.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your current city.</p>
-        </div>
+      <input ng-model="user.currentAddress.city" name="city" placeholder="Current city" required></input>
+      <div ng-messages="signupForm.city.$error" ng-if="signupForm.city.$dirty || signupForm.$submitted" role="alert">
+        <p ng-message="required" class="error">Please enter your current city.</p>
+      </div>
 
-        <input ng-model="user.currentAddress.state" name="state" placeholder="State" maxlength="2" required></input>
-        <div ng-messages="signupForm.state.$error" ng-if="signupForm.state.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your current state.</p>
-            <p ng-message="maxlength" class="error">Maximum length is 2 characters.</p>
-        </div>
+      <input ng-model="user.currentAddress.state" name="state" placeholder="State" maxlength="2" required></input>
+      <div ng-messages="signupForm.state.$error" ng-if="signupForm.state.$dirty || signupForm.$submitted" role="alert">
+        <p ng-message="required" class="error">Please enter your current state.</p>
+        <p ng-message="maxlength" class="error">Maximum length is 2 characters.</p>
+      </div>
 
-        <!-- <input ng-model="user.currentAddress.zip" name="zip" placeholder="ZIP" maxlength="5" required></input>
-        <div ng-messages="signupForm.zip.$error" ng-if="signupForm.zip.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your current ZIP.</p>
-            <p ng-message="maxlength" class="error">Maximum length is 5 characters.</p>
-        </div> -->
-
-        <input ng-model="user.gender" name="gender" type="radio" value="male" required/>male
+      <!-- <input ng-model="user.currentAddress.zip" name="zip" placeholder="ZIP" maxlength="5" required></input>
+      <div ng-messages="signupForm.zip.$error" ng-if="signupForm.zip.$dirty || signupForm.$submitted" role="alert">
+      <p ng-message="required" class="error">Please enter your current ZIP.</p>
+      <p ng-message="maxlength" class="error">Maximum length is 5 characters.</p>
+    </div> -->
+      <div class="info_same_line">
+        <input ng-model="user.gender" name="gender" type="radio" value="male" required/>male &nbsp
         <input ng-model="user.gender" name="gender" type="radio" value="female" />female
+      </div>
 
-        <input ng-model="user.car.make" name="make" placeholder="make" ></input>
-        <input ng-model="user.car.model" name="model" placeholder="model" ></input>
-        <input ng-model="user.car.year" name="year" placeholder="year" ></input>
-        <input ng-model="user.car.license" name="license" placeholder="license" ></input>
-
-
-        <br />
-
-
-
-        <button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user)">submit</button>
+      <br><p>Will you be bringing a vehicle?</p>
+      <div class="info_same_line">
+        <input ng-model="car" name="car" type="radio" ng-value=true />yes &nbsp
+        <input ng-model="car" name="car" type="radio" ng-value=false required/>no
+      </div>
+      <div class="car_input" ng-show="car">
+        <input ng-model="user.car.make" name="make" placeholder="make" ng-required="car"></input>
+        <input ng-model="user.car.model" name="model" placeholder="model" ng-required="car"></input>
+        <input ng-model="user.car.year" name="year" placeholder="year" ng-required="car"></input>
+        <input ng-model="user.car.license" name="license" placeholder="license" ng-required="car"></input>
+      </div>
+      <br><p>Are you interested in paying for a private room?</p>
+      <div class="info_same_line">
+        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true />yes &nbsp
+        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false required/>no
+      </div>
+      <div class="car_input" ng-show="user.singleRoom.wantsSingleRoom">
+        <p>We cannot guarantee a single room, but we will try to accommodate your request.</p>
+      </div>
+      <br><button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user)">submit</button>
+      </div>
 
     </form>
 
