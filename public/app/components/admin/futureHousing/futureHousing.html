@@ -17,7 +17,7 @@
     <div class="cards_list_container">
 
        <div class="current_housing_cards_container">
-           <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: query">
+           <div class="current_housing_repeat_cards" ng-repeat="unit in futureHousing | filter: query">
                <div class="current_housing_cards_head">
                    <div>
                        <p>{{unit.campus}} - {{unit.unitNumber}}</p>
@@ -25,11 +25,15 @@
                </div>
                <p class="current_housing_cards_text">
                  {{unit.propertyName}} {{unit.address.street1}} {{unit.address.street2}}<br>
-                 {{unit.currentBedrooms.roomNumber}} <br>
+                 {{unit.futureBedrooms.roomNumber}} <br>
                  <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
-                 <div ng-repeat="bedroom in unit.currentBedrooms">
-                   Room: {{bedroom.roomNumber}}
-                   <div ng-repeat="person in bedroom.currentOccupants">
+                 <div ng-repeat="bedroom in unit.futureBedrooms">
+                   Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
+                   <br> ng-options:
+                   <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing">
+                   </select>
+                   <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
+                    <div ng-repeat="person in bedroom.futureOccupants">
                      Occupant: {{person.firstName}} {{person.lastName}}
                    </div>
                  </div>
