@@ -19,4 +19,14 @@ this.getCheckouts = function(){
   })
 };
 
+this.updateCheckouts = (slot, check) => {
+  return $http({
+    method: 'PUT',
+    url: `/checkout/${check._id}`,
+    data: slot
+  }).then( (response) => {
+      return response.data;
+  })
+};
+
 })

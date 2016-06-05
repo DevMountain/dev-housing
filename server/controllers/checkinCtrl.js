@@ -1,7 +1,6 @@
 "use strict";
 
 var Checkin = require('../models/CheckinModel.js');
-// var _ = require('underscore');
 
 
 module.exports = {
@@ -9,7 +8,6 @@ module.exports = {
     create: function(req, res, next) {
         Checkin.create(req.body, function(err, response) {
             if (err) return res.status(500).send(err);
-            console.log("Created new Checkin.");
             res.status(200).send(response);
         });
     },
@@ -31,7 +29,6 @@ module.exports = {
                 if (err) {
                     res.status(500).send(err)
                 } else {
-                    console.log("Found right Cohort to show");
                     res.status(200).json(response);
                 }
             });
@@ -50,20 +47,12 @@ module.exports = {
     },
 
     update: function(req, res, next) {
-console.log(`the whole params: ${JSON.stringify(req.params.id)}`);
-console.log(`the whole body: ${JSON.stringify(req.body._id)}`);
-console.log(req.user._id);
 
           Checkin.findById(req.params.id, (err1, response1) => {
             if (err1) {
-              console.log(`first error: ${err1}`);
               res.status(500).send(err1)
             } else {
-              console.log(response1.checkinAppointments);
-
-              // var appt = _.findWhere(response1.checkinAppointments, {_id: mongoose.Types.ObjectId(req.body._id)});
               for (let i=0;i<response1.checkinAppointments.length;i++){
-                console.log(response1.checkinAppointments[i]._id, req.body._id);
                 if (response1.checkinAppointments[i]._id==req.body._id){
                   response1.checkinAppointments[i].user= req.user._id;
                   break;
@@ -73,8 +62,6 @@ console.log(req.user._id);
               response1.save();
               res.status(200).send(response1)
             }
-
-          //End of this function
           })
 
     },

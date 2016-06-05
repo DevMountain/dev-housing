@@ -25,7 +25,6 @@ this.updateCheckins = (slot, check) => {
     url: `/checkin/${check._id}`,
     data: slot
   }).then( (response) => {
-      console.log('this');
       return response.data;
   })
 };
