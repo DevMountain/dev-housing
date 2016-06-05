@@ -14,6 +14,7 @@ module.exports = {
     me: function(req, res, next) {
       console.log(`backEnd USR Ctrl: ${req.body.role}`);
       if (!req.user) return res.status(401).send('current user not defined');
+      req.user.adminNotes = null;
       req.user.password = null;
       return res.status(200).send(req.user);
     },
