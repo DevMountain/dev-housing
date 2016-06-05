@@ -71,6 +71,7 @@ console.log(req.user._id);
               }
 
               response1.save();
+              res.status(200).send(response1)
             }
 
           //End of this function
