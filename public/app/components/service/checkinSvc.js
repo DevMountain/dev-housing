@@ -19,11 +19,11 @@ this.getCheckins = function(){
   })
 };
 
-this.updateCheckins = (obj) => {
+this.updateCheckins = (slot, check) => {
   return $http({
     method: 'PUT',
-    url: `/checkin/:${obj._id}`,
-    data: obj
+    url: `/checkin/${check._id}`,
+    data: slot
   }).then( (response) => {
       console.log('this');
       return response.data;

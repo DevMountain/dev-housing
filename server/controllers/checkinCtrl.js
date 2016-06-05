@@ -1,4 +1,8 @@
+"use strict";
+
 var Checkin = require('../models/CheckinModel.js');
+// var _ = require('underscore');
+
 
 module.exports = {
 
@@ -10,19 +14,20 @@ module.exports = {
         });
     },
 
+
     read: function(req, res, next) {
-        Checkin.find(req.query, function(err, response) {
-            if (req.user.role === 'admin') {
-                if (err) {
-                    res.status(500).send(err)
-                } else {
-                    res.status(200).send(response);
-                };
-            };
+        Checkin.find(req.query).populate("checkinAppointments.user").exec(function(err, response) {
+          if (req.user.role === 'admin') {
+              if (err) {
+                  res.status(500).send(err)
+              } else {
+                  res.status(200).send(response);
+              };
+          };
         });
         if (req.user.role === 'student') {
             req.query.cohort = req.user.cohortID;
-            Checkin.find(req.query).populate("checkinAppointments").exec(function(err, response) {
+            Checkin.find(req.query).populate("checkinAppointments.user").exec(function(err, response) {
                 if (err) {
                     res.status(500).send(err)
                 } else {
@@ -45,22 +50,32 @@ module.exports = {
     },
 
     update: function(req, res, next) {
-        Checkin.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
-          console.log(`I'm in the back!  hehehehe`);
-          console.log(req.user.firstName);
-          console.log(req.body.checkinAppointments);
-          Checkin.findOneAndUpdate({
-            .populate()
-          });
+console.log(`the whole params: ${JSON.stringify(req.params.id)}`);
+console.log(`the whole body: ${JSON.stringify(req.body._id)}`);
+console.log(req.user._id);
 
-            //
-            // if (err) {
-            //     res.status(500).send(err)
-            // } else {
-            //     console.log("Updated Checkin.");
-            //     res.status(200).send(response);
-            // }
-        });
+          Checkin.findById(req.params.id, (err1, response1) => {
+            if (err1) {
+              console.log(`first error: ${err1}`);
+              res.status(500).send(err1)
+            } else {
+              console.log(response1.checkinAppointments);
+
+              // var appt = _.findWhere(response1.checkinAppointments, {_id: mongoose.Types.ObjectId(req.body._id)});
+              for (let i=0;i<response1.checkinAppointments.length;i++){
+                console.log(response1.checkinAppointments[i]._id, req.body._id);
+                if (response1.checkinAppointments[i]._id==req.body._id){
+                  response1.checkinAppointments[i].user= req.user._id;
+                  break;
+                }
+              }
+
+              response1.save();
+            }
+
+          //End of this function
+          })
+
     },
 
     delete: function(req, res, next) {

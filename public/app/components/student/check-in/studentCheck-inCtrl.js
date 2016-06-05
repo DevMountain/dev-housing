@@ -19,10 +19,10 @@ $scope.user = user;
 
     getCheckins();
 
-    $scope.updateCheckins = (obj) => {
-      console.log(`starting the controller process.....`);
-      checkinSvc.updateCheckins(obj).then( (response) => {
-        console.log(`in the controller.....after promise`);
+    $scope.updateCheckins = (slot, check) => {
+      console.log(`************ starting the controller process.....`);
+      checkinSvc.updateCheckins(slot, check).then( (response) => {
+        console.log(`**********  in the controller.....after promise`);
       })
     }
 
