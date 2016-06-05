@@ -1,32 +1,34 @@
+"use strict";
+
 var Checkin = require('../models/CheckinModel.js');
+
 
 module.exports = {
 
     create: function(req, res, next) {
         Checkin.create(req.body, function(err, response) {
             if (err) return res.status(500).send(err);
-            console.log("Created new Checkin.");
             res.status(200).send(response);
         });
     },
 
+
     read: function(req, res, next) {
-        Checkin.find(req.query, function(err, response) {
-            if (req.user.role === 'admin') {
-                if (err) {
-                    res.status(500).send(err)
-                } else {
-                    res.status(200).send(response);
-                };
-            };
+        Checkin.find(req.query).populate("checkinAppointments.user").exec(function(err, response) {
+          if (req.user.role === 'admin') {
+              if (err) {
+                  res.status(500).send(err)
+              } else {
+                  res.status(200).send(response);
+              };
+          };
         });
         if (req.user.role === 'student') {
             req.query.cohort = req.user.cohortID;
-            Checkin.find(req.query).populate("checkinAppointments").exec(function(err, response) {
+            Checkin.find(req.query).populate("checkinAppointments.user").exec(function(err, response) {
                 if (err) {
                     res.status(500).send(err)
                 } else {
-                    console.log("Found right Cohort to show");
                     res.status(200).json(response);
                 }
             });
@@ -45,14 +47,23 @@ module.exports = {
     },
 
     update: function(req, res, next) {
-        Checkin.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
-            if (err) {
-                res.status(500).send(err)
+
+          Checkin.findById(req.params.id, (err1, response1) => {
+            if (err1) {
+              res.status(500).send(err1)
             } else {
-                console.log("Updated Checkin.");
-                res.status(200).send(response);
+              for (let i=0;i<response1.checkinAppointments.length;i++){
+                if (response1.checkinAppointments[i]._id==req.body._id){
+                  response1.checkinAppointments[i].user= req.user._id;
+                  break;
+                }
+              }
+
+              response1.save();
+              res.status(200).send(response1)
             }
-        });
+          })
+
     },
 
     delete: function(req, res, next) {

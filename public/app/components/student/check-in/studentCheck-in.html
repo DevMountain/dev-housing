@@ -36,9 +36,10 @@
                      <p>{{slot.timeSlot}}</p>
                  </div>
              </div>
-             <!-- <p class="current_housing_cards_text" ng-repeat="slot in check.checkinAppointments">
-               {{slot.user}} - {{slot.unit}} Room:{{slot.room}}
-             </p> -->
+             <p class="current_housing_cards_text">
+               {{slot.user.firstName + " " + slot.user.lastName}} - {{slot.unit}} Room:{{slot.room}}&nbsp;&nbsp;
+               <button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="updateCheckins(slot, check)">pick</button>
+             </p>
          </div>
      </div>
 

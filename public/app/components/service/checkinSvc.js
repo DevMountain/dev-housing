@@ -17,8 +17,18 @@ this.getCheckins = function(){
   }).then(function(response){
     return response.data
   })
-}
+};
+
+this.updateCheckins = (slot, check) => {
+  return $http({
+    method: 'PUT',
+    url: `/checkin/${check._id}`,
+    data: slot
+  }).then( (response) => {
+      return response.data;
+  })
+};
 
 
-
+// End of Service
 })
