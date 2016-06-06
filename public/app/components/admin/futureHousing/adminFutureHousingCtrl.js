@@ -3,6 +3,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
   //Loads current users info
   $scope.user = user;
 
+  $scope.allCohorts = [];
   $scope.provoUsers = [];
   $scope.slcUsers = [];
   $scope.dallasUsers = [];
@@ -20,8 +21,12 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
     //Load all cohort info
     var loadCohorts = function() {
       cohortSvc.getCohorts().then(function(response){
-        $scope.allCohorts = response;
-        console.log(response);
+        delete response._id;
+        delete response.__v;
+        for (var prop in response) {
+          response[prop].name = prop;
+          $scope.allCohorts.push(response[prop]);
+        }
       })
     }
     loadCohorts();

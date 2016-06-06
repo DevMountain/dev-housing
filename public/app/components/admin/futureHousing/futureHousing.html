@@ -5,14 +5,15 @@
 
     <div class="current_housing_search_container">
        <p class="bold">Future Housing</p>
-       <input class="housing-search-bar" placeholder="Campus/Room/Notes" ng-model="query" />
+       <!-- <input class="housing-search-bar" placeholder="Campus/Room/Notes" ng-model="query" />
        <select ng-model="queryBy"> //fix default value to not be blank
        <option value="unitNumber">Unit Number</option>
        <option value="campus">Campus</option>
-       <option value="propertyName">Property Name</option>
+       <option value="propertyName">Property Name</option> -->
        <!-- <option value="allCurrentOccupants">Occupant</option> -->
-       </select>
-       <select ng-model="cohortFilter" ng-options="cohort.future for cohort in allCohorts">
+       <!-- </select> -->
+       <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
+         <option value="" selected>Campus</option>
       <!-- <option value="DM-10">DM-10</option>
       <option value="DM-11">DM-11</option>
       <option value="DM-12">DM-12</option> -->
