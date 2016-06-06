@@ -20,6 +20,7 @@ module.exports = {
     },
 
     update: function(req, res, next) {
+      console.log("UserCtrl the cohortID is: " + req.body.cohortID);
       User.findByIdAndUpdate(req.params._id, req.body, function(err, result) {
         if (err) next(err);
         res.status(200).send('user updated');

@@ -6,6 +6,8 @@ $scope.showLogin = true;
 
 $scope.submitSignUp = function(user) {
   if($scope.signupForm.$valid){
+    user.cohortID = [];
+    console.log(user);
     userSvc.createUser(user).then(function(response){
       //do something with response
     })

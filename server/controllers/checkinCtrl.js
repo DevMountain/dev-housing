@@ -24,7 +24,17 @@ module.exports = {
           };
         });
         if (req.user.role === 'student') {
-            req.query.cohort = req.user.cohortID;
+            console.log(req.user.cohortID[0]);
+            console.log(req.user.cohortID[1]);
+            // if (req.user.cohortID.length === 1) {
+              req.query.cohort = req.user.cohortID[req.user.cohortID.length-1];
+            // };
+            // if(req.user.cohortID.length === 2) {
+              // req.query.cohort = req.user.cohortID[1];
+            // };
+
+            
+
             Checkin.find(req.query).populate("checkinAppointments.user").exec(function(err, response) {
                 if (err) {
                     res.status(500).send(err)
