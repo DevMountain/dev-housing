@@ -24,7 +24,7 @@
     <form name="signupForm" novalidate>
       <div class="sign_up_create_account">
         <h1>Dev Mountain Housing Application</h1><br>
-        <p>Account info</p>
+        <p>Create an account</p>
         <input ng-model="user.firstName" name="firstName" placeholder="first name" required></input>
         <div ng-messages="signupForm.firstName.$error" ng-if="signupForm.firstName.$dirty || signupForm.$submitted" role="alert">
           <p ng-message="required" class="error">Please enter your first name.</p>
@@ -77,12 +77,12 @@
 
       <input ng-model="user.currentAddress.street2" placeholder="Address line 2"></input> -->
 
-      <input ng-model="user.currentAddress.city" name="city" placeholder="Current city" required></input>
+      <input ng-model="user.currentAddress.city" name="city" placeholder="current city" required></input>
       <div ng-messages="signupForm.city.$error" ng-if="signupForm.city.$dirty || signupForm.$submitted" role="alert">
         <p ng-message="required" class="error">Please enter your current city.</p>
       </div>
 
-      <input ng-model="user.currentAddress.state" name="state" placeholder="State" maxlength="2" required></input>
+      <input ng-model="user.currentAddress.state" name="state" placeholder="state" maxlength="2" required></input>
       <div ng-messages="signupForm.state.$error" ng-if="signupForm.state.$dirty || signupForm.$submitted" role="alert">
         <p ng-message="required" class="error">Please enter your current state.</p>
         <p ng-message="maxlength" class="error">Maximum length is 2 characters.</p>
@@ -109,13 +109,15 @@
         <input ng-model="user.car.year" name="year" placeholder="year" ng-required="car"></input>
         <input ng-model="user.car.license" name="license" placeholder="license" ng-required="car"></input>
       </div>
-      <br><p>Are you interested in paying for a private room?</p>
+      <div ng-show="user.campus == 'provo'">
+      <br><p>Are you interested in paying an extra $250 for a private room?</p>
       <div class="info_same_line">
-        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true />yes &nbsp
-        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false required/>no
+        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus == 'provo'"/>yes &nbsp
+        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false />no
+      </div>
       </div>
       <div class="car_input" ng-show="user.singleRoom.wantsSingleRoom">
-        <p>We cannot guarantee a single room, but we will try to accommodate your request.</p>
+        <p>We cannot guarantee a private room, but we will try to accommodate your request.</p>
       </div>
       <br><button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user)">submit</button>
       </div>
