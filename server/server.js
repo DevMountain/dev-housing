@@ -46,6 +46,7 @@ app.post('/user', userCtrl.register);
 app.get('/me', isAuthed, userCtrl.me); //test
 app.put('/user/:_id', isAuthed, userCtrl.update); //test
 app.get('/users', userCtrl.read);
+app.get('/users/pending', userCtrl.pending);
 app.delete('/user/:id', userCtrl.delete);
 
 app.post('/login', passport.authenticate('local', {

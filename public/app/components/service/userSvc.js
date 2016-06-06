@@ -29,6 +29,16 @@ angular.module('devHousing').service('userSvc', function($http) {
     });
     };
 
+    this.getPendingUsers = () => {
+      console.log(`Getting Pending users, from service`);
+      return $http({
+        method: 'GET',
+        url: '/users/pending'
+      }).then( (response) => {
+        return response;
+      })
+    }
+
     this.getCurrentUser = () => {
       return $http({
         method: 'GET',

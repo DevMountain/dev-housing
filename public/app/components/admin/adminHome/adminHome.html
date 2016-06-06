@@ -3,10 +3,17 @@
 
 <div class="main-wrapper">
 
-    <div class="home_background_container">
-        <div class="home_text_container">
-            <p>CHANGE ALL OF THIS TEXT!</p>
-        </div>
+    <div class="home_text_container">
+        <p>HOME</p>
     </div>
 
-</div> <!--main-wrapper closing div -->
+    <div class="" ng-model="pendingUsers">
+      <h3>Pending</h3>
+      <br/>
+      {{pendingUsers.firstName}}
+      <br/>
+      <button ng-click="getPendingUsers()" type="button" name="button">click me</button>
+    </div>
+
+</div>
+<!--main-wrapper closing div -->

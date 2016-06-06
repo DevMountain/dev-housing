@@ -1,4 +1,5 @@
-var User = require('../models/UserModel.js');
+'use strict';
+let User = require('../models/UserModel.js');
 
 module.exports = {
 
@@ -33,6 +34,28 @@ module.exports = {
         } else {
           for (var i = 0; i < response.length; i++) {
             response[i].password = null;
+          }
+        }
+        res.status(200).send(response);
+      });
+    },
+
+    pending: function(req, res, next) {
+
+      console.log(`hitting the backend`);
+
+      User.find({}, function(err, response) {
+        if (err) {
+          return res.status(500).send(err);
+        } else {
+          for (let i = response.length-1; i >= 0; i--) {
+
+            console.log(`deleting this: ${response[i].firstName}`);
+
+            response[i].password = null;
+            if (response[i].cohortID.length !== 0) {
+              response.splice(i, 1);
+            }
           }
         }
         res.status(200).send(response);
