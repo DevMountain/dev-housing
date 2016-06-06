@@ -1,6 +1,12 @@
-angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user){
+angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc){
 
+  //Loads current users info
   $scope.user = user;
+
+  $scope.provoUsers = [];
+  $scope.slcUsers = [];
+  $scope.dallasUsers = [];
+  $scope.needHousing = [];
 
     //Loads all units and occupants from database
       var loadHousing = function() {
@@ -10,6 +16,15 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
       };
 
       loadHousing();
+
+    //Load all cohort info
+    var loadCohorts = function() {
+      cohortSvc.getCohorts().then(function(response){
+        $scope.allCohorts = response;
+        console.log(response);
+      })
+    }
+    loadCohorts();
 
     //loads all users from database
       var loadUsers = function() {
@@ -22,7 +37,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
     //parses through all users and their properties. adds those that need housing to a new array.
       var parseUsers = function(users){
         $scope.allUsers = users;
-        $scope.needHousing = [];
+
         //change male/female to m/f
         for (var i = 0; i < $scope.allUsers.length; i++) {
             if ($scope.allUsers[i].gender === 'male') {
@@ -31,18 +46,20 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
                 $scope.allUsers[i].gender = 'F';
             }
         }
+        //calculate current age
+        for (var i = 0; i < $scope.allUsers.length; i++) {
+            var years = moment().diff($scope.allUsers[i].birthdate, 'years');
+            $scope.allUsers[i].age = years;
+        }
+
         //push users who need housing to new array
         for (var i = 0; i < $scope.allUsers.length; i++) {
             if (!$scope.allUsers[i].inHousing) {
                 $scope.needHousing.push($scope.allUsers[i]);
             }
         }
-        //calculate current age
-        for (var i = 0; i < $scope.allUsers.length; i++) {
-            var years = moment().diff($scope.allUsers[i].birthdate, 'years');
-            $scope.allUsers[i].age = years;
-        }
       }
+
 
     // Adds a user to a unit's bedroom and reloads housing and users data.
       $scope.saveUnit = function(unit, user) {
