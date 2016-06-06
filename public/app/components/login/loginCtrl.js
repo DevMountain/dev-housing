@@ -18,8 +18,9 @@ $scope.submitSignUp = function(user) {
   $scope.submitLogin = function(login) {
     if ($scope.loginForm.$valid){
       userSvc.loginUser(login).then(function(response){
-        //add response for incorrect email/password combo
-        if (response.role === 'student') {
+        if (response.cohortID.length === 0) {
+          $state.go('pending');
+        } else if (response.role === 'student') {
           $state.go('student-home');
         } else {
           $state.go('admin-home');

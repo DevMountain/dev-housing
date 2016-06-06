@@ -1,4 +1,7 @@
-angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc, userSvc) {
+angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc, userSvc, cohortSvc) {
+
+
+$scope.allCohorts = [];
 
   // Loads all units and occupants from database.
     var loadHousing = function() {
@@ -8,6 +11,19 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
     };
 
     loadHousing();
+
+    //Load all cohort info
+    var loadCohorts = function() {
+      cohortSvc.getCohorts().then(function(response){
+        delete response._id;
+        delete response.__v;
+        for (var prop in response) {
+          response[prop].name = prop;
+          $scope.allCohorts.push(response[prop]);
+        }
+      })
+    }
+    loadCohorts();
 
   // Loads all users from database.
     var loadUsers = function() {
@@ -29,18 +45,32 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
               $scope.allUsers[i].gender = 'F';
           }
       }
+      // Calculate current age.
+      for (var i = 0; i < $scope.allUsers.length; i++) {
+        var years = moment().diff($scope.allUsers[i].birthdate, 'years');
+        $scope.allUsers[i].age = years;
+      }
       // Push users who need housing to new array.
       for (var i = 0; i < $scope.allUsers.length; i++) {
           if (!$scope.allUsers[i].inHousing) {
               $scope.needHousing.push($scope.allUsers[i]);
           }
       }
-      // Calculate current age.
-      for (var i = 0; i < $scope.allUsers.length; i++) {
-          var years = moment().diff($scope.allUsers[i].birthdate, 'years');
-          $scope.allUsers[i].age = years;
-      }
     }
+
+    $scope.filterFutureCohorts = function(person) {
+      for (var i = 0; i < person.cohortID.length; i++) {
+        for (var j = 0; j < $scope.allCohorts.length; j++){
+          if(person.cohortID[i] === $scope.allCohorts[j].senior || person.cohortID[i] === $scope.allCohorts[j].junior) {
+            return true
+          }
+        }
+      }
+      return false
+    }
+
+
+
 
   // Adds a user to a unit's bedroom and reloads housing and users data.
     $scope.saveUnit = function(unit, user) {

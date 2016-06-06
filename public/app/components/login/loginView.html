@@ -70,13 +70,6 @@
           <p ng-message="required" class="error">Please enter your phone number.</p>
         </div>
 
-        <!-- <input ng-model="user.currentAddress.street1" name="street1" placeholder="Address line 1" required></input>
-        <div ng-messages="signupForm.street1.$error" ng-if="signupForm.street1.$dirty || signupForm.$submitted" role="alert">
-        <p ng-message="required" class="error">Please enter your street address.</p>
-      </div>
-
-      <input ng-model="user.currentAddress.street2" placeholder="Address line 2"></input> -->
-
       <input ng-model="user.currentAddress.city" name="city" placeholder="current city" required></input>
       <div ng-messages="signupForm.city.$error" ng-if="signupForm.city.$dirty || signupForm.$submitted" role="alert">
         <p ng-message="required" class="error">Please enter your current city.</p>
@@ -88,11 +81,6 @@
         <p ng-message="maxlength" class="error">Maximum length is 2 characters.</p>
       </div>
 
-      <!-- <input ng-model="user.currentAddress.zip" name="zip" placeholder="ZIP" maxlength="5" required></input>
-      <div ng-messages="signupForm.zip.$error" ng-if="signupForm.zip.$dirty || signupForm.$submitted" role="alert">
-      <p ng-message="required" class="error">Please enter your current ZIP.</p>
-      <p ng-message="maxlength" class="error">Maximum length is 5 characters.</p>
-    </div> -->
       <div class="info_same_line">
         <input ng-model="user.gender" name="gender" type="radio" value="male" required/>male &nbsp
         <input ng-model="user.gender" name="gender" type="radio" value="female" />female

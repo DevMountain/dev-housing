@@ -35,6 +35,8 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
           return userSvc.getCurrentUser().then(function(response) {
             if (!response.data) {
               $state.go('login');
+            } else if (response.data.cohortID.length === 0) {
+              $state.go('pending');
             } else if (response.data.role === 'student') {
               return response.data;
             }
@@ -55,6 +57,8 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
           return userSvc.getCurrentUser().then(function(response) {
             if (!response.data) {
               $state.go('login');
+            } else if (response.data.cohortID.length === 0) {
+              $state.go('pending');
             } else if (response.data.role === 'student') {
               return response.data;
             }
@@ -75,6 +79,8 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
           return userSvc.getCurrentUser().then(function(response) {
             if (!response.data) {
               $state.go('login');
+            } else if (response.data.cohortID.length === 0) {
+              $state.go('pending');
             } else if (response.data.role === 'student') {
               return response.data;
             }
@@ -95,6 +101,8 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
           return userSvc.getCurrentUser().then(function(response) {
             if (!response.data) {
               $state.go('login');
+            } else if (response.data.cohortID.length === 0) {
+              $state.go('pending');
             } else if (response.data.role === 'student') {
               return response.data;
             }
@@ -115,6 +123,8 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
             return userSvc.getCurrentUser().then(function(response) {
               if (!response.data) {
                 $state.go('login');
+              } else if (response.data.cohortID.length === 0) {
+                $state.go('pending');
               } else if (response.data.role === 'student') {
                 return response.data;
               }
@@ -124,6 +134,11 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
             });
           }
         }
+    })
+
+    .state('pending', {
+      url: '/student/pending',
+      templateUrl: './app/components/student/pending.html'
     })
 
 
