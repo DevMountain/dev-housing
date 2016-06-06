@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/DevHauzin/dev-housing#readme",
   "dependencies": {
+    "angular-modal-service": "^0.6.10",
     "babel": "^6.5.2",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
