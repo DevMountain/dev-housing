@@ -11,7 +11,8 @@ var User = new Schema ({
   email: {type: String, index: true, trim: true, required: true},
   password: {type: String, required: true},
   phone: {type: String, required: true},
-  inHousing:{type: Boolean, required: true, default: false},
+  inHousing: {type: Boolean, required: true, default: false},
+  inFutureHousing: {type: Boolean, required: true, default: false},
   campus: {type: String, required: true, enum:['provo', 'slc', 'dallas']},
   currentAddress: {
     city: {type: String, required: true},

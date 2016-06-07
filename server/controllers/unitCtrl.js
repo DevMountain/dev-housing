@@ -20,7 +20,20 @@ module.exports = {
                 } else {
                     res.send(response);
                 }
-            })
+            });
+    },
+
+    setCurrentToFuture: function(request, response, next) {
+        Unit.findByIdAndUpdate(request.params.id, request.body, function(error, serverResponse) {
+            if (error) {
+                return response.status(500).send(error);
+            }
+            else {
+                // TODO for loop to update students housing properties 
+                console.log('Updating ' + request.params.id);
+                response.status(200).send(serverResponse);
+            }
+        });
     },
 
     addUserToUnitCurrent: function(req, res, next) {
@@ -39,7 +52,7 @@ module.exports = {
                 console.log(response);
                 res.send(response);
             }
-        })
+        });
     },
 
     removeUserFromUnitCurrent: function(req, res, next) {
@@ -56,7 +69,7 @@ module.exports = {
               console.log(response);
               res.send(response);
           }
-      })
+      });
     },
 
     addUserToUnitFuture: function(req, res, next) {
@@ -75,7 +88,7 @@ module.exports = {
                 console.log(response);
                 res.send(response);
             }
-        })
+        });
     },
 
     removeUserFromUnitFuture: function(req, res, next) {
@@ -92,9 +105,9 @@ module.exports = {
               console.log(response);
               res.send(response);
           }
-      })
+      });
 
     },
 
 
-}
+};

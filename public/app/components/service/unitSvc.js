@@ -15,7 +15,7 @@ angular.module('devHousing').service('unitSvc', function($http){
       url: '/unit/add/current/' + id,
       data: data
     }).then(function(response){
-      return response.data
+      return response.data;
     });
   };
 
@@ -25,7 +25,7 @@ angular.module('devHousing').service('unitSvc', function($http){
       url: '/unit/remove/current/' + id,
       data: data
     }).then(function(response){
-      return response.data
+      return response.data;
     });
   };
 
@@ -35,7 +35,7 @@ angular.module('devHousing').service('unitSvc', function($http){
       url: '/unit/add/future/' + id,
       data: data
     }).then(function(response){
-      return response.data
+      return response.data;
     });
   };
 
@@ -45,8 +45,12 @@ angular.module('devHousing').service('unitSvc', function($http){
       url: '/unit/remove/future/' + id,
       data: data
     }).then(function(response){
-      return response.data
+      return response.data;
     });
   };
+
+  // this.setCurrentToFuture = function(data) {
+  //
+  // };
 
 });
