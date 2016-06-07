@@ -21,8 +21,8 @@ module.exports = {
                 };
             };
         });
-        if (req.user.role === 'student') {
-            // this is to only show check-in times that match the last/most recent cohortID in the array 
+        if (req.user.role === 'student' || 'mentor' || 'graduate') {
+            // this is to only show check-in times that match the last/most recent cohortID in the array
             req.query.cohort = req.user.cohortID[req.user.cohortID.length - 1];
             Checkin.find(req.query).populate("checkinAppointments.user").exec(function(err, response) {
                 if (err) {
