@@ -9,7 +9,9 @@
 				<h1 id="student_header_text">Rental Information </h1>
 			</div>
 			<div class="student_text default_cards_text">
-				<p>{{users}}</p>
+				<p>Your rental agreement for DevMountain housing is:&nbsp;&nbsp;${{user.rent.rentPrice}}/month</p>
+                <p>If you have any questions please email: <a href="mailto:bri@devmounta.in" target="_top">bri@devmounta.in</a></p>
+                <p ng-repeat="rent in user.rent.rentPaid">Rent History: {{user.rent.rentPaid}}</p>
 			</div>
 		</div>
 	</div>

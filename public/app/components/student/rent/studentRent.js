@@ -1,13 +1,7 @@
-angular.module('devHousing').controller('studentRentCtrl', function($scope, userSvc) {
+angular.module('devHousing').controller('studentRentCtrl', function($scope, userSvc, user) {
 
-    // Display user info on view
-    $scope.displayUsers = function() {
-        userSvc.getUsers().then(function(response) {
-            $scope.users = response;
-        });
-    };
-
-    $scope.displayUsers();
+    // User info
+    $scope.user = user;
 
 
 });  // closing tag
