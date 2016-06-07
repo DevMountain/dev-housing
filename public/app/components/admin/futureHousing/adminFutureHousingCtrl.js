@@ -80,9 +80,12 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
     // Adds a user to a unit's bedroom and reloads housing and users data.
       $scope.saveUnit = function(unit, user) {
+        console.log(unit._id);
+        console.log(user);
+        console.log(user.campus);
           var occupant = {
             _id: user._id,
-            inHousing: true
+            inFutureHousing: true
           };
           var id = unit._id;
           unitSvc.addUserToUnitFuture(occupant, id).then(function(response) {
@@ -95,11 +98,9 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
       }
     // Removes a user from a unit and reloads housing and users data.
       $scope.removeUser = function(unit, user) {
-        console.log(unit);
-        console.log(user);
         var occupant = {
           _id: user._id,
-          inHousing: false
+          inFutureHousing: false
         };
         var id = unit._id;
         unitSvc.removeUserFromUnitFuture(occupant, id).then(function(response) {

@@ -33,19 +33,22 @@
                      {{unit.propertyName}} {{unit.address.street1}} {{unit.address.street2}}<br>
                      {{unit.futureBedrooms.roomNumber}} <br>
                      <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
-                     <div ng-repeat="bedroom in unit.futureBedrooms">
+                     <div ng-repeat="bedroom in unit.currentBedrooms">
                        Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
                        <br> Current Occupant:
-                       <div ng-repeat="person in currentHousing">
-
-                       </div>
+                      <p ng-repeat="person in bedroom.currentOccupants track by $index">{{person.firstName}} {{person.lastName}}
+                      <select ng-model="bedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}">
+                      </select><button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button></p>
+                      <div ng-repeat="bedroom in unit.futureBedrooms">
+                      <br><p ng-repeat="person in bedroom.futureOccupants">Future Occupant: {{person.firstName}} {{person.lastName}}&nbsp;<i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i></p>
+                      </div>
                        <!-- <br> Assign Occupant:
                        <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                        </select>
                        <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button> -->
-                        <div ng-repeat="person in bedroom.futureOccupants">
+                        <!-- <div ng-repeat="person in bedroom.futureOccupants">
                          Occupant: {{person.firstName}} {{person.lastName}} <i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i>
-                       </div>
+                       </div> -->
                      </div>
                    </p>
                </div>
