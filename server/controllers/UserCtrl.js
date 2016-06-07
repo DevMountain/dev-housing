@@ -50,12 +50,24 @@ module.exports = {
 
             if (response[i].cohortID.length !== 0) {
               response.splice(i, 1);
-            } else {
             }
           }
         }
         res.status(200).send(response);
       });
+    },
+
+    setCohortId: (req, res, next) => {
+      console.log(`hit the endpoint: ${JSON.stringify(req.body)}`);
+      User.find(req.body, (err, response) => {
+        if (err) {
+          console.log(`got a fu*&%!n error`);
+          return res.status(500).send(err);
+        } else {
+          console.log(`in the Backend, setting status 200....`)
+          res.status(200).send(response);
+        }
+      })
     },
 
     delete: function(request, response, next) {

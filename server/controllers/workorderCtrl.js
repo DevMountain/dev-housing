@@ -1,12 +1,11 @@
-var Workorder = require('../models/WorkorderModel.js');
+'use strict';
+let Workorder = require('../models/WorkorderModel.js');
 
 module.exports = {
 
   create: function(req, res, next) {
     Workorder.create(req.body, function (err, response) {
-      console.log('*_*_*_*_*: backend CTRL: ' + req.body.description);
       if(err) return res.status(500).send(err);
-      console.log("Created workorder.");
       res.status(200).send(response);
     });
   },
@@ -15,7 +14,6 @@ module.exports = {
     Workorder.find(req.query, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
-        console.log(`Getting work orders to read. ${response}`);
         res.status(200).send(response);
       }
     });
@@ -25,19 +23,30 @@ module.exports = {
     Workorder.findById(req.params.id, function (err, response) {
       if(err) { res.status(500).send(err)
       } else {
-        console.log("reading by id: ",req.params.id);
         res.send(response)
       }
     });
   },
 
+  pending: function(req, res, next) {
+    Workorder.find(req.query, function(err, response) {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        for (let i = response.length-1; i >= 0; i--) {
+          if (response[i].status !== 'pending') {
+            response.splice(i, 1);
+          }
+        }
+        res.status(200).send(response);
+      }
+    });
+  },
+
   update: function(req, res, next) {
-    console.log(`backend CTRL: ${req.params.id}`);
     Workorder.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
-      console.log(`backend CTRL: ${err}`);
       if(err) {res.status(500).send(err)
       } else {
-        console.log("Updated work order.");
       res.status(200).send(response);
     }
     });

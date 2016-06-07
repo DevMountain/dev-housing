@@ -36,6 +36,18 @@ angular.module('devHousing').service('userSvc', function($http) {
       }).then( (response) => {
         return response;
       })
+    };
+
+    this.setCohortId = (userId, cohortId) => {
+      console.log(`I'm in your SERVICE, doing stuff:  ${userId}, ${cohortId}`);
+      return $http({
+        method: 'PUT',
+        url: '/users/setCohortId' //,
+        // data:
+      }).then( (response) => {
+        console.log(`Back in the Service, returning the PROMISE`);
+        return response.data;
+      })
     }
 
     this.getCurrentUser = () => {

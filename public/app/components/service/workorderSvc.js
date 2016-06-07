@@ -41,5 +41,12 @@ angular.module('devHousing')
       }).then( (response) => response.data);
     };
 
+    this.getPendingWO = () => {
+      return $http({
+          method: 'GET',
+          url: '/workorders/pending'
+      }).then( (response) => response);
+    };
+
 //End of Service
   });

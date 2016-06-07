@@ -11,16 +11,44 @@
         <div class="admin_home_cards_container">
             <div class="admin_home_repeat_cards">
                 <div class="admin_home_cards_head">
-                    <div>
-                        <h2 class="bold">Pending</h2>
-                    </div>
+                    <div><h2 class="bold">Users Pending</h2></div>
                 </div>
                 <div ng-repeat="user in pendingUsers">
                     <p class="current_housing_cards_text">
-                        {{user.firstName + " " + user.lastName}}
+                        {{user.firstName + " " + user.lastName}} -- {{user.campus}}&nbsp;&nbsp;
+                        <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
                     </p>
-                    <br/>
+                    <div class="" ng-show="toggleUpdate">
+                        <textarea ng-model="user.cohortId" placeholder="Add a Cohort"></textarea><br>
+                        <button ng-click="setCohortId(user._id, user.cohortId)">Set</button>
+                    </div>
                 </div>
+            </div>
+        </div>
+        <div class="admin_home_cards_container">
+            <div class="admin_home_repeat_cards">
+                <div class="admin_home_cards_head">
+                    <div>
+                        <h2 class="bold">Work Orders Pending</h2>
+                    </div>
+                </div>
+                <div ng-repeat="wo in pendingWO">
+                    <p class="current_housing_cards_text">
+                        {{wo.problemType}} -- {{wo.description}}  -- {{wo.unit}}
+                        -- <span class="bold"> {{wo.status}} </span>
+                    </p>
+                </div>
+                <!-- <div class="workorder_faq_cards_edit" ng-show="toggleUpdate">
+                    <textarea ng-model="workorder.description" placeholder="Edit description"></textarea><br>
+                    <select ng-model="workorder.problemType" name="type" required>
+                        <option value="" selected>Select</option>
+                        <option value="appliance">appliance</option>
+                        <option value="electrical">electrical</option>
+                        <option value="plumbing">plumbing</option>
+                        <option value="other">other</option>
+                    </select>
+                    <button ng-click="setCohortId(user._id)">Edit</button>
+                </div> -->
             </div>
         </div>
     </div>

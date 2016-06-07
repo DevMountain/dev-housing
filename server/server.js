@@ -47,6 +47,7 @@ app.get('/me', isAuthed, userCtrl.me); //test
 app.put('/user/:_id', isAuthed, userCtrl.update); //test
 app.get('/users', userCtrl.read);
 app.get('/users/pending', userCtrl.pending);
+app.put('/users/setCohortId', userCtrl.setCohortId);
 app.delete('/user/:id', userCtrl.delete);
 
 app.post('/login', passport.authenticate('local', {
@@ -64,6 +65,7 @@ app.post('/workorder', workorderCtrl.create);
 app.get('/workorders', workorderCtrl.read);
 app.get('/workorder/:id', workorderCtrl.readById);
 app.put('/workorder/:id', workorderCtrl.update);
+app.get('/workorders/pending', workorderCtrl.pending );
 app.delete('/workorder/:id', workorderCtrl.delete);
 
 //=====Units Endpoints=============================== //add more endpoints?
