@@ -23,7 +23,7 @@
     <!--Repeating cards of housing units-->
         <div class="cards_list_container">
            <div class="current_housing_cards_container">
-               <div class="current_housing_repeat_cards" ng-repeat="unit in futureHousing | filter: {campus: cohortFilter.name}">
+               <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">
                    <div class="current_housing_cards_head">
                        <div>
                            <p>{{unit.campus}} - {{unit.unitNumber}}</p>
@@ -35,10 +35,14 @@
                      <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
                      <div ng-repeat="bedroom in unit.futureBedrooms">
                        Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
-                       <br> Assign Occupant:
+                       <br> Current Occupant:
+                       <div ng-repeat="person in currentHousing">
+
+                       </div>
+                       <!-- <br> Assign Occupant:
                        <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                        </select>
-                       <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
+                       <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button> -->
                         <div ng-repeat="person in bedroom.futureOccupants">
                          Occupant: {{person.firstName}} {{person.lastName}} <i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i>
                        </div>

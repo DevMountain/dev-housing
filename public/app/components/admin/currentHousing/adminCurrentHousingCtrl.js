@@ -1,7 +1,9 @@
-angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc, userSvc, cohortSvc) {
+angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc, user, userSvc, cohortSvc) {
 
+  //Loads current users info
+  $scope.user = user;
 
-$scope.allCohorts = [];
+  $scope.allCohorts = [];
 
   // Loads all units and occupants from database.
     var loadHousing = function() {

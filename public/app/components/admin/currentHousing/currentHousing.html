@@ -24,7 +24,7 @@
     <div class="cards_list_container">
 
         <div class="current_housing_cards_container">
-            <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: query | filter: {campus: cohortFilter.name}">
+            <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">
                 <div class="current_housing_cards_head">
                     <div>
                         <p>{{unit.campus}} - {{unit.unitNumber}}</p>

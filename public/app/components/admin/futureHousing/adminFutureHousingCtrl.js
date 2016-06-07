@@ -11,9 +11,9 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
     //Loads all units and occupants from database
       var loadHousing = function() {
-          unitSvc.getUnits().then(function(response) {
-              $scope.futureHousing = response;
-          });
+        unitSvc.getUnits().then(function(response) {
+            $scope.currentHousing = response;
+        });
       };
 
       loadHousing();
@@ -59,11 +59,23 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
         //push users who need housing to new array
         for (var i = 0; i < $scope.allUsers.length; i++) {
-            if (!$scope.allUsers[i].inHousing) {
+            if (!$scope.allUsers[i].inFutureHousing) {
                 $scope.needHousing.push($scope.allUsers[i]);
             }
         }
       }
+
+      $scope.filterCurrentCohorts = function(person) {
+        for (var i = 0; i < person.cohortID.length; i++) {
+          for (var j = 0; j < $scope.allCohorts.length; j++){
+            if(person.cohortID[i] === $scope.allCohorts[j].future || person.cohortID[i] === $scope.allCohorts[j].junior) {
+              return true
+            }
+          }
+        }
+        return false
+      }
+
 
 
     // Adds a user to a unit's bedroom and reloads housing and users data.
