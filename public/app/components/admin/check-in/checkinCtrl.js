@@ -71,9 +71,8 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
     var setSchedule = function(checkinObj){
       checkinSvc.createCheckin(checkinObj).then(function(response){
         $scope.checkin = response;
-    });
-
-};
-
+      });
+      getCheckins();
+    };
 
 });
