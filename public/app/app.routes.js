@@ -37,7 +37,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || 'mentor' || 'graduate') {
               return response.data;
             }
               $state.go('login');
@@ -59,7 +59,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || 'mentor' || 'graduate') {
               return response.data;
             }
               $state.go('login');
@@ -81,7 +81,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || 'mentor' || 'graduate') {
               return response.data;
             }
               $state.go('login');
@@ -103,7 +103,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || 'mentor' || 'graduate') {
               return response.data;
             }
               $state.go('login');
@@ -125,7 +125,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
                 $state.go('login');
               } else if (response.data.cohortID.length === 0) {
                 $state.go('pending');
-              } else if (response.data.role === 'student') {
+              } else if (response.data.role === 'student' || 'mentor' || 'graduate') {
                 return response.data;
               }
                 $state.go('login');
