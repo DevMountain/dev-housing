@@ -16,7 +16,7 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
       cohortSvc.getCohorts().then(function(response){
         $scope.allCohorts = response;
 
-      })
+    });
     };
     getCohorts();
 
@@ -27,24 +27,24 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
         response[i].checkinStart = moment(response[i].checkinStart).format('dddd MMMM Do YYYY - h:mm A');
         response[i].checkinEnd = moment(response[i].checkinEnd).format('dddd MMMM Do YYYY - h:mm A');
         for (var j = 0; j < response[i].checkinAppointments.length; j++){
-          response[i].checkinAppointments[j].timeSlot = moment(response[i].checkinAppointments[j].timeSlot).format('h:mm A')
+          response[i].checkinAppointments[j].timeSlot = moment(response[i].checkinAppointments[j].timeSlot).format('h:mm A');
         }
       }
       $scope.allCheckins = response;
-    })
+  });
   };
 
   getCheckins();
 
-//CREATE CHECKIN DAY WITH SLOTS 
+//CREATE CHECKIN DAY WITH SLOTS
     $scope.createCheckin = function(info) {
         start = moment(info.start);
-        end = moment(info.end)
+        end = moment(info.end);
         interval = info.interval;
-        campus = info.campus
-        cohort = info.cohort
+        campus = info.campus;
+        cohort = info.cohort;
         createSchedule();
-    }
+    };
 
     var createSchedule = function(slots) {
         duration = end.diff(start, 'minutes');
@@ -53,7 +53,7 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
         for (var i = 0; i < slots; i++) {
             var addTime = i * interval;
             var newAppointment = start.clone().add(addTime, 'minutes');
-            var appointment = {timeSlot: newAppointment.format()}
+            var appointment = {timeSlot: newAppointment.format()};
             schedule.push(appointment);
         }
         var checkinObj = {
@@ -63,17 +63,17 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
           campus: campus,
           cohort: cohort,
           checkinAppointments: schedule
-        }
+      };
 
         setSchedule(checkinObj);
-    }
+    };
 
     var setSchedule = function(checkinObj){
       checkinSvc.createCheckin(checkinObj).then(function(response){
         $scope.checkin = response;
-      })
+    });
 
-    }
+};
 
 
-})
+});
