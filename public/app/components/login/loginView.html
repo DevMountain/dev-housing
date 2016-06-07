@@ -48,7 +48,7 @@
           <p ng-message="maxlength" class="error">Maximum length is 15 characters.</p>
         </div>
         <div class="info_same_line">
-        campus: &nbsp <select ng-model="user.campus" name"campus" required>
+        campus: &nbsp; <select ng-model="user.campus" name"campus" required>
         <option value="provo">Provo</option>
         <option value="slc">Salt Lake City</option>
         <option value="dallas">Dallas</option></select>
@@ -59,7 +59,7 @@
       <div class="sign_up_personal_info">
         <p>Personal info</p>
         <div class="info_same_line">
-          birthdate: &nbsp <input ng-model="user.birthdate" name="birthdate" placeholder="birthdate" type="date" required></input>
+          birthdate: &nbsp; <input ng-model="user.birthdate" name="birthdate" placeholder="birthdate" type="date" required></input>
           <div ng-messages="signupForm.birthdate.$error" ng-if="signupForm.birthdate.$dirty || signupForm.$submitted" role="alert">
             <p ng-message="required" class="error">Please select your birthdate.</p>
           </div>
@@ -82,13 +82,13 @@
       </div>
 
       <div class="info_same_line">
-        <input ng-model="user.gender" name="gender" type="radio" value="male" required/>male &nbsp
+        <input ng-model="user.gender" name="gender" type="radio" value="male" required/>male &nbsp;
         <input ng-model="user.gender" name="gender" type="radio" value="female" />female
       </div>
 
       <br><p>Will you be bringing a vehicle?</p>
       <div class="info_same_line">
-        <input ng-model="car" name="car" type="radio" ng-value=true />yes &nbsp
+        <input ng-model="car" name="car" type="radio" ng-value=true />yes &nbsp;
         <input ng-model="car" name="car" type="radio" ng-value=false required/>no
       </div>
       <div class="car_input" ng-show="car">
@@ -100,7 +100,7 @@
       <div ng-show="user.campus == 'provo'">
       <br><p>Are you interested in paying an extra $250 for a private room?</p>
       <div class="info_same_line">
-        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus == 'provo'"/>yes &nbsp
+        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus == 'provo'"/>yes &nbsp;
         <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false />no
       </div>
       </div>
