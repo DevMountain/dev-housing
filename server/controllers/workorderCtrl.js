@@ -13,11 +13,25 @@ module.exports = {
 
   read: function(req, res, next) {
     Workorder.find(req.query, function (err, response) {
+      if (req.user.role === 'admin') {
       if(err) { res.status(500).send(err)
       } else {
-        console.log(`Getting work orders to read. ${response}`);
+        console.log(`Getting work orders for Admin to read. ${response}`);
         res.status(200).send(response);
+      };
+    };
+    if (req.user.role === 'student' || req.user.role === 'mentor' || req.user.role === 'graduate') {
+      if (err) {
+        res.status(500).send(err)
+      } else {
+        console.log(`User thats reading this is: ${req.user._id}`);
+        console.log(JSON.stringify(req.query));
+        console.log(`User thats reading this is: ${response.submittedBy}`);
+        req.query.submittedBy = req.user._id;
+        // console.log(`Reading work order for Stud/ment/grad to read.${response}`);
+        res.status(200).json(response);
       }
+    }
     });
   },
 
