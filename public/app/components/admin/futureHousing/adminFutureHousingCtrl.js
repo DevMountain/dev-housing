@@ -3,23 +3,19 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
   //Loads current users info
   $scope.user = user;
 
-  $scope.allCohorts = [];
-  $scope.provoUsers = [];
-  $scope.slcUsers = [];
-  $scope.dallasUsers = [];
-  $scope.needHousing = [];
-
     //Loads all units and occupants from database
       var loadHousing = function() {
-          unitSvc.getUnits().then(function(response) {
-              $scope.futureHousing = response;
-          });
+        unitSvc.getUnits().then(function(response) {
+            $scope.currentHousing = response;
+        });
       };
 
       loadHousing();
 
     //Load all cohort info
+
     var loadCohorts = function() {
+    $scope.allCohorts = [];
       cohortSvc.getCohorts().then(function(response){
         delete response._id;
         delete response.__v;
@@ -27,8 +23,8 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
           response[prop].name = prop;
           $scope.allCohorts.push(response[prop]);
         }
-      })
-    }
+    });
+};
     loadCohorts();
 
     //loads all users from database
@@ -58,36 +54,50 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         }
 
         //push users who need housing to new array
+        $scope.needHousing = [];
         for (var i = 0; i < $scope.allUsers.length; i++) {
-            if (!$scope.allUsers[i].inHousing) {
+            if (!$scope.allUsers[i].inFutureHousing) {
                 $scope.needHousing.push($scope.allUsers[i]);
             }
         }
-      }
+    };
+
+      $scope.filterCurrentCohorts = function(person) {
+        for (var i = 0; i < person.cohortID.length; i++) {
+          for (var j = 0; j < $scope.allCohorts.length; j++){
+            if(person.cohortID[i] === $scope.allCohorts[j].future || person.cohortID[i] === $scope.allCohorts[j].junior) {
+              return true;
+            }
+          }
+        }
+        return false;
+    };
+
 
 
     // Adds a user to a unit's bedroom and reloads housing and users data.
       $scope.saveUnit = function(unit, user) {
           var occupant = {
             _id: user._id,
-            inHousing: true
+            inFutureHousing: true
           };
           var id = unit._id;
           unitSvc.addUserToUnitFuture(occupant, id).then(function(response) {
               loadHousing();
-          })
+          });
           userSvc.update(occupant).then(function(response){
             loadUsers();
-          })
+        });
 
-      }
+    };
+
     // Removes a user from a unit and reloads housing and users data.
       $scope.removeUser = function(unit, user) {
-        console.log(unit);
-        console.log(user);
+          console.log(unit);
+          console.log(user);
         var occupant = {
           _id: user._id,
-          inHousing: false
+          inFutureHousing: false
         };
         var id = unit._id;
         unitSvc.removeUserFromUnitFuture(occupant, id).then(function(response) {
@@ -97,5 +107,13 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
           loadUsers();
         });
       };
+
+
+      $scope.setCurrentToFuture = function(units, users) {
+        // combine units and users into 1 object
+
+      };
+
+
 
 });  // closing tag

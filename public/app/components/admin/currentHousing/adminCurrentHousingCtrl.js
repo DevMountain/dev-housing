@@ -1,7 +1,7 @@
-angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc, userSvc, cohortSvc) {
+angular.module('devHousing').controller('adminCurrentHousingCtrl', function($scope, unitSvc, user, userSvc, cohortSvc) {
 
-
-$scope.allCohorts = [];
+  //Loads current users info
+  $scope.user = user;
 
   // Loads all units and occupants from database.
     var loadHousing = function() {
@@ -14,6 +14,7 @@ $scope.allCohorts = [];
 
     //Load all cohort info
     var loadCohorts = function() {
+        $scope.allCohorts = [];
       cohortSvc.getCohorts().then(function(response){
         delete response._id;
         delete response.__v;
@@ -21,8 +22,8 @@ $scope.allCohorts = [];
           response[prop].name = prop;
           $scope.allCohorts.push(response[prop]);
         }
-      })
-    }
+    });
+};
     loadCohorts();
 
   // Loads all users from database.
@@ -74,6 +75,8 @@ $scope.allCohorts = [];
 
   // Adds a user to a unit's bedroom and reloads housing and users data.
     $scope.saveUnit = function(unit, user) {
+      console.log(user);
+      console.log(user.campus);
         var occupant = {
           _id: user._id,
           inHousing: true
