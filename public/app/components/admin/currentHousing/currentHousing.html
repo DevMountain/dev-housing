@@ -24,7 +24,7 @@
     <div class="cards_list_container">
 
         <div class="current_housing_cards_container">
-            <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: query | filter: {campus: cohortFilter.name}">
+            <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">
                 <div class="current_housing_cards_head">
                     <div>
                         <p>{{unit.campus}}
@@ -41,14 +41,13 @@
                     <span class="bold">Admin Notes:</span>
                     {{unit.adminNotes}}<br>
                     <div ng-repeat="bedroom in unit.currentBedrooms">
-                        Room:
-                        {{bedroom.roomNumber}}
-                        - Max occupants:
-                        {{bedroom.maxOccupants}}
-                        <br>
-                        Add occupant:
-                        <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}"></select>
-                        <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
+                        Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
+                        <br> Add occupant:
+                        <div ng-hide="bedroom.maxOccupants <= bedroom.currentOccupants.length">
+                          <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                          </select>
+                          <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
+                        </div>
                         <div ng-repeat="person in bedroom.currentOccupants">
                             Occupant:
                             {{person.firstName}}
