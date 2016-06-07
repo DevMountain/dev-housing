@@ -7,9 +7,9 @@ angular.module('devHousing')
       workorderSvc.workorderRead().then( (response) => {
         $scope.list = response;
       });
-    }
+  };
 
-    setTimeout($scope.workorderRead(), 5000);
+    $scope.workorderRead();
 
     // $scope.getAll = () => workorderSvc.workorderRead();
 
@@ -30,13 +30,13 @@ angular.module('devHousing')
       workorderSvc.workorderUpdate(obj).then( (response) => {
         $scope.workorderRead();
       });
-    }
+  };
 
     $scope.workorderDelete = (id) => {
       workorderSvc.workorderDelete(id).then( (response) => {
         $scope.workorderRead();
-      })
-    }
+    });
+};
 
 
 //End of Controller

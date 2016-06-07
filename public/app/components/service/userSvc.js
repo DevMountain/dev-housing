@@ -36,8 +36,8 @@ angular.module('devHousing').service('userSvc', function($http) {
       }).then( (response) => {
         delete response.data.password;
         return response;
-      })
-    }
+    });
+};
 
     //update user
     this.update = function(user) {
