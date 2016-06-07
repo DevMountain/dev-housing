@@ -15,9 +15,9 @@ angular.module('devHousing')
 
     $scope.studentWorkorder = {};
     $scope.workorderCreate = (obj) => {
-      obj.submittedBy = user._id;
+      console.log(user);
+      obj.submittedBy = user;
       console.log(`This was submitted by: ${obj.submittedBy}`);
-      // console.log('***Ctrl Create: ${JSON.stringify(obj)}');
     //   if($scope.workorderForm.$valid){
         // $scope.workorderForm.$setPristine(); //not working, and probably unnecessary anyway
         //After workorder is created, only return most recent work order for student view.
