@@ -23,7 +23,6 @@
     "babel": "^6.5.2",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
-    "connect-flash": "^0.1.1",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "gulp": "^3.9.1",

@@ -4,9 +4,7 @@ angular.module("devHousing").controller("modalCtrl", function($scope, ModalServi
   
   $scope.openConfirm = function() {
     ModalService.showModal({
-      // Template file for modal
       templateUrl: "./app/components/modals/confirmModal/confirmTemplate.html",
-      // Controller file for modal
       controller: "confirmCtrl",
       // Variables being passed into modal
       inputs: {

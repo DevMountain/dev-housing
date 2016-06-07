@@ -14,7 +14,7 @@ $scope.submitSignUp = function(user) {
   }
   }
 
-
+//error message goes somewhere around here
   $scope.submitLogin = function(login) {
     if ($scope.loginForm.$valid){
       userSvc.loginUser(login).then(function(response){
