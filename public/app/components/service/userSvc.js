@@ -11,11 +11,16 @@ angular.module('devHousing').service('userSvc', function($http) {
     };
 
     this.loginUser = function(login) {
+        console.log(login);
         return $http({
             method: 'POST',
             url: '/login',
             data: login
         }).then(function(response) {
+            console.log(response)
+            if (response.status === 401) {
+                return "incorrect"
+            }
             return response.data;
         });
     };

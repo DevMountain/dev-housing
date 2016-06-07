@@ -49,7 +49,7 @@ app.get('/users', userCtrl.read);
 app.delete('/user/:id', userCtrl.delete);
 
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/me',
+  successRedirect: '/me'
 }));
 
 app.get('/logout', function(req, res, next) {
