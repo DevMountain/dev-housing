@@ -22,7 +22,6 @@ $scope.hasSlot = true;
                 $scope.hasSlot = false;
               }
             }
-
           }
         }
       })

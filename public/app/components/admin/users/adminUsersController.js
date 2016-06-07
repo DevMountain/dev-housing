@@ -27,22 +27,19 @@ $scope.displayUsers();
 
 // update single user
 $scope.updateUser = function(user) {
-   var cohorts = [];
-   cohorts.push(user.cohortID[0]);
-    if(user.cohortID[1]) {
-      cohorts.push(user.cohortID[1]);
+    // this is to update multiple cohorts to an array
+    var cohorts = [];
+    cohorts.push(user.cohortID[0]);
+    if (user.cohortID[1]) {
+        cohorts.push(user.cohortID[1]);
     };
-    if(user.cohortID[2]) {
-      cohorts.push(user.cohortID[2]);
+    if (user.cohortID[2]) {
+        cohorts.push(user.cohortID[2]);
     };
     user.cohortID = cohorts;
-  console.log("cohortId for both is: " + user.cohortID);
-  // cohorts = cohorts.push(user.cohortId)
-
-  // user.cohortID = [firstId, secondId];
-  userSvc.update(user).then(function(response) {
-    $scope.displayUsers();
-  });
+    userSvc.update(user).then(function(response) {
+        $scope.displayUsers();
+    });
 };
 
 // delete single user

@@ -12,7 +12,6 @@ module.exports = {
     },
 
     me: function(req, res, next) {
-      console.log(`backEnd USR Ctrl: ${req.body.role}`);
       if (!req.user) return res.status(401).send('current user not defined');
       req.user.adminNotes = null;
       req.user.password = null;
@@ -20,7 +19,6 @@ module.exports = {
     },
 
     update: function(req, res, next) {
-      console.log("UserCtrl the cohortID is: " + req.body.cohortID);
       User.findByIdAndUpdate(req.params._id, req.body, function(err, result) {
         if (err) next(err);
         res.status(200).send('user updated');

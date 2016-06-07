@@ -41,9 +41,7 @@ angular.module('devHousing').service('userSvc', function($http) {
 
     //update user
     this.update = function(user) {
-        console.log(user);
         delete user.password;
-        console.log('after delete pass: ' + user.password);
         return $http({
             method: 'PUT',
             url: '/user/' + user._id,
