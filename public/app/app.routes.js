@@ -16,9 +16,12 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
-            if (!response.data)
+            if (!response.data) {
               $state.go('login');
-            return response.data;
+            } else if (response.data.role === 'student' || response.data.role === 'mentor' || response.data.role === 'graduate') {
+              return response.data;
+            }
+              $state.go('login');
           }).catch(function(err) {
             $state.go('login');
           });
@@ -37,10 +40,9 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || response.data.role === 'mentor'  || response.data.role === 'graduate') {
               return response.data;
-            }
-              $state.go('login');
+            } $state.go('login');
           }).catch(function(err) {
             $state.go('login');
           });
@@ -51,7 +53,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-rent', {
       url: '/student/rent',
       templateUrl: './app/components/student/rent/studentRent.html',
-      // controller: 'studentCentCtrl',
+      controller: 'studentRentCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
@@ -59,7 +61,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || response.data.role === 'mentor'  || response.data.role === 'graduate' ) {
               return response.data;
             }
               $state.go('login');
@@ -81,7 +83,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || response.data.role === 'mentor' || response.data.role === 'graduate') {
               return response.data;
             }
               $state.go('login');
@@ -103,7 +105,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
               $state.go('login');
             } else if (response.data.cohortID.length === 0) {
               $state.go('pending');
-            } else if (response.data.role === 'student') {
+            } else if (response.data.role === 'student' || response.data.role === 'mentor' || response.data.role === 'graduate') {
               return response.data;
             }
               $state.go('login');
@@ -125,7 +127,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
                 $state.go('login');
               } else if (response.data.cohortID.length === 0) {
                 $state.go('pending');
-              } else if (response.data.role === 'student') {
+              } else if (response.data.role === 'student' || response.data.role === 'mentor' || response.data.role === 'graduate') {
                 return response.data;
               }
                 $state.go('login');

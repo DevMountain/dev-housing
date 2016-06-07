@@ -9,7 +9,7 @@
                 <!-- <div><span>Add User</span><i ng-click="addModal = !addModal" class="fa fa-plus"></i></div> -->
             </div>
             <div class="users_cards_new">
-                <input ng-model="user" placeholder="Search by name"></input>
+                <input ng-model="userSearch" placeholder="Search by name"></input>
             </div>
             <!-- <div class="users_edit" ng-show="addModal">
                 <p class="bold">Add a new user</p>
@@ -34,7 +34,7 @@
 
     <!--Container of current FAQs-->
     <div class="users_cards_container">
-        <div ng-repeat="user in users | filter: user" class="users_cards">
+        <div ng-repeat="user in users | filter: userSearch" class="users_cards">
             <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
 
             <div class="user_edit_container" ng-hide="editUser">
@@ -52,7 +52,7 @@
                         Admin Default: {{user.adminDefaultView}}<br><br>
                         <span class="bold">Cohort</span><br>
                         Campus: {{user.campus}}<br>
-                        Cohort: {{user.cohortID}}<br>
+                        Cohort(s): {{user.cohortID}}<br>
                         DevMtnID: {{user.devmtnID}}<br>
                         Role: {{user.role}}<br><br>
                 </div>
@@ -85,7 +85,17 @@
                         <p>Admin Access&nbsp;&nbsp;</p><input ng-model="user.adminAccess" placeholder="Admin Access"></input><br>
                         <p>Admin Default View&nbsp;&nbsp;</p><input ng-model="user.adminDefaultView" placeholder="Admin Default"></input><br>
                         <p>Campus&nbsp;&nbsp;</p><input ng-model="user.campus" placeholder="campus"></input><br>
-                        <p>Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID" placeholder="cohort"></input><br>
+
+                        <!-- <p>1st Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID[0]" id="cohortEdit" placeholder="cohort"></input>
+                        <button type="button" ng-click="cohort2Id=true">Add 2nd Id</button><br>
+                        <div ng-show="cohort2Id"><p>2nd Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID[1]" id="cohortEdit" placeholder="cohort"></input>
+                        <button type="button" ng-click="cohort3Id=true">Add 3rd Id</button></div>
+                        <div ng-show="cohort3Id"><p>3rd Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID[2]" id="cohortEdit" placeholder="cohort"></input></div> -->
+
+                        <p>1st Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID[0]" placeholder="cohort"></input>
+                        <p>2nd Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID[1]" placeholder="cohort"></input>
+                        <p>3rd Cohort ID&nbsp;&nbsp;</p><input ng-model="user.cohortID[2]" placeholder="cohort"></input>
+
                         <p>Devmtn ID&nbsp;&nbsp;</p><input ng-model="user.devmtnID" placeholder="DevMtn ID"></input></br>
                         <p>Role&nbsp;&nbsp;</p><input ng-model="user.role" placeholder="role"></input><br>
                         <p>Housing Status&nbsp;&nbsp;</p><input ng-model="user.inHousing" placeholder="housing"></input><br>
