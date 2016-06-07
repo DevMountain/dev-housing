@@ -14,18 +14,14 @@ $scope.hasSlot = true;
             response[i].checkoutAppointments[j].timeSlot = moment(response[i].checkoutAppointments[j].timeSlot).format('h:mm A')
           }
         }
-
         $scope.allCheckouts = response;
-
         for(let i = 0; i < $scope.allCheckouts.length; i++) {
           for (let j = 0; j < $scope.allCheckouts[i].checkoutAppointments.length; j++) {
             if ($scope.allCheckouts[i].checkoutAppointments[j].user){
-              console.log($scope.allCheckouts[i].checkoutAppointments[j].user.firstName);
               if ($scope.allCheckouts[i].checkoutAppointments[j].user._id === $scope.user._id) {
                 $scope.hasSlot = false;
               }
             }
-
           }
         }
       })
