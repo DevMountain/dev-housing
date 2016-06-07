@@ -6,6 +6,8 @@ $scope.showLogin = true;
 
 $scope.submitSignUp = function(user) {
   if($scope.signupForm.$valid){
+    user.cohortID = [];
+    console.log(user);
     userSvc.createUser(user).then(function(response){
       //do something with response
     })
@@ -18,7 +20,7 @@ $scope.submitSignUp = function(user) {
       userSvc.loginUser(login).then(function(response){
         if (response.cohortID.length === 0) {
           $state.go('pending');
-        } else if (response.role === 'student') {
+        } else if (response.role === 'student' || 'mentor' || 'graduate') {
           $state.go('student-home');
         } else {
           $state.go('admin-home');

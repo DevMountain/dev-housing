@@ -29,4 +29,5 @@ this.updateCheckouts = (slot, check) => {
   })
 };
 
+//End of Service
 })
