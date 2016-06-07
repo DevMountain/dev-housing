@@ -20,9 +20,9 @@ $scope.submitSignUp = function(user) {
       userSvc.loginUser(login).then(function(response){
         if (response.cohortID.length === 0) {
           $state.go('pending');
-        } else if (response.role === 'student' || 'mentor' || 'graduate') {
+        } else if (response.role === 'student') {
           $state.go('student-home');
-        } else {
+        } else if (response.role === 'admin') {
           $state.go('admin-home');
         }
       })

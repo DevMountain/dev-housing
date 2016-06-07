@@ -76,8 +76,7 @@ getCheckouts();
         checkoutSvc.createCheckout(checkoutObj).then(function(response) {
             $scope.checkout = response;
         })
-
+        getCheckouts();
     }
-
 
 })
