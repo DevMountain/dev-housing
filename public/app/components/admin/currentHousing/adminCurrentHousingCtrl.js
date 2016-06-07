@@ -57,18 +57,18 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
               $scope.needHousing.push($scope.allUsers[i]);
           }
       }
-    }
+  };
 
     $scope.filterFutureCohorts = function(person) {
       for (var i = 0; i < person.cohortID.length; i++) {
         for (var j = 0; j < $scope.allCohorts.length; j++){
           if(person.cohortID[i] === $scope.allCohorts[j].senior || person.cohortID[i] === $scope.allCohorts[j].junior) {
-            return true
+            return true;
           }
         }
       }
-      return false
-    }
+      return false;
+  };
 
 
 
@@ -84,12 +84,14 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
         var id = unit._id;
         unitSvc.addUserToUnitCurrent(occupant, id).then(function(response) {
             loadHousing();
-        })
+        });
         userSvc.update(occupant).then(function(response){
           loadUsers();
-        })
+      });
 
-    }
+  };
+
+  
   // Removes a user from a unit and reloads housing and users data.
     $scope.removeUser = function(unit, user) {
       var occupant = {

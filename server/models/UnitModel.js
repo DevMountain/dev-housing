@@ -27,4 +27,4 @@ var UnitSchema = new Schema ({
   adminNotes: {type: String, required: false}
 });
 
-module.exports = mongoose.model('Unit', UnitSchema)
+module.exports = mongoose.model('Unit', UnitSchema);
