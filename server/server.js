@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var flash = require('connect-flash');
 var mongoose = require('mongoose');
 
 
@@ -35,6 +36,7 @@ app.use(session({
   saveUninitialized: false,
   resave: false
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 mongoose.set('debug', true);
@@ -49,7 +51,8 @@ app.get('/users', userCtrl.read);
 app.delete('/user/:id', userCtrl.delete);
 
 app.post('/login', passport.authenticate('local', {
-  successRedirect: '/me'
+  successRedirect: '/me',
+  failureFlash: "WRONG!"
 }));
 
 app.get('/logout', function(req, res, next) {
