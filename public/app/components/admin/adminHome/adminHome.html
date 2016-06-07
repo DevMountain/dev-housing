@@ -7,13 +7,25 @@
         <p>HOME</p>
     </div>
 
-    <div class="" ng-model="pendingUsers">
-      <h3>Pending</h3>
-      <br/>
-      {{pendingUsers.firstName}}
-      <br/>
-      <button ng-click="getPendingUsers()" type="button" name="button">click me</button>
+    <div class="cards_list_container">
+        <div class="admin_home_cards_container">
+            <div class="admin_home_repeat_cards">
+                <div class="admin_home_cards_head">
+                    <div>
+                        <h2 class="bold">Pending</h2>
+                    </div>
+                </div>
+                <div ng-repeat="user in pendingUsers">
+                    <p class="current_housing_cards_text">
+                        {{user.firstName + " " + user.lastName}}
+                    </p>
+                    <br/>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- <button ng-click="getPendingUsers()" type="button" name="button">click me</button> -->
 
+    {{user.firstName}}
 </div>
 <!--main-wrapper closing div -->

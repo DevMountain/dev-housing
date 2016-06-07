@@ -40,20 +40,17 @@ module.exports = {
     },
 
     pending: function(req, res, next) {
-
-      console.log(`hitting the backend`);
-
       User.find({}, function(err, response) {
         if (err) {
           return res.status(500).send(err);
         } else {
           for (let i = response.length-1; i >= 0; i--) {
 
-            console.log(`deleting this: ${response[i].firstName}`);
-
             response[i].password = null;
+
             if (response[i].cohortID.length !== 0) {
               response.splice(i, 1);
+            } else {
             }
           }
         }

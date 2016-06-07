@@ -14,8 +14,8 @@
         <!-- <option value="allCurrentOccupants">Occupant</option> -->
         <!-- </select> -->
         <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
-          <option value="" selected>Campus</option>
-       <!-- <option value="DM-10">DM-10</option>
+            <option value="" selected>Campus</option>
+            <!-- <option value="DM-10">DM-10</option>
        <option value="DM-11">DM-11</option>
        <option value="DM-12">DM-12</option> -->
         </select>
@@ -27,21 +27,33 @@
             <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: query | filter: {campus: cohortFilter.name}">
                 <div class="current_housing_cards_head">
                     <div>
-                        <p>{{unit.campus}} - {{unit.unitNumber}}</p>
+                        <p>{{unit.campus}}
+                            -
+                            {{unit.unitNumber}}</p>
                     </div>
                 </div>
                 <p class="current_housing_cards_text">
-                    {{unit.propertyName}} {{unit.address.street1}} {{unit.address.street2}}
-                    <br> {{unit.currentBedrooms.roomNumber}}<br>
-                    <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
+                    {{unit.propertyName}}
+                    {{unit.address.street1}}
+                    {{unit.address.street2}}
+                    <br>
+                    {{unit.currentBedrooms.roomNumber}}<br>
+                    <span class="bold">Admin Notes:</span>
+                    {{unit.adminNotes}}<br>
                     <div ng-repeat="bedroom in unit.currentBedrooms">
-                        Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
-                        <br> Add occupant:
-                        <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                        </select>
+                        Room:
+                        {{bedroom.roomNumber}}
+                        - Max occupants:
+                        {{bedroom.maxOccupants}}
+                        <br>
+                        Add occupant:
+                        <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}"></select>
                         <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
                         <div ng-repeat="person in bedroom.currentOccupants">
-                            Occupant: {{person.firstName}} {{person.lastName}}  <i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i>
+                            Occupant:
+                            {{person.firstName}}
+                            {{person.lastName}}
+                            <i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i>
                         </div>
                     </div>
                 </p>
@@ -57,24 +69,44 @@
             <div class="wants_housing_list">
                 <p class="bold">Men &#9794;</p>
                 <p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}} {{person.lastName}} - {{person.campus}} - {{person.cohortID}}
-                   <!-- - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}} -->
+                    {{person.firstName}}
+                    {{person.lastName}}
+                    -
+                    {{person.campus}}
+                    -
+                    {{person.cohortID}}
+                    <!-- - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}} -->
                 </p>
                 <br>
                 <p class="bold">Requested Private Room</p>
                 <p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}} {{person.lastName}} - {{person.campus}} - {{person.cohortID}}
+                    {{person.firstName}}
+                    {{person.lastName}}
+                    -
+                    {{person.campus}}
+                    -
+                    {{person.cohortID}}
                 </p>
                 <hr>
                 <br>
                 <p class="bold">Women &#9792;;</p>
                 <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}} {{person.lastName}} - {{person.campus}} - {{person.cohortID}}
+                    {{person.firstName}}
+                    {{person.lastName}}
+                    -
+                    {{person.campus}}
+                    -
+                    {{person.cohortID}}
                 </p>
                 <br>
                 <p class="bold">Requested Private Room</p>
-                  <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}} {{person.lastName}} - {{person.campus}} - {{person.cohortID}}
+                <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                    {{person.firstName}}
+                    {{person.lastName}}
+                    -
+                    {{person.campus}}
+                    -
+                    {{person.cohortID}}
                 </p>
             </div>
         </div>
