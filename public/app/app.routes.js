@@ -51,7 +51,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-rent', {
       url: '/student/rent',
       templateUrl: './app/components/student/rent/studentRent.html',
-      // controller: 'studentCentCtrl',
+      controller: 'studentRentCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
