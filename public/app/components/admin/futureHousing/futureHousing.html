@@ -12,6 +12,9 @@
        <option value="propertyName">Property Name</option> -->
        <!-- <option value="allCurrentOccupants">Occupant</option> -->
        <!-- </select> -->
+
+       <button>Update Current</button>
+
        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
          <option value="" selected>Campus</option>
       <!-- <option value="DM-10">DM-10</option>
@@ -29,19 +32,37 @@
                            <p>{{unit.campus}} - {{unit.unitNumber}}</p>
                        </div>
                    </div>
+
+
                    <p class="current_housing_cards_text">
                      {{unit.propertyName}} {{unit.address.street1}} {{unit.address.street2}}<br>
                      {{unit.futureBedrooms.roomNumber}} <br>
+
                      <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
-                     <div ng-repeat="bedroom in unit.currentBedrooms">
-                       Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
+
+                     <div ng-repeat="currentBedroom in unit.currentBedrooms">
+                       Room: {{currentBedroom.roomNumber}} - Max occupants: {{currentBedroom.maxOccupants}}
                        <br> Current Occupant:
-                      <p ng-repeat="person in bedroom.currentOccupants track by $index">{{person.firstName}} {{person.lastName}}
-                      <select ng-model="bedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}">
-                      </select><button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user[$index])">save user</button></p>
-                      <div ng-repeat="bedroom in unit.futureBedrooms">
-                      <br><p ng-repeat="person in bedroom.futureOccupants">Future Occupant: {{person.firstName}} {{person.lastName}}&nbsp;<i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i></p>
+
+                      <p ng-repeat="person in currentBedroom.currentOccupants track by $index">{{person.firstName}} {{person.lastName}}
+                          <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
+                          <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Update User</button>
+                      </p>
+
+                      <div ng-repeat="futureBedroom in unit.futureBedrooms">
+
+                          <!-- <div>
+                              <p ng-repeat="person in futureBedroom.futureOccupants track by $index">TEST 1{{person.firstName}} {{person.lastName}}
+                                  <select ng-model="futureBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
+                              </p>
+                          </div> -->
+
+                          <br><p ng-repeat="person in futureBedroom.futureOccupants">Future Occupant: {{person.firstName}} {{person.lastName}}&nbsp;<i ng-click="removeUser(unit.futureBedrooms[$parent.$index], person)" class="fa fa-times"></i></p>
+                          <!-- <button type="button" name="button" ng-click="saveUnit(futureBedroom, currentBedroom.user[$index])">Update Unit</button> -->
                       </div>
+
+
+
                        <!-- <br> Assign Occupant:
                        <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                        </select>
@@ -50,6 +71,8 @@
                          Occupant: {{person.firstName}} {{person.lastName}} <i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i>
                        </div> -->
                      </div>
+
+
                    </p>
                </div>
            </div>

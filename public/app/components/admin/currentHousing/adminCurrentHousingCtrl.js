@@ -3,8 +3,6 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
   //Loads current users info
   $scope.user = user;
 
-  $scope.allCohorts = [];
-
   // Loads all units and occupants from database.
     var loadHousing = function() {
         unitSvc.getUnits().then(function(response) {
@@ -16,6 +14,7 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
 
     //Load all cohort info
     var loadCohorts = function() {
+        $scope.allCohorts = [];
       cohortSvc.getCohorts().then(function(response){
         delete response._id;
         delete response.__v;
@@ -23,8 +22,8 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
           response[prop].name = prop;
           $scope.allCohorts.push(response[prop]);
         }
-      })
-    }
+    });
+};
     loadCohorts();
 
   // Loads all users from database.
