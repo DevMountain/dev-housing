@@ -80,9 +80,9 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
     // Adds a user to a unit's bedroom and reloads housing and users data.
       $scope.saveUnit = function(unit, user) {
+        console.log(unit);
         console.log(unit._id);
-        console.log(user);
-        console.log(user.campus);
+
           var occupant = {
             _id: user._id,
             inFutureHousing: true
