@@ -21,7 +21,7 @@ module.exports = {
                 };
             };
         });
-        if (req.user.role === 'student') {
+        if (req.user.role === 'student' || req.user.role === 'mentor' || req.user.role === 'graduate') {
             // this is to only show check-in times that match the last/most recent cohortID in the array
             req.query.cohort = req.user.cohortID[req.user.cohortID.length - 1];
             Checkout.find(req.query).populate("checkoutAppointments.user").exec(function(err, response) {
