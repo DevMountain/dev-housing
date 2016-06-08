@@ -12,25 +12,27 @@ module.exports = {
 
     read: function(req, res, next) {
         if (req.user.role === 'admin') {
-            Workorder.find(req.query).populate("submittedBy").exec(function(err, response) {
+            Workorder.find(req.query)
+              .populate("submittedBy")
+              .populate("unit")
+              .exec(function(err, response) {
                 if (err) {
                     res.status(500).send(err)
                 } else {
-                    console.log(`Getting work orders for Admin to read. ${response.submittedBy}`);
                     res.status(200).send(response);
                 };
             });
         };
         if (req.user.role === 'student' || req.user.role === 'mentor' || req.user.role === 'graduate') {
-            Workorder.find(req.query).populate("submittedBy").exec(function(err, response) {
+          req.query.submittedBy = req.user;
+            Workorder.find(req.query)
+            .populate("submittedBy")
+            .populate("unit")
+            .exec(function(err, response) {
                 if (err) {
                     res.status(500).send(err)
                 } else {
-                    console.log(`User thats reading this is: ${req.user._id}`);
-                    console.log(JSON.stringify(req.query));
-                    console.log(`User thats reading this is: ${response.submittedBy}`);
-                    req.query.submittedBy = req.user;
-                    // console.log(`Reading work order for Stud/ment/grad to read.${response}`);
+                    console.log(`Reading units now: ${response.unit}`);
                     res.status(200).json(response);
                 }
             });
