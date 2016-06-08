@@ -24,6 +24,8 @@ $scope.submitSignUp = function(user) {
         } else if (response.role === 'admin') {
           $state.go('admin-home');
         }
+      }).catch(function(err) {
+        $scope.loginError = "Incorrect Email or Password";
       })
     }
   }

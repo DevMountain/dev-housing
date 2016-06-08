@@ -1,9 +1,9 @@
 <div class="background-wrap">
 
-    <div class="login-container">
         <div>
             <img class="login-logo" src="./assets/img/BigLogo.png">
         </div>
+    <div class="login-container" ng-show="showLogin">
 
         <div class="top-buttons">
             <button ng-click="loginSwitch()" ng-show="showLogin" class="signup-button">Apply for housing</button>
@@ -22,7 +22,7 @@
                         <p ng-message="required" class="error">Please enter a valid password.</p>
                     </div>
                 </div>
-
+                <p class="error">{{loginError}}</p>
                 <button class="submit-login" type="submit" ng-disabled="loginForm.$invalid" ng-click="submitLogin(login)">submit</button>
             </form>
         </div>
