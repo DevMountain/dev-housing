@@ -45,12 +45,13 @@
     <div class="default_cards_container">
         <div class="workorder_repeat_cards" ng-repeat="workorder in list | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
-                <div><p>Work Order Unit: {{workorder.unit}}</p></div>
+                <div><p>Work Order Unit: {{workorder.submittedBy.unit}}</p></div>
             </div>
 
             <!-- <div class="default_cards_divider_container"> -->
                 <div class="student_workorder_cards_text">
-                    <p><span class="bold">Submitted by: </span>{{user.firstName}} {{user.lastName}}</p><br>
+                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p><br>
+                    <span class="bold">Status: </span>&nbsp;&nbsp;<span>{{workorder.status}}</span><br>
                     <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description:</span>&nbsp;&nbsp;{{workorder.description}}</p>
