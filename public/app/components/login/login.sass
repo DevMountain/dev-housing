@@ -14,6 +14,9 @@
   margin-top: 30px
   margin-bottom: 13px
 
+  @media (max-width: 500px)
+    height: 300px
+
 .login-wrap
   display: inline-block
   padding: 10px
@@ -29,13 +32,18 @@
   display: block
   margin-bottom: 10px
   background: #3C3C3C
+  color: white
+  text-align: center
 
 .contact-admin
-  position: absolute
+  position: fixed
   bottom: 5px
   margin-bottom: 4px
   text-align: left
   clear: both
+
+  @media (max-width: 500px)
+    font-size: 11px
 
 .submit-login
 
@@ -52,7 +60,7 @@
 // .signup-button
 
 .sign-up-section
-  margin-top: -550px
+  margin-top: 0px
   padding: 0
 
 .info-same-line
@@ -112,3 +120,9 @@
   justify-content: center
   align-items: center
   flex-direction: column
+
+button
+  @media (max-width: 500px)
+    background-color: white
+    border: 1px black solid
+    border-radius: 5px

@@ -6,11 +6,11 @@
     <!--Top card with search options-->
     <div class="default_cards_container">
         <div class="workorder_repeat_cards">
-            <div class="default_cards_head"><div><p>Create Workorder</p></div></div>
-            <div class="workorder_sort_container">
+            <div class="default_cards_head"><div id="student_workorder_header_text"><p>Create Workorder</p></div></div>
+            <div class="workorder_sort_container default_cards_text">
                 <div><input ng-model="workorder" placeholder="search"></input></div>
                 <div><select ng-model="workorder.problemType">
-                    <option value="" selected>Select</option>
+                    <option value="" disabled selected>Select Issue Type</option>
                     <option value="appliance">appliance</option>
                     <option value="electrical">electrical</option>
                     <option value="plumbing">plumbing</option>
@@ -20,9 +20,16 @@
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
-                <input ng-model="workorder.dateSubmitted" placeholder="Date"></input><br>
-                <input ng-model="Workorder.submittedBy" placeholder="Submitted by"></input><br>
+              <!--Unit select dropdown-->
+              <select ng-model="adminWorkorder.unit" class="campus_WO" name="type" required>
+                <option value="" disabled selected>Select Unit</option>
+                <option ng-repeat="unit in units" value="{{unit.campus}} {{unit.unitNumber}}">{{unit.campus}} {{unit.unitNumber}}</option>
+            </select>
+
+             <br>
+
                 <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
+
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Select</option>
                     <option value="appliance">appliance</option>
@@ -30,7 +37,7 @@
                     <option value="plumbing">plumbing</option>
                     <option value="other">other</option>
                 </select>
-                <button ng-click="workorderCreate(adminWorkorder)">Create</button>
+                <button ng-if="adminWorkorder.unit" ng-click="workorderCreate(adminWorkorder)">Create</button>
             </div>
         </div>
     </div>
@@ -47,7 +54,6 @@
             <div class="default_cards_divider_container">
                 <div class="workorder_cards_text left">
                     <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p><br>
-                    <span class="bold">Status: </span>&nbsp;&nbsp;<span>{{workorder.status}}</span><br>
                     <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description: </span>&nbsp;&nbsp;{{workorder.description}}</p>
@@ -55,22 +61,22 @@
                 <div class="workorder_cards_text">
                     <p class="bold">Admin Update</p>
                     <div class="workorder_admin_status">
-                        <div ng-click="admin_status_update()"><p id="WO_Received">Received</p></div>
-                        <div ng-click="admin_status_update()"><p id="WO_InProgress">In Progress</p></div>
-                        <div ng-click="admin_status_update()"><p id="WO_Completed">Completed</p></div>
+                        <div><p class="pointer"ng-click="selectStatus('Recieved', workorder._id)" ng-class="{workorderStatus: workorder.status === 'Recieved'}">Received</p></div>
+                        <div><p class="pointer" ng-click="selectStatus('In Progress', workorder._id)" ng-class="{workorderStatus: workorder.status === 'In Progress'}">In Progress</p></div>
+                        <div><p class="pointer"ng-click="selectStatus('Completed', workorder._id)" ng-class="{workorderStatus: workorder.status === 'Completed'}">Completed</p></div>
                     </div>
                     <p class="bold">Admin Notes</p>
-                    <textarea></textarea>
+                    <textarea ng-model="workorder.adminNotes"></textarea>
                 </div>
             </div>
 
             <div class="workorder_faq_cards_edit" ng-show="toggleUpdate">
-              Status<select ng-model="workorder.status" name="type" required>
+                  <!-- <span>Status&nbsp;&nbsp;</span><select ng-model="workorder.status" name="type" required>
                   <option value="" selected>Select</option>
                   <option value="Received">Received</option>
                   <option value="In Progress">In Progress</option>
                   <option value="Completed">Completed</option>
-              </select><br>
+              </select><br> -->
                 <textarea ng-model="workorder.description" placeholder="Edit description"></textarea><br>
                 <select ng-model="workorder.problemType" name="type" required>
                     <option value="" selected>Select</option>

@@ -8,7 +8,7 @@ dateSubmitted: {type: String, required: true, default: new Date()},
 adminNotes: {type: String},
 status: {type: String, required: true, default: 'Pending'},
 submittedBy: {type: Schema.Types.ObjectId, ref: 'User'},
-unit: {type: Schema.Types.ObjectId, ref: 'Unit'}//,
+unit: {type: String, required: true},
 // room: {type: String, required: true}
 });
 

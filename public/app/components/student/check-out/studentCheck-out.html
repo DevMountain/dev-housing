@@ -3,38 +3,28 @@
 
 <div class="student-main-wrapper">
 
-  <div class="student_header default_cards_container">
-		<div class="default_repeat_cards">
-			<div class="default_cards_head">
-				<h1 id="student_header_text">Student Check-Out Page </h1>
-			</div>
-			<div class="student_text default_cards_text">
-				<h3 id="student_header_body_text">Please put stuff on here!</h3>
-			</div>
-		</div>
-	</div>
-
-  <!-- VIEW EXISTING CHECK OUT SCHEUDLE -->
-
-  <div ng-repeat="check in allCheckouts">
-  Start: {{check.checkoutStart}}<br>
-  End: {{check.checkoutEnd}}<br>
-  Appointment length: {{check.slotInterval}}<br>
-  Campus: {{check.campus}}<br>
-  Cohort: {{check.cohort}}<br>
-
-  <br>
-
-  </div>
+    <div class="student_header default_cards_container">
+          <div class="default_repeat_cards">
+              <div class="default_cards_head">
+                  <h1 id="student_header_text">Student Check-Out</h1>
+              </div>
+              <div ng-repeat="check in allCheckouts" class="student_text default_cards_text">
+                  <p class="bold">Your current check-out information:</p>
+                  Start: {{check.checkoutStart}}<br>
+                  End: {{check.checkoutEnd}}<br>
+                  Appointment length: {{check.slotInterval}}<br>
+                  Campus: {{check.campus}}<br>
+                  Cohort: {{check.cohort}}<br>
+              </div>
+          </div>
+      </div>
 
   <div class="cards_list_container">
-
     <div class="current_housing_cards_container" ng-repeat="check in allCheckouts">
         <div class="current_housing_repeat_cards" ng-repeat="slot in check.checkoutAppointments">
             <div class="current_housing_cards_head" >
                 <div>
                     <p>{{slot.timeSlot}}</p>
-
                 </div>
             </div>
             <p class="current_housing_cards_text">
@@ -44,4 +34,6 @@
         </div>
     </div>
 
-    </div> <!--main-wrapper closing div -->
+
+</div> <!--student main wrapper closing-->
+</div> <!--main-wrapper closing div -->

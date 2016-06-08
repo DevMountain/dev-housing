@@ -1,5 +1,5 @@
 angular.module('devHousing')
-  .controller('studentWorkorderCtrl', function ($scope, workorderSvc, user) {
+  .controller('studentWorkorderCtrl', function ($scope, workorderSvc, user, unitSvc) {
 
     $scope.user = user;
 
@@ -13,7 +13,7 @@ angular.module('devHousing')
 
     // $scope.getAll = () => workorderSvc.workorderRead();
 
-    $scope.studentWorkorder = {};
+    $scope.adminWorkorder = {};
     $scope.workorderCreate = (obj) => {
       obj.submittedBy = user;
     //   if($scope.workorderForm.$valid){
@@ -21,7 +21,7 @@ angular.module('devHousing')
         //After workorder is created, only return most recent work order for student view.
         workorderSvc.workorderCreate(obj).then((response) => {
           $scope.workorderRead();
-          // $scope.studentWorkorder = {};
+        $scope.adminWorkorder = {};
         });
     //   }
     };
@@ -39,5 +39,15 @@ angular.module('devHousing')
 };
 
 
-//End of Controller
-  });
+// Putting unit info on the view
+$scope.displayUnits = function() {
+    unitSvc.getUnits().then(function(response) {
+        $scope.units = response;
+    });
+};
+
+$scope.displayUnits();
+
+
+
+  }); // closing tag

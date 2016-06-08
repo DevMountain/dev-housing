@@ -10,7 +10,7 @@
             <div class="workorder_sort_container default_cards_text">
                 <div><input ng-model="workorder" placeholder="search"></input></div>
                 <div><select ng-model="workorder.problemType">
-                    <option value="" selected>Select</option>
+                    <option value="" disabled selected>Select Issue Type</option>
                     <option value="appliance">appliance</option>
                     <option value="electrical">electrical</option>
                     <option value="plumbing">plumbing</option>
@@ -20,14 +20,16 @@
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
-                <!-- <input ng-model="workorder.dateSubmitted" placeholder="Date"></input><br> -->
-                <!-- <input ng-model="Workorder.submittedBy" placeholder="Submitted by"></input><br> -->
+              <!--Unit select dropdown-->
+              <select ng-model="adminWorkorder.unit" class="campus_WO" name="type" required>
+                <option value="" disabled selected>Select Unit</option>
+                <option ng-repeat="unit in units" value="{{unit.campus}} {{unit.unitNumber}}">{{unit.campus}} {{unit.unitNumber}}</option>
+            </select>
+
+             <br>
+
                 <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
-                <!-- <form>
-                    <p>Less than 24 hours notice to enter OK?</p>
-                    <input type="radio" value="<24">Yes</input>
-                    <input type="radio" value="<24">No</input>
-                </form> -->
+
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Select</option>
                     <option value="appliance">appliance</option>
@@ -35,7 +37,7 @@
                     <option value="plumbing">plumbing</option>
                     <option value="other">other</option>
                 </select>
-                <button ng-click="workorderCreate(adminWorkorder)">Create</button>
+                <button ng-if="adminWorkorder.unit" ng-click="workorderCreate(adminWorkorder)">Create</button>
             </div>
         </div>
     </div>
@@ -45,7 +47,7 @@
     <div class="default_cards_container">
         <div class="workorder_repeat_cards" ng-repeat="workorder in list | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
-                <div><p>Work Order Unit: {{workorder.submittedBy.unit}}</p></div>
+                <div><p>Work Order Unit: {{workorder.unit}}</p></div>
             </div>
 
             <!-- <div class="default_cards_divider_container"> -->
@@ -55,8 +57,11 @@
                     <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description:</span>&nbsp;&nbsp;{{workorder.description}}</p>
+                    <!-- <div ng-repeat="unit in getUnits">
+                      {{unit.allCurrentOccupants}}
+                    </div> -->
                 </div>
         </div>
     </div>
 
-</div>
+</div>  <!--closing tag-->

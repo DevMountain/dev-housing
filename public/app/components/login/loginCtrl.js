@@ -2,7 +2,7 @@ angular.module('devHousing').controller('loginCtrl', function($scope, userSvc, $
 
 $scope.showLogin = true;
 
-
+$scope.user = {};
 
 $scope.submitSignUp = function(user) {
   if($scope.signupForm.$valid){
@@ -11,6 +11,7 @@ $scope.submitSignUp = function(user) {
       //do something with response
     })
   }
+  $scope.user = {};
   }
 
 
@@ -24,6 +25,8 @@ $scope.submitSignUp = function(user) {
         } else if (response.role === 'admin') {
           $state.go('admin-home');
         }
+      }).catch(function(err) {
+        $scope.loginError = "Incorrect Email or Password";
       })
     }
   }
