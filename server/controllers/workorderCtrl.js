@@ -14,7 +14,6 @@ module.exports = {
         if (req.user.role === 'admin') {
             Workorder.find(req.query)
               .populate("submittedBy")
-              .populate("unit")
               .exec(function(err, response) {
                 if (err) {
                     res.status(500).send(err)
@@ -27,7 +26,6 @@ module.exports = {
           req.query.submittedBy = req.user;
             Workorder.find(req.query)
             .populate("submittedBy")
-            .populate("unit")
             .exec(function(err, response) {
                 if (err) {
                     res.status(500).send(err)
