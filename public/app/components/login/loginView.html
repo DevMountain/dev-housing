@@ -13,12 +13,12 @@
             <form name="loginForm" novalidate>
                 <div class="log-in-div">
                     <input class="email-input" ng-model="login.email" name="email" placeholder="Email" type="email" required></input>
-                    <div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
+                    <div ng-messages="signupForm.email1.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
                         <p ng-message="required" class="error">Please enter your email address.</p>
                     </div>
 
                     <input class="password-input" ng-model="login.password" name="password" placeholder="Password" type="password" ng-minlength="6" ng-maxlength="15" required></input>
-                    <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
+                    <div ng-messages="signupForm.password1.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
                         <p ng-message="required" class="error">Please enter a valid password.</p>
                     </div>
                 </div>
