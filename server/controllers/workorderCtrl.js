@@ -2,8 +2,7 @@
 let Workorder = require('../models/WorkorderModel.js');
 
 module.exports = {
-
-<<<<<<< HEAD
+  
   create: function(req, res, next) {
     Workorder.create(req.body, function (err, response) {
       if(err) return res.status(500).send(err);
