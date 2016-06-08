@@ -16,6 +16,9 @@ angular.module('devHousing').service('userSvc', function($http) {
             url: '/login',
             data: login
         }).then(function(response) {
+            if (response.status === 401) {
+                return "incorrect"
+            }
             return response.data;
         });
     };
