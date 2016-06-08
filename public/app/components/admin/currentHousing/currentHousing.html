@@ -21,7 +21,7 @@
         </select>
     </div>
 
-    <div class="cards_list_container">
+    <div class="cards_list_container" ng-if="cohortFilter">
 
         <div class="current_housing_cards_container">
             <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">

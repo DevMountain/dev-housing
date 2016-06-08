@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var UnitSchema = new Schema ({
-  campus: {type: String, required: true},
+  campus: {type: String, required: true, enum:['Provo', 'SLC', 'Dallas']},
   propertyName: {type: String, required: true},
   address: {
     street1: {type: String, required: true},
