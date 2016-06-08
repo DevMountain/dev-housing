@@ -12,7 +12,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('student-home', {
       url: '/student/home',
       templateUrl: './app/components/student/home/studentHome.html',
-      // controller: 'studentHomeCtrl',
+      controller: 'studentWorkorderCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
