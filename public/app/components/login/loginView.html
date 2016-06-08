@@ -129,7 +129,7 @@
                 </div>
 
 
-                <button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user)">submit</button>
+                <button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user); openConfirm(); loginSwitch()">submit</button>
             </div>
 
         </form>
