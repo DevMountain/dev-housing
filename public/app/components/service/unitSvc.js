@@ -49,8 +49,15 @@ angular.module('devHousing').service('unitSvc', function($http){
     });
   };
 
-  // this.setCurrentToFuture = function(data) {
-  //
-  // };
+  // updating current users with future users for all housing units
+  this.setCurrentToFuture = function(data) {
+      return $http({
+          method: 'PUT',
+          url: '/units',
+          data: data
+      }).then(function(response) {
+          return response.data;
+      });
+  };
 
 });
