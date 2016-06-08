@@ -22,7 +22,7 @@
                         <p ng-message="required" class="error">Please enter a valid password.</p>
                     </div>
                 </div>
-
+                <p class="error">{{loginError}}</p>
                 <button class="submit-login" type="submit" ng-disabled="loginForm.$invalid" ng-click="submitLogin(login)">submit</button>
             </form>
         </div>
