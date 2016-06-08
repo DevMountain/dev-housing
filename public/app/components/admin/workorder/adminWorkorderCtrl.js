@@ -1,5 +1,5 @@
 angular.module('devHousing')
-  .controller('adminWorkorderCtrl', function ($scope, workorderSvc, user) {
+  .controller('adminWorkorderCtrl', function ($scope, workorderSvc, user, unitSvc) {
 
     $scope.user = user;
 
@@ -14,7 +14,6 @@ angular.module('devHousing')
     // $scope.getAll = () => workorderSvc.workorderRead();
     $scope.adminWorkorder = {};
     $scope.workorderCreate = (obj) => {
-        console.log(`***Ctrl Create: ${JSON.stringify(obj)}`);
     //   if($scope.workorderForm.$valid){  Figure out how to make validation work
         // $scope.workorderForm.$setPristine(); //not working, and probably unnecessary anyway
         //After workorder is created, only return most recent work order for student view.
@@ -22,7 +21,6 @@ angular.module('devHousing')
           $scope.workorderRead();
           $scope.adminWorkorder = {};
         });
-    //   }
     };
 
     $scope.workorderUpdate = (obj) => {
@@ -36,6 +34,24 @@ angular.module('devHousing')
         $scope.workorderRead();
     });
   };
+
+  // Putting unit info on the view
+  $scope.displayUnits = function() {
+      unitSvc.getUnits().then(function(response) {
+          $scope.units = response;
+      });
+  };
+
+  $scope.displayUnits();
+
+
+// Workorder status selection function
+$scope.selected = {};
+$scope.selectStatus = function(status, id) {
+    workorderSvc.workorderUpdate({_id: id, status: status}).then(function(response) {
+        $scope.workorderRead();
+    });
+};
 
 
 //End of Controller
