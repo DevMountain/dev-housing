@@ -6,10 +6,6 @@ angular.module('devHousing')
     $scope.workorderRead = () => {
       workorderSvc.workorderRead().then( (response) => {
         $scope.adminList = response;
-          console.log(response.status);
-          // if (response.status === 'Received') {
-          //   $('#WO_Received').css({"text-decoration":"underline";"text-decoration-color":"yellow"});
-          // };
       });
   };
 
