@@ -35,12 +35,6 @@ angular.module('devHousing')
       });
   };
 
-    $scope.admin_status_update = (obj) => {
-      workorderSvc.workorderUpdate(obj).then((response) => {
-        $scope.workorderRead();
-      });
-    };
-
     $scope.workorderDelete = (id) => {
       workorderSvc.workorderDelete(id).then( (response) => {
         $scope.workorderRead();
