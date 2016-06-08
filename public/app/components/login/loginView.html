@@ -1,134 +1,145 @@
 <div class="background-wrap">
 
-  <div>
-    <img class="login-logo" src="./assets/img/BigLogo.png">
-  </div>
+        <div>
+            <img class="login-logo" src="./assets/img/BigLogo.png">
 
-  <div class="top-buttons">
-    <button ng-click="loginSwitch()" ng-show="showLogin" class="signup-button">Apply for housing</button>
-  </div>
+        </div>
+    <div class="login-container" ng-show="showLogin">
 
-  <div class="login-wrap" ng-show="showLogin">
-    <form name="loginForm" novalidate>
-      <div class="log-in-div">
-          <input class="email-input" ng-model="login.email" name="email" placeholder="Email" type="email" required></input>
-          <div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
-              <p ng-message="required" class="error">Please enter your email address.</p>
-          </div>
+        <div class="top-buttons">
+            <button ng-click="loginSwitch()" ng-show="showLogin" class="signup-button">Apply for housing</button>
+        </div>
 
-          <input class="password-input" ng-model="login.password" name="password" placeholder="Password" type="password" ng-minlength="6" ng-maxlength="15" required></input>
-          <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
-              <p ng-message="required" class="error">Please enter a valid password.</p>
-          </div>
-      </div>
+        <div class="login-wrap" ng-show="showLogin">
+            <form name="loginForm" novalidate>
+                <div class="log-in-div">
+                    <input class="email-input" ng-model="login.email" name="email" placeholder="Email" type="email" required></input>
+                    <div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
+                        <p ng-message="required" class="error">Please enter your email address.</p>
+                    </div>
 
-      <button class="submit-login" type="submit" ng-disabled="loginForm.$invalid" ng-click="submitLogin(login)">submit</button>
-    </form>
-  </div>
+                    <input class="password-input" ng-model="login.password" name="password" placeholder="Password" type="password" ng-minlength="6" ng-maxlength="15" required></input>
+                    <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
+                        <p ng-message="required" class="error">Please enter a valid password.</p>
+                    </div>
+                </div>
+                <p class="error">{{loginError}}</p>
+                <button class="submit-login" type="submit" ng-disabled="loginForm.$invalid" ng-click="submitLogin(login)">submit</button>
+            </form>
+        </div>
+    </div>
 
 
-  <section class="sign-up-section" ng-show="!showLogin">
+    <section class="sign-up-section" ng-show="!showLogin">
 
-      <form name="signupForm" novalidate>
-        <div class="sign-up-create-account">
-          <input class="create-field" ng-model="user.firstName" name="firstName" placeholder="First Name" required></input>
-          <div ng-messages="signupForm.firstName.$error" ng-if="signupForm.firstName.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your first name.</p>
-          </div>
+        <form name="signupForm" novalidate>
+            <div class="sign-up-create-account">
+                <input class="create-field" ng-model="user.firstName" name="firstName" placeholder="First Name" required></input>
+                <div ng-messages="signupForm.firstName.$error" ng-if="signupForm.firstName.$dirty || signupForm.$submitted" role="alert">
+                    <p ng-message="required" class="error">Please enter your first name.</p>
+                </div>
 
-          <input class="create-field" ng-model="user.lastName" name="lastName" placeholder="Last Name" required></input>
-          <div ng-messages="signupForm.lastName.$error" ng-if="signupForm.lastName.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your last name.</p>
-          </div>
+                <input class="create-field" ng-model="user.lastName" name="lastName" placeholder="Last Name" required></input>
+                <div ng-messages="signupForm.lastName.$error" ng-if="signupForm.lastName.$dirty || signupForm.$submitted" role="alert">
+                    <p ng-message="required" class="error">Please enter your last name.</p>
+                </div>
 
-          <input class="create-field" ng-model="user.email" name="email" placeholder="Email" type="email" required></input>
-          <div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your email address.</p>
-            <p ng-message="email" class="error">Please enter a valid email address.</p>
-          </div>
+                <input class="create-field" ng-model="user.email" name="email" placeholder="Email" type="email" required></input>
+                <div ng-messages="signupForm.email.$error" ng-if="signupForm.email.$dirty || signupForm.$submitted" role="alert">
+                    <p ng-message="required" class="error">Please enter your email address.</p>
+                    <p ng-message="email" class="error">Please enter a valid email address.</p>
+                </div>
 
-          <input class="create-field" ng-model="user.password" name="password" placeholder="Password" type="password" ng-minlength="6" ng-maxlength="15" required></input>
-          <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter a valid password.</p>
-            <p ng-message="minlength" class="error">Minimum length is 6 characters.</p>
-            <p ng-message="maxlength" class="error">Maximum length is 15 characters.</p>
-          </div>
+                <input class="create-field" ng-model="user.password" name="password" placeholder="Password" type="password" ng-minlength="6" ng-maxlength="15" required></input>
+                <div ng-messages="signupForm.password.$error" ng-if="signupForm.password.$dirty || signupForm.$submitted" role="alert">
+                    <p ng-message="required" class="error">Please enter a valid password.</p>
+                    <p ng-message="minlength" class="error">Minimum length is 6 characters.</p>
+                    <p ng-message="maxlength" class="error">Maximum length is 15 characters.</p>
+                </div>
 
-          <input class="create-field" ng-model="user.phone" name="phone" placeholder="Phone Number" type="tel" required></input>
-          <div ng-messages="signupForm.phone.$error" ng-if="signupForm.phone.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your phone number.</p>
-          </div>
+                <input class="create-field" ng-model="user.phone" name="phone" placeholder="Phone Number" type="tel" required></input>
+                <div ng-messages="signupForm.phone.$error" ng-if="signupForm.phone.$dirty || signupForm.$submitted" role="alert">
+                    <p ng-message="required" class="error">Please enter your phone number.</p>
+                </div>
 
-          <input class="create-field" ng-model="user.currentAddress.city" name="city" placeholder="Current City" required></input>
-          <div ng-messages="signupForm.city.$error" ng-if="signupForm.city.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your current city.</p>
-          </div>
+                <input class="create-field" ng-model="user.currentAddress.city" name="city" placeholder="Current City" required></input>
+                <div ng-messages="signupForm.city.$error" ng-if="signupForm.city.$dirty || signupForm.$submitted" role="alert">
+                    <p ng-message="required" class="error">Please enter your current city.</p>
+                </div>
 
-          <input class="create-field" ng-model="user.currentAddress.state" name="state" placeholder="State" maxlength="2" required></input>
-          <div ng-messages="signupForm.state.$error" ng-if="signupForm.state.$dirty || signupForm.$submitted" role="alert">
-            <p ng-message="required" class="error">Please enter your current state.</p>
-            <p ng-message="maxlength" class="error">Maximum length is 2 characters.</p>
-          </div>
+                <input class="create-field" ng-model="user.currentAddress.state" name="state" placeholder="State" maxlength="2" required></input>
+                <div ng-messages="signupForm.state.$error" ng-if="signupForm.state.$dirty || signupForm.$submitted" role="alert">
+                    <p ng-message="required" class="error">Please enter your current state.</p>
+                    <p ng-message="maxlength" class="error">Maximum length is 2 characters.</p>
+                </div>
 
-          <div class="birthdate-line">
-            Birthdate: &nbsp <input class="create-field" ng-model="user.birthdate" name="birthdate" placeholder="birthdate" type="date" required></input>
-            <div ng-messages="signupForm.birthdate.$error" ng-if="signupForm.birthdate.$dirty || signupForm.$submitted" role="alert">
-              <p ng-message="required" class="error">Please select your birthdate.</p>
+                <div class="birthdate-line">
+                    Birthdate: &nbsp;
+                    <input class="create-field" ng-model="user.birthdate" name="birthdate" placeholder="birthdate" type="date" required></input>
+                    <div ng-messages="signupForm.birthdate.$error" ng-if="signupForm.birthdate.$dirty || signupForm.$submitted" role="alert">
+                        <p ng-message="required" class="error">Please select your birthdate.</p>
+                    </div>
+                </div>
+                <br>
+
+
+                <div class="info-same-line">
+                    Campus: &nbsp;
+                    <select ng-model="user.campus" name "campus" required>
+                        <option value="provo">Provo</option>
+                        <option value="slc">Salt Lake City</option>
+                        <option value="dallas">Dallas</option>
+                    </select>
+                </div>
+                <br>
+
+                <div class="info-same-line">
+                    <p class="gender">Gender</p>
+                    <input ng-model="user.gender" name="gender" type="radio" value="male" required/>male &nbsp
+                    <input ng-model="user.gender" name="gender" type="radio" value="female" />female
+                </div>
+                <br>
+
+                <p class="section-header">Will you be bringing a vehicle?</p>
+                <div class="car-radio">
+                    <input ng-model="car" name="car" type="radio" ng-value=true />yes &nbsp
+                    <input ng-model="car" name="car" type="radio" ng-value=false required/>no
+                </div>
+                <br>
+
+                <div class="car-input" ng-show="car">
+                    <p class="car-field">Car Information</p>
+                    <input class="car-field" ng-model="user.car.make" name="make" placeholder="Make" ng-required="car"></input>
+                    <input class="car-field" ng-model="user.car.model" name="model" placeholder="Model" ng-required="car"></input>
+                    <input class="car-field" ng-model="user.car.year" name="year" placeholder="Year" ng-required="car"></input>
+                    <input class="car-field" ng-model="user.car.color" name="color" placeholder="Color" ng-required="car"></input>
+                    <input class="car-field" ng-model="user.car.license" name="license" placeholder="License Plate #" ng-required="car"></input>
+                </div>
+
+                <div ng-show="user.campus == 'provo'">
+                    <br>
+                    <p>Are you interested in paying an extra $250 for a private room?</p>
+                    <div class="info_same_line">
+                        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus == 'provo'" />yes &nbsp
+                        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false />no
+                    </div>
+                </div>
+
+                <div class="car_input" ng-show="user.singleRoom.wantsSingleRoom">
+                    <p>We cannot guarantee a private room, but we will try to accommodate your request.</p>
+                </div>
+
+
+                <button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user); openConfirm(); loginSwitch()">submit</button>
             </div>
-          </div><br>
 
+        </form>
+        <button ng-click="loginSwitch()" ng-show="!showLogin" class="login-button">Login</button>
+    </section>
 
-          <div class="info-same-line">
-            Campus: &nbsp <select ng-model="user.campus" name"campus" required>
-              <option value="Provo">Provo</option>
-              <option value="SLC">Salt Lake City</option>
-              <option value="Dallas">Dallas</option></select>
-          </div><br>
-
-        <div class="info-same-line">
-          <p class="gender">Gender</p>
-          <input ng-model="user.gender" name="gender" type="radio" value="male" required/>male &nbsp
-          <input ng-model="user.gender" name="gender" type="radio" value="female" />female
-        </div><br>
-
-        <p class="section-header">Will you be bringing a vehicle?</p>
-        <div class="car-radio">
-          <input ng-model="car" name="car" type="radio" ng-value=true />yes &nbsp
-          <input ng-model="car" name="car" type="radio" ng-value=false required/>no
-        </div><br>
-
-        <div class="car-input" ng-show="car">
-          <p class="car-field">Car Information</p>
-          <input class="car-field" ng-model="user.car.make" name="make" placeholder="Make" ng-required="car"></input>
-          <input class="car-field" ng-model="user.car.model" name="model" placeholder="Model" ng-required="car"></input>
-          <input class="car-field" ng-model="user.car.year" name="year" placeholder="Year" ng-required="car"></input>
-          <input class="car-field" ng-model="user.car.color" name="color" placeholder="Color" ng-required="car"></input>
-          <input class="car-field" ng-model="user.car.license" name="license" placeholder="License Plate #" ng-required="car"></input>
-        </div>
-
-        <div ng-show="user.campus === 'Provo'">
-        <br><p>Are you interested in paying an extra $250 for a private room?</p>
-          <div class="info_same_line">
-            <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus === 'Provo'"/>yes &nbsp
-            <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false />no
-          </div>
-        </div>
-
-        <div class="car_input" ng-show="user.singleRoom.wantsSingleRoom">
-          <p>We cannot guarantee a private room, but we will try to accommodate your request.</p>
-        </div>
-
-
-        <button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user)">submit</button>
-        </div>
-
-      </form>
-      <button ng-click="loginSwitch()" ng-show="!showLogin" class="login-button">Login</button>
-  </section>
-
-  <div class="contact-admin">
-    <p>contact</p>
-    <p>housing@devmount.in</p>
-  </div>
+    <div class="contact-admin">
+        <p>contact</p>
+        <p>housing@devmount.in</p>
+    </div>
 
 </div>

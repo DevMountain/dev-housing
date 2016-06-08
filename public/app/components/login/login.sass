@@ -1,14 +1,21 @@
 .background-wrap
-  height: 100vh
+  height: 100%
   color: #F1EDED
   padding: 15px
   background-color: #3C3C3C
   text-align: center
 
+.login-container
+  height: 100vh
+  padding: 0
+
 .login-logo
   height: 350px
   margin-top: 30px
   margin-bottom: 13px
+
+  @media (max-width: 500px)
+    height: 300px
 
 .login-wrap
   display: inline-block
@@ -24,14 +31,19 @@
   font-size: 14px
   display: block
   margin-bottom: 10px
-  // background: #3C3C3C
+  background: #3C3C3C
+  color: white
+  text-align: center
 
 .contact-admin
-  position: absolute
+  position: fixed
   bottom: 5px
   margin-bottom: 4px
   text-align: left
   clear: both
+
+  @media (max-width: 500px)
+    font-size: 11px
 
 .submit-login
 
@@ -46,6 +58,10 @@
 
 
 // .signup-button
+
+.sign-up-section
+  margin-top: 0px
+  padding: 0
 
 .info-same-line
   margin-bottom: 10px
@@ -104,3 +120,9 @@
   justify-content: center
   align-items: center
   flex-direction: column
+
+button
+  @media (max-width: 500px)
+    background-color: white
+    border: 1px black solid
+    border-radius: 5px

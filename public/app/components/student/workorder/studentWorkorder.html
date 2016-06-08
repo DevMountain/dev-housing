@@ -10,7 +10,7 @@
             <div class="workorder_sort_container default_cards_text">
                 <div><input ng-model="workorder" placeholder="search"></input></div>
                 <div><select ng-model="workorder.problemType">
-                    <option value="" selected>Select</option>
+                    <option value="" disabled selected>Select Issue Type</option>
                     <option value="appliance">appliance</option>
                     <option value="electrical">electrical</option>
                     <option value="plumbing">plumbing</option>
@@ -20,7 +20,12 @@
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
-                <input ng-model="workorder.dateSubmitted" placeholder="Date"></input><br>
+              <select class="campus_WO" name="type" required>
+                <option value="" disabled selected>Select Campus</option>
+                <option value="Provo">Provo</option>
+                <option value="SLC">SLC</option>
+                <option value="Dallas">Dallas</option>
+              </select>
                 <!-- <input ng-model="Workorder.submittedBy" placeholder="Submitted by"></input><br> -->
                 <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
                 <!-- <form>
@@ -45,15 +50,19 @@
     <div class="default_cards_container">
         <div class="workorder_repeat_cards" ng-repeat="workorder in list | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
-                <div><p>Work Order Unit: {{workorder.unit}}</p></div>
+                <div><p>Work Order Unit: {{workorder.submittedBy.unit}}</p></div>
             </div>
 
             <!-- <div class="default_cards_divider_container"> -->
                 <div class="student_workorder_cards_text">
-                    <p><span class="bold">Submitted by: </span>{{user.firstName}} {{user.lastName}}</p><br>
+                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p><br>
+                    <span class="bold">Status: </span>&nbsp;&nbsp;<span>{{workorder.status}}</span><br>
                     <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description:</span>&nbsp;&nbsp;{{workorder.description}}</p>
+                    <!-- <div ng-repeat="unit in getUnits">
+                      {{unit.allCurrentOccupants}}
+                    </div> -->
                 </div>
         </div>
     </div>

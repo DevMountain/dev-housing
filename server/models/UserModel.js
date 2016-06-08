@@ -56,6 +56,7 @@ var User = new Schema ({
     make: {type: String},
     model: {type: String},
     year: {type: Number},
+    color: {type: String},
     license: {type: String}
   },
   checkInOut: {
