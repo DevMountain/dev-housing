@@ -4,7 +4,6 @@ angular.module('devHousing')
 
     let getPendingUsers = () => {
       userSvc.getPendingUsers().then( (response) => {
-        console.log(`either page loaded, or clearing the list.....`);
         $scope.pendingUsers = response.data;
       });
     }
@@ -17,10 +16,11 @@ angular.module('devHousing')
     }
     getPendingWO();
 
-    $scope.setCohortId = (userId, cohortId) => {
-      console.log(`I'm in your controller, killing your doodz: ${userId}, ${cohortId}`);
-      userSvc.setCohortId(userId, cohortId).then( (response) => {
-        console.log(`We got the RESPONSE back!  ...in the controller`);
+    $scope.setCohortId = (userId, cohortID) => {
+      let obj = {};
+      obj._id = userId;
+      obj.cohortID = cohortID.toUpperCase().trim();
+      userSvc.setCohortId(obj).then( (response) => {
         getPendingUsers();
       })
     }

@@ -41,14 +41,12 @@ angular.module('devHousing').service('userSvc', function($http) {
       })
     };
 
-    this.setCohortId = (userId, cohortId) => {
-      console.log(`I'm in your SERVICE, doing stuff:  ${userId}, ${cohortId}`);
+    this.setCohortId = (obj) => {
       return $http({
         method: 'PUT',
-        url: '/users/setCohortId' //,
-        // data:
+        url: '/users/setCohortId',
+        data: obj
       }).then( (response) => {
-        console.log(`Back in the Service, returning the PROMISE`);
         return response.data;
       })
     }

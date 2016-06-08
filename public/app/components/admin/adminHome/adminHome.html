@@ -35,25 +35,16 @@
                 <div ng-repeat="wo in pendingWO">
                     <p class="current_housing_cards_text">
                         {{wo.problemType}} -- {{wo.description}}  -- {{wo.unit}}
-                        -- <span class="bold"> {{wo.status}} </span>
+                        -- <span class="bold"> {{wo.status}} </span>&nbsp;&nbsp;
+                        <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
                     </p>
+                    <div class="" ng-show="toggleUpdate">
+                        <textarea ng-model="wo.status" placeholder="Set status"></textarea><br>
+                        <button ng-click="setStatus(wo._id, wo.status)">Set</button>
+                    </div>
                 </div>
-                <!-- <div class="workorder_faq_cards_edit" ng-show="toggleUpdate">
-                    <textarea ng-model="workorder.description" placeholder="Edit description"></textarea><br>
-                    <select ng-model="workorder.problemType" name="type" required>
-                        <option value="" selected>Select</option>
-                        <option value="appliance">appliance</option>
-                        <option value="electrical">electrical</option>
-                        <option value="plumbing">plumbing</option>
-                        <option value="other">other</option>
-                    </select>
-                    <button ng-click="setCohortId(user._id)">Edit</button>
-                </div> -->
             </div>
         </div>
     </div>
-    <!-- <button ng-click="getPendingUsers()" type="button" name="button">click me</button> -->
-
-    {{user.firstName}}
 </div>
 <!--main-wrapper closing div -->

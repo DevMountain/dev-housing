@@ -58,13 +58,10 @@ module.exports = {
     },
 
     setCohortId: (req, res, next) => {
-      console.log(`hit the endpoint: ${JSON.stringify(req.body)}`);
-      User.find(req.body, (err, response) => {
+      User.findByIdAndUpdate(req.body._id, req.body, (err, response) => {
         if (err) {
-          console.log(`got a fu*&%!n error`);
           return res.status(500).send(err);
         } else {
-          console.log(`in the Backend, setting status 200....`)
           res.status(200).send(response);
         }
       })
