@@ -19,7 +19,7 @@ angular.module('devHousing').service('userSvc', function($http) {
             return response.data;
         }).catch(function(err) {
             return err;
-        })
+        });
     };
 
     this.getUsers = function() {
