@@ -2,7 +2,7 @@
 let Workorder = require('../models/WorkorderModel.js');
 
 module.exports = {
-  
+
   create: function(req, res, next) {
     Workorder.create(req.body, function (err, response) {
       if(err) return res.status(500).send(err);
@@ -30,7 +30,6 @@ module.exports = {
               if (err) {
                   res.status(500).send(err)
               } else {
-                  console.log(`Reading units now: ${response.unit}`);
                   res.status(200).json(response);
               }
           });
@@ -63,6 +62,16 @@ module.exports = {
     });
   },
 
+  setStatus: (req, res, next) => {
+    Workorder.findByIdAndUpdate(req.body._id, req.body, (err, response) => {
+      if (err) {
+        return res.status(500).send(err);
+      } else {
+        res.status(200).send(response);
+      }
+    })
+  },
+
   update: function(req, res, next) {
       Workorder.findByIdAndUpdate(req.params.id, req.body, function(err, response) {
           if (err) {
@@ -78,7 +87,6 @@ module.exports = {
             if (err) {
                 res.status(500).send(err)
             } else {
-                console.log('Deleted Work Order');
                 res.send(response)
             }
         });

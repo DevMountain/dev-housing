@@ -25,6 +25,16 @@ angular.module('devHousing')
       })
     }
 
+    $scope.setWOStatus = (wo_id, status) => {
+      let obj = {};
+      obj._id = wo_id;
+      obj.status = status;
+
+      workorderSvc.setWOStatus(obj).then( (response) => {
+        getPendingWO();
+      })
+    }
+
 
 //END of Controller
   });

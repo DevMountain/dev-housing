@@ -66,6 +66,7 @@ app.get('/workorders', workorderCtrl.read);
 app.get('/workorder/:id', workorderCtrl.readById);
 app.put('/workorder/:id', workorderCtrl.update);
 app.get('/workorders/pending', workorderCtrl.pending );
+app.put('/workorders/status', workorderCtrl.setStatus);
 app.delete('/workorder/:id', workorderCtrl.delete);
 
 //=====Units Endpoints=============================== //add more endpoints?

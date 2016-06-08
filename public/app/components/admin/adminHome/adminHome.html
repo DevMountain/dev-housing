@@ -39,8 +39,12 @@
                         <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
                     </p>
                     <div class="" ng-show="toggleUpdate">
-                        <textarea ng-model="wo.status" placeholder="Set status"></textarea><br>
-                        <button ng-click="setStatus(wo._id, wo.status)">Set</button>
+                        <select ng-model="workorder.status" name="type" required>
+                            <option value="" selected>Select</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                        </select>
+                        <button ng-click="setWOStatus(wo._id, workorder.status)">Set</button>
                     </div>
                 </div>
             </div>
