@@ -1,5 +1,5 @@
 angular.module('devHousing')
-  .controller('studentWorkorderCtrl', function ($scope, workorderSvc, user) {
+  .controller('studentWorkorderCtrl', function ($scope, workorderSvc, user, unitSvc) {
 
     $scope.user = user;
 

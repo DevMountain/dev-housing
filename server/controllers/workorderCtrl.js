@@ -1,13 +1,28 @@
 var Workorder = require('../models/WorkorderModel.js');
+var Unit = require('../models/UnitModel.js');
 
 module.exports = {
 
-    create: function(req, res, next) {
-        Workorder.create(req.body, function(err, response) {
-            if (err) return res.status(500).send(err);
-            console.log("Created workorder.");
-            res.status(200).send(response);
-        });
+  create: function(req, res1, next) {
+
+      // Unit.find(req.query)
+      //     .populate('currentBedrooms.currentOccupants', '-password')
+      //     .populate('allCurrentOccupants', '-password')
+      //     .exec(function(err, res2) {
+      //       if (err) {
+      //           res1.status(500).send(err);
+      //       } else {
+      //         var bb8 = res2;
+      //         //Put workorder.create function in the else.
+      //       }
+      //     });
+  
+              Workorder.create(req.body, function(err, response) {
+                console.log(`Getting units info: ${bb8}`);
+                  if (err) return res1.status(500).send(err);
+                  console.log("Created workorder.");
+                  res1.status(200).send(response);
+              });
     },
 
     read: function(req, res, next) {
