@@ -109,11 +109,45 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
       };
 
 
-      $scope.setCurrentToFuture = function(units, users) {
-        // combine units and users into 1 object
+    //   var TempUnit = function(unit) {
+    //     this.campus = unit.campus;
+    //     this.propertyName = unit.propertyName;
+    //     this.address = {
+    //         street1: unit.address.street1,
+    //         street2: unit.address.street2,
+    //         city: unit.address.city,
+    //         state: unit.address.state,
+    //         zip: unit.address.zip
+    //     };
+    //     this.unitNumber = unit.unitNumber;
+    //     for (var i = 0; i < unit.currentBedrooms.length; i++) {
+    //         this.currentBedrooms.push(unit.currentBedrooms[i]);
+    //     }
+    //     // this.currentBedrooms = unit.currentBedrooms;
+    //     this.futureBedrooms = unit.futureBedrooms;
+    //     this.allCurrentOccupants = unit.allCurrentOccupants;
+    //     this.allFutureOccupants = unit.allFutureOccupants;
+    //     this.adminNotes = unit.adminNotes;
+    // };
 
+      $scope.setCurrentToFuture = function() {
+        console.log($scope.currentHousing);
+        var tempUnits = [];
+        for (var i = 0; i < $scope.currentHousing.length; i++) {
+            tempUnits.push($.extend(true, {}, $scope.currentHousing[i]));
+        }
+        console.log(tempUnits);
+        var newUnits = [];
+        // for (var i = 0; i < tempUnits.length; i++) {
+        //     tempUnits[i].allCurrentOccupants = tempUnits[i].allFutureOccupants;
+        //     for (var j = 0; j < tempUnits[i].currentBedrooms.length; j++) {
+        //         tempUnits[i].currentBedrooms[j].currentOccupants = tempUnits[i].futureBedrooms[j].futureOccupants;
+        //     }
+        //     tempUnits[i].futureBedrooms.futureOccupants = [];
+        //     tempUnits[i].allFutureOccupants = [];
+        // }
+        // console.log(tempUnits);
       };
-
 
 
 });  // closing tag

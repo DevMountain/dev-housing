@@ -13,7 +13,7 @@
        <!-- <option value="allCurrentOccupants">Occupant</option> -->
        <!-- </select> -->
 
-       <button>Update Current</button>
+       <button ng-click="setCurrentToFuture()">Update Current</button>
 
        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
          <option value="" selected>Campus</option>
