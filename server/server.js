@@ -71,7 +71,7 @@ app.delete('/workorder/:id', workorderCtrl.delete);
 //=====Units Endpoints=============================== //add more endpoints?
 app.post('/unit', unitCtrl.create);
 app.get('/units', unitCtrl.read);
-app.put('/unit', isAuthed, unitCtrl.setCurrentToFuture);
+app.put('/units', isAuthed, unitCtrl.setCurrentToFuture);
 app.put('/unit/add/current/:id', isAuthed, unitCtrl.addUserToUnitCurrent);
 app.put('/unit/remove/current/:id', isAuthed, unitCtrl.removeUserFromUnitCurrent);
 app.put('/unit/add/future/:id', isAuthed, unitCtrl.addUserToUnitFuture);

@@ -45,31 +45,18 @@
     <div class="default_cards_container">
         <div class="workorder_repeat_cards" ng-repeat="workorder in list | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
-                <div><p>Work Order Unit: {{workorder.unit}}</p></div>
+                <div><p>Work Order Unit: {{workorder.submittedBy.unit}}</p></div>
             </div>
 
             <!-- <div class="default_cards_divider_container"> -->
                 <div class="student_workorder_cards_text">
                     <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{user.lastName}}</p><br>
+                    <span class="bold">Status: </span>&nbsp;&nbsp;<span>{{workorder.status}}</span><br>
                     <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description:</span>&nbsp;&nbsp;{{workorder.description}}</p>
                 </div>
         </div>
     </div>
-
-
-
-  <!-- <div ng-messages="workorderForm.type.$error" ng-if="wordorderForm.type.$dirty || workorderForm.$submitted" role="alert">
-      <p ng-message="required" class="error">Please select problem category type</p>
-  </div>
-
-  <textarea ng-model="workorder.description" name="description" placeholder="Description" required></textarea>
-  <div ng-messages="workorderForm.description.$error" ng-if="workorderForm.description.$dirty || workorderForm.$submitted" role="alert">
-      <p ng-message="required" class="error">Please describe the problem</p>
-  </div>
-
-  <button type="submit" ng-disabled="workorder.$invalid" ng-click="workorderCreate(workorder)">submit</button> -->
-
 
 </div>
