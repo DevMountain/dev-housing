@@ -9,7 +9,7 @@ angular.module("devHousing").controller("modalCtrl", function($scope, ModalServi
       // Variables being passed into modal
       inputs: {
         // Will be injected into controller as 'text'
-        text: "You're information has been submitted. Thank you for applying to DevMountain!"
+        text: "You're information has been submitted. Thank you for applying to DevMountain Housing."
       }
     }).then(function(modal) {
       // Funtion that runs when modal closes
