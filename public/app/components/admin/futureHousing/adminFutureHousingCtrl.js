@@ -93,8 +93,6 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
     // Removes a user from a unit and reloads housing and users data.
       $scope.removeUser = function(unit, user) {
-          console.log(unit);
-          console.log(user);
         var occupant = {
           _id: user._id,
           inFutureHousing: false
@@ -131,22 +129,54 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
     // };
 
       $scope.setCurrentToFuture = function() {
-        console.log($scope.currentHousing);
         var tempUnits = [];
+        var tempAllOccupants = [];
+        var tempUsers = [];
+        var inCurrentHousing = [];
         for (var i = 0; i < $scope.currentHousing.length; i++) {
             tempUnits.push($.extend(true, {}, $scope.currentHousing[i]));
         }
-        console.log(tempUnits);
-        var newUnits = [];
-        // for (var i = 0; i < tempUnits.length; i++) {
-        //     tempUnits[i].allCurrentOccupants = tempUnits[i].allFutureOccupants;
-        //     for (var j = 0; j < tempUnits[i].currentBedrooms.length; j++) {
-        //         tempUnits[i].currentBedrooms[j].currentOccupants = tempUnits[i].futureBedrooms[j].futureOccupants;
-        //     }
-        //     tempUnits[i].futureBedrooms.futureOccupants = [];
-        //     tempUnits[i].allFutureOccupants = [];
-        // }
-        // console.log(tempUnits);
+        for (var i = 0; i < tempUnits.length; i++) {
+            tempUnits[i].allCurrentOccupants = tempUnits[i].allFutureOccupants;
+            for (var j = 0; j < tempUnits[i].currentBedrooms.length; j++) {
+                tempUnits[i].currentBedrooms[j].currentOccupants = tempUnits[i].futureBedrooms[j].futureOccupants;
+                tempUnits[i].futureBedrooms[j].futureOccupants = [];
+            }
+            tempUnits[i].allFutureOccupants = [];
+            if (tempUnits[i].allCurrentOccupants) {
+                for (var k = 0; k < tempUnits[i].allCurrentOccupants.length; k++) {
+                    tempAllOccupants.push(tempUnits[i].allCurrentOccupants[k]);
+                }
+            }
+        }
+        for (var i = 0; i < $scope.allUsers.length; i++) {
+            $scope.allUsers[i].inFutureHousing = false;
+            $scope.allUsers[i].inHousing = true;
+        }
+        for (var q = 0; q < tempAllOccupants.length; q++) {
+            var tempUserObj = {
+                id: tempAllOccupants[q],
+                inFutureHousing: false,
+                inHousing: true
+            };
+            tempUsers.push(tempUserObj);
+        }
+        for (var r = 0; r < allUsers.length; r++) {
+            if ($scope.allUsers[r].inHousing) {
+            inCurrentHousing.push($scope.allUsers[r]);
+            }
+        }
+
+        var combinedObj = {
+            units: tempUnits,
+            users: tempUsers
+        };
+
+
+
+        unitSvc.setCurrentToFuture(combinedObj);
+
+
       };
 
 
