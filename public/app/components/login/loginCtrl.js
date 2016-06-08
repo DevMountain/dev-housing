@@ -21,7 +21,7 @@ $scope.submitSignUp = function(user) {
           $state.go('pending');
         } else if (response.role === 'student' || response.role === 'mentor'  || response.role === 'graduate') {
           $state.go('student-home');
-        }else if (response.role === 'admin') {
+        } else if (response.role === 'admin') {
           $state.go('admin-home');
         }
       })
