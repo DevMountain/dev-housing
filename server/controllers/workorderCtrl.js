@@ -18,7 +18,6 @@ module.exports = {
       //     });
   
               Workorder.create(req.body, function(err, response) {
-                console.log(`Getting units info: ${bb8}`);
                   if (err) return res1.status(500).send(err);
                   console.log("Created workorder.");
                   res1.status(200).send(response);
