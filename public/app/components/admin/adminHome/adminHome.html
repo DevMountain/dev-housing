@@ -13,7 +13,7 @@
                 <div class="admin_home_cards_head">
                     <div><h2 class="bold">Users Pending</h2></div>
                 </div>
-                <div ng-repeat="user in pendingUsers">
+                <div ng-repeat="user in pendingUsers | orderByCampus:position">
                     <p class="current_housing_cards_text">
                         {{user.firstName + " " + user.lastName}} -- {{user.campus}}&nbsp;&nbsp;
                         <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
