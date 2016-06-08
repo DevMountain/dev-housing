@@ -6,6 +6,10 @@ angular.module('devHousing')
     $scope.workorderRead = () => {
       workorderSvc.workorderRead().then( (response) => {
         $scope.adminList = response;
+          console.log(response.status);
+          // if (response.status === 'Received') {
+          //   $('#WO_Received').css({"text-decoration":"underline";"text-decoration-color":"yellow"});
+          // };
       });
   };
 
@@ -30,6 +34,12 @@ angular.module('devHousing')
         $scope.workorderRead();
       });
   };
+
+    $scope.admin_status_update = (obj) => {
+      workorderSvc.workorderUpdate(obj).then((response) => {
+        $scope.workorderRead();
+      });
+    };
 
     $scope.workorderDelete = (id) => {
       workorderSvc.workorderDelete(id).then( (response) => {
