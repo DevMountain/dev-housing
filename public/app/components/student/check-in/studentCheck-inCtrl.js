@@ -24,7 +24,7 @@ $scope.hasSlot = true;
             }
           }
         }
-      })
+    });
     };
 
     getCheckins();
@@ -32,6 +32,6 @@ $scope.hasSlot = true;
     $scope.updateCheckins = (slot, check) => {
       checkinSvc.updateCheckins(slot, check).then( (response) => {
         getCheckins();
-      })
-    }
+    });
+};
 });
