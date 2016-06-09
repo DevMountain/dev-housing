@@ -1,6 +1,8 @@
 <div class="user-info-container">
 	<button id="logout" type="button" ng-click="logout()">Logout</button>
-	<img src="./assets/img/bart.png" class="user-info-image">
+	<div class="user-icon">
+		<i class="fa fa-user fa-lg"></i>
+	</div>
 	<div class="user-info-info">
 		<p>{{user.firstName}} {{user.lastName}}</p>
 		<p>{{user.role}}</p>

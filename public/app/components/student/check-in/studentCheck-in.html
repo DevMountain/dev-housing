@@ -3,34 +3,30 @@
 
 <div class="student-main-wrapper">
 
-  <div class="student_header default_cards_container">
-		<div class="default_repeat_cards">
-			<div class="default_cards_head">
-				<h1 id="student_header_text">Student Check-In Page </h1>
+  <div class="checkin_cards_container">
+		<div class="checkin_repeat_cards">
+			<div class="checkin_cards_head">
+				<h1 id="student_header_text">Housing Check-In Portal</h1>
 			</div>
-			<div ng-repeat="check in allCheckins" class="student_text default_cards_text">
-                <p class="bold">Your current check-in information:</p>
-                Start: {{check.checkinStart}}<br>
-                End: {{check.checkinEnd}}<br>
-                Appointment length: {{check.slotInterval}}<br>
-                Campus: {{check.campus}}<br>
-                Cohort: {{check.cohort}}<br>
+			<div class="checkin_card_instructions_text">
+                <p>Please select from the available time slots for your housing check-in.</p>
+                <p>If you have any questions please contact Bri at <a href="mailto:bri@devmounta.in" target="_top">bri@devmounta.in</a></p>
 			</div>
 		</div>
 	</div>
 
 
-  <div class="cards_list_container">
-     <div class="current_housing_cards_container" ng-repeat="check in allCheckins">
-         <div class="current_housing_repeat_cards" ng-repeat="slot in check.checkinAppointments">
-             <div class="current_housing_cards_head" >
+  <div class="checkin_list_container">
+     <div class="checkin_cards_container" ng-repeat="check in allCheckins">
+         <div class="checkin_repeat_cards" ng-repeat="slot in check.checkinAppointments">
+             <div class="checkin_cards_head" >
                  <div>
-                     <p>{{slot.timeSlot}}</p>
+                     <p>{{check.checkinStart}} through {{slot.timeSlot}}</p>
                  </div>
              </div>
-             <p class="current_housing_cards_text">
-               {{slot.user.firstName + " " + slot.user.lastName}} - {{slot.unit}} Room:{{slot.room}}&nbsp;&nbsp;
-               <button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="updateCheckins(slot, check)">pick</button>
+             <p class="checkin_cards_text">{{slot.user.firstName + " " + slot.user.lastName}}&nbsp;&nbsp;
+               <button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="selectCheckin(slot, check)">Select</button>
+               <!-- <button ng-click="deselectCheckin(slot)">Deselect</button> -->
              </p>
          </div>
      </div>

@@ -20,19 +20,16 @@
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
-              <select class="campus_WO" name="type" required>
-                <option value="" disabled selected>Select Campus</option>
-                <option value="Provo">Provo</option>
-                <option value="SLC">SLC</option>
-                <option value="Dallas">Dallas</option>
-              </select>
-                <!-- <input ng-model="Workorder.submittedBy" placeholder="Submitted by"></input><br> -->
+              <!--Unit select dropdown-->
+              <select ng-model="adminWorkorder.unit" class="campus_WO" name="type" required>
+                <option value="" disabled selected>Select Unit</option>
+                <option ng-repeat="unit in units" value="{{unit.campus}} {{unit.unitNumber}}">{{unit.campus}} {{unit.unitNumber}}</option>
+            </select>
+
+             <br>
+
                 <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
-                <!-- <form>
-                    <p>Less than 24 hours notice to enter OK?</p>
-                    <input type="radio" value="<24">Yes</input>
-                    <input type="radio" value="<24">No</input>
-                </form> -->
+
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Select</option>
                     <option value="appliance">appliance</option>
@@ -40,7 +37,7 @@
                     <option value="plumbing">plumbing</option>
                     <option value="other">other</option>
                 </select>
-                <button ng-click="workorderCreate(adminWorkorder)">Create</button>
+                <button ng-if="adminWorkorder.unit" ng-click="workorderCreate(adminWorkorder)">Create</button>
             </div>
         </div>
     </div>
@@ -50,12 +47,12 @@
     <div class="default_cards_container">
         <div class="workorder_repeat_cards" ng-repeat="workorder in list | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
-                <div><p>Work Order Unit: {{workorder.submittedBy.unit}}</p></div>
+                <div><p>Work Order Unit: {{workorder.unit}}</p></div>
             </div>
 
             <!-- <div class="default_cards_divider_container"> -->
                 <div class="student_workorder_cards_text">
-                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p><br>
+                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{user.lastName}}</p><br>
                     <span class="bold">Status: </span>&nbsp;&nbsp;<span>{{workorder.status}}</span><br>
                     <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
@@ -67,18 +64,4 @@
         </div>
     </div>
 
-
-
-  <!-- <div ng-messages="workorderForm.type.$error" ng-if="wordorderForm.type.$dirty || workorderForm.$submitted" role="alert">
-      <p ng-message="required" class="error">Please select problem category type</p>
-  </div>
-
-  <textarea ng-model="workorder.description" name="description" placeholder="Description" required></textarea>
-  <div ng-messages="workorderForm.description.$error" ng-if="workorderForm.description.$dirty || workorderForm.$submitted" role="alert">
-      <p ng-message="required" class="error">Please describe the problem</p>
-  </div>
-
-  <button type="submit" ng-disabled="workorder.$invalid" ng-click="workorderCreate(workorder)">submit</button> -->
-
-
-</div>
+</div>  <!--closing tag-->

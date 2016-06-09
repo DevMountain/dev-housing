@@ -31,6 +31,25 @@ angular.module('devHousing').service('userSvc', function($http) {
     });
     };
 
+    this.getPendingUsers = () => {
+      return $http({
+        method: 'GET',
+        url: '/users/pending'
+      }).then( (response) => {
+        return response;
+      })
+    };
+
+    this.setCohortId = (obj) => {
+      return $http({
+        method: 'PUT',
+        url: '/users/setCohortId',
+        data: obj
+      }).then( (response) => {
+        return response.data;
+      })
+    }
+
     this.getCurrentUser = () => {
       return $http({
         method: 'GET',
