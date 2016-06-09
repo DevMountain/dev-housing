@@ -5,6 +5,9 @@ angular.module('devHousing')
 
     $scope.workorderRead = () => {
       workorderSvc.workorderRead().then( (response) => {
+          for (let i = 0; i < response.length; i++) {
+              response[i].dateSubmitted = moment(response[i].dateSubmitted).format('dddd MMMM Do YYYY - h:mm A');
+          }
         $scope.list = response;
       });
   };
