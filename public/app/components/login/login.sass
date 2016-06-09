@@ -27,7 +27,6 @@
   width: 240px
   padding: 7px
   border: none
-  border-radius: 5px
   font-size: 14px
   display: block
   margin-bottom: 10px
@@ -126,3 +125,13 @@ button
     background-color: white
     border: 1px black solid
     border-radius: 5px
+
+input:-webkit-autofill
+  -webkit-box-shadow: 0 0 0px 1000px #3C3C3C inset
+  -webkit-text-fill-color: white
+
+input:focus
+  outline: none
+
+input:focus::-webkit-input-placeholder 
+    color: transparent
