@@ -15,7 +15,7 @@ $scope.submitSignUp = function(user) {
   }
 
 
-  $scope.submitLogin = function(login) { //TODO clear password on submit
+  $scope.submitLogin = function(login) {
     if ($scope.loginForm.$valid){
       userSvc.loginUser(login).then(function(response){
         if (response.cohortID.length === 0) {

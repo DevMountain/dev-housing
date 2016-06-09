@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc){
+angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc, $state){
 
   //LOADS CURRENT USER INFO.
   $scope.user = user;
@@ -102,6 +102,19 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         });
       };
 
+      //SAVE CURRENT USER TO FUTURE HOUSING
+      $scope.saveCurrentUsertoFuture = function(unit, user, index){
+        user.inFutureHousing = true;
+        var id = unit.futureBedrooms[index]._id;
+        unitSvc.addUserToUnitFuture(user, id).then(function(response) {
+          userSvc.update(user).then(function(response){
+            loadUsers();
+            loadHousing();
+        });
+      });
+      }
+
+      //CLEARS CURRENT HOUSING AND REPLACES IT WITH FUTURE, THEN CLEARS FUTURE.
       $scope.setCurrentToFuture = function(filter) { //TODO MAKE HER CONFIRM 5X THAT SHE WANTS TO UPDATE BEFORE RUNNING THE FUNCTION
         var currentCampusUsers = [];
         var tempUnits = [];
@@ -161,9 +174,9 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
             futureUsers: tempUsers
 
         };
-        console.log(combinedObj);
         unitSvc.setCurrentToFuture(combinedObj).then(function(response){
-          //TODO display modal that says you must update cohort IDs and force redirect to options
+          alert('Success! Please update cohort IDs') //TODO make alert a modal
+          $state.go('admin-options')
           loadHousing();
           loadUsers();
         })
