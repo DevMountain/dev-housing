@@ -13,9 +13,9 @@
                 <div class="admin_home_cards_head">
                     <div><h2 class="bold">Users Pending</h2></div>
                 </div>
-                <div ng-repeat="user in pendingUsers | orderByCampus:position">
+                <div ng-repeat="user in pendingUsers | orderByCampus:'campus'">
                     <p class="current_housing_cards_text">
-                        {{user.firstName + " " + user.lastName}} -- {{user.campus}}&nbsp;&nbsp;
+                        {{user.firstName + " " + user.lastName}} - {{user.campus}}&nbsp;&nbsp;
                         <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
                     </p>
                     <div class="" ng-show="toggleUpdate">
@@ -32,10 +32,11 @@
                         <h2 class="bold">Work Orders Pending</h2>
                     </div>
                 </div>
-                <div ng-repeat="wo in pendingWO">
+                <div ng-repeat="wo in pendingWO | orderByCampus:'campus'">
                     <p class="current_housing_cards_text">
-                        {{wo.problemType}} -- {{wo.description}}  -- {{wo.unit}}
-                        -- <span class="bold"> {{wo.status}} </span>&nbsp;&nbsp;
+                      <span class="bold">{{wo.campus}}:</span>&nbsp;&nbsp;
+                        {{wo.problemType}} - {{wo.description}}  - {{wo.unit}}
+                        - <span class="bold"> {{wo.status}} </span>&nbsp;&nbsp;
                         <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
                     </p>
                     <div class="" ng-show="toggleUpdate">
