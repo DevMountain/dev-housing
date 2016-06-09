@@ -26,7 +26,7 @@
                  </div>
              </div>
              <p class="checkin_cards_text">{{slot.user.firstName + " " + slot.user.lastName}}&nbsp;&nbsp;
-               <button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="selectCheckin(slot, check)">Select</button>
+               <button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="updateCheckins(slot, check)">Select</button>
                <!-- <button ng-click="deselectCheckin(slot)">Deselect</button> -->
              </p>
          </div>
