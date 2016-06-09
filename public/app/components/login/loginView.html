@@ -2,6 +2,7 @@
 
         <div>
             <img class="login-logo" src="./assets/img/BigLogo.png">
+
         </div>
     <div class="login-container" ng-show="showLogin">
 
@@ -73,7 +74,7 @@
                 </div>
 
                 <div class="birthdate-line">
-                    Birthdate: &nbsp
+                    Birthdate: &nbsp;
                     <input class="create-field" ng-model="user.birthdate" name="birthdate" placeholder="birthdate" type="date" required></input>
                     <div ng-messages="signupForm.birthdate.$error" ng-if="signupForm.birthdate.$dirty || signupForm.$submitted" role="alert">
                         <p ng-message="required" class="error">Please select your birthdate.</p>
@@ -83,7 +84,7 @@
 
 
                 <div class="info-same-line">
-                    Campus: &nbsp
+                    Campus: &nbsp;
                     <select ng-model="user.campus" name "campus" required>
                         <option value="provo">Provo</option>
                         <option value="slc">Salt Lake City</option>

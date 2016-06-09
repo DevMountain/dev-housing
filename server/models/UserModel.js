@@ -13,7 +13,7 @@ var User = new Schema ({
   phone: {type: String, required: true},
   inHousing: {type: Boolean, required: true, default: false},
   inFutureHousing: {type: Boolean, required: true, default: false},
-  campus: {type: String, required: true, enum:['provo', 'slc', 'dallas']},
+  campus: {type: String, required: true, enum:['Provo', 'SLC', 'Dallas']},
   currentAddress: {
     city: {type: String, required: true},
     state: {type: String, required: true}
@@ -25,11 +25,11 @@ var User = new Schema ({
   devmtnID: {type: Number},
   cohortID: [{type: String}],
   adminAccess: {
-    provo: {type: Boolean},
-    slc: {type: Boolean},
-    dallas: {type: Boolean}
+    Provo: {type: Boolean},
+    SLC: {type: Boolean},
+    Dallas: {type: Boolean}
   },
-  adminDefaultView: {type: String, enum: ['provo', 'slc', 'dallas']},
+  adminDefaultView: {type: String, enum: ['Provo', 'SLC', 'Dallas']},
   adminNotes: {type: String}, //null this out same as password
   licenseOnFile: {type: Boolean},
   backgroundCheck: {type: Boolean},

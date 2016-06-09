@@ -1,9 +1,9 @@
 angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc){
 
-  //Loads current users info
+  //LOADS CURRENT USER INFO.
   $scope.user = user;
 
-    //Loads all units and occupants from database
+    //LOADS ALL UNITS AND OCCUPANTS FROM DB.
       var loadHousing = function() {
         unitSvc.getUnits().then(function(response) {
             $scope.currentHousing = response;
@@ -12,8 +12,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
       loadHousing();
 
-    //Load all cohort info
-
+    //LOAD ALL COHORT INFO.
     var loadCohorts = function() {
     $scope.allCohorts = [];
       cohortSvc.getCohorts().then(function(response){
@@ -23,11 +22,11 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
           response[prop].name = prop;
           $scope.allCohorts.push(response[prop]);
         }
-    });
-};
+      });
+    };
     loadCohorts();
 
-    //loads all users from database
+      //LOADS ALL USERS FROM DATABASE.
       var loadUsers = function() {
           userSvc.getUsers().then(function(response) {
             parseUsers(response);
@@ -35,11 +34,11 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
       };
       loadUsers();
 
-    //parses through all users and their properties. adds those that need housing to a new array.
+      //PARSES THROUGH ALL USERS AND THEIR PROPERTIES. ADDS THOSE THAT NEED HOUSING TO NEEDHOUSING ARRAY.
       var parseUsers = function(users){
         $scope.allUsers = users;
 
-        //change male/female to m/f
+        //CHANGE MALE/FEMALE TO M/F
         for (var i = 0; i < $scope.allUsers.length; i++) {
             if ($scope.allUsers[i].gender === 'male') {
                 $scope.allUsers[i].gender = 'M';
@@ -47,13 +46,12 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
                 $scope.allUsers[i].gender = 'F';
             }
         }
-        //calculate current age
+        //CALCULATE CURRANT AGE IN YEARS.
         for (var i = 0; i < $scope.allUsers.length; i++) {
             var years = moment().diff($scope.allUsers[i].birthdate, 'years');
             $scope.allUsers[i].age = years;
         }
-
-        //push users who need housing to new array
+        //PUSH USERS WHO NEED HOUSING TO A NEW ARRAY.
         $scope.needHousing = [];
         for (var i = 0; i < $scope.allUsers.length; i++) {
             if (!$scope.allUsers[i].inFutureHousing) {
@@ -73,9 +71,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         return false;
     };
 
-
-
-    // Adds a user to a unit's bedroom and reloads housing and users data.
+    //ADDS A USER TO A UNIT'S BEDROOM AND RELOADS HOUSING AND USER'S DATA.
       $scope.saveUnit = function(unit, user) {
           var occupant = {
             _id: user._id,
@@ -89,12 +85,10 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
             loadUsers();
         });
 
-    };
+      };
 
-    // Removes a user from a unit and reloads housing and users data.
+    //REMOVES A USER FROM A UNIT AND RELOADS HOUSING AND USERS DATA.
       $scope.removeUser = function(unit, user) {
-          console.log(unit);
-          console.log(user);
         var occupant = {
           _id: user._id,
           inFutureHousing: false
@@ -108,46 +102,71 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         });
       };
 
-
-    //   var TempUnit = function(unit) {
-    //     this.campus = unit.campus;
-    //     this.propertyName = unit.propertyName;
-    //     this.address = {
-    //         street1: unit.address.street1,
-    //         street2: unit.address.street2,
-    //         city: unit.address.city,
-    //         state: unit.address.state,
-    //         zip: unit.address.zip
-    //     };
-    //     this.unitNumber = unit.unitNumber;
-    //     for (var i = 0; i < unit.currentBedrooms.length; i++) {
-    //         this.currentBedrooms.push(unit.currentBedrooms[i]);
-    //     }
-    //     // this.currentBedrooms = unit.currentBedrooms;
-    //     this.futureBedrooms = unit.futureBedrooms;
-    //     this.allCurrentOccupants = unit.allCurrentOccupants;
-    //     this.allFutureOccupants = unit.allFutureOccupants;
-    //     this.adminNotes = unit.adminNotes;
-    // };
-
-      $scope.setCurrentToFuture = function() {
-        console.log($scope.currentHousing);
+      $scope.setCurrentToFuture = function(filter) { //TODO MAKE HER CONFIRM 5X THAT SHE WANTS TO UPDATE BEFORE RUNNING THE FUNCTION
+        var currentCampusUsers = [];
         var tempUnits = [];
-        for (var i = 0; i < $scope.currentHousing.length; i++) {
-            tempUnits.push($.extend(true, {}, $scope.currentHousing[i]));
-        }
-        console.log(tempUnits);
-        var newUnits = [];
-        // for (var i = 0; i < tempUnits.length; i++) {
-        //     tempUnits[i].allCurrentOccupants = tempUnits[i].allFutureOccupants;
-        //     for (var j = 0; j < tempUnits[i].currentBedrooms.length; j++) {
-        //         tempUnits[i].currentBedrooms[j].currentOccupants = tempUnits[i].futureBedrooms[j].futureOccupants;
-        //     }
-        //     tempUnits[i].futureBedrooms.futureOccupants = [];
-        //     tempUnits[i].allFutureOccupants = [];
-        // }
-        // console.log(tempUnits);
-      };
+        var tempAllOccupants = [];
+        var tempUsers = [];
+        var inCurrentHousing = [];
+        var currentCampusUnits = [];
 
+        //ADDS USERS THAT MATCH CAMPUS FILTER AND ARE SENIORS OR JUNIORS TO NEW ARRAY AND SETS IN HOUSING PROPERTY TO FALSE.
+        for (var i = 0; i < $scope.allUsers.length; i++) {
+          if($scope.allUsers[i].campus === filter.name) {
+            for (var j = 0; j < $scope.allUsers[i].cohortID.length; j++) {
+              if ($scope.allUsers[i].cohortID[j] === filter.senior || $scope.allUsers[i].cohortID[j] === filter.junior) {
+                $scope.allUsers[i].inHousing = false;
+                delete $scope.allUsers[i].password,
+                currentCampusUsers.push($scope.allUsers[i])
+              }
+            }
+          }
+        }
+
+        //ADDS UNITS THAT MATCH CAMPUS FILTER TO NEW ARRAY THEN CLONES IT AND MAKES IT IMMUTABLE.
+        for (var i = 0; i < $scope.currentHousing.length; i++) {
+          if ($scope.currentHousing[i].campus === filter.name){
+            tempUnits.push($.extend(true, {}, $scope.currentHousing[i]));
+          }
+        }
+        //CLEAR OUT CURRENT HOUSING CLONE AND REPLACE IT WITH FUTURE HOUSING, THEN CLEAR OUT FUTURE HOUSING.
+        for (var i = 0; i < tempUnits.length; i++) {
+            tempUnits[i].allCurrentOccupants = tempUnits[i].allFutureOccupants;
+            for (var j = 0; j < tempUnits[i].currentBedrooms.length; j++) {
+                tempUnits[i].currentBedrooms[j].currentOccupants = tempUnits[i].futureBedrooms[j].futureOccupants;
+                tempUnits[i].futureBedrooms[j].futureOccupants = [];
+            }
+            tempUnits[i].allFutureOccupants = [];
+
+            //SETS ALL FUTURE OCCUPANTS TO NEW ARRAY
+            if (tempUnits[i].allCurrentOccupants) {
+                for (var k = 0; k < tempUnits[i].allCurrentOccupants.length; k++) {
+                    tempAllOccupants.push(tempUnits[i].allCurrentOccupants[k]);
+                }
+            }
+        }
+        //CHANGES PROPERTIES ON ALL FUTURE OCCUPANTS USERS OBJECTS AND CREATES NEW ARRAY OF USER OBJECTS.
+        for (var q = 0; q < tempAllOccupants.length; q++) {
+            var tempUserObj = {
+                _id: tempAllOccupants[q],
+                inFutureHousing: false,
+                inHousing: true
+            };
+            tempUsers.push(tempUserObj);
+        }
+
+        var combinedObj = {
+            currentUsers: currentCampusUsers,
+            units: tempUnits,
+            futureUsers: tempUsers
+
+        };
+        console.log(combinedObj);
+        unitSvc.setCurrentToFuture(combinedObj).then(function(response){
+          //TODO display modal that says you must update cohort IDs and force redirect to options
+          loadHousing();
+          loadUsers();
+        })
+      };
 
 });  // closing tag

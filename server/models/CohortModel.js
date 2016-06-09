@@ -2,17 +2,17 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var CohortSchema = new Schema ({
-provo: {
+Provo: {
   senior: {type: String, required: true},
   junior: {type: String, required: true},
   future: {type: String, required: true}
 },
-slc: {
+SLC: {
   senior: {type: String, required: true},
   junior: {type: String, required: true},
   future: {type: String, required: true}
 },
-dallas: {
+Dallas: {
   senior: {type: String, required: true},
   junior: {type: String, required: true},
   future: {type: String, required: true}
