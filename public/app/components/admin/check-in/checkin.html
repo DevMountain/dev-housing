@@ -3,56 +3,42 @@
 <user-info></user-info>
 
 <div class="main-wrapper">
-
-
-<!-- CREATE CHECK IN -->
-  <p>
-    check in options
-  </p>
-  <input type="datetime-local" name="name" ng-model="checkin.start">start date and time</input><br>
-  <input type="datetime-local" name="name" ng-model="checkin.end">end date and time</input><br>
-  <input type="number" name="name" ng-model="checkin.interval">length of each appointment in minutes</input><br>
-  <input ng-model="checkin.cohort" placeholder="cohort"></input><br>
-  <select ng-model="checkin.campus" />
-  <!-- TODO use ng-options -->
-  <option value="Provo">Provo</option>
-  <option value="SLC">SLC</option>
-  <option value="Dallas">Dallas</option>
- </select><br>
-  <button type="button" name="button" ng-click="createCheckin(checkin)">create checkin</button>
-
-
-<!-- VIEW EXISTING CHECK IN SCHEUDLE -->
-
-<div ng-repeat="check in allCheckins">
-Start: {{check.checkinStart}}<br>
-End: {{check.checkinEnd}}<br>
-Appointment length: {{check.slotInterval}}<br>
-Campus: {{check.campus}}<br>
-Cohort: {{check.cohort}}<br>
-
-<br>
-
+<div class="checkin_create_block">
+    <div class="checkin_create_block_header"><p>Create checkin timeslot</p></div>
+    <div class="checkin_create_block_content">
+        <select ng-model="checkin.campus" />
+            <option value="">Campus</option>
+            <option value="Provo">Provo</option>
+            <option value="SLC">SLC</option>
+            <option value="Dallas">Dallas</option>
+       </select>
+        <p>Start time</p>
+            <input type="datetime-local" name="name" ng-model="checkin.start" placeholder="Start time"></input><br>
+        <p>End time</p>
+            <input type="datetime-local" name="name" ng-model="checkin.end" placeholder="End time"></input><br>
+        <p>Duration</p>
+            <input type="number" name="name" ng-model="checkin.interval" placeholder="Minutes"></input><br>
+        <p>Cohort</p>
+            <input ng-model="checkin.cohort" placeholder="Ex: DM-10"></input><br>
+            <button ng-if="checkin.campus" id="create_checkin" type="button" name="button" ng-click="createCheckin(checkin)">Create checkin timeslots</button>
+    </div>
 </div>
 
-<div class="cards_list_container">
-
-   <div class="current_housing_cards_container" ng-repeat="check in allCheckins">
-       <div class="current_housing_repeat_cards" ng-repeat="slot in check.checkinAppointments">
-           <div class="current_housing_cards_head" >
-               <div>
-                   <p>{{slot.timeSlot}}</p>
-               </div>
-           </div>
-           <p class="current_housing_cards_text" >
-             {{slot.user.firstName + " " + slot.user.lastName}} - {{slot.unit}} Room:{{slot.room}}
-           </p>
-       </div>
-   </div>
-
-
-
-
+<div class="checkin_timeslots_container">
+    <div class="checkin_timeslots_repeat" ng-repeat="check in allCheckins">
+        <div class="checkin_create_header"><span>{{check.checkinDay}}</span><i ng-click="deleteCheckins(check)" class="fa fa-times"></i></div>
+        <p>{{check.checkinStart}}-{{check.checkinEnd}}</p>
+        <p>Duration: {{check.slotInterval}} min</p>
+        <p>Campus: {{check.campus}}</p>
+        <p>Cohort: {{check.cohort}}</p>
+        <br>
+        <hr>
+        <p>Appointments</p>
+        <div class="checkin_timeslots" ng-repeat="slot in check.checkinAppointments">
+            <span>{{slot.timeSlot}}</span>&nbsp;<span>{{slot.user.firstName}} {{slot.user.lastName}}&nbsp;{{slot.room}}-{{slot.unit}}</span>
+        </div>
+    </div>
+</div>
 
 
 </div> <!--main-wrapper closing div -->

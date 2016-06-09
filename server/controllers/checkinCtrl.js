@@ -31,16 +31,16 @@ module.exports = {
                     res.status(200).json(response);
                 }
             });
-        };
+        }
     },
 
     readById: function(req, res, next) {
         Checkin.findById(req.params.id, function(err, response) {
             if (err) {
-                res.status(500).send(err)
+                res.status(500).send(err);
             } else {
                 console.log("Reading Checkin by id: ", req.params.id);
-                res.send(response)
+                res.send(response);
             }
         });
     },
@@ -59,16 +59,16 @@ module.exports = {
                 response1.save();
                 res.status(200).send(response1)
             }
-        })
+        });
     },
 
     delete: function(req, res, next) {
         Checkin.findByIdAndRemove(req.params.id, function(err, response) {
             if (err) {
-                res.status(500).send(err)
+                res.status(500).send(err);
             } else {
                 console.log('Deleted Checkin');
-                res.send(response)
+                res.send(response);
             }
         });
     }

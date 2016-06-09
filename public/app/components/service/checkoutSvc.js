@@ -7,7 +7,7 @@ this.createCheckout = function(data){
     data: data
   }).then(function(response){
     return response.data
-  })
+});
 };
 
 this.getCheckouts = function(){
@@ -16,7 +16,7 @@ this.getCheckouts = function(){
     url: '/checkouts'
   }).then(function(response){
     return response.data
-  })
+});
 };
 
 this.updateCheckouts = (slot, check) => {
@@ -26,8 +26,17 @@ this.updateCheckouts = (slot, check) => {
     data: slot
   }).then( (response) => {
       return response.data;
-  })
+  });
 };
 
-//End of Service
-})
+this.deleteCheckouts = function(checkout) {
+    return $http({
+        method: 'DELETE',
+        url: '/checkout/' + checkout._id,
+    }).then(function(response) {
+        return response.data;
+    });
+};
+
+
+});  // closing tag

@@ -15,7 +15,7 @@ angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, ch
     var getCohorts = function() {
       cohortSvc.getCohorts().then(function(response) {
         $scope.allCohorts = response;
-      })
+    });
     };
     getCohorts();
 
@@ -23,14 +23,15 @@ angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, ch
 var getCheckouts = function(){
   checkoutSvc.getCheckouts().then(function(response){
     for (var i = 0; i < response.length; i++){
-      response[i].checkoutStart = moment(response[i].checkoutStart).format('dddd MMMM Do YYYY - h:mm A');
-      response[i].checkoutEnd = moment(response[i].checkoutEnd).format('dddd MMMM Do YYYY - h:mm A');
+      response[i].checkoutDay = moment(response[i].checkoutStart).format('dddd MMMM Do')
+      response[i].checkoutStart = moment(response[i].checkoutStart).format('h:mm');
+      response[i].checkoutEnd = moment(response[i].checkoutEnd).format('h:mm A');
       for (var j = 0; j < response[i].checkoutAppointments.length; j++){
         response[i].checkoutAppointments[j].timeSlot = moment(response[i].checkoutAppointments[j].timeSlot).format('h:mm A')
       }
     }
     $scope.allCheckouts = response;
-  })
+});
 };
 
 getCheckouts();
@@ -40,12 +41,12 @@ getCheckouts();
 
     $scope.createCheckout = function(info) {
         start = moment(info.start);
-        end = moment(info.end)
+        end = moment(info.end);
         interval = info.interval;
         campus = info.campus;
-        cohort = info.cohort
+        cohort = info.cohort;
         createSchedule();
-    }
+    };
 
 
     var createSchedule = function(slots) {
@@ -57,7 +58,7 @@ getCheckouts();
             var newAppointment = start.clone().add(addTime, 'minutes');
             var appointment = {
                 timeSlot: newAppointment.format()
-            }
+            };
             schedule.push(appointment);
         }
         var checkoutObj = {
@@ -68,15 +69,24 @@ getCheckouts();
             campus: campus,
             cohort: cohort,
             checkoutAppointments: schedule
-        }
+        };
         setSchedule(checkoutObj);
-    }
+    };
 
     var setSchedule = function(checkoutObj) {
         checkoutSvc.createCheckout(checkoutObj).then(function(response) {
             $scope.checkout = response;
-        })
+        });
         getCheckouts();
-    }
+    };
 
-})
+
+    $scope.deleteCheckouts = function(checkout) {
+        checkoutSvc.deleteCheckouts(checkout).then(function(response) {
+            getCheckouts();
+        });
+    };
+
+
+
+});  // closing tag
