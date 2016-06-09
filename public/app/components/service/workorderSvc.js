@@ -41,5 +41,20 @@ angular.module('devHousing')
       }).then( (response) => response.data);
     };
 
+    this.getPendingWO = (obj) => {
+      return $http({
+          method: 'GET',
+          url: '/workorders/pending'
+      }).then( (response) => response);
+    };
+
+    this.setWOStatus = (obj) => {
+      return $http({
+        method: 'PUT',
+        url: '/workorders/status',
+        data: obj
+      }).then( (response) => response);
+    }
+
 //End of Service
   });

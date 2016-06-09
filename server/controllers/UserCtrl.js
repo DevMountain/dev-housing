@@ -1,4 +1,5 @@
-var User = require('../models/UserModel.js');
+'use strict';
+let User = require('../models/UserModel.js');
 
 module.exports = {
 
@@ -38,13 +39,40 @@ module.exports = {
       });
     },
 
+    pending: function(req, res, next) {
+      User.find({}, function(err, response) {
+        if (err) {
+          return res.status(500).send(err);
+        } else {
+          for (let i = response.length-1; i >= 0; i--) {
+
+            response[i].password = null;
+
+            if (response[i].cohortID.length !== 0) {
+              response.splice(i, 1);
+            }
+          }
+        }
+        res.status(200).send(response);
+      });
+    },
+
+    setCohortId: (req, res, next) => {
+      User.findByIdAndUpdate(req.body._id, req.body, (err, response) => {
+        if (err) {
+          return res.status(500).send(err);
+        } else {
+          res.status(200).send(response);
+        }
+      })
+    },
+
     delete: function(request, response, next) {
         User.findByIdAndRemove(request.params.id, function(error, serverResponse) {
             if (error) {
                 return response.status(500).send(error);
             }
             else {
-                console.log('Deleted User' + request.params.id);
                 response.status(200).send(serverResponse);
             }
         });

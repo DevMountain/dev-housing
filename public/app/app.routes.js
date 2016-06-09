@@ -149,7 +149,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('admin-home', {
       url: '/admin/home',
       templateUrl: './app/components/admin/adminHome/adminHome.html',
-      // controller: 'adminHomeCtrl',
+      controller: 'adminHomeCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {

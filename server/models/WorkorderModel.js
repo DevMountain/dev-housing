@@ -9,6 +9,7 @@ adminNotes: {type: String},
 status: {type: String, required: true, default: 'Pending'},
 submittedBy: {type: Schema.Types.ObjectId, ref: 'User'},
 unit: {type: String, required: true},
+campus: {type: String, required: true, enum: ['Provo', 'SLC', 'Dallas']}
 // room: {type: String, required: true}
 });
 
