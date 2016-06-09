@@ -19,8 +19,6 @@ angular.module('devHousing')
             }
             return 0;
         })
-
-        console.log(array);
         return array;
     }
 
