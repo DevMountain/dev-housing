@@ -84,8 +84,9 @@
 
 
                 <div class="info-same-line">
+                  <!-- TODO USE NG OPTIONS -->
                     Campus: &nbsp;
-                    <select ng-model="user.campus" name "campus" required>
+                    <select ng-model="user.campus" name="campus" required>
                         <option value="Provo">Provo</option>
                         <option value="SLC">Salt Lake City</option>
                         <option value="Dallas">Dallas</option>
@@ -116,11 +117,11 @@
                     <input class="car-field" ng-model="user.car.license" name="license" placeholder="License Plate #" ng-required="car"></input>
                 </div>
 
-                <div ng-show="user.campus == 'provo'">
+                <div ng-show="user.campus == 'Provo'">
                     <br>
                     <p>Are you interested in paying an extra $250 for a private room?</p>
                     <div class="info_same_line">
-                        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus == 'provo'" />yes &nbsp
+                        <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus == 'Provo'" />yes &nbsp
                         <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false />no
                     </div>
                 </div>

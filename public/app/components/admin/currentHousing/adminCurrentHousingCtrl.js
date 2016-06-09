@@ -3,6 +3,8 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
   //Loads current users info
   $scope.user = user;
 
+
+
   // Loads all units and occupants from database.
     var loadHousing = function() {
         unitSvc.getUnits().then(function(response) {
@@ -22,8 +24,15 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
           response[prop].name = prop;
           $scope.allCohorts.push(response[prop]);
         }
-    });
-};
+        //SETS DEFAULT CAMPUS VIEW TO ADMIN DEFAULT VIEW
+        for (var i = 0; i < $scope.allCohorts.length; i++){
+          if ($scope.user.adminDefaultView === $scope.allCohorts[i].name) {
+            console.log('success ', $scope.allCohorts[i].name);
+            $scope.cohortFilter = $scope.allCohorts[i];
+          }
+        }
+      });
+    };
     loadCohorts();
 
   // Loads all users from database.
@@ -38,15 +47,15 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
     var parseUsers = function(users){
       $scope.allUsers = users;
       $scope.needHousing = [];
-      // Change male/female to M/F.
+      // Change male/female to M/F and add it to new property.
       for (var i = 0; i < $scope.allUsers.length; i++) {
           if ($scope.allUsers[i].gender === 'male') {
-              $scope.allUsers[i].gender = 'M';
+              $scope.allUsers[i].genderLetter = 'M';
           } else if ($scope.allUsers[i].gender === 'female') {
-              $scope.allUsers[i].gender = 'F';
+              $scope.allUsers[i].genderLetter = 'F';
           }
       }
-      // Calculate current age.
+      // Calculate current age in years.
       for (var i = 0; i < $scope.allUsers.length; i++) {
         var years = moment().diff($scope.allUsers[i].birthdate, 'years');
         $scope.allUsers[i].age = years;
@@ -83,15 +92,15 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
         };
         var id = unit._id;
         unitSvc.addUserToUnitCurrent(occupant, id).then(function(response) {
+          userSvc.update(occupant).then(function(response){
             loadHousing();
+            loadUsers();
+          });
         });
-        userSvc.update(occupant).then(function(response){
-          loadUsers();
-      });
 
   };
 
-  
+
   // Removes a user from a unit and reloads housing and users data.
     $scope.removeUser = function(unit, user) {
       var occupant = {
@@ -100,10 +109,10 @@ angular.module('devHousing').controller('adminCurrentHousingCtrl', function($sco
       };
       var id = unit._id;
       unitSvc.removeUserFromUnitCurrent(occupant, id).then(function(response) {
-        loadHousing();
-      });
-      userSvc.update(occupant).then(function(response){
-        loadUsers();
+        userSvc.update(occupant).then(function(response){
+          loadHousing();
+          loadUsers();
+        });
       });
     };
 
