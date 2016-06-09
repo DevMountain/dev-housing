@@ -6,8 +6,6 @@ module.exports = {
 
     create: function(req, res, next) {
 
-      console.log(`in the create function on SERVER ${JSON.stringify(req.body)}`);
-
         // Unit.find(req.query)
         //     .populate('currentBedrooms.currentOccupants', '-password')
         //     .populate('allCurrentOccupants', '-password')
@@ -21,8 +19,9 @@ module.exports = {
         //     });
 
         Workorder.create(req.body, function(err, response) {
-            if (err) return res.status(500).send(err);
-            console.log("Created workorder.");
+            if (err) {
+              return res.status(500).send(err);
+            }
             res.status(200).send(response);
         });
     },
