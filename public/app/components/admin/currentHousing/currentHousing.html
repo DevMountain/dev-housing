@@ -67,7 +67,7 @@
             </div>
             <div class="wants_housing_list">
                 <p class="bold">Men &#9794;</p>
-                <p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                <p ng-repeat="person in needHousing | filter: {genderLetter: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                     {{person.firstName}}
                     {{person.lastName}}
                     -
@@ -78,7 +78,7 @@
                 </p>
                 <br>
                 <p class="bold">Requested Private Room</p>
-                <p ng-repeat="person in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                <p ng-repeat="person in needHousing | filter: {genderLetter: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                     {{person.firstName}}
                     {{person.lastName}}
                     -
@@ -89,7 +89,7 @@
                 <hr>
                 <br>
                 <p class="bold">Women &#9792;;</p>
-                <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                <p ng-repeat="person in needHousing | filter: {genderLetter: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                     {{person.firstName}}
                     {{person.lastName}}
                     -
@@ -99,7 +99,7 @@
                 </p>
                 <br>
                 <p class="bold">Requested Private Room</p>
-                <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                <p ng-repeat="person in needHousing | filter: {genderLetter: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                     {{person.firstName}}
                     {{person.lastName}}
                     -
