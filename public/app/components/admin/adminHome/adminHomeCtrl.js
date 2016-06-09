@@ -1,6 +1,6 @@
 angular.module('devHousing')
-  .controller('adminHomeCtrl', function ($scope, userSvc, workorderSvc) {
-    $scope.test = 'home works';
+  .controller('adminHomeCtrl', function ($scope, userSvc, workorderSvc, user) {
+    $scope.user = user;
 
     let getPendingUsers = () => {
       userSvc.getPendingUsers().then( (response) => {
