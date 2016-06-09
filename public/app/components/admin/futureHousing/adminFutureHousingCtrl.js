@@ -9,7 +9,6 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
             $scope.currentHousing = response;
         });
       };
-
       loadHousing();
 
     //LOAD ALL COHORT INFO.
@@ -21,6 +20,12 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         for (var prop in response) {
           response[prop].name = prop;
           $scope.allCohorts.push(response[prop]);
+        }
+        //SETS DEFAULT CAMPUS VIEW TO ADMIN DEFAULT VIEW
+        for (var i = 0; i < $scope.allCohorts.length; i++){
+          if ($scope.user.adminDefaultView === $scope.allCohorts[i].name) {
+            $scope.cohortFilter = $scope.allCohorts[i];
+          }
         }
       });
     };
@@ -79,12 +84,11 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
           };
           var id = unit._id;
           unitSvc.addUserToUnitFuture(occupant, id).then(function(response) {
+            userSvc.update(occupant).then(function(response){
               loadHousing();
+              loadUsers();
           });
-          userSvc.update(occupant).then(function(response){
-            loadUsers();
         });
-
       };
 
     //REMOVES A USER FROM A UNIT AND RELOADS HOUSING AND USERS DATA.
@@ -95,10 +99,10 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         };
         var id = unit._id;
         unitSvc.removeUserFromUnitFuture(occupant, id).then(function(response) {
-          loadHousing();
-        });
-        userSvc.update(occupant).then(function(response){
-          loadUsers();
+          userSvc.update(occupant).then(function(response){
+            loadHousing();
+            loadUsers();
+          });
         });
       };
 
@@ -108,8 +112,8 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         var id = unit.futureBedrooms[index]._id;
         unitSvc.addUserToUnitFuture(user, id).then(function(response) {
           userSvc.update(user).then(function(response){
-            loadUsers();
             loadHousing();
+            loadUsers();
         });
       });
       }
@@ -175,7 +179,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
         };
         unitSvc.setCurrentToFuture(combinedObj).then(function(response){
-          alert('Success! Please update cohort IDs') //TODO make alert a modal
+          alert('Success! Please update cohort IDs') //TODO make alert a modal instead of alert
           $state.go('admin-options')
           loadHousing();
           loadUsers();
