@@ -15,8 +15,7 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
     var getCohorts = function(){
       cohortSvc.getCohorts().then(function(response){
         $scope.allCohorts = response;
-
-    });
+        });
     };
     getCohorts();
 
@@ -24,8 +23,9 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
   var getCheckins = function(){
     checkinSvc.getCheckins().then(function(response){
       for (var i = 0; i < response.length; i++){
-        response[i].checkinStart = moment(response[i].checkinStart).format('dddd MMMM Do YYYY - h:mm A');
-        response[i].checkinEnd = moment(response[i].checkinEnd).format('dddd MMMM Do YYYY - h:mm A');
+        response[i].checkinDay = moment(response[i].checkinStart).format('dddd MMMM Do');
+        response[i].checkinStart = moment(response[i].checkinStart).format('h:mm');
+        response[i].checkinEnd = moment(response[i].checkinEnd).format('h:mm A');
         for (var j = 0; j < response[i].checkinAppointments.length; j++){
           response[i].checkinAppointments[j].timeSlot = moment(response[i].checkinAppointments[j].timeSlot).format('h:mm A');
         }
@@ -74,5 +74,12 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
       });
       getCheckins();
     };
+
+$scope.deleteCheckins = function(checkin) {
+    checkinSvc.deleteCheckins(checkin).then(function(response) {
+        getCheckins();
+    });
+};
+
 
 });

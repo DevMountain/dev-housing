@@ -6,7 +6,7 @@ this.createCheckin = function(data){
     url: '/checkin',
     data: data
   }).then(function(response){
-    return response.data
+    return response.data;
 });
 };
 
@@ -15,7 +15,7 @@ this.getCheckins = function(){
     method: 'GET',
     url: '/checkins'
   }).then(function(response){
-    return response.data
+    return response.data;
 });
 };
 
@@ -29,7 +29,14 @@ this.updateCheckins = (slot, check) => {
   });
 };
 
+this.deleteCheckins = function(checkin) {
+    return $http({
+        method: 'DELETE',
+        url: '/checkin/' + checkin._id,
+    }).then(function(response) {
+        return response.data;
+    });
+};
 
 
 });  //closing tag
- 
