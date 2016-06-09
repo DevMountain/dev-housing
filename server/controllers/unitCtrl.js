@@ -1,4 +1,5 @@
 var Unit = require('../models/UnitModel.js');
+var User = require('../models/UserModel.js')
 
 module.exports = {
 
@@ -23,17 +24,58 @@ module.exports = {
             });
     },
 
-    setCurrentToFuture: function(request, response, next) {
-        Unit.findByIdAndUpdate(request.params.id, request.body, function(error, serverResponse) {
-            if (error) {
-                return response.status(500).send(error);
-            }
-            else {
-                // TODO for loop to update students housing properties 
-                console.log('Updating ' + request.params.id);
-                response.status(200).send(serverResponse);
-            }
-        });
+    setCurrentToFuture: function(req, res, next) {
+      var currentUsers = req.body.currentUsers;
+      var units = req.body.units;
+      var futureUsers = req.body.futureUsers;
+
+      var currentUsersASyncLoop = function(arr, i) {
+        if (i >= arr.length -1) {
+          console.log('first loop end');
+          currentUsersLoopEnd();
+        }
+        User.findByIdAndUpdate(arr[i]._id, arr[i], function(err, response) {
+          if (err) return res.status(500).send(err);
+          if (response) currentUsersASyncLoop(arr, i + 1);
+          
+        })
+      };
+
+      var currentUsersLoopEnd = function() {
+        unitsASyncLoop(units, 0)
+      };
+
+      var unitsASyncLoop = function(arr, i) {
+        if (i >= arr.length -1){
+          console.log('second loop end');
+          unitsLoopEnd();
+        }
+        Unit.findByIdAndUpdate(arr[i]._id, arr[i], function(err, response) {
+          if (err) return res.status(500).send(err);
+          if (response) unitsASyncLoop(arr, i + 1);
+        })
+      };
+
+      var unitsLoopEnd = function(){
+        futureUsersASyncLoop(futureUsers, 0)
+      }
+
+      var futureUsersASyncLoop = function(arr, i){
+        if (i >= arr.length -1){
+          console.log('third loop end');
+          futureUsersLoopEnd();
+        }
+        User.findByIdAndUpdate(arr[i]._id, arr[i], function(err, response) {
+          if (err) return res.status(500).send(err);
+          if (response) futureUsersASyncLoop(arr, i + 1);
+        })
+      };
+
+      var futureUsersLoopEnd = function(){
+        console.log('i think this shit works now');
+      }
+
+      currentUsersASyncLoop(currentUsers, 0);
     },
 
     addUserToUnitCurrent: function(req, res, next) {

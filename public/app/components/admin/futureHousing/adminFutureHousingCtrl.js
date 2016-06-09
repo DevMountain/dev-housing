@@ -85,7 +85,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
             loadUsers();
         });
 
-    };
+      };
 
     //REMOVES A USER FROM A UNIT AND RELOADS HOUSING AND USERS DATA.
       $scope.removeUser = function(unit, user) {
@@ -102,7 +102,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         });
       };
 
-      $scope.setCurrentToFuture = function(filter) {
+      $scope.setCurrentToFuture = function(filter) { //TODO MAKE HER CONFIRM 5X THAT SHE WANTS TO UPDATE BEFORE RUNNING THE FUNCTION
         var currentCampusUsers = [];
         var tempUnits = [];
         var tempAllOccupants = [];
@@ -116,6 +116,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
             for (var j = 0; j < $scope.allUsers[i].cohortID.length; j++) {
               if ($scope.allUsers[i].cohortID[j] === filter.senior || $scope.allUsers[i].cohortID[j] === filter.junior) {
                 $scope.allUsers[i].inHousing = false;
+                delete $scope.allUsers[i].password,
                 currentCampusUsers.push($scope.allUsers[i])
               }
             }
@@ -147,7 +148,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         //CHANGES PROPERTIES ON ALL FUTURE OCCUPANTS USERS OBJECTS AND CREATES NEW ARRAY OF USER OBJECTS.
         for (var q = 0; q < tempAllOccupants.length; q++) {
             var tempUserObj = {
-                id: tempAllOccupants[q],
+                _id: tempAllOccupants[q],
                 inFutureHousing: false,
                 inHousing: true
             };
@@ -161,8 +162,12 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
 
         };
         console.log(combinedObj);
-
-        unitSvc.setCurrentToFuture(combinedObj);
+        unitSvc.setCurrentToFuture(combinedObj).then(function(response){
+          console.log('you made them touch!!!');
+          console.log(response);
+          loadHousing();
+          loadUsers();
+        })
       };
 
 });  // closing tag

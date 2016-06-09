@@ -51,14 +51,13 @@ angular.module('devHousing').service('unitSvc', function($http){
 
   // updating current users with future users for all housing units
   this.setCurrentToFuture = function(data) {
-      console.log(data);
-    //   return $http({
-    //       method: 'PUT',
-    //       url: '/units',
-    //       data: data
-    //   }).then(function(response) {
-    //       return response.data;
-    //   });
+      return $http({
+          method: 'PUT',
+          url: '/units',
+          data: data
+      }).then(function(response) {
+          return response.data;
+      });
   };
 
 });
