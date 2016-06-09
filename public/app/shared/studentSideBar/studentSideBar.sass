@@ -1,4 +1,6 @@
 .student-side-bar-container
+	z-index: 1
+	margin-top: -20px
 	position: fixed
 	width: 266px
 	height: 100%
@@ -6,10 +8,19 @@
 	border-right: 2px solid black
 	border-bottom: 2px solid black
 	overflow: auto
-	display: none
+	transform: translateX(-266px)
+	transition: 0.5s
 
 	@media (min-width: 1100px)
-		display: block
+		margin-top: 0px
+		transform: translateX(0px)
+		transition: 0.5s
+
+.student-side-bar-slide-switch
+	position: absolute
+	width: 47px
+	left: 15px
+	top: 29px
 
 .student-side-bar-top
 	width: 100%
