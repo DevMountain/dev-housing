@@ -7,7 +7,7 @@ this.createCheckin = function(data){
     data: data
   }).then(function(response){
     return response.data
-  })
+});
 };
 
 this.getCheckins = function(){
@@ -16,7 +16,7 @@ this.getCheckins = function(){
     url: '/checkins'
   }).then(function(response){
     return response.data
-  })
+});
 };
 
 this.updateCheckins = (slot, check) => {
@@ -26,9 +26,10 @@ this.updateCheckins = (slot, check) => {
     data: slot
   }).then( (response) => {
       return response.data;
-  })
+  });
 };
 
 
-// End of Service
-})
+
+});  //closing tag
+ 
