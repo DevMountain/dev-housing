@@ -163,8 +163,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         };
         console.log(combinedObj);
         unitSvc.setCurrentToFuture(combinedObj).then(function(response){
-          console.log('you made them touch!!!');
-          console.log(response);
+          //TODO display modal that says you must update cohort IDs and force redirect to options
           loadHousing();
           loadUsers();
         })

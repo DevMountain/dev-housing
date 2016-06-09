@@ -28,16 +28,17 @@ module.exports = {
       var currentUsers = req.body.currentUsers;
       var units = req.body.units;
       var futureUsers = req.body.futureUsers;
+      console.log(req.body);
 
       var currentUsersASyncLoop = function(arr, i) {
-        if (i >= arr.length -1) {
+        if (i > arr.length -1) {
           console.log('first loop end');
           currentUsersLoopEnd();
+          return
         }
         User.findByIdAndUpdate(arr[i]._id, arr[i], function(err, response) {
           if (err) return res.status(500).send(err);
-          if (response) currentUsersASyncLoop(arr, i + 1);
-          
+          currentUsersASyncLoop(arr, i + 1);
         })
       };
 
@@ -46,13 +47,15 @@ module.exports = {
       };
 
       var unitsASyncLoop = function(arr, i) {
-        if (i >= arr.length -1){
+        if (i > arr.length -1){
           console.log('second loop end');
           unitsLoopEnd();
+          return
         }
         Unit.findByIdAndUpdate(arr[i]._id, arr[i], function(err, response) {
           if (err) return res.status(500).send(err);
-          if (response) unitsASyncLoop(arr, i + 1);
+          unitsASyncLoop(arr, i + 1);
+
         })
       };
 
@@ -61,18 +64,19 @@ module.exports = {
       }
 
       var futureUsersASyncLoop = function(arr, i){
-        if (i >= arr.length -1){
+        if (i > arr.length -1){
           console.log('third loop end');
           futureUsersLoopEnd();
+          return
         }
         User.findByIdAndUpdate(arr[i]._id, arr[i], function(err, response) {
           if (err) return res.status(500).send(err);
-          if (response) futureUsersASyncLoop(arr, i + 1);
+          futureUsersASyncLoop(arr, i + 1);
         })
       };
 
       var futureUsersLoopEnd = function(){
-        console.log('i think this shit works now');
+        res.status(200).send('current updated with future')
       }
 
       currentUsersASyncLoop(currentUsers, 0);
