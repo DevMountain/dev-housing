@@ -16,6 +16,9 @@ angular.module('devHousing')
 
     $scope.adminWorkorder = {};
     $scope.workorderCreate = (obj) => {
+      //Work Order Model requires campus, so extracting that from obj.unit
+      let arr = obj.unit.split(" ");
+      obj.campus = arr[0];
         workorderSvc.workorderCreate(obj).then((response) => {
           $scope.workorderRead();
           $scope.adminWorkorder = {};
