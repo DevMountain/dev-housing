@@ -40,11 +40,12 @@
 
                      <span class="bold">Admin Notes:</span> {{unit.adminNotes}}<br>
 
-                     <div ng-repeat="currentBedroom in unit.currentBedrooms">
+                     <div ng-repeat="currentBedroom in unit.currentBedrooms track by $index">
                        Room: {{currentBedroom.roomNumber}} - Max occupants: {{currentBedroom.maxOccupants}}
                        <br> Current Occupant:
 
                       <p ng-repeat="person in currentBedroom.currentOccupants track by $index">{{person.firstName}} {{person.lastName}} - {{person.cohortID}}
+                        <button ng-click="saveCurrentUsertoFuture(unit, person, $parent.$index)">Save Current Occupant</button>
                           <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
                           <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Update User</button>
                       </p>
