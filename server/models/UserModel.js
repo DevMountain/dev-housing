@@ -31,12 +31,15 @@ var User = new Schema ({
   },
   adminDefaultView: {type: String, enum: ['Provo', 'SLC', 'Dallas']},
   adminNotes: {type: String}, //null this out same as password
-  licenseOnFile: {type: Boolean},
-  backgroundCheck: {type: Boolean},
+  licenseOnFile: {type: Boolean, default: false},
+  backgroundCheck: {type: Boolean, default: false},
   deposit: {
     depositAmount: {type: Number},
-    depositPaid: {type: Date},
-    depositReturned: {type: Date}
+    depositPaid: {type: Boolean, default: false},
+    depositPaidDate: {type: Date},
+    depositReturned: {type: Boolean, default: false},
+    depositReturnedAmount: {type: Number},
+    depositReturnedDate: {tpe: Date}
   },
   singleRoom: {
     wantsSingleRoom: {type: Boolean, default: false},
@@ -64,7 +67,8 @@ var User = new Schema ({
     checkInStatus: {type: Boolean},
     checkOutDate: {type: Date},
     checkOutStatus: {type: Boolean}
-  }
+  },
+  contractSigned: {type: Boolean, default: false},
 });
 
 User.pre('save', function(next) {
