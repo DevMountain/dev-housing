@@ -55,36 +55,16 @@
                                         <br> Name: {{slot.user.firstName}} {{slot.user.lastName}}
                                         <br> Age: {{slot.user.age}}
                                         <br> Gender: {{slot.user.gender}}
-                                        <br> Email: {{slot.user.email}}
-                                        <br> Phone: {{slot.user.phone}}
-                                        <br>
-                                        <span class="bold">Cohort</span>
-                                        <br> Campus: {{slot.user.campus}}
-                                        <br> Cohort(s): {{slot.user.cohortID}}
-                                        <br> DevMtnID: {{slot.user.devmtnID}}
-                                        <br>
                                 </div>
                                 <div class="check_user_edit_right user_edit_right">
                                     <span class="bold">Housing</span>
-                                    <br> In Housing: {{slot.user.inHousing}}
-                                    <br> Rent Status: {{slot.user.rent.isRenter}}
-                                    <br> Rent Amount: {{slot.user.rent.rentPrice}}
-                                    <br> Rent Paid: {{slot.user.rent.rentPaid}}
-                                    <br> Private Room Requested: {{slot.user.singleRoom.wantsSingleRoom}}
-                                    <br> Private Room Occupant: {{slot.user.singleRoom.hasSingleRoom}}
-                                    <br> Checkin Date: {{slot.user.checkInOut.checkInDate}}
-                                    <br> Checkin Status: {{slot.user.checkInOut.checkInStatus}}
-                                    <br> Checkout Date: {{slot.user.checkInOut.checkOutDate}}
-                                    <br> Checkout Status: {{slot.user.checkInOut.checkOutStatus}}
-                                    <br>
-                                    <br>
+                                    <br> Unit: {{slot.user.unit}}
+                                    <br> Room: {{slot.user.room}}
+                                    <br> Deposit Paid: {{slot.user.deposit.depositPaid}}
+                                    <br> Contract: {{slot.user.contract}}
                                     <span class="bold">Vehicles</span>
                                     <br> Drivers License on File: {{slot.user.licenseOnFile}}
                                     <br> Vehicle: {{slot.user.car.make}} {{slot.user.car.model}} {{slot.user.car.year}} {{slot.user.car.license}}
-                                    <br>
-                                    <br>
-                                    <span class="bold">User Notes</span>
-                                    <br> Notes: {{slot.user.adminNotes}}
                                     </p>
                                 </div>
                             </div>
@@ -92,52 +72,22 @@
                             <div class="check_users_edit users_edit" ng-show="editUser">
                                 <div class="check_user_edit_container user_edit_container">
                                     <div class="check_user_edit_left user_edit_left">
-                                        <p>Email&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.email" placeholder="email"></input>
-                                        <br>
-                                        <p>Phone&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.phone" placeholder="phone"></input>
-                                        <br>
-                                        <p>1st Cohort ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.cohortID[0]" placeholder="cohort"></input>
-                                        <p>2nd Cohort ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.cohortID[1]" placeholder="cohort"></input>
-                                        <p>3rd Cohort ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.cohortID[2]" placeholder="cohort"></input>
-                                        <p>Devmtn ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.devmtnID" placeholder="DevMtn ID"></input>
-                                        </br>
-                                        <p>Housing Status&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.inHousing" placeholder="housing"></input>
-                                        <br>
-                                        <p>Renter Status&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.rent.isRenter" placeholder="pays rent"></input>
-                                        <br>
-                                        <p>Rent Amount&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.rent.rentPrice" placeholder="rent amount"></input>
-                                        <br>
-                                        <p>Rent Paid&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.rent.rentPaid" placeholder="rent paid"></input>
-                                        </br>
-                                    </div>
-                                    <div class="check_user_edit_right user_edit_right" <p>Private Room Requested&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.singleRoom.wantsSingleRoom" placeholder="private room requested"></input>
-                                        </br>
-                                        <p>Private Room Occupant&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.singleRoom.hasSingleRoom" placeholder="private room occupant"></input>
-                                        <br>
+                                      <p>Deposit Paid&nbsp;&nbsp;</p>
+                                      <input ng-model="slot.user.deposit.depositPaid" placeholder="date paid"></input>
+                                      </br>
+                                      <p>Contract signed&nbsp;&nbsp;</p>
+                                      <input ng-model="slot.user.contract" placeholder="signed contract"></input>
+                                      <br>
                                         <p>Checkin Date&nbsp;&nbsp;</p>
                                         <input ng-model="slot.user.checkInOut.checkInDate" placeholder="check in date"></input>
                                         </br>
                                         <p>Checkin Status&nbsp;&nbsp;</p>
                                         <input ng-model="slot.user.checkInOut.checkInStatus" placeholder="check in status"></input>
                                         </br>
-                                        <p>Checkout Date&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.checkInOut.checkOutDate" placeholder="check out date"></input>
-                                        </br>
-                                        <p>Checkout Status&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.checkInOut.checkOutStatus" placeholder="check out status"></input>
-                                        </br>
+                                    </div>
+                                    <div class="check_user_edit_right user_edit_right">
+                                        <p>Drivers License&nbsp;&nbsp;</p>
+                                        <input ng-model="" placeholder="drivers license #"></input>
                                         <p>Vehicle Make&nbsp;&nbsp;</p>
                                         <input ng-model="slot.user.car.make" placeholder="vehicle make"></input>
                                         </br>
@@ -147,11 +97,11 @@
                                         <p>Vehicle Year&nbsp;&nbsp;</p>
                                         <input ng-model="slot.user.car.year" placeholder="vehicle year"></input>
                                         </br>
+                                        <p>Vehicle Color&nbsp;&nbsp;</p>
+                                        <input ng-model="slot.user.car.color" placeholder="vehicle color"></input>
+                                        <br>
                                         <p>Vehicle License&nbsp;&nbsp;</p>
                                         <input ng-model="slot.user.car.license" placeholder="vehicle license"></input>
-                                        </br>
-                                        <p>Admin Notes&nbsp;&nbsp;</p>
-                                        <textarea ng-model="slot.user.adminNotes" placeholder="Notes"></textarea>
                                         <br>
                                         <button ng-click="updateUser(slot.user)">Submit Changes</button>
                                     </div>
