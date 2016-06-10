@@ -27,7 +27,7 @@
     <!--Repeating cards of housing units-->
         <div class="cards_list_container" ng-if="cohortFilter">
            <div class="current_housing_cards_container">
-               <div class="current_housing_repeat_cards" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">
+               <div class="current_housing_repeat_cards white_background_color" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">
                    <div class="current_housing_cards_head">
                        <div>
                            <p>{{unit.campus}} - {{unit.unitNumber}}</p>
@@ -62,7 +62,7 @@
            </div>
 
            <!--Wants housing container on right of page-->
-                  <div class="wants_housing_container current_housing_repeat_cards">
+                  <div class="wants_housing_container current_housing_repeat_cards white_background_color">
                       <div class="requested_housing_cards_head">
                           <div>
                               <p>Requested Housing</p>

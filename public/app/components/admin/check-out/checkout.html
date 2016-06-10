@@ -6,7 +6,7 @@
 
      <div class="checkin_create_block">
          <div class="checkin_create_block_header"><p>Create checkout timeslot</p></div>
-         <div class="checkin_create_block_content">
+         <div class="checkin_create_block_content white_background_color">
              <select ng-model="checkout.campus" />
                  <option value="">Campus</option>
                  <option value="Provo">Provo</option>
@@ -26,7 +26,7 @@
      </div>
 
      <div class="checkin_timeslots_container">
-         <div class="checkin_timeslots_repeat" ng-repeat="check in allCheckouts">
+         <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckouts">
              <div class="checkin_create_header"><span>{{check.checkoutDay}}</span><i ng-click="deleteCheckouts(check)" class="fa fa-times"></i></div>
              <p>{{check.checkoutStart}}-{{check.checkoutEnd}}</p>
              <p>Duration: {{check.slotInterval}} min</p>
