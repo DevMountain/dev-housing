@@ -36,9 +36,7 @@ var getCheckouts = function(){
 
 getCheckouts();
 
-
-
-
+//CREATE CHECKOUT DAY WITH SLOTS
     $scope.createCheckout = function(info) {
         start = moment(info.start);
         end = moment(info.end);
@@ -48,7 +46,6 @@ getCheckouts();
         createSchedule();
     };
 
-
     var createSchedule = function(slots) {
         duration = end.diff(start, 'minutes');
         slots = duration / interval;
@@ -56,9 +53,7 @@ getCheckouts();
         for (var i = 0; i < slots; i++) {
             var addTime = i * interval;
             var newAppointment = start.clone().add(addTime, 'minutes');
-            var appointment = {
-                timeSlot: newAppointment.format()
-            };
+            var appointment = {timeSlot: newAppointment.format()};
             schedule.push(appointment);
         }
         var checkoutObj = {
@@ -79,7 +74,6 @@ getCheckouts();
         });
         getCheckouts();
     };
-
 
     $scope.deleteCheckouts = function(checkout) {
         checkoutSvc.deleteCheckouts(checkout).then(function(response) {
@@ -103,8 +97,5 @@ getCheckouts();
             console.log("Successfully updated user from Check-In");
         });
     };
-
-
-
 
 });  // closing tag

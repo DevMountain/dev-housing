@@ -25,12 +25,12 @@
             <p>Cohort</p>
             <input ng-model="checkout.cohort" placeholder="Ex: DM-10"></input>
             <br>
-            <button ng-if="checkout.campus" id="create_checkin" type="button" name="button" ng-click="createCheckout(checkin)">Create checkout timeslots</button>
+            <button ng-if="checkout.campus" id="create_checkin" type="button" name="button" ng-click="createCheckout(checkout)">Create checkout timeslots</button>
         </div>
     </div>
 
     <div class="checkin_timeslots_container">
-        <div class="checkin_timeslots_repeat" ng-repeat="check in allCheckouts">
+        <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckouts">
             <div class="checkin_create_header"><span>{{check.checkoutDay}}</span><i ng-click="deleteCheckouts(check)" class="fa fa-times"></i></div>
             <p>{{check.checkoutStart}}-{{check.checkoutEnd}}</p>
             <p>Duration: {{check.slotInterval}} min</p>
