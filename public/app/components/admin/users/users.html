@@ -35,49 +35,87 @@
 
     <!--Container of current FAQs-->
     <div class="users_cards_container">
-        <div ng-repeat="user in users | filter: userSearch" class="users_cards white_background_color">
-            <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
 
-            <div class="user_edit_container" ng-hide="editUser">
-                <div class="user_edit_left"
-                    <p class="users_cards_text">
+        <div ng-repeat="user in users | filter: userSearch" class="users_cards white_background_color">
+            <div class="users_cards_head"><div><p>{{user.firstName}} {{user.lastName}} - {{user.role}} {{user.campus}}</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
+
+            <div class="user_short_info" ng-hide="editUser" ng-click="showInfo = !showInfo">
+                      <div class="basic_info">
                         <span class="bold">Basic info</span><br>
                         Name: {{user.firstName}} {{user.lastName}}<br>
                         Age: {{user.age}}<br>
-                        Gender: {{user.gender}}<br>
-                        Email: {{user.email}}<br>
-                        Phone: {{user.phone}}<br>
                         Home City/State: {{user.currentAddress.city}}, {{user.currentAddress.state}}<br><br>
-                        <span class="bold">Admin</span><br>
-                        Admin Access: {{user.adminAccess}}<br>
-                        Admin Default: {{user.adminDefaultView}}<br><br>
+                      </div>
+                      <div class="basic_info">
                         <span class="bold">Cohort</span><br>
+                        <span ng-if="user.cohortID.length">Cohort(s): <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br></span>
+                        <span ng-if="!user.cohortID.length" class="bold_warning">User needs a cohortID!<br></span>
                         Campus: {{user.campus}}<br>
-                        Cohort(s): {{user.cohortID}}<br>
-                        DevMtnID: {{user.devmtnID}}<br>
-                        Role: {{user.role}}<br><br>
-                </div>
-                <div class="user_edit_right">
-                        <span class="bold">Housing</span><br>
-                        In Housing: {{user.inHousing}}<br>
-                        Rent Status: {{user.rent.isRenter}}<br>
-                        Rent Amount: {{user.rent.rentPrice}}<br>
-                        Rent Paid: {{user.rent.rentPaid}}<br>
-                        Private Room Requested: {{user.singleRoom.wantsSingleRoom}}<br>
-                        Private Room Occupant: {{user.singleRoom.hasSingleRoom}}<br>
-                        Checkin Date: {{user.checkInOut.checkInDate}}<br>
-                        Checkin Status: {{user.checkInOut.checkInStatus}}<br>
-                        Checkout Date: {{user.checkInOut.checkOutDate}}<br>
-                        Checkout Status: {{user.checkInOut.checkOutStatus}}<br><br>
-                        <span class="bold">Vehicles</span><br>
-                        Drivers License on File: {{user.licenseOnFile}}<br>
-                        Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}}  {{user.car.license}}<br><br>
-                        <span class="bold">User Notes</span><br>
-                        Notes: {{user.adminNotes}}
-                    </p>
-                </div>
-            </div>
+                      </div>
+                      <div class="basic_info">
+                        <span class="bold">Housing:</span><br>
+                        <span ng-if="!user.contractSigned" class="bold_warning">Contract not signed!<br></span>
+                        <span ng-if="!user.deposit.depositPaid" class="bold_warning">Deposit not paid!<br></span>
+                        <span ng-if="user.inHousing" class="bold_all_good">{{user.firstName}} is housed.<br></span>
+                        <span ng-if="!user.inHousing" class="bold_warning">{{user.firstName}} is homeless!<br></span>
 
+                        <span ng-if="user.singleRoom.wantsSingleRoom">Private room requested: {{user.singleRoom.wantsSingleRoom}}<br>
+                        </span>
+                        <span ng-if="user.singleRoom.hasSingleRoom">
+                          Has private room: {{user.singleRoom.hasSingleRoom}}<br>
+                        </span>
+                        Gender: {{user.gender}}<br>
+                      </div>
+
+                    </div>
+                <div class="user_full_info" ng-show="showInfo" ng-click="showInfo = !showInfo">
+                  <div class="basic_info">
+                        <span class="bold">Contact</span><br>
+                        Email: {{user.email}}<br>
+                        Phone: {{user.phone}}<br><br>
+                      </div>
+                      <div class="basic_info">
+                        <span class="bold">Details</span><br>
+                        Role: {{user.role}}<br>
+                        <span ng-if="user.deposit.depositPaid">Deposit: ${{user.deposit.depositAmount}} paid on {{user.deposit.depositPaidDateConverted}}<br></span>
+                        <span ng-if="user.deposit.depositReturned">Deposit returned: ${{user.deposit.depositReturnedAmount}} returned on {{user.deposit.depositReturnedDateConverted}}<br></span>
+                        <span ng-if="user.backgroundCheck">Background check on file.<br></span>
+                        <span ng-if="user.role === 'admin'">
+                        Campus Access: <span ng-repeat="access in user.adminAccess">{{access}}</span><br>
+                        Default Campus: {{user.adminDefaultView}}<br><br>
+                        </span>
+                      </div>
+                      <div class="basic_info">
+                        <span ng-if="user.rent.isRenter">
+                          <span class="bold">Rent</span><br>
+                          Rent Amount: {{user.rent.rentPrice}}<br>
+                          <span ng-if="user.rent.rentPaid" ng-repeat="rent in user.rent.rentPaidConverted">Rent Paid: {{rent}}<br></span>
+                        </span>
+
+                        <!-- Check-in Date: {{user.checkInOut.checkInDate}}<br>
+                        Check-in Status: {{user.checkInOut.checkInStatus}}<br>
+                        Check-out Date: {{user.checkInOut.checkOutDate}}<br>
+                        Check-out Status: {{user.checkInOut.checkOutStatus}}<br><br> -->
+                      </div>
+                      <div class="basic_info">
+                        <span class="bold">Vehicles</span><br>
+                        <span ng-if="user.licenseOnFile">Driver's License is on file.<br></span>
+                        <span ng-if="!user.licenseOnFile">No driver's license on file<br></span>
+                        <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}<br><br></span>
+                        <span ng-if="!user.car">No car on file<br></span>
+
+                      </div>
+                </div>
+
+                <div ng-show="showInfo" class="admin_notes_section" id="admin_notes" ng-click="showInfo = !showInfo" ng-if="user.adminNotes">
+
+                  <span class="bold">Admin Notes</span><br>
+                  {{user.adminNotes}}
+
+                </div>
+
+
+                <!-- TODO: fix this mess -->
             <div class="users_edit" ng-show="editUser">
                 <div class="user_edit_container">
                     <div class="user_edit_left">
