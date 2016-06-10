@@ -1,14 +1,45 @@
 .pending-wrap
 	height: 100vh
 	background-color: #3C3C3C
+	background-attachment: fixed
 	text-align: center
 	padding-top: 30px
 	margin: auto
 
+	@media (max-width: 500px)
+		height: 100%
+
 .pending-image
 	margin-bottom: 50px
 
+	@media (max-width: 500px)
+		width: 285px
+
 .pending-message
+	margin-bottom: 30px
+	margin-left: 5px
+	margin-right: 5px
 	font-family: proxima
 	font-size: 30px
 	color: white
+
+	@media (max-width: 500px)
+		font-size: 20px
+
+.return-to-login
+    border: none
+    padding: 5px
+    box-shadow: 0px 3px 6px #000000
+    border-radius: 7px
+    color: white
+    background-color: #418AD0
+    font-size: 20px
+    font-family: proxima
+
+    &:active 
+      	box-shadow: 0 1px 2px #666
+      	transform: translateY(4px)
+      	outline: none
+
+    @media (max-width: 500px)
+    	margin-bottom: 260px
