@@ -2,29 +2,32 @@ angular.module('devHousing').controller('adminUsersController', function($scope,
 
 $scope.user = user;
 
-// display all users on view
+// DISPLAY ALL USERS ON VIEW, CONVERT AGE TO YEARS, AND CONVERT RENT DATE TO READABLE FORMAT
 $scope.displayUsers = function() {
     userSvc.getUsers().then(function(response) {
         $scope.users = response;
         for (var i = 0; i < $scope.users.length; i++) {
+            var rentPaidConverted = []
             var years = moment().diff($scope.users[i].birthdate, 'years');
-            var rentPaidConverted = moment().diff($scope.users[i].rent.rentPaid, 'dddd MMMM yyyy')
             $scope.users[i].age = years;
+            if ($scope.users[i].deposit.depositPaid) {
+              var depositPaidDateConverted = moment($scope.users[i].deposit.depositPaidDate).format('M/D/YY')
+              $scope.users[i].deposit.depositPaidDateConverted = depositPaidDateConverted;
+            }
+            if ($scope.users[i].deposit.depositReturned) {
+              var depositReturnedDateConverted = moment($scope.users[i].deposit.depositReturnedDate).format('M/D/YY')
+              $scope.users[i].deposit.depositReturnedDateConverted = depositReturnedDateConverted;
+            }
+              for (var j = 0; j < $scope.users[i].rent.rentPaid.length; j++){
+                var rentDate = moment($scope.users[i].rent.rentPaid[j]).format('M/D/YY');
+                rentPaidConverted.push(rentDate)
+              }
+            $scope.users[i].rent.rentPaidConverted = rentPaidConverted;
         }
     });
 };
 
 $scope.displayUsers();
-
-// create new user.  This functionality does not work yet, and may not be needed
-// $scope.newUser = {};
-// $scope.addUser = function(newUser) {
-//     userSvc.createUser(newUser).then(function(response) {
-//         $scope.displayUsers();
-//         $scope.newUser = {};
-//     });
-// };
-
 
 // update single user
 $scope.updateUser = function(user) {

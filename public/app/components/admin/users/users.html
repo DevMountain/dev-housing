@@ -47,28 +47,38 @@
                       </div>
                       <div class="basic_info">
                         <span class="bold">Cohort</span><br>
+                        <span ng-if="user.cohortID.length">Cohort(s): <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br></span>
+                        <span ng-if="!user.cohortID.length" class="bold_warning">User needs a cohortID!<br></span>
                         Campus: {{user.campus}}<br>
-                        Cohort(s): <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br><br>
                       </div>
                       <div class="basic_info">
                         <span class="bold">Housing:</span><br>
-                        In housing: {{user.inHousing}}<br>
-                        Private room requested: {{user.singleRoom.wantsSingleRoom}}<br>
+                        <span ng-if="!user.contractSigned" class="bold_warning">Contract not signed!<br></span>
+                        <span ng-if="!user.deposit.depositPaid" class="bold_warning">Deposit not paid!<br></span>
+                        <span ng-if="user.inHousing" class="bold_all_good">{{user.firstName}} is housed.<br></span>
+                        <span ng-if="!user.inHousing" class="bold_warning">{{user.firstName}} is homeless!<br></span>
+
+                        <span ng-if="user.singleRoom.wantsSingleRoom">Private room requested: {{user.singleRoom.wantsSingleRoom}}<br>
+                        </span>
                         <span ng-if="user.singleRoom.hasSingleRoom">
                           Has private room: {{user.singleRoom.hasSingleRoom}}<br>
                         </span>
                         Gender: {{user.gender}}<br>
                       </div>
+
                     </div>
-                <div class="user_full_info" ng-show="showInfo">
+                <div class="user_full_info" ng-show="showInfo" ng-click="showInfo = !showInfo">
                   <div class="basic_info">
                         <span class="bold">Contact</span><br>
                         Email: {{user.email}}<br>
                         Phone: {{user.phone}}<br><br>
                       </div>
                       <div class="basic_info">
-                        <span class="bold">Role</span><br>
+                        <span class="bold">Details</span><br>
                         Role: {{user.role}}<br>
+                        <span ng-if="user.deposit.depositPaid">Deposit: ${{user.deposit.depositAmount}} paid on {{user.deposit.depositPaidDateConverted}}<br></span>
+                        <span ng-if="user.deposit.depositReturned">Deposit returned: ${{user.deposit.depositReturnedAmount}} returned on {{user.deposit.depositReturnedDateConverted}}<br></span>
+                        <span ng-if="user.backgroundCheck">Background check on file.<br></span>
                         <span ng-if="user.role === 'admin'">
                         Campus Access: <span ng-repeat="access in user.adminAccess">{{access}}</span><br>
                         Default Campus: {{user.adminDefaultView}}<br><br>
@@ -78,7 +88,6 @@
                         <span ng-if="user.rent.isRenter">
                           <span class="bold">Rent</span><br>
                           Rent Amount: {{user.rent.rentPrice}}<br>
-                          <!-- TODO: fix rent paid to hide/show and add ng-repeat and add label-->
                           <span ng-if="user.rent.rentPaid" ng-repeat="rent in user.rent.rentPaidConverted">Rent Paid: {{rent}}<br></span>
                         </span>
 
@@ -89,18 +98,21 @@
                       </div>
                       <div class="basic_info">
                         <span class="bold">Vehicles</span><br>
-                        <span ng-if="user.licenseOnFile">Drivers License on File: {{user.licenseOnFile}}<br></span>
+                        <span ng-if="user.licenseOnFile">Driver's License is on file.<br></span>
                         <span ng-if="!user.licenseOnFile">No driver's license on file<br></span>
                         <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}<br><br></span>
                         <span ng-if="!user.car">No car on file<br></span>
-                      </div>
 
-                      <div class="basic_info">
-                        <span class="bold">Admin Notes</span><br>
-                        {{user.adminNotes}}
                       </div>
+                </div>
+
+                <div ng-show="showInfo" class="admin_notes_section" id="admin_notes" ng-click="showInfo = !showInfo" ng-if="user.adminNotes">
+
+                  <span class="bold">Admin Notes</span><br>
+                  {{user.adminNotes}}
 
                 </div>
+
 
                 <!-- TODO: fix this mess -->
             <div class="users_edit" ng-show="editUser">
