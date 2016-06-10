@@ -44,7 +44,7 @@
                     <div class="modal-content">
                       <div class="user_update_modal">
                         <h2>{{slot.user.firstName + " " + slot.user.lastName}}</h2>
-                        <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
+                        <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i></div></div>
 
                         <div class="user_edit_container" ng-hide="editUser">
                             <div class="user_edit_left"
@@ -107,15 +107,13 @@
                                     <p>Vehicle Year&nbsp;&nbsp;</p><input ng-model="slot.user.car.year" placeholder="vehicle year"></input></br>
                                     <p>Vehicle License&nbsp;&nbsp;</p><input ng-model="slot.user.car.license" placeholder="vehicle license"></input></br>
                                     <p>Admin Notes&nbsp;&nbsp;</p><textarea ng-model="slot.user.adminNotes" placeholder="Notes"></textarea><br>
-                                    <button ng-click="updateUser(user)">Submit Changes</button>
+                                    <button ng-click="updateUser(slot.user)">Submit Changes</button>
                                 </div>
                             </div>
                         </div>
 
                       </div>
                         <div class="modal-footer">
-                          <button class="update_user_button" type="button" ng-click="user_check_Update(groupName, groupDescription, group._id)">Update User</button>
-                          <br>
                           <br>
                           <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                         </div>
