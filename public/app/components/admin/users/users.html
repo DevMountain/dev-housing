@@ -36,48 +36,73 @@
     <!--Container of current FAQs-->
     <div class="users_cards_container">
         <div ng-repeat="user in users | filter: userSearch" class="users_cards">
-            <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
+            <div class="users_cards_head"><div><p>{{user.firstName}} {{user.lastName}} - {{user.role}} {{user.campus}}</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
 
-            <div class="user_edit_container" ng-hide="editUser">
-                <div class="user_edit_left"
-                    <p class="users_cards_text">
+            <div class="user_short_info" ng-hide="editUser" ng-click="showInfo = !showInfo">
+                      <div class="basic_info">
                         <span class="bold">Basic info</span><br>
                         Name: {{user.firstName}} {{user.lastName}}<br>
                         Age: {{user.age}}<br>
-                        Gender: {{user.gender}}<br>
-                        Email: {{user.email}}<br>
-                        Phone: {{user.phone}}<br>
                         Home City/State: {{user.currentAddress.city}}, {{user.currentAddress.state}}<br><br>
-                        <span class="bold">Admin</span><br>
-                        Admin Access: {{user.adminAccess}}<br>
-                        Admin Default: {{user.adminDefaultView}}<br><br>
+                      </div>
+                      <div class="basic_info">
                         <span class="bold">Cohort</span><br>
                         Campus: {{user.campus}}<br>
-                        Cohort(s): {{user.cohortID}}<br>
-                        DevMtnID: {{user.devmtnID}}<br>
-                        Role: {{user.role}}<br><br>
-                </div>
-                <div class="user_edit_right">
-                        <span class="bold">Housing</span><br>
-                        In Housing: {{user.inHousing}}<br>
-                        Rent Status: {{user.rent.isRenter}}<br>
-                        Rent Amount: {{user.rent.rentPrice}}<br>
-                        Rent Paid: {{user.rent.rentPaid}}<br>
-                        Private Room Requested: {{user.singleRoom.wantsSingleRoom}}<br>
-                        Private Room Occupant: {{user.singleRoom.hasSingleRoom}}<br>
-                        Checkin Date: {{user.checkInOut.checkInDate}}<br>
-                        Checkin Status: {{user.checkInOut.checkInStatus}}<br>
-                        Checkout Date: {{user.checkInOut.checkOutDate}}<br>
-                        Checkout Status: {{user.checkInOut.checkOutStatus}}<br><br>
-                        <span class="bold">Vehicles</span><br>
-                        Drivers License on File: {{user.licenseOnFile}}<br>
-                        Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}}  {{user.car.license}}<br><br>
-                        <span class="bold">User Notes</span><br>
-                        Notes: {{user.adminNotes}}
-                    </p>
-                </div>
-            </div>
+                        Cohort(s): <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br><br>
+                      </div>
+                      <div class="basic_info">
+                        <span class="bold">Housing:</span><br>
+                        In housing: {{user.inHousing}}<br>
+                        Private room requested: {{user.singleRoom.wantsSingleRoom}}<br>
+                        <span ng-if="user.singleRoom.hasSingleRoom">
+                          Has private room: {{user.singleRoom.hasSingleRoom}}<br>
+                        </span>
+                        Gender: {{user.gender}}<br>
+                      </div>
+                    </div>
+                <div class="user_full_info" ng-show="showInfo">
+                  <div class="basic_info">
+                        <span class="bold">Contact</span><br>
+                        Email: {{user.email}}<br>
+                        Phone: {{user.phone}}<br><br>
+                      </div>
+                      <div class="basic_info">
+                        <span class="bold">Role</span><br>
+                        Role: {{user.role}}<br>
+                        <span ng-if="user.role === 'admin'">
+                        Campus Access: <span ng-repeat="access in user.adminAccess">{{access}}</span><br>
+                        Default Campus: {{user.adminDefaultView}}<br><br>
+                        </span>
+                      </div>
+                      <div class="basic_info">
+                        <span ng-if="user.rent.isRenter">
+                          Is renter: {{user.rent.isRenter}}<br>
+                          Rent Amount: {{user.rent.rentPrice}}<br>
+                          <!-- TODO: fix rent paid to hide/show and add ng-repeat and add label-->
+                          <span ng-if="user.rent.rentPaid">Rent Paid: {{user.rent.rentPaid}}<br></span>
+                        </span>
 
+                        <!-- Check-in Date: {{user.checkInOut.checkInDate}}<br>
+                        Check-in Status: {{user.checkInOut.checkInStatus}}<br>
+                        Check-out Date: {{user.checkInOut.checkOutDate}}<br>
+                        Check-out Status: {{user.checkInOut.checkOutStatus}}<br><br> -->
+                      </div>
+                      <div class="basic_info">
+                        <span class="bold">Vehicles</span><br>
+                        <span ng-if="user.licenseOnFile">Drivers License on File: {{user.licenseOnFile}}<br></span>
+                        <span ng-if="!user.licenseOnFile">No driver's license on file<br></span>
+                        <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}<br><br></span>
+                        <span ng-if="!user.car">No car on file<br></span>
+                      </div>
+
+                      <div class="basic_info">
+                        <span class="bold">Admin Notes</span><br>
+                        {{user.adminNotes}}
+                      </div>
+
+                </div>
+
+                <!-- TODO: fix this mess -->
             <div class="users_edit" ng-show="editUser">
                 <div class="user_edit_container">
                     <div class="user_edit_left">
