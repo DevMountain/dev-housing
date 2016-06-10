@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, checkoutSvc, cohortSvc, user) {
+angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, checkoutSvc, cohortSvc, user, userSvc) {
 
     $scope.user = user;
 
@@ -36,6 +36,7 @@ var getCheckouts = function(){
 
 getCheckouts();
 
+//CREATE CHECKOUT DAY WITH SLOTS
     $scope.createCheckout = function(info) {
         start = moment(info.start);
         end = moment(info.end);
@@ -45,7 +46,6 @@ getCheckouts();
         createSchedule();
     };
 
-
     var createSchedule = function(slots) {
         duration = end.diff(start, 'minutes');
         slots = duration / interval;
@@ -53,9 +53,7 @@ getCheckouts();
         for (var i = 0; i < slots; i++) {
             var addTime = i * interval;
             var newAppointment = start.clone().add(addTime, 'minutes');
-            var appointment = {
-                timeSlot: newAppointment.format()
-            };
+            var appointment = {timeSlot: newAppointment.format()};
             schedule.push(appointment);
         }
         var checkoutObj = {
@@ -77,13 +75,27 @@ getCheckouts();
         getCheckouts();
     };
 
-
     $scope.deleteCheckouts = function(checkout) {
         checkoutSvc.deleteCheckouts(checkout).then(function(response) {
             getCheckouts();
         });
     };
 
-
+    // update single user
+    $scope.updateUser = function(user) {
+        // this is to update multiple cohorts to an array
+        var cohorts = [];
+        cohorts.push(user.cohortID[0]);
+        if (user.cohortID[1]) {
+            cohorts.push(user.cohortID[1]);
+        };
+        if (user.cohortID[2]) {
+            cohorts.push(user.cohortID[2]);
+        };
+        user.cohortID = cohorts;
+        userSvc.update(user).then(function(response) {
+            console.log("Successfully updated user from Check-In");
+        });
+    };
 
 });  // closing tag

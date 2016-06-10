@@ -1,7 +1,7 @@
 angular.module("devHousing").controller("modalCtrl", function($scope, ModalService) {
-  
+
   $scope.confirmationAnswer = 'No answer yet';
-  
+
   $scope.openConfirm = function() {
     ModalService.showModal({
       templateUrl: "./app/components/modals/confirmModal/confirmTemplate.html",
