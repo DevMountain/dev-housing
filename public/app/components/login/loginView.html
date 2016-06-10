@@ -6,10 +6,6 @@
         </div>
     <div class="login-container" ng-show="showLogin">
 
-        <div class="top-buttons">
-            <button ng-click="loginSwitch()" ng-show="showLogin" class="signup-button">Apply for housing</button>
-        </div>
-
         <div class="login-wrap" ng-show="showLogin">
             <form name="loginForm" novalidate>
                 <div class="log-in-div">
@@ -24,7 +20,10 @@
                     </div>
                 </div>
                 <p class="error">{{loginError}}</p>
-                <button class="submit-login" type="submit" ng-disabled="loginForm.$invalid" ng-click="submitLogin(login)">submit</button>
+                <div class="login-buttons">
+                    <button class="login-button" type="submit" ng-disabled="loginForm.$invalid" ng-click="submitLogin(login)">Login</button>
+                    <button class="register-button" ng-click="loginSwitch()" ng-show="showLogin" class="signup-button">Register</button>
+                </div>
             </form>
         </div>
     </div>
@@ -131,11 +130,11 @@
                 </div>
 
 
-                <button type="submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user); openConfirm(); loginSwitch()">submit</button>
+                <button type="submit" class="register-submit" ng-disabled="signupForm.$invalid" ng-click="submitSignUp(user); openConfirm(); loginSwitch()">Submit</button>
             </div>
 
         </form>
-        <button ng-click="loginSwitch()" ng-show="!showLogin" class="login-button">Login</button>
+        <button ng-click="loginSwitch()" ng-show="!showLogin">Login</button>
     </section>
 
     <div class="contact-admin">
