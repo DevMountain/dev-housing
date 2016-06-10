@@ -8,6 +8,7 @@ $scope.displayUsers = function() {
         $scope.users = response;
         for (var i = 0; i < $scope.users.length; i++) {
             var years = moment().diff($scope.users[i].birthdate, 'years');
+            var rentPaidConverted = moment().diff($scope.users[i].rent.rentPaid, 'dddd MMMM yyyy')
             $scope.users[i].age = years;
         }
     });

@@ -76,10 +76,10 @@
                       </div>
                       <div class="basic_info">
                         <span ng-if="user.rent.isRenter">
-                          Is renter: {{user.rent.isRenter}}<br>
+                          <span class="bold">Rent</span><br>
                           Rent Amount: {{user.rent.rentPrice}}<br>
                           <!-- TODO: fix rent paid to hide/show and add ng-repeat and add label-->
-                          <span ng-if="user.rent.rentPaid">Rent Paid: {{user.rent.rentPaid}}<br></span>
+                          <span ng-if="user.rent.rentPaid" ng-repeat="rent in user.rent.rentPaidConverted">Rent Paid: {{rent}}<br></span>
                         </span>
 
                         <!-- Check-in Date: {{user.checkInOut.checkInDate}}<br>
