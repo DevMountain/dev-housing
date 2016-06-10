@@ -5,7 +5,7 @@
 <div class="main-wrapper">
 
     <div class="users_cards_container">
-        <div class="users_cards">
+        <div class="users_cards white_background_color">
             <div class="users_cards_head"><div><p>Search Users</p></div>
                 <!-- <div><span>Add User</span><i ng-click="addModal = !addModal" class="fa fa-plus"></i></div> -->
             </div>
@@ -35,7 +35,7 @@
 
     <!--Container of current FAQs-->
     <div class="users_cards_container">
-        <div ng-repeat="user in users | filter: userSearch" class="users_cards">
+        <div ng-repeat="user in users | filter: userSearch" class="users_cards white_background_color">
             <div class="users_cards_head"><div><p>User</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
 
             <div class="user_edit_container" ng-hide="editUser">
