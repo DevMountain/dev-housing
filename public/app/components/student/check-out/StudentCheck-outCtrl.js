@@ -4,12 +4,13 @@ angular.module('devHousing')
 $scope.user = user;
 $scope.hasSlot = true;
 
-  //LOAD EXISTING CHECK OUTS AND FORMAT DATES
+  //LOAD EXISTING CHECK INS AND FORMAT DATES
     let getCheckouts = function(){
       checkoutSvc.getCheckouts().then(function(response){
         for (let i = 0; i < response.length; i++){
-          response[i].checkoutStart = moment(response[i].checkoutStart).format('dddd MMMM Do YYYY');
-          response[i].checkoutEnd = moment(response[i].checkoutEnd).format('dddd MMMM Do YYYY - h:mm A');
+          response[i].checkoutDay = moment(response[i].checkoutStart).format('dddd MMMM Do')
+          response[i].checkoutStart = moment(response[i].checkoutStart).format('h:mm');
+          response[i].checkoutEnd = moment(response[i].checkoutEnd).format('h:mm A');
           for (let j = 0; j < response[i].checkoutAppointments.length; j++){
             response[i].checkoutAppointments[j].timeSlot = moment(response[i].checkoutAppointments[j].timeSlot).format('h:mm A')
           }
@@ -24,7 +25,7 @@ $scope.hasSlot = true;
             }
           }
         }
-      })
+    });
     };
 
     getCheckouts();
@@ -32,6 +33,6 @@ $scope.hasSlot = true;
     $scope.updateCheckouts = (slot, check) => {
       checkoutSvc.updateCheckouts(slot, check).then( (response) => {
         getCheckouts();
-      })
-    }
+    });
+};
 });

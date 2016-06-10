@@ -1,23 +1,30 @@
 <student-side-bar-nav></student-side-bar-nav>
 <student-mobile-side-bar-nav></student-mobile-side-bar-nav>
+
+
 <user-info></user-info>
+
 
 <div class="student-main-wrapper">
 
     <!--Top card with search options-->
     <div class="default_cards_container">
-        <div class="workorder_repeat_cards">
+        <div class="workorder_repeat_cards white_background_color">
             <div class="default_cards_head"><div id="student_workorder_header_text"><p>Create Workorder</p></div></div>
-            <div class="workorder_sort_container default_cards_text">
-                <div><input ng-model="workorder" placeholder="search"></input></div>
-                <div><select ng-model="workorder.problemType">
-                    <option value="" disabled selected>Select Issue Type</option>
-                    <option value="appliance">appliance</option>
-                    <option value="electrical">electrical</option>
-                    <option value="plumbing">plumbing</option>
-                    <option value="other">other</option>
-                </select>
-                <button ng-click="toggleWorkorderDashboard = !toggleWorkorderDashboard; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id">Add New Workorder</button>
+            <div class="student_workorder_sort_container default_cards_text">
+                <div><input ng-model="workorder" placeholder="Search workorders"></input></div>
+                <br>
+                <div>
+                    <select ng-model="workorder.problemType">
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="appliance">appliance</option>
+                        <option value="electrical">electrical</option>
+                        <option value="plumbing">plumbing</option>
+                        <option value="other">other</option>
+                    </select>
+                    <br>
+                    <br>
+                <button ng-click="toggleWorkorderDashboard = !toggleWorkorderDashboard; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id">New Workorder</button>
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
@@ -26,11 +33,10 @@
                 <option value="" disabled selected>Select Unit</option>
                 <option ng-repeat="unit in units" value="{{unit.campus}} {{unit.unitNumber}}">{{unit.campus}} {{unit.unitNumber}}</option>
             </select>
-
-             <br>
-
+                <br>
+                <br>
                 <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
-
+                <br>
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Select</option>
                     <option value="appliance">appliance</option>
@@ -46,7 +52,7 @@
 
     <!--Repeating cards of work orders-->
     <div class="default_cards_container">
-        <div class="workorder_repeat_cards" ng-repeat="workorder in list | orderBy: '-'| filter: workorder">
+        <div class="workorder_repeat_cards white_background_color" ng-repeat="workorder in list | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
                 <div><p>Work Order Unit: {{workorder.unit}}</p></div>
             </div>
@@ -64,5 +70,8 @@
                 </div>
         </div>
     </div>
+
+</div>
+
 
 </div>  <!--closing tag-->

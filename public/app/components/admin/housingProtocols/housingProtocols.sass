@@ -1,0 +1,86 @@
+@font-face
+    font-family: 'Proxima'
+    src: url('./assets/fonts/proxima/proximaNova-Light.otf')
+
+@font-face
+    font-family: 'Bold'
+    src: url('./assets/fonts/proxima/ProximaNova-Semibold_1.otf')
+
+
+$regularText: Proxima
+$boldText: Bold
+
+.bold
+    font-family: $boldText
+
+body
+    font-family: $regularText
+    line-height: 1.5
+
+textarea
+    font-size: 16px
+    font-family: $regularText
+
+.temp
+    width: 100%
+    height: 100px
+    text-align: right
+    padding-right: 30px
+
+.admin_protocol_cards_container
+    display: flex
+    flex-direction: column
+    margin: 0 15% 0 15%
+    @media(max-width: 500px)
+        min-width: 275px
+
+.admin_protocol_cards_head
+    display: flex
+    justify-content: space-between
+    padding-bottom: 10px
+    padding-top: 10px
+    padding-left: 10px
+    padding-right: 10px
+    margin-bottom: 10px
+    margin-top: -10px
+    margin-left: -10px
+    margin-right: -10px
+    border-top-right-radius: 8px
+    border-top-left-radius: 8px
+    color: white
+    text-shadow: 0px 1px black
+    background: #418AD0
+    font-size: 20px
+
+.admin_protocol_cards_title_adjust
+    padding-top: 5px
+
+.admin_protocol_cards_wrench
+    margin-top: 20px
+
+.admin_protocol_cards_head i
+    padding-left: 10px
+
+// .admin_protocol_cards_head img
+//     padding-left: 10px
+
+.admin_protocol_cards
+    display: flex
+    flex-direction: column
+    justify-content: center
+    border-left: 1px solid #898989
+    border-bottom: 1px solid #898989
+    border-right: 1px solid #898989
+    padding: 10px
+    padding-bottom: 50px
+    margin: 10px
+    border-radius: 8px
+    font-size: 16px
+    box-shadow: 0px 3px 6px #888888
+
+.admin_protocol_cards_text
+    padding-top: 30px
+    word-wrap: break-word
+
+.admin_protocol_cards_new
+    margin-top: 20px
