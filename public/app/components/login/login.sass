@@ -15,7 +15,7 @@
   margin-bottom: 13px
 
   @media (max-width: 500px)
-    height: 240px
+    height: 215px
 
 .login-wrap
   display: inline-block
@@ -34,6 +34,24 @@
   color: white
   text-align: center
 
+.login-buttons
+  display: inline-block
+
+.login-button, .register-button
+  height: 30px
+  width: 75px
+  border: none
+  box-shadow: 0px 3px 6px #000000
+  border-radius: 7px
+  color: white
+  background-color: #418AD0
+
+  &:active 
+    box-shadow: 0 1px 2px #666
+    transform: translateY(4px)
+    outline: none
+
+
 .contact-admin
   position: fixed
   bottom: 5px
@@ -43,20 +61,6 @@
 
   @media (max-width: 500px)
     font-size: 11px
-
-.submit-login
-
-
-// ///
-// .login-button
-
-//   &:hover
-
-//   &:active
-
-
-
-// .signup-button
 
 .sign-up-section
   margin-top: 0px
@@ -94,7 +98,7 @@
 .car-input
   display: flex
   flex-direction: column
-  margin-bottom: 20px
+  margin-bottom: 30px
 
 .car-field
   font-family: proxima
@@ -121,11 +125,37 @@
   align-items: center
   flex-direction: column
 
+.register-submit
+    width: 285px
+    height: 70px
+    border: none
+    box-shadow: 0px 3px 6px #000000
+    border-radius: 7px
+    color: white
+    background-color: #418AD0
+    font-size: 50px
+    font-family: proxima
+
+    &:disabled
+      opacity: .5
+
+    &:active 
+      box-shadow: 0 1px 2px #666
+      transform: translateY(4px)
+      outline: none
+
 button
+  cursor: pointer
   @media (max-width: 500px)
     background-color: white
     border: 1px black solid
     border-radius: 5px
+
+  &:disabled
+    cursor: auto
+    opacity: .5
+
+
 
 input:-webkit-autofill
   -webkit-box-shadow: 0 0 0px 1000px #3C3C3C inset
