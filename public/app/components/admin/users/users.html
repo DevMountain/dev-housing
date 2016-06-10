@@ -6,11 +6,21 @@
 
     <div class="users_cards_container">
         <div class="users_cards white_background_color">
-            <div class="users_cards_head"><div><p>Search Users</p></div>
-                <!-- <div><span>Add User</span><i ng-click="addModal = !addModal" class="fa fa-plus"></i></div> -->
-            </div>
+            <div class="users_cards_head"><div><p>Search Users</p></div></div>
+            <!--Search by name-->
             <div class="users_cards_new">
-                <input ng-model="userSearch" placeholder="Search by name"></input>
+                <input ng-model="userSearch" placeholder="Search by Name"></input>
+            </div>
+            <!--Search by cohort-->
+            <div>
+                <input ng-model="cohortSearch" placeholder="Search by Cohort"></input>
+            </div>
+            <!--Filter by campus-->
+            <div>
+                <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
+                    <option value="">Campus</option>
+                    <option ng-repeat="cohort"></option>
+                </select>
             </div>
             <!-- <div class="users_edit" ng-show="addModal">
                 <p class="bold">Add a new user</p>
@@ -33,18 +43,19 @@
         </div>
     </div>
 
-    <!--Container of current FAQs-->
     <div class="users_cards_container">
 
-        <div ng-repeat="user in users | filter: userSearch" class="users_cards white_background_color">
+        <div ng-repeat="user in users | filter: userSearch | filter: {campus: cohortFilter.name} | filter: cohortSearch" class="users_cards white_background_color">
             <div class="users_cards_head"><div><p>{{user.firstName}} {{user.lastName}} - {{user.role}} {{user.campus}}</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
 
-            <div class="user_short_info" ng-hide="editUser" ng-click="showInfo = !showInfo">
+            <div class="user_short_info" ng-hide="editUser">
                       <div class="basic_info">
                         <span class="bold">Basic info</span><br>
                         Name: {{user.firstName}} {{user.lastName}}<br>
                         Age: {{user.age}}<br>
                         Home City/State: {{user.currentAddress.city}}, {{user.currentAddress.state}}<br><br>
+                        <i ng-hide="showInfo" ng-click="showInfo = !showInfo" class="fa fa-caret-down">&nbsp;<span class="caret">Expand</span></i>
+                        <!-- <i ng-show="showInfo" ng-click="showInfo = !showInfo" class="fa fa-caret-up">&nbsp;<span class="caret">Hide</span></i> -->
                       </div>
                       <div class="basic_info">
                         <span class="bold">Cohort</span><br>
@@ -103,17 +114,16 @@
                         <span ng-if="!user.licenseOnFile">No driver's license on file<br></span>
                         <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}<br><br></span>
                         <span ng-if="!user.car">No car on file<br></span>
-
                       </div>
                 </div>
 
                 <div ng-show="showInfo" class="admin_notes_section" id="admin_notes" ng-click="showInfo = !showInfo" ng-if="user.adminNotes">
-
-                  <span class="bold">Admin Notes</span><br>
-                  {{user.adminNotes}}
-
+                  <span class="bold">Admin Notes</span><br>{{user.adminNotes}}
                 </div>
 
+                <div>
+                    <i id="hide_caret" ng-show="showInfo" ng-click="showInfo = !showInfo" class="fa fa-caret-up">&nbsp;<span class="caret">Hide</span></i>
+                </div>
 
                 <!-- TODO: fix this mess -->
             <div class="users_edit" ng-show="editUser">
