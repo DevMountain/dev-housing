@@ -8,10 +8,11 @@ $scope.hasSlot = true;
     let getCheckins = function(){
       checkinSvc.getCheckins().then(function(response){
         for (let i = 0; i < response.length; i++){
-          response[i].checkinStart = moment(response[i].checkinStart).format('dddd MMMM Do YYYY');
-          response[i].checkinEnd = moment(response[i].checkinEnd).format('dddd MMMM Do YYYY - h:mm A');
-          for (let j = 0; j < response[i].checkinAppointments.length; j++){
-            response[i].checkinAppointments[j].timeSlot = moment(response[i].checkinAppointments[j].timeSlot).format('h:mm A')
+          response[i].checkoutDay = moment(response[i].checkoutStart).format('dddd MMMM Do')
+          response[i].checkoutStart = moment(response[i].checkoutStart).format('h:mm');
+          response[i].checkoutEnd = moment(response[i].checkoutEnd).format('h:mm A');
+          for (let j = 0; j < response[i].checkoutAppointments.length; j++){
+            response[i].checkoutAppointments[j].timeSlot = moment(response[i].checkoutAppointments[j].timeSlot).format('h:mm A')
           }
         }
         $scope.allCheckins = response;
@@ -24,14 +25,14 @@ $scope.hasSlot = true;
             }
           }
         }
-      })
+    });
     };
 
     getCheckins();
 
-    $scope.updateCheckins = (slot, check) => {
-      checkinSvc.updateCheckins(slot, check).then( (response) => {
-        getCheckins();
-      })
-    }
+    $scope.updateCheckouts = (slot, check) => {
+      checkoutSvc.updateCheckouts(slot, check).then( (response) => {
+        getCheckouts();
+    });
+};
 });

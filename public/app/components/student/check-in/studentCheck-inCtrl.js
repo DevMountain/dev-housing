@@ -8,8 +8,9 @@ $scope.hasSlot = true;
     let getCheckins = function(){
       checkinSvc.getCheckins().then(function(response){
         for (let i = 0; i < response.length; i++){
-          response[i].checkinStart = moment(response[i].checkinStart).format('dddd MMMM Do YYYY');
-          response[i].checkinEnd = moment(response[i].checkinEnd).format('dddd MMMM Do YYYY - h:mm A');
+          response[i].checkinDay = moment(response[i].checkinStart).format('dddd MMMM Do');
+          response[i].checkinStart = moment(response[i].checkinStart).format('h:mm');
+          response[i].checkinEnd = moment(response[i].checkinEnd).format('h:mm A');
           for (let j = 0; j < response[i].checkinAppointments.length; j++){
             response[i].checkinAppointments[j].timeSlot = moment(response[i].checkinAppointments[j].timeSlot).format('h:mm A')
           }
