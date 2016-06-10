@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, checkoutSvc, cohortSvc, user) {
+angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, checkoutSvc, cohortSvc, user, userSvc) {
 
     $scope.user = user;
 
@@ -86,6 +86,24 @@ getCheckouts();
             getCheckouts();
         });
     };
+
+    // update single user
+    $scope.updateUser = function(user) {
+        // this is to update multiple cohorts to an array
+        var cohorts = [];
+        cohorts.push(user.cohortID[0]);
+        if (user.cohortID[1]) {
+            cohorts.push(user.cohortID[1]);
+        };
+        if (user.cohortID[2]) {
+            cohorts.push(user.cohortID[2]);
+        };
+        user.cohortID = cohorts;
+        userSvc.update(user).then(function(response) {
+            console.log("Successfully updated user from Check-In");
+        });
+    };
+
 
 
 
