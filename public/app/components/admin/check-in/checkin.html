@@ -62,9 +62,12 @@
                                     <br> Room: {{slot.user.room}}
                                     <br> Deposit Paid: {{slot.user.deposit.depositPaid}}
                                     <br> Contract Signed: {{slot.user.contractSigned}}
+                                    <br>
                                     <span class="bold">Vehicles</span>
-                                    <br> Drivers License on File: {{slot.user.licenseOnFile}}
-                                    <br> Vehicle: {{slot.user.car.make}} {{slot.user.car.model}} {{slot.user.car.year}} {{slot.user.car.license}}
+                                    <br> <span ng-if="slot.user.licenseOnFile">Driver's License is on file.<br></span>
+                                    <span ng-if="!slot.user.licenseOnFile">No driver's license on file<br></span>
+                                    <br> <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}<br><br></span>
+                                    <span ng-if="!user.car">No car on file<br></span>
                                     </p>
                                 </div>
                             </div>
@@ -87,7 +90,7 @@
                                     </div>
                                     <div class="check_user_edit_right user_edit_right">
                                       <p>Drivers License&nbsp;&nbsp;</p>
-                                      <input ng-model="" placeholder="drivers license #"></input>  Fill in
+                                      <input ng-model="slot.user.licenseOnFile" placeholder="true or false"></input>
                                       <p>Vehicle Make&nbsp;&nbsp;</p>
                                       <input ng-model="slot.user.car.make" placeholder="vehicle make"></input>
                                       </br>
