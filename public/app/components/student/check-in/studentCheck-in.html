@@ -1,11 +1,12 @@
 <student-side-bar-nav></student-side-bar-nav>
 <student-mobile-side-bar-nav></student-mobile-side-bar-nav>
+
 <user-info></user-info>
 
 <div class="student-main-wrapper">
 
   <div class="checkin_cards_container">
-		<div class="checkin_repeat_cards">
+		<div class="checkin_repeat_cards white_background_color">
 			<div class="checkin_cards_head">
 				<h1 id="student_header_text">Housing Check-In Portal</h1>
 			</div>
@@ -19,7 +20,7 @@
 
   <div class="checkin_list_container">
      <div class="checkin_cards_container" ng-repeat="check in allCheckins">
-         <div class="checkin_repeat_cards" ng-repeat="slot in check.checkinAppointments">
+         <div class="checkin_repeat_cards white_background_color" ng-repeat="slot in check.checkinAppointments">
              <div class="checkin_cards_head" >
                  <div>
                      <p>{{check.checkinStart}} at {{slot.timeSlot}}</p>
@@ -33,4 +34,4 @@
      </div>
 </div>
 
-</div> <!--main-wrapper closing div -->
+</div>

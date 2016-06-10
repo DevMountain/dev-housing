@@ -6,7 +6,7 @@
 
     <!--Top card with search options-->
     <div class="default_cards_container">
-        <div class="workorder_repeat_cards">
+        <div class="workorder_repeat_cards white_background_color">
             <div class="default_cards_head"><div id="student_workorder_header_text"><p>Create Workorder</p></div></div>
             <div class="workorder_sort_container default_cards_text">
                 <div><input ng-model="workorder" placeholder="search"></input></div>
@@ -46,7 +46,7 @@
 
     <!--Repeating cards of work orders-->
     <div class="default_cards_container">
-        <div class="workorder_repeat_cards" ng-repeat="workorder in adminList | orderBy: '-'| filter: workorder">
+        <div class="workorder_repeat_cards white_background_color" ng-repeat="workorder in adminList | orderBy: '-'| filter: workorder">
             <div class="default_cards_head">
                 <div><p>Work Order {{workorder.unit}}</p></div>
                 <div><i ng-click="toggleUpdate = !toggleUpdate; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id" class="fa fa-pencil"></i><i class="fa fa-times" ng-click="workorderDelete(workorder._id)"></i></div>

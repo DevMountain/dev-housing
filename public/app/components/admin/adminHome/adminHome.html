@@ -10,11 +10,11 @@
 
     <div class="cards_list_container">
         <div class="admin_home_cards_container">
-            <div class="admin_home_repeat_cards">
+            <div class="admin_home_repeat_cards white_background_color">
                 <div class="admin_home_cards_head">
                     <div><h2 class="bold">Users Pending</h2></div>
                 </div>
-                <div ng-repeat="user in pendingUsers | orderByCampus:'campus'">
+                <div class="white_background_color" ng-repeat="user in pendingUsers | orderByCampus:'campus'">
                     <p class="current_housing_cards_text">
                         {{user.firstName + " " + user.lastName}} - {{user.campus}}&nbsp;&nbsp;
                         <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
@@ -27,13 +27,13 @@
             </div>
         </div>
         <div class="admin_home_cards_container">
-            <div class="admin_home_repeat_cards">
+            <div class="admin_home_repeat_cards white_background_color">
                 <div class="admin_home_cards_head">
                     <div>
                         <h2 class="bold">Work Orders Pending</h2>
                     </div>
                 </div>
-                <div ng-repeat="wo in pendingWO | orderByCampus:'campus'">
+                <div class="white_background_color" ng-repeat="wo in pendingWO | orderByCampus:'campus'">
                     <p class="current_housing_cards_text">
                       <span class="bold">{{wo.campus}}:</span>&nbsp;&nbsp;
                         {{wo.problemType}} - {{wo.description}}  - {{wo.unit}}
