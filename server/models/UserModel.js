@@ -25,9 +25,9 @@ var User = new Schema ({
   devmtnID: {type: Number},
   cohortID: [{type: String}],
   adminAccess: {
-    Provo: {type: Boolean},
-    SLC: {type: Boolean},
-    Dallas: {type: Boolean}
+    Provo: {type: Boolean, default: true},
+    SLC: {type: Boolean, default: true},
+    Dallas: {type: Boolean, default: true}
   },
   adminDefaultView: {type: String, enum: ['Provo', 'SLC', 'Dallas']},
   adminNotes: {type: String}, //null this out same as password
@@ -39,11 +39,11 @@ var User = new Schema ({
     depositPaidDate: {type: Date},
     depositReturned: {type: Boolean, default: false},
     depositReturnedAmount: {type: Number},
-    depositReturnedDate: {tpe: Date}
+    depositReturnedDate: {type: Date}
   },
   singleRoom: {
     wantsSingleRoom: {type: Boolean, default: false},
-    hasSingleRoom: {type: Boolean, default: false}, //how does this update?
+    hasSingleRoom: {type: Boolean, default: false},
     singleRoomFee: {
       roomFeePaid: {type: Boolean, default: false},
       amount: {type: Number},
