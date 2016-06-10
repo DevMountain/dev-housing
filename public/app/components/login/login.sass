@@ -38,13 +38,15 @@
   display: inline-block
 
 .login-button, .register-button
-  height: 30px
-  width: 75px
+  height: 35px
+  width: 90px
+  margin-top: 10px
   border: none
   box-shadow: 0px 3px 6px #000000
   border-radius: 7px
   color: white
   background-color: #418AD0
+  font-size: 13px
 
   &:active 
     box-shadow: 0 1px 2px #666
@@ -93,7 +95,7 @@
   font-family: proxima
 
 .car-radio
-  margin-bottom: 25px
+  margin-bottom: 15px
 
 .car-input
   display: flex
@@ -108,7 +110,6 @@
   border: none
   text-align: center
   font-size: 16px
-//
 
 .error
   color: red
@@ -125,24 +126,50 @@
   align-items: center
   flex-direction: column
 
+.private-room-select
+  margin-bottom: 35px
+
+.private-room-text
+  margin-bottom: 35px
+
 .register-submit
-    width: 285px
-    height: 70px
-    border: none
-    box-shadow: 0px 3px 6px #000000
-    border-radius: 7px
-    color: white
-    background-color: #418AD0
-    font-size: 50px
-    font-family: proxima
+  width: 185px
+  height: 45px
+  padding: 9px
+  margin-bottom: 20px
+  border: none
+  box-shadow: 0px 3px 6px #000000
+  border-radius: 7px
+  color: white
+  background-color: #418AD0
+  font-size: 32px
+  font-family: proxima
 
-    &:disabled
-      opacity: .5
+  &:disabled
+    opacity: .5
 
-    &:active 
-      box-shadow: 0 1px 2px #666
-      transform: translateY(4px)
-      outline: none
+  &:active 
+    box-shadow: 0 1px 2px #666
+    transform: translateY(4px)
+    outline: none
+
+.login-return
+  width: 185px
+  height: 45px
+  border: none
+  margin-bottom: 20px
+  padding: 5px
+  box-shadow: 0px 3px 6px #000000
+  border-radius: 7px
+  color: white
+  background-color: #418AD0
+  font-size: 20px
+  font-family: proxima
+
+  &:active 
+    box-shadow: 0 1px 2px #666
+    transform: translateY(4px)
+    outline: none
 
 button
   cursor: pointer
