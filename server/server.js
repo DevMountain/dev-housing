@@ -15,6 +15,7 @@ var faqCtrl = require('./controllers/faqCtrl.js');
 var checkinCtrl = require('./controllers/checkinCtrl.js');
 var checkoutCtrl = require('./controllers/checkoutCtrl.js');
 var cohortCtrl = require('./controllers/cohortCtrl.js');
+var protocolCtrl = require('./controllers/protocolCtrl.js');
 
 //SERVICES//
 var passport = require('./services/passport');
@@ -103,6 +104,13 @@ app.delete('/checkout/:id', checkoutCtrl.delete);
 app.post('/cohort', cohortCtrl.create);
 app.get('/cohorts', cohortCtrl.read);
 app.put('/cohorts/:id', cohortCtrl.update);
+
+//======Housing Protocol Endpoints===========================================
+app.post('/protocol', protocolCtrl.create);
+app.get('/protocols', protocolCtrl.read);
+app.get('/protocol/:id', protocolCtrl.readById);
+app.put('/protocol/:id', protocolCtrl.update);
+app.delete('/protocol/:id', protocolCtrl.delete);
 
 
 

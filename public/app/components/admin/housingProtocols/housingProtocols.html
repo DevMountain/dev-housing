@@ -3,4 +3,29 @@
 <user-info></user-info>
 
 <div class="main-wrapper">
+
+  <div class="admin_protocol_cards_container admin_faq_cards_container">
+      <div class="admin_protocol_cards white_background_color">
+          <div class="admin_protocol_cards_head"><div><p>Add a new Housing Protocol</p></div></div>
+          <div class="admin_protocol_cards_new">
+              <textarea ng-model="newProtocol.title" placeholder="Add a new protocol title"></textarea>
+              <textarea ng-model="newProtocol.textBody" placeholder="Add a new protocol"></textarea><br>
+              <button ng-click="addNewProtocol(newProtocol)">Submit</button>
+          </div>
+      </div>
+  </div>
+
+  <!--Container of current Housing Protocols-->
+  <div class="admin_protocol_cards_container">
+      <div ng-repeat="protocol in protocols | orderBy: '-'" class="admin_protocol_cards white_background_color">
+          <div class="admin_protocol_cards_head"><div><p>HOUSING PROTOCOL</p></div><div><i ng-click="toggleUpdate = !toggleUpdate; protocol.textBody = protocol.textBody; protocol.title = protocol.title; protocol._id = protocol._id" class="fa fa-pencil"></i><i class="fa fa-times" ng-click="selectProtocol(protocol); deleteProtocol(selected)"></i></div></div>
+          <p class="admin_protocol_cards_text"><span class="bold">Title:</span>&nbsp;&nbsp;{{protocol.title}}</p><br><p><span class="bold">Protocol:</span>&nbsp;&nbsp;{{protocol.textBody}}</p>
+          <div class="admin_protocol_cards_wrench" ng-show="toggleUpdate">
+              <textarea ng-model="protocol.title" placeholder="Edit title"></textarea>
+              <textarea ng-model="protocol.textBody" placeholder="Edit protocol"></textarea><br>
+              <button ng-click="updateProtocol(protocol)">Edit</button>
+          </div>
+      </div>
+  </div>
+
 </div> <!--main-wrapper closing div -->

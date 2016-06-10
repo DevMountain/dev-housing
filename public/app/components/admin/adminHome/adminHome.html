@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="pending_users_container">
+    <div class="pending_workorders_container">
         <div class="pending_header"><p>Pending Workorders</p></div>
         <div ng-repeat="wo in pendingWO | orderByCampus: 'campus'" class="pending_content">
             <p>Unit: {{wo.unit}}</p>
@@ -28,7 +28,7 @@
                 <option value="Received">Recieved</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
-            </select>
+            </select><br>
             <button ng-click="setWOStatus(wo._id, workorder.status)">Set</button>
             <hr style="width: 90%">
         </div>
