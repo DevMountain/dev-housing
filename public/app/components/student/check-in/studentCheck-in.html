@@ -18,20 +18,21 @@
 	</div>
 
 
-  <div class="checkin_list_container">
-     <div class="checkin_cards_container" ng-repeat="check in allCheckins">
-         <div class="checkin_repeat_cards white_background_color" ng-repeat="slot in check.checkinAppointments">
-             <div class="checkin_cards_head" >
-                 <div>
-                     <p>{{check.checkinStart}} at {{slot.timeSlot}}</p>
-                 </div>
-             </div>
-             <p class="checkin_cards_text">{{slot.user.firstName + " " + slot.user.lastName}}&nbsp;&nbsp;
-               <button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="updateCheckins(slot, check)">Select</button>
-               <!-- <button ng-click="deselectCheckin(slot)">Deselect</button> -->
-             </p>
-         </div>
-     </div>
-</div>
+    <div class="checkin_timeslots_container">
+        <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckins">
+            <div class="checkin_create_header"><span>{{check.checkinDay}}</span></div>
+            <p>{{check.checkinStart}}-{{check.checkinEnd}}</p>
+            <p>Duration: {{check.slotInterval}} min</p>
+            <p>Campus: {{check.campus}}</p>
+            <p>Cohort: {{check.cohort}}</p>
+            <br>
+            <hr>
+            <p>Appointments</p>
+            <div class="checkin_timeslots" ng-repeat="slot in check.checkinAppointments">
+                <span>{{slot.timeSlot}}</span>&nbsp;<span>{{slot.user.firstName}} {{slot.user.lastName}}</span><button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="updateCheckins(slot, check)">Select</button>
+            </div>
+        </div>
+    </div>
+
 
 </div>

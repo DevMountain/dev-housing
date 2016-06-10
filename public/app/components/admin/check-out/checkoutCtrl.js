@@ -23,11 +23,11 @@ angular.module('devHousing').controller('adminCheckoutCtrl', function($scope, ch
 var getCheckouts = function(){
   checkoutSvc.getCheckouts().then(function(response){
     for (var i = 0; i < response.length; i++){
-      response[i].checkoutDay = moment(response[i].checkoutStart).format('dddd MMMM Do')
+      response[i].checkoutDay = moment(response[i].checkoutStart).format('dddd MMMM Do');
       response[i].checkoutStart = moment(response[i].checkoutStart).format('h:mm');
       response[i].checkoutEnd = moment(response[i].checkoutEnd).format('h:mm A');
       for (var j = 0; j < response[i].checkoutAppointments.length; j++){
-        response[i].checkoutAppointments[j].timeSlot = moment(response[i].checkoutAppointments[j].timeSlot).format('h:mm A')
+        response[i].checkoutAppointments[j].timeSlot = moment(response[i].checkoutAppointments[j].timeSlot).format('h:mm A');
       }
     }
     $scope.allCheckouts = response;
@@ -35,9 +35,6 @@ var getCheckouts = function(){
 };
 
 getCheckouts();
-
-
-
 
     $scope.createCheckout = function(info) {
         start = moment(info.start);
