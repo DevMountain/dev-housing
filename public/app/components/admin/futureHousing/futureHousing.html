@@ -14,7 +14,7 @@
        <!-- <option value="allCurrentOccupants">Occupant</option> -->
        <!-- </select> -->
 
-       <button ng-if="cohortFilter" ng-click="setCurrentToFuture(cohortFilter)">Update Current</button>
+       <button ng-if="cohortFilter" ng-click="confirmTheUpdate(cohortFilter)">Update Current</button>
 
        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
          <option value="" selected>Campus</option>
@@ -82,7 +82,7 @@
                           </p>
                           <hr>
                           <br>
-                          <p class="bold">Women &#9792;;</p>
+                          <p class="bold">Women &#9792;</p>
                           <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}">
                               <!-- {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}} -->
                               {{person.firstName}} {{person.lastName}} - {{person.campus}} - {{person.cohortID}}
