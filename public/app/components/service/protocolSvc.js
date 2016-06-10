@@ -26,7 +26,7 @@ angular.module('devHousing').service("protocolSvc", function($http) {
         return $http({
             method: 'PUT',
             url: '/protocol/' + protocol._id,
-            data: faq
+            data: protocol
         }).then(function(response) {
             return response.data;
         });

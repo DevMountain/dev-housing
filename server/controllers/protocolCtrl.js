@@ -8,6 +8,7 @@ module.exports = {
                 return response.status(500).send(error);
             }
             else {
+              console.log("Protocol Server created new Housing Protocol.");
                 response.status(200).send(serverResponse);
             }
         });
@@ -19,7 +20,7 @@ module.exports = {
                 return response.status(500).send(error);
             }
             else {
-                console.log("Getting Protocol to read.");
+                console.log("Server Getting Protocol to read.");
                 response.status(200).send(serverResponse);
             }
         });

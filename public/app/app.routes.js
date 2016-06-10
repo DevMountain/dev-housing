@@ -290,7 +290,7 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
     .state('admin-housing-protocols', {
       url: '/admin/housing-protocols',
       templateUrl: './app/components/admin/housingProtocols/housingProtocols.html',
-      // controller: 'adminHousingProtocolsCtrl',
+      controller: 'adminProtocolCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {

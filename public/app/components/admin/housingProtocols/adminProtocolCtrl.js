@@ -19,7 +19,7 @@ $scope.addNewProtocol = function(newProtocol) {
 // Display all Housing protocols
 $scope.displayAllProtocols = function() {
   protocolSvc.getProtocols().then(function(response) {
-    $scope.protocol = response;
+    $scope.protocols = response;
   });
 };
 
