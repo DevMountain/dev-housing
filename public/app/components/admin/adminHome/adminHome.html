@@ -4,17 +4,47 @@
 
 <div class="main-wrapper">
 
-    <div class="home_text_container">
-        <p>HOME</p>
+<div class="pending_container">
+    <div class="pending_users_container">
+        <div class="pending_header"><p>Pending Users</p></div>
+        <div ng-repeat="user in pendingUsers | orderByCampus:'campus'" class="pending_content">
+            <p>{{user.firstName}} {{user.lastName}}&nbsp;&nbsp;<i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-plus"></i></p>
+            <div class="pending_edit_user" ng-show="toggleUpdate">
+                <textarea ng-model="user.cohortId" placeholder="Add a Cohort"></textarea><br>
+                <button ng-click="setCohortId(user._id, user.cohortId)">Set</button>
+            </div>
+        </div>
     </div>
 
-    <div class="cards_list_container">
+    <div class="pending_users_container">
+        <div class="pending_header"><p>Pending Workorders</p></div>
+        <div ng-repeat="wo in pendingWO | orderByCampus: 'campus'" class="pending_content">
+            <p>Unit: {{wo.unit}}</p>
+            <p>Category: {{wo.problemType}}</p>
+            <p>{{wo.description}}</p>
+            <p>Status: {{wo.status}}</p>
+            <select ng-model="workorder.status" name="type" required>
+                <option value="" selected>Select</option>
+                <option value="Received">Recieved</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+            <button ng-click="setWOStatus(wo._id, workorder.status)">Set</button>
+            <hr style="width: 90%">
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- <div class="admin_home_pending_container">
         <div class="admin_home_cards_container">
-            <div class="admin_home_repeat_cards">
+            <div class="admin_home_repeat_cards white_background_color">
                 <div class="admin_home_cards_head">
                     <div><h2 class="bold">Users Pending</h2></div>
                 </div>
-                <div ng-repeat="user in pendingUsers | orderByCampus:'campus'">
+                <div class="white_background_color" ng-repeat="user in pendingUsers | orderByCampus:'campus'">
                     <p class="current_housing_cards_text">
                         {{user.firstName + " " + user.lastName}} - {{user.campus}}&nbsp;&nbsp;
                         <i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-pencil"></i>
@@ -27,13 +57,13 @@
             </div>
         </div>
         <div class="admin_home_cards_container">
-            <div class="admin_home_repeat_cards">
+            <div class="admin_home_repeat_cards white_background_color">
                 <div class="admin_home_cards_head">
                     <div>
                         <h2 class="bold">Work Orders Pending</h2>
                     </div>
                 </div>
-                <div ng-repeat="wo in pendingWO | orderByCampus:'campus'">
+                <div class="white_background_color" ng-repeat="wo in pendingWO | orderByCampus:'campus'">
                     <p class="current_housing_cards_text">
                       <span class="bold">{{wo.campus}}:</span>&nbsp;&nbsp;
                         {{wo.problemType}} - {{wo.description}}  - {{wo.unit}}
@@ -51,6 +81,5 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<!--main-wrapper closing div -->
+    </div> -->
+</div> <!--main-wrapper closing div -->
