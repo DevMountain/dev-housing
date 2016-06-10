@@ -14,7 +14,33 @@
        <!-- <option value="allCurrentOccupants">Occupant</option> -->
        <!-- </select> -->
 
-       <button ng-if="cohortFilter" ng-click="confirmTheUpdate(cohortFilter)">Update Current</button>
+       <div class="user_info_modal" ng-init="showConfirmModal=false" ng-if="cohortFilter">
+          <button  ng-click="showConfirmModal = !showConfirmModal">Update Current</button>  <!-- confirmTheUpdate(cohortFilter) -->
+
+
+           <!-- <button class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button> -->
+           <div class="future-housing-modal-fade-in checkin_create_block" aria-hidden="false" ng-show="showConfirmModal">
+               <div class="checkin_modal_header checkin_create_block_header">
+                   <div class="checkin_modal_create_header checkin_create_header">
+                     <span>ARE YOU SURE?  THERE IS NO GOING BACK</span></div>
+               </div>
+               <div class="user_update_modal checkin_create_block_content">
+                 <br>
+                 <!-- <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button> -->
+               </div>
+               <div class="modal-footer">
+                   <br>
+                   <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
+               </div>
+           </div>
+       </div>
+
+
+
+
+
+
+
 
        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
          <option value="" selected>Campus</option>

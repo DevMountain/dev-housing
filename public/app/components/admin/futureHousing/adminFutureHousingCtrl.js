@@ -102,16 +102,16 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         });
       };
 
-      // $scope.confirmTheUpdate = (cohortFilter) => {
-      //     if(prompt(`are you sure? Type in 'yes' below:`) === 'yes') $scope.setCurrentToFuture(cohortFilter);
-      // }
-
-      $scope.openConfirmModal = (cohortFilter) => {
-        ModalService.showModal({
-          templateUrl: '',
-          inputs
-        })
+      $scope.confirmTheUpdate = (cohortFilter) => {
+          if(prompt(`are you sure? Type in 'yes' below:`) === 'yes') $scope.setCurrentToFuture(cohortFilter);
       }
+
+      // $scope.openConfirmModal = (cohortFilter) => {
+      //   ModalService.showModal({
+      //     templateUrl: '',
+      //     inputs
+      //   })
+      // }
 
       $scope.setCurrentToFuture = function(filter) { //TODO MAKE HER CONFIRM 5X THAT SHE WANTS TO UPDATE BEFORE RUNNING THE FUNCTION
         console.log(`This is an alert.  All bow before me`);
