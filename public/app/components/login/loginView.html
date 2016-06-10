@@ -117,15 +117,14 @@
                 </div>
 
                 <div ng-show="user.campus == 'Provo'">
-                    <br>
                     <p>Are you interested in paying an extra $250 for a private room?</p>
-                    <div class="info_same_line">
+                    <div class="private-room-select">
                         <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=true ng-required="user.campus == 'Provo'" />yes &nbsp
                         <input ng-model="user.singleRoom.wantsSingleRoom" name="room" type="radio" ng-value=false />no
                     </div>
                 </div>
 
-                <div class="car_input" ng-show="user.singleRoom.wantsSingleRoom">
+                <div class="private-room-text" ng-show="user.singleRoom.wantsSingleRoom">
                     <p>We cannot guarantee a private room, but we will try to accommodate your request.</p>
                 </div>
 
@@ -134,7 +133,7 @@
             </div>
 
         </form>
-        <button ng-click="loginSwitch()" ng-show="!showLogin">Login</button>
+        <button class="login-return" ng-click="loginSwitch()" ng-show="!showLogin">Return to Login</button>
     </section>
 
     <div class="contact-admin">

@@ -1,9 +1,48 @@
+.user_info_modal
+  color: black
+
+.modal-close-button
+  background: linear-gradient(white, red)
+
+.user_info_button
+  background: #418AD0
+  color: white
+
+.modal-fade-in
+  width: 320px
+  height: 1000px
+  position: relative
+  background: linear-gradient(white, #418AD0)
+  display: block
+  border: 2px dotted white
+  z-index: 9
+
+.checkin_modal_create_header
+  padding-bottom: 10px
+
+.check_users_edit
+  // margin-top: 20px
+
+.check_user_edit_container
+  width: 300px
+  display: flex
+  justify-content: flex-start
+
+.check_user_edit_left
+  margin-left: 20px
+
+.check_user_edit_right
+  margin: 11px 0 0 -60px
+
 .checkin_create_block
     text-align: center
     border: 1px solid
     margin-left: 20px
     margin-right: 20px
     border-radius: 8px
+    @media(max-width: 768px)
+        margin-left: 30px
+        margin-right: 30px
 
 .checkin_create_block_header
     text-align: center
@@ -15,8 +54,8 @@
     text-shadow: 0px 1px black
     border-top-left-radius: 8px
     border-top-right-radius: 8px
-    @media(max-width: 769px)
-        font-size: 24px
+    @media(max-width: 768px)
+        font-size: 30px
 
 .checkin_create_block input
     font-family: Proxima
@@ -24,6 +63,9 @@
 .checkin_create_block_content
     padding-top: 10px
     padding-bottom: 10px
+    border-bottom-left-radius: 8px
+    border-bottom-right-radius: 8px
+    min-height: 273px
 
 #create_checkin
     margin-top: 15px
@@ -45,8 +87,8 @@
     margin-left: 10px
     margin-right: 10px
     min-height: 500px
-    @media(max-width: 1100px)
-        font-size: 10px
+    // @media(max-width: 1100px)
+    //     font-size: 10px
 
 .checkin_timeslots_repeat p
     padding: 10px
@@ -69,7 +111,7 @@
     text-shadow: 0px 1px black
     border-top-left-radius: 8px
     border-top-right-radius: 8px
-    @media (max-width: 1100px)
+    @media (max-width: 768px)
         font-size: 18px
 
 .fa-times
