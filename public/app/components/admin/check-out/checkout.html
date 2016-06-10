@@ -46,7 +46,7 @@
                         </div>
                         <div class="user_update_modal checkin_create_block_content">
                             <div class="user_edit_container" ng-hide="editUser">
-                                <div class="user_edit_left">
+                                <div class="check_user_edit_left user_edit_left">
                                     <p class="users_cards_text">
                                         <span class="bold">Basic info</span>
                                         <br> Name: {{slot.user.firstName}} {{slot.user.lastName}}
@@ -61,7 +61,7 @@
                                         <br> DevMtnID: {{slot.user.devmtnID}}
                                         <br>
                                 </div>
-                                <div class="user_edit_right">
+                                <div class="check_user_edit_right user_edit_right">
                                     <span class="bold">Housing</span>
                                     <br> In Housing: {{slot.user.inHousing}}
                                     <br> Rent Status: {{slot.user.rent.isRenter}}
@@ -86,9 +86,9 @@
                                 </div>
                             </div>
 
-                            <div class="users_edit" ng-show="editUser">
-                                <div class="user_edit_container">
-                                    <div class="user_edit_left">
+                            <div class="check_users_edit users_edit" ng-show="editUser">
+                                <div class="check_user_edit_container user_edit_container">
+                                    <div class="check_user_edit_left user_edit_left">
                                         <p>Email&nbsp;&nbsp;</p>
                                         <input ng-model="slot.user.email" placeholder="email"></input>
                                         <br>
@@ -117,7 +117,7 @@
                                         <input ng-model="slot.user.rent.rentPaid" placeholder="rent paid"></input>
                                         </br>
                                     </div>
-                                    <div class="user_edit_right" <p>Private Room Requested&nbsp;&nbsp;</p>
+                                    <div class="check_user_edit_right user_edit_right" <p>Private Room Requested&nbsp;&nbsp;</p>
                                         <input ng-model="slot.user.singleRoom.wantsSingleRoom" placeholder="private room requested"></input>
                                         </br>
                                         <p>Private Room Occupant&nbsp;&nbsp;</p>
