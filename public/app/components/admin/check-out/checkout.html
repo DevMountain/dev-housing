@@ -33,6 +33,7 @@
              <p>Campus: {{check.campus}}</p>
              <p>Cohort: {{check.cohort}}</p>
              <br>
+             <hr>
              <p>Appointments</p>
              <div class="checkin_timeslots" ng-repeat="slot in check.checkoutAppointments">
                  <span>{{slot.timeSlot}}</span>&nbsp;<span>{{slot.user.firstName}} {{slot.user.lastName}}&nbsp;{{slot.room}}-{{slot.unit}}</span>
