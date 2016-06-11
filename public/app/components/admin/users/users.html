@@ -18,35 +18,16 @@
             <!--Filter by campus-->
             <div>
                 <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
-                    <option value="">Campus</option>
                     <option ng-repeat="cohort"></option>
                 </select>
             </div>
-            <!-- <div class="users_edit" ng-show="addModal">
-                <p class="bold">Add a new user</p>
-                <input ng-model="newUser.firstName" placeholder="name"></input><br>
-                <input ng-model="newUser.lastName" placeholder="name"></input><br>
-                <input ng-model="newUser.age" placeholder="age"></input><br>
-                <input ng-model="newUser.adminAccess" placeholder="Admin"></input><br>
-                <input ng-model="newUser.campus" placeholder="campus"></input><br>
-                <input ng-model="newUser.cohortID" placeholder="cohort"></input><br>
-                <input ng-model="newUser.role" placeholder="role"></input><br>
-                <input ng-model="newUser.inHousing" placeholder="housing"></input><br>
-                <input ng-model="newUser.rent.isRenter" placeholder="pays rent"></input><br>
-                <input ng-model="newUser.rent.rentPaid.rentPrice" placeholder="rent amount"></input><br>
-                <input ng-model="newUser.singleRoom.hasSingleRoom" placeholder="private room"></input><br>
-                <input ng-model="newUser.email" placeholder="email"></input><br>
-                <input ng-model="newUser.phone" placeholder="phone"></input><br>
-                <textarea ng-model="newUser.adminNotes" placeholder="Notes"></textarea><br>
-                <button ng-click="addUser(newUser)">Add new user</button>
-            </div> -->
-        </div>
+          </div>
     </div>
 
     <div class="users_cards_container">
 
         <div ng-repeat="user in users | filter: userSearch | filter: {campus: cohortFilter.name} | filter: cohortSearch" class="users_cards white_background_color">
-            <div class="users_cards_head"><div><p>{{user.firstName}} {{user.lastName}} - {{user.role}} {{user.campus}}</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
+            <div class="users_cards_head"><div><p>{{user.firstName}} {{user.lastName}} &mdash; {{user.role}} {{user.campus}}</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
 
             <div class="user_short_info" ng-hide="editUser">
                       <div class="basic_info">

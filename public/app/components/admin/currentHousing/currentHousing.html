@@ -5,7 +5,8 @@
 <div class="main-wrapper">
 
     <div class="current_housing_search_container">
-        <p class="bold">Current Housing - {{cohortFilter.senior}} {{cohortFilter.junior}}</p>
+        <p class="bold">Current Housing <span ng-if="cohortFilter">&mdash; {{cohortFilter.senior}} {{cohortFilter.junior}}</span>
+        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts"></select></p>
         <!-- <input class="housing-search-bar" placeholder="Campus/Room/Notes" ng-model="query" />
         <select ng-model="queryBy" />
         <option value="" selected>Filter By</option>
@@ -14,11 +15,7 @@
         <option value="propertyName">Property Name</option> -->
         <!-- <option value="allCurrentOccupants">Occupant</option> -->
         <!-- </select> -->
-        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
-            <!-- <option value="DM-10">DM-10</option>
-            <option value="DM-11">DM-11</option>
-            <option value="DM-12">DM-12</option> -->
-        </select>
+
     </div>
 
     <div class="cards_list_container" ng-if="cohortFilter">
@@ -27,17 +24,13 @@
             <div class="current_housing_repeat_cards white_background_color" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">
                 <div class="current_housing_cards_head">
                     <div>
-                        <p>{{unit.campus}}
-                            -
-                            {{unit.unitNumber}}</p>
+                        {{unit.campus}} &mdash; {{unit.unitNumber}}
+                    </div>
+                    <div class="header_address">
+                      {{unit.propertyName}} {{unit.address.street1}}
                     </div>
                 </div>
-                <p class="current_housing_cards_text">
-                    {{unit.propertyName}}
-                    {{unit.address.street1}}
-                    {{unit.address.street2}}
-                    <br>
-                    {{unit.currentBedrooms.roomNumber}}<br>
+                  {{unit.currentBedrooms.roomNumber}}<br>
                     <span class="bold">Admin Notes:</span>
                     {{unit.adminNotes}}<br>
                     <div ng-repeat="bedroom in unit.currentBedrooms">
