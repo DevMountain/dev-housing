@@ -40,124 +40,59 @@
 
                 <div class="user_info_modal" ng-init="showUserModal=false">
                     <button class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button>
-                    <div class="modal-fade-in checkin_create_block" aria-hidden="false" ng-show="showUserModal">
-                        <div class="checkin_modal_header checkin_create_block_header">
+                    <div class="checkin_modal_fade_in checkin_create_block" aria-hidden="false" ng-show="showUserModal">
+                      <div class="checkin_modal_header checkin_create_block_header">
                             <div class="checkin_modal_create_header checkin_create_header"><span>{{slot.user.firstName + " " + slot.user.lastName}}</span><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i></div>
                         </div>
                         <div class="user_update_modal checkin_create_block_content">
                             <div class="user_edit_container" ng-hide="editUser">
-                                <div class="check_user_edit_left user_edit_left">
+                                <div class="check_user_left user_edit_left">
                                     <p class="users_cards_text">
                                         <span class="bold">Basic info</span>
                                         <br> Name: {{slot.user.firstName}} {{slot.user.lastName}}
-                                        <br> Age: {{slot.user.age}}
                                         <br> Gender: {{slot.user.gender}}
-                                        <br> Email: {{slot.user.email}}
-                                        <br> Phone: {{slot.user.phone}}
                                         <br>
-                                        <span class="bold">Cohort</span>
-                                        <br> Campus: {{slot.user.campus}}
-                                        <br> Cohort(s): {{slot.user.cohortID}}
-                                        <br> DevMtnID: {{slot.user.devmtnID}}
+                                        <span class="bold">Housing</span>
+                                        <br> Unit: {{slot.user.unit}}
+                                        <br> Room: {{slot.user.room}}
+                                        <br> Deposit Paid: {{slot.user.deposit.depositPaid}}
+                                        <br> Contract Signed: {{slot.user.contractSigned}}
+                                        <br> Check-Out Date: {{slot.user.checkInOut.checkOutDate}}
+                                        <br> Check-Out Status: {{slot.user.checkInOut.checkOutStatus}}
                                         <br>
-                                </div>
-                                <div class="check_user_edit_right user_edit_right">
-                                    <span class="bold">Housing</span>
-                                    <br> In Housing: {{slot.user.inHousing}}
-                                    <br> Rent Status: {{slot.user.rent.isRenter}}
-                                    <br> Rent Amount: {{slot.user.rent.rentPrice}}
-                                    <br> Rent Paid: {{slot.user.rent.rentPaid}}
-                                    <br> Private Room Requested: {{slot.user.singleRoom.wantsSingleRoom}}
-                                    <br> Private Room Occupant: {{slot.user.singleRoom.hasSingleRoom}}
-                                    <br> Checkin Date: {{slot.user.checkInOut.checkInDate}}
-                                    <br> Checkin Status: {{slot.user.checkInOut.checkInStatus}}
-                                    <br> Checkout Date: {{slot.user.checkInOut.checkOutDate}}
-                                    <br> Checkout Status: {{slot.user.checkInOut.checkOutStatus}}
-                                    <br>
-                                    <br>
-                                    <span class="bold">Vehicles</span>
-                                    <br> Drivers License on File: {{slot.user.licenseOnFile}}
-                                    <br> Vehicle: {{slot.user.car.make}} {{slot.user.car.model}} {{slot.user.car.year}} {{slot.user.car.license}}
-                                    <br>
-                                    <br>
-                                    <span class="bold">User Notes</span>
-                                    <br> Notes: {{slot.user.adminNotes}}
+                                        <span class="bold">Vehicles</span>
+                                        <br> <span ng-if="slot.user.licenseOnFile">Driver's License is on file.<br></span>
+                                        <span ng-if="!slot.user.licenseOnFile">No driver's license on file<br></span>
+                                        <br> <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}</span>
+                                        <span ng-if="!user.car">No vehicle on file</span>
                                     </p>
+                                    <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                                 </div>
                             </div>
-
                             <div class="check_users_edit users_edit" ng-show="editUser">
                                 <div class="check_user_edit_container user_edit_container">
                                     <div class="check_user_edit_left user_edit_left">
-                                        <p>Email&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.email" placeholder="email"></input>
-                                        <br>
-                                        <p>Phone&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.phone" placeholder="phone"></input>
-                                        <br>
-                                        <p>1st Cohort ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.cohortID[0]" placeholder="cohort"></input>
-                                        <p>2nd Cohort ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.cohortID[1]" placeholder="cohort"></input>
-                                        <p>3rd Cohort ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.cohortID[2]" placeholder="cohort"></input>
-                                        <p>Devmtn ID&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.devmtnID" placeholder="DevMtn ID"></input>
-                                        </br>
-                                        <p>Housing Status&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.inHousing" placeholder="housing"></input>
-                                        <br>
-                                        <p>Renter Status&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.rent.isRenter" placeholder="pays rent"></input>
-                                        <br>
-                                        <p>Rent Amount&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.rent.rentPrice" placeholder="rent amount"></input>
-                                        <br>
-                                        <p>Rent Paid&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.rent.rentPaid" placeholder="rent paid"></input>
-                                        </br>
-                                    </div>
-                                    <div class="check_user_edit_right user_edit_right" <p>Private Room Requested&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.singleRoom.wantsSingleRoom" placeholder="private room requested"></input>
-                                        </br>
-                                        <p>Private Room Occupant&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.singleRoom.hasSingleRoom" placeholder="private room occupant"></input>
-                                        <br>
-                                        <p>Checkin Date&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.checkInOut.checkInDate" placeholder="check in date"></input>
-                                        </br>
-                                        <p>Checkin Status&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.checkInOut.checkInStatus" placeholder="check in status"></input>
-                                        </br>
-                                        <p>Checkout Date&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.checkInOut.checkOutDate" placeholder="check out date"></input>
-                                        </br>
-                                        <p>Checkout Status&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.checkInOut.checkOutStatus" placeholder="check out status"></input>
-                                        </br>
-                                        <p>Vehicle Make&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.car.make" placeholder="vehicle make"></input>
-                                        </br>
-                                        <p>Vehicle Model&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.car.model" placeholder="vehicle model"></input>
-                                        </br>
-                                        <p>Vehicle Year&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.car.year" placeholder="vehicle year"></input>
-                                        </br>
-                                        <p>Vehicle License&nbsp;&nbsp;</p>
-                                        <input ng-model="slot.user.car.license" placeholder="vehicle license"></input>
-                                        </br>
-                                        <p>Admin Notes&nbsp;&nbsp;</p>
-                                        <textarea ng-model="slot.user.adminNotes" placeholder="Notes"></textarea>
-                                        <br>
-                                        <button ng-click="updateUser(slot.user)">Submit Changes</button>
+                                      <span class="bold">Deposit Paid&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.deposit.depositPaid" placeholder="true or false"></input>
+                                      </br>
+                                      <span class="bold">Contract Signed&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.contractSigned" placeholder="true or false"></input>
+                                      <br>
+                                      <span class="bold">Check-out Date&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.checkInOut.checkOutDate" placeholder="enter date"></input>
+                                      </br>
+                                      <span class="bold">Check-out Status&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.checkInOut.checkOutStatus" placeholder="true or false"></input>
+                                      </br>
+                                      <br>
+                                      <button ng-click="updateUser(slot.user)" class="checkin_edit_submit_button">Submit Changes</button>
+                                      <br>
+                                      <br>
+                                      <br>
+                                      <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <br>
-                            <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                         </div>
                     </div>
                 </div>

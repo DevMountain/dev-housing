@@ -8,14 +8,17 @@
   background: #418AD0
   color: white
 
-.modal-fade-in
+.checkin_modal_fade_in
   width: 320px
-  height: 1000px
-  position: relative
-  background: linear-gradient(white, #418AD0)
+  height: 475px
+  position: absolute
+  background: #3C3C3C
+  color: white
   display: block
-  border: 2px dotted white
+  border: 2px dotted black
   z-index: 9
+  // @media (max-width: 768px)
+  //   float: left
 
 .checkin_modal_create_header
   padding-bottom: 10px
@@ -29,10 +32,22 @@
   justify-content: flex-start
 
 .check_user_edit_left
-  margin-left: 20px
+  margin-top: 10%
+  margin-left: 30%
+  input
+    background: #3C3C3C
+    color: white
+    border: none
+    text-align: center
 
 .check_user_edit_right
   margin: 11px 0 0 -60px
+
+.checkin_edit_submit_button
+  background-color: #418AD0
+  color: white
+  border-radius: 7px
+  font-family: proxima
 
 .checkin_create_block
     text-align: center
