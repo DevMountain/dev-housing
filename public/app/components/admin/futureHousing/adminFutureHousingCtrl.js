@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc, ModalService){
+angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc){
 
   //LOADS CURRENT USER INFO.
   $scope.user = user;
@@ -102,19 +102,21 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         });
       };
 
-      $scope.confirmTheUpdate = (cohortFilter) => {
-          if(prompt(`are you sure? Type in 'yes' below:`) === 'yes') $scope.setCurrentToFuture(cohortFilter);
+      $scope.adminPW = "";
+
+      $scope.confirmTheUpdate = (cohortFilter, adminPW) => {
+        let login = {email: user.email, password: adminPW};
+        userSvc.loginUser(login).then( (response) => {
+          if (response.data) {
+            alert("Incorrect Password, update did not run");
+          } else {
+            $scope.setCurrentToFuture(cohortFilter);
+          }
+        })
+        
       }
 
-      // $scope.openConfirmModal = (cohortFilter) => {
-      //   ModalService.showModal({
-      //     templateUrl: '',
-      //     inputs
-      //   })
-      // }
-
-      $scope.setCurrentToFuture = function(filter) { //TODO MAKE HER CONFIRM 5X THAT SHE WANTS TO UPDATE BEFORE RUNNING THE FUNCTION
-        console.log(`This is an alert.  All bow before me`);
+      $scope.setCurrentToFuture = function(filter) {
         let currentCampusUsers = [];
         let tempUnits = [];
         let tempAllOccupants = [];
