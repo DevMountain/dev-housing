@@ -14,7 +14,31 @@
        <!-- <option value="allCurrentOccupants">Occupant</option> -->
        <!-- </select> -->
 
-       <button ng-if="cohortFilter" ng-click="setCurrentToFuture(cohortFilter)">Update Current</button>
+       <div class="user_info_modal" ng-init="showConfirmModal=false" ng-if="cohortFilter">
+          <button  ng-click="showConfirmModal = !showConfirmModal">Update Current</button>  <!-- confirmTheUpdate(cohortFilter) -->
+
+
+           <!-- <button class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button> -->
+           <div class="future_housing_modal_fade_in  checkin_create_block"
+           aria-hidden="false" ng-show="showConfirmModal">
+               <div class="checkin_modal_header checkin_create_block_header">
+                   <div class="checkin_modal_create_header checkin_create_header">
+                     <span>ARE YOU SURE?  THERE IS NO GOING BACK</span></div>
+               </div>
+               <div class="user_update_modal  future_housing_checkin_create_block_content">
+                 <br>
+                 Type in password to continue:
+                 <input type="password" ng-model="adminPW">
+                 <button type="submit" class="" ng-click="confirmTheUpdate(cohortFilter,adminPW); showConfirmModal=false">Update</button>
+               </div>
+               <div class="modal-footer">
+                   <br>
+                   <button type="button" class="future_housing_modal-close-button" ng-click="showConfirmModal=false">Cancel</button>
+               </div>
+           </div>
+       </div>
+
+
 
        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
       <!-- <option value="DM-10">DM-10</option>
@@ -81,7 +105,7 @@
                           </p>
                           <hr>
                           <br>
-                          <p class="bold">Women &#9792;;</p>
+                          <p class="bold">Women &#9792;</p>
                           <p ng-repeat="person in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}">
                               <!-- {{person.firstName}} {{person.lastName}} - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}} -->
                               {{person.firstName}} {{person.lastName}} - {{person.campus}} - {{person.cohortID}}
