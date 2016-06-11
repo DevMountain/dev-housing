@@ -5,7 +5,7 @@
 <div class="main-wrapper">
 
     <div class="current_housing_search_container">
-        <p class="bold">Current Housing <span ng-if="cohortFilter">&mdash; {{cohortFilter.senior}} {{cohortFilter.junior}}</span>
+        <p class="bold gray">Current Housing <span ng-if="cohortFilter">&mdash; {{cohortFilter.senior}} {{cohortFilter.junior}}</span>
         <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts"></select></p>
         <!-- <input class="housing-search-bar" placeholder="Campus/Room/Notes" ng-model="query" />
         <select ng-model="queryBy" />
@@ -31,8 +31,7 @@
                     </div>
                 </div>
                   {{unit.currentBedrooms.roomNumber}}<br>
-                    <span class="bold">Admin Notes:</span>
-                    {{unit.adminNotes}}<br>
+
                     <div ng-repeat="bedroom in unit.currentBedrooms">
                         Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
                         <br> Add occupant:
@@ -48,6 +47,8 @@
                             <i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i>
                         </div>
                     </div>
+                    <span class="bold">Admin Notes:</span>
+                    {{unit.adminNotes}}<br>
                 </p>
             </div>
         </div>
