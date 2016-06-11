@@ -101,8 +101,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
           loadUsers();
         });
       };
-
-      $scope.adminPW = "";
+      
 
       $scope.confirmTheUpdate = (cohortFilter, adminPW) => {
         let login = {email: user.email, password: adminPW};
