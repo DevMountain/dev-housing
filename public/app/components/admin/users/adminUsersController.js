@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminUsersController', function($scope, userSvc, user) {
+angular.module('devHousing').controller('adminUsersController', function($scope, userSvc, user, cohortSvc) {
 
 $scope.user = user;
 
@@ -7,20 +7,20 @@ $scope.displayUsers = function() {
     userSvc.getUsers().then(function(response) {
         $scope.users = response;
         for (var i = 0; i < $scope.users.length; i++) {
-            var rentPaidConverted = []
+            var rentPaidConverted = [];
             var years = moment().diff($scope.users[i].birthdate, 'years');
             $scope.users[i].age = years;
             if ($scope.users[i].deposit.depositPaid) {
-              var depositPaidDateConverted = moment($scope.users[i].deposit.depositPaidDate).format('M/D/YY')
+              var depositPaidDateConverted = moment($scope.users[i].deposit.depositPaidDate).format('M/D/YY');
               $scope.users[i].deposit.depositPaidDateConverted = depositPaidDateConverted;
             }
             if ($scope.users[i].deposit.depositReturned) {
-              var depositReturnedDateConverted = moment($scope.users[i].deposit.depositReturnedDate).format('M/D/YY')
+              var depositReturnedDateConverted = moment($scope.users[i].deposit.depositReturnedDate).format('M/D/YY');
               $scope.users[i].deposit.depositReturnedDateConverted = depositReturnedDateConverted;
             }
               for (var j = 0; j < $scope.users[i].rent.rentPaid.length; j++){
                 var rentDate = moment($scope.users[i].rent.rentPaid[j]).format('M/D/YY');
-                rentPaidConverted.push(rentDate)
+                rentPaidConverted.push(rentDate);
               }
             $scope.users[i].rent.rentPaidConverted = rentPaidConverted;
         }
@@ -36,10 +36,10 @@ $scope.updateUser = function(user) {
     cohorts.push(user.cohortID[0]);
     if (user.cohortID[1]) {
         cohorts.push(user.cohortID[1]);
-    };
+    }
     if (user.cohortID[2]) {
         cohorts.push(user.cohortID[2]);
-    };
+    }
     user.cohortID = cohorts;
     userSvc.update(user).then(function(response) {
         $scope.displayUsers();
@@ -52,5 +52,29 @@ $scope.deleteUser = function(user) {
         $scope.displayUsers();
     });
 };
+
+
+//Load all cohort info
+var loadCohorts = function() {
+    $scope.allCohorts = [];
+  cohortSvc.getCohorts().then(function(response){
+    delete response._id;
+    delete response.__v;
+    for (var prop in response) {
+      response[prop].name = prop;
+      $scope.allCohorts.push(response[prop]);
+    }
+    //SETS DEFAULT CAMPUS VIEW TO ADMIN DEFAULT VIEW
+    for (var i = 0; i < $scope.allCohorts.length; i++){
+      if ($scope.user.adminDefaultView === $scope.allCohorts[i].name) {
+        $scope.cohortFilter = $scope.allCohorts[i];
+      }
+    }
+  });
+};
+loadCohorts();
+
+
+
 
 });  // closing tag
