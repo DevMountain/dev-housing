@@ -27,7 +27,6 @@
             <button ng-if="checkin.campus" id="create_checkin" type="button" name="button" ng-click="createCheckin(checkin)">Create checkin timeslots</button>
         </div>
     </div>
-
     <div class="checkin_timeslots_container">
         <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckins">
             <div class="checkin_create_header"><span>{{check.checkinDay}}</span><i ng-click="deleteCheckins(check)" class="fa fa-times"></i></div>
@@ -40,87 +39,65 @@
             <p>Appointments</p>
             <div class="checkin_timeslots" ng-repeat="slot in check.checkinAppointments">
                 <span>{{slot.timeSlot}}</span>&nbsp;<span>{{slot.user.firstName}} {{slot.user.lastName}}&nbsp;{{slot.room}}-{{slot.unit}}</span>
-
                 <div class="user_info_modal" ng-init="showUserModal=false">
                     <button class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button>
-                    <div class="modal-fade-in checkin_create_block" aria-hidden="false" ng-show="showUserModal">
-                        <div class="checkin_modal_header checkin_create_block_header">
+                    <div class="checkin_modal_fade_in checkin_create_block" aria-hidden="false" ng-show="showUserModal">
+                      <div class="checkin_modal_header checkin_create_block_header">
                             <div class="checkin_modal_create_header checkin_create_header"><span>{{slot.user.firstName + " " + slot.user.lastName}}</span><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i></div>
                         </div>
                         <div class="user_update_modal checkin_create_block_content">
                             <div class="user_edit_container" ng-hide="editUser">
-                                <div class="check_user_edit_left user_edit_left">
+                                <div class="check_user_left user_edit_left">
                                     <p class="users_cards_text">
                                         <span class="bold">Basic info</span>
                                         <br> Name: {{slot.user.firstName}} {{slot.user.lastName}}
-                                        <br> Age: {{slot.user.age}}
                                         <br> Gender: {{slot.user.gender}}
-                                </div>
-                                <div class="check_user_edit_right user_edit_right">
-                                    <span class="bold">Housing</span>
-                                    <br> Unit: {{slot.user.unit}}
-                                    <br> Room: {{slot.user.room}}
-                                    <br> Deposit Paid: {{slot.user.deposit.depositPaid}}
-                                    <br> Contract Signed: {{slot.user.contractSigned}}
-                                    <br>
-                                    <span class="bold">Vehicles</span>
-                                    <br> <span ng-if="slot.user.licenseOnFile">Driver's License is on file.<br></span>
-                                    <span ng-if="!slot.user.licenseOnFile">No driver's license on file<br></span>
-                                    <br> <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}<br><br></span>
-                                    <span ng-if="!user.car">No car on file<br></span>
+                                        <br>
+                                        <span class="bold">Housing</span>
+                                        <br> Unit: {{slot.user.unit}}
+                                        <br> Room: {{slot.user.room}}
+                                        <br> Deposit Paid: {{slot.user.deposit.depositPaid}}
+                                        <br> Contract Signed: {{slot.user.contractSigned}}
+                                        <br> Check-In Date: {{slot.user.checkInOut.checkInDate}}
+                                        <br> Check-In Status: {{slot.user.checkInOut.checkInStatus}}
+                                        <br>
+                                        <span class="bold">Vehicles</span>
+                                        <br> <span ng-if="slot.user.licenseOnFile">Driver's License is on file.<br></span>
+                                        <span ng-if="!slot.user.licenseOnFile">No driver's license on file<br></span>
+                                        <br> <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}<br><br></span>
+                                        <span ng-if="!user.car">No car on file<br></span>
                                     </p>
+                                    <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                                 </div>
                             </div>
-
                             <div class="check_users_edit users_edit" ng-show="editUser">
                                 <div class="check_user_edit_container user_edit_container">
                                     <div class="check_user_edit_left user_edit_left">
-                                      <p>Deposit Paid&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.deposit.depositPaid" placeholder="true or false"></input>
+                                      <span class="bold">Deposit Paid&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.deposit.depositPaid" placeholder="true or false"></input>
                                       </br>
-                                      <p>Contract Signed&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.contractSigned" placeholder="true or false"></input>
+                                      <span class="bold">Contract Signed&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.contractSigned" placeholder="true or false"></input>
                                       <br>
-                                      <p>Checkin Date&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.checkInOut.checkInDate" placeholder="check in date"></input>
+                                      <span class="bold">Check-in Date&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.checkInOut.checkInDate" placeholder="enter date"></input>
                                       </br>
-                                      <p>Checkin Status&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.checkInOut.checkInStatus" placeholder="check in status"></input>
+                                      <span class="bold">Check-in Status&nbsp;&nbsp;</span>
+                                      <br> <input ng-model="slot.user.checkInOut.checkInStatus" placeholder="true or false"></input>
                                       </br>
-                                    </div>
-                                    <div class="check_user_edit_right user_edit_right">
-                                      <p>Drivers License&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.licenseOnFile" placeholder="true or false"></input>
-                                      <p>Vehicle Make&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.car.make" placeholder="vehicle make"></input>
-                                      </br>
-                                      <p>Vehicle Model&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.car.model" placeholder="vehicle model"></input>
-                                      </br>
-                                      <p>Vehicle Year&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.car.year" placeholder="vehicle year"></input>
-                                      </br>
-                                      <p>Vehicle Color&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.car.color" placeholder="vehicle color"></input>
                                       <br>
-                                      <p>Vehicle License&nbsp;&nbsp;</p>
-                                      <input ng-model="slot.user.car.license" placeholder="vehicle license"></input>
+                                      <button ng-click="updateUser(slot.user)" class="checkin_edit_submit_button">Submit Changes</button>
                                       <br>
-                                      <button ng-click="updateUser(slot.user)">Submit Changes</button>
+                                      <br>
+                                      <br>
+                                      <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <br>
-                            <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-</div>
-<!--main-wrapper closing div -->
+</div><!--main-wrapper closing div -->
