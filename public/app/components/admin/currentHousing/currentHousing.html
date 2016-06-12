@@ -5,7 +5,8 @@
 <div class="main-wrapper">
 
     <div class="current_housing_search_container">
-        <p class="bold">Current Housing - {{cohortFilter.senior}} {{cohortFilter.junior}}</p>
+        <p class="bold gray">Current Housing <span ng-if="cohortFilter">&mdash; {{cohortFilter.senior}} {{cohortFilter.junior}}</span>
+        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts"></select></p>
         <!-- <input class="housing-search-bar" placeholder="Campus/Room/Notes" ng-model="query" />
         <select ng-model="queryBy" />
         <option value="" selected>Filter By</option>
@@ -14,11 +15,7 @@
         <option value="propertyName">Property Name</option> -->
         <!-- <option value="allCurrentOccupants">Occupant</option> -->
         <!-- </select> -->
-        <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts">
-            <!-- <option value="DM-10">DM-10</option>
-            <option value="DM-11">DM-11</option>
-            <option value="DM-12">DM-12</option> -->
-        </select>
+
     </div>
 
     <div class="cards_list_container" ng-if="cohortFilter">
@@ -27,34 +24,30 @@
             <div class="current_housing_repeat_cards white_background_color" ng-repeat="unit in currentHousing | filter: {campus: cohortFilter.name}">
                 <div class="current_housing_cards_head">
                     <div>
-                        <p>{{unit.campus}}
-                            -
-                            {{unit.unitNumber}}</p>
+                        {{unit.campus}} &mdash; {{unit.unitNumber}}
+                    </div>
+                    <div class="header_address">
+                      {{unit.propertyName}} {{unit.address.street1}} &nbsp; <i class="fa fa-pencil"></i>
                     </div>
                 </div>
-                <p class="current_housing_cards_text">
-                    {{unit.propertyName}}
-                    {{unit.address.street1}}
-                    {{unit.address.street2}}
-                    <br>
-                    {{unit.currentBedrooms.roomNumber}}<br>
-                    <span class="bold">Admin Notes:</span>
-                    {{unit.adminNotes}}<br>
+                  {{unit.currentBedrooms.roomNumber}}<br>
+
                     <div ng-repeat="bedroom in unit.currentBedrooms">
                         Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
-                        <br> Add occupant:
                         <div ng-hide="bedroom.maxOccupants <= bedroom.currentOccupants.length">
-                          <select ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                          <br> Add occupant:
+                          <select class="add_user_select" ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                           </select>
                           <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
                         </div>
-                        <div ng-repeat="person in bedroom.currentOccupants">
-                            Occupant:
-                            {{person.firstName}}
-                            {{person.lastName}}
-                            <i ng-click="removeUser(bedroom, person)" class="fa fa-times"></i>
+                        <div ng-repeat="user in bedroom.currentOccupants">
+                            {{user.firstName}}
+                            {{user.lastName}}
+                            <i ng-click="removeUser(bedroom, user)" class="fa fa-times"></i>
                         </div>
                     </div>
+                    <!-- <span class="bold">Admin Notes:</span>
+                    {{unit.adminNotes}}<br> -->
                 </p>
             </div>
         </div>
@@ -66,46 +59,36 @@
                 </div>
             </div>
             <div class="wants_housing_list">
-                <p class="bold">Men &#9794;</p>
-                <p ng-repeat="person in needHousing | filter: {genderLetter: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}}
-                    {{person.lastName}}
-                    -
-                    {{person.campus}}
-                    -
-                    {{person.cohortID}}
-                    <!-- - {{person.age}} - {{person.currentAddress.city}}, {{person.currentAddress.state}} -->
+                <p class="bold wants_housing_subheader">Men &#9794;</p>
+                <p ng-click="showDetails = !showDetails" ng-repeat="user in needHousing | filter: {genderLetter: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                    {{user.firstName}} {{user.lastName}} &mdash; {{user.age}}
+                    <span class="wants_housing_user_details"ng-show="showDetails"><br>&nbsp;&nbsp;&nbsp;&nbsp;{{user.role}} <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;{{user.currentAddress.city}}, {{user.currentAddress.state}}</span>
                 </p>
                 <br>
                 <p class="bold">Requested Private Room</p>
-                <p ng-repeat="person in needHousing | filter: {genderLetter: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}}
-                    {{person.lastName}}
-                    -
-                    {{person.campus}}
-                    -
-                    {{person.cohortID}}
+                <p ng-click="showDetails = !showDetails" ng-repeat="user in needHousing | filter: {genderLetter: 'M'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                  {{user.firstName}} {{user.lastName}} &mdash; {{user.age}}
+                  <span class="wants_housing_user_details" ng-show="showDetails"><br>&nbsp;&nbsp;&nbsp;&nbsp;{{user.role}} <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;{{user.currentAddress.city}}, {{user.currentAddress.state}}</span>
+              </p>
                 </p>
+                <br>
                 <hr>
                 <br>
-                <p class="bold">Women &#9792;</p>
-                <p ng-repeat="person in needHousing | filter: {genderLetter: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}}
-                    {{person.lastName}}
-                    -
-                    {{person.campus}}
-                    -
-                    {{person.cohortID}}
-                </p>
+
+                <p class="bold wants_housing_subheader">Women &#9792;</p>
+                <p ng-click="showDetails = !showDetails" ng-repeat="user in needHousing | filter: {genderLetter: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                  {{user.firstName}} {{user.lastName}} &mdash; {{user.age}}
+                  <span class="wants_housing_user_details" ng-show="showDetails"><br>&nbsp;&nbsp;&nbsp;&nbsp;{{user.role}} <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;{{user.currentAddress.city}}, {{user.currentAddress.state}}</span></p>
                 <br>
                 <p class="bold">Requested Private Room</p>
-                <p ng-repeat="person in needHousing | filter: {genderLetter: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
-                    {{person.firstName}}
-                    {{person.lastName}}
-                    -
-                    {{person.campus}}
-                    -
-                    {{person.cohortID}}
+                <p ng-click="showDetails = !showDetails" ng-repeat="user in needHousing | filter: {genderLetter: 'F'} | filter: {singleRoom: {wantsSingleRoom: true}} | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
+                  {{user.firstName}} {{user.lastName}} &mdash; {{user.age}}
+                  <span class="wants_housing_user_details" ng-show="showDetails"><br>&nbsp;&nbsp;&nbsp;&nbsp;{{user.role}} <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;{{user.currentAddress.city}}, {{user.currentAddress.state}}</span>
+              </p>
                 </p>
             </div>
         </div>
