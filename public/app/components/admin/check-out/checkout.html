@@ -4,51 +4,53 @@
 
 <div class="main-wrapper">
 
-     <div class="checkin_create_block">
+<button class="showCreate" ng-click="toggle_create = !toggle_create">New</button>
+
+     <div ng-show="toggle_create" class="checkin_create_block">
          <div class="checkin_create_block_header"><p>Create check-out</p></div>
          <div class="checkin_create_block_content white_background_color">
-             <select ng-model="checkout.campus" />
+             <select id="checkin_campus_select" ng-model="checkout.campus">
                  <option value="">Campus</option>
                  <option value="Provo">Provo</option>
                  <option value="SLC">SLC</option>
                  <option value="Dallas">Dallas</option>
-            </select>
-             <p>Start time</p>
-                 <input type="datetime-local" name="name" ng-model="checkout.start" placeholder="Start time"></input><br>
-             <p>End time</p>
-                 <input type="datetime-local" name="name" ng-model="checkout.end" placeholder="End time"></input><br>
-             <p>Duration</p>
-                 <input type="number" name="name" ng-model="checkout.interval" placeholder="Minutes"></input><br>
-             <p>Cohort</p>
+                 </select>
+                 <p>Start time</p>
+                 <input type="datetime-local" name="name" ng-model="checkout.start" placeholder="Start time"></input>
+                 <br>
+                 <p>End time</p>
+                 <input type="datetime-local" name="name" ng-model="checkout.end" placeholder="End time"></input>
+                 <br>
+                 <p>Duration</p>
+                 <input type="number" name="name" ng-model="checkout.interval" placeholder="Minutes"></input>
+                 <br>
+                 <p>Cohort</p>
                  <input ng-model="checkout.cohort" placeholder="Ex: DM-10"></input><br>
-                 <button ng-if="checkout.campus" id="create_checkin" type="button" name="button" ng-click="createCheckout(checkout)">Create checkout timeslots</button>
+                 <button ng-if="checkout.campus" id="create_checkin" type="button" name="button" ng-click="createCheckout(checkout)">Add</button>
+             </div>
          </div>
-     </div>
-
     <div class="checkin_timeslots_container">
         <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckouts">
-            <div class="checkin_create_header"><span>{{check.checkoutDay}}</span><i ng-click="deleteCheckouts(check)" class="fa fa-times"></i></div>
+            <div class="checkin_create_header"><span>{{check.checkoutDay}}&nbsp;<i ng-click="deleteCheckouts(check)" class="fa fa-times"></i></span></div>
             <p>{{check.checkoutStart}}-{{check.checkoutEnd}}</p>
             <p>Duration: {{check.slotInterval}} min</p>
             <p>Campus: {{check.campus}}</p>
             <p>Cohort: {{check.cohort}}</p>
-            <br>
+            <!-- <br>
             <hr>
-            <p>Appointments</p>
+            <p>Appointments</p> -->
             <div class="checkin_timeslots" ng-repeat="slot in check.checkoutAppointments">
-                <span>{{slot.timeSlot}}</span>&nbsp;<span>{{slot.user.firstName}} {{slot.user.lastName}}&nbsp;{{slot.room}}-{{slot.unit}}</span>
-
+                <span>{{slot.timeSlot}}</span>&nbsp;<span ng-click="showUserModal = !showUserModal">{{slot.user.firstName}} {{slot.user.lastName}}&nbsp;<i ng-if="slot.user.firstName" class="fa fa-caret-down"></i><!--&nbsp;{{slot.room}}-{{slot.unit}}--></span>
                 <div class="user_info_modal" ng-init="showUserModal=false">
-                    <button class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button>
+                    <!-- <button class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button> -->
                     <div class="checkin_modal_fade_in checkin_create_block" aria-hidden="false" ng-show="showUserModal">
                       <div class="checkin_modal_header checkin_create_block_header">
-                            <div class="checkin_modal_create_header checkin_create_header"><span>{{slot.user.firstName + " " + slot.user.lastName}}</span><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i></div>
+                            <div class="checkin_modal_create_header checkin_create_header"><div><span>{{slot.user.firstName + " " + slot.user.lastName}}</span></div><div><!--<i ng-click="editUser = !editUser;" class="fa fa-pencil">--></i><i ng-click="showUserModal = !showUserModal" class="fa fa-times"></i></div></div>
                         </div>
                         <div class="user_update_modal checkin_create_block_content">
                             <div class="user_edit_container" ng-hide="editUser">
                                 <div class="check_user_left user_edit_left">
                                     <p class="users_cards_text">
-                                        <span class="bold">Basic info</span>
                                         <br> Name: {{slot.user.firstName}} {{slot.user.lastName}}
                                         <br> Gender: {{slot.user.gender}}
                                         <br>
@@ -66,33 +68,28 @@
                                         <br> <span ng-if="user.car">Vehicle: {{user.car.make}} {{user.car.model}} {{user.car.year}} {{user.car.license}}</span>
                                         <span ng-if="!user.car">No vehicle on file</span>
                                     </p>
-                                    <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                                 </div>
                             </div>
-                            <div class="check_users_edit users_edit" ng-show="editUser">
+                            <!-- <div class="check_users_edit users_edit" ng-show="editUser">
                                 <div class="check_user_edit_container user_edit_container">
                                     <div class="check_user_edit_left user_edit_left">
-                                      <span class="bold">Deposit Paid&nbsp;&nbsp;</span>
-                                      <br> <input ng-model="slot.user.deposit.depositPaid" placeholder="true or false"></input>
-                                      </br>
-                                      <span class="bold">Contract Signed&nbsp;&nbsp;</span>
-                                      <br> <input ng-model="slot.user.contractSigned" placeholder="true or false"></input>
+                                      <p>Deposit Paid&nbsp;&nbsp;</p>
+                                      <input type="radio"ng-model="slot.user.deposit.depositPaid" value="true">Yes</input>&nbsp;&nbsp;<input type="radio"ng-model="slot.user.deposit.depositPaid" value="false">No</input>
                                       <br>
-                                      <span class="bold">Check-out Date&nbsp;&nbsp;</span>
-                                      <br> <input ng-model="slot.user.checkInOut.checkOutDate" placeholder="enter date"></input>
-                                      </br>
-                                      <span class="bold">Check-out Status&nbsp;&nbsp;</span>
-                                      <br> <input ng-model="slot.user.checkInOut.checkOutStatus" placeholder="true or false"></input>
-                                      </br>
+                                      <p>Contract Signed&nbsp;&nbsp;</p>
+                                      <input type="radio" ng-model="slot.user.contractSigned" value="true">Yes</input>&nbsp;&nbsp;<input type="radio" ng-model="slot.user.contractSigned" value="false">No</input>
                                       <br>
-                                      <button ng-click="updateUser(slot.user)" class="checkin_edit_submit_button">Submit Changes</button>
+                                      <p>Checked-in&nbsp;&nbsp;</p>
+                                      <input type="radio" ng-model="slot.user.checkInOut.checkInStatus" value="true">Yes</input>&nbsp;&nbsp;<input type="radio" ng-model="slot.user.checkInOut.checkInStatus" value="false">No</input>
+                                      <br>
+                                      <br>
+                                      <button ng-click="updateUser(slot.user)">Update</button>
                                       <br>
                                       <br>
                                       <br>
-                                      <button type="button" class="modal-close-button" ng-click="showUserModal=false">Close</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
