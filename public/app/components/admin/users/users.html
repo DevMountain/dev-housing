@@ -27,7 +27,12 @@
     <div class="users_cards_container">
 
         <div ng-click="showInfo = !showInfo" ng-repeat="user in users | filter: userSearch | filter: {campus: cohortFilter.name} | filter: cohortSearch" class="users_cards white_background_color">
-            <div class="users_cards_head"><div><p>{{user.firstName}} {{user.lastName}} &mdash; {{user.role}} {{user.campus}}</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
+            <div class="users_cards_head">
+              <div>{{user.firstName}} {{user.lastName}}</div>
+              <div>
+                <i ng-click="editUser = !editUser;" class="fa fa-pencil"></i>
+                <i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div>
+            </div>
 
             <div class="user_short_info" ng-hide="editUser">
                       <div class="basic_info">
