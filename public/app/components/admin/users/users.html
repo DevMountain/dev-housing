@@ -85,7 +85,7 @@
                       <div class="basic_info" ng-if="user.rent.isRenter">
                         <span ng-if="user.rent.isRenter">
                           <span class="bold">Rent</span><br>
-                          Rent Amount: {{user.rent.rentPrice}}<br>
+                          Rent Amount: ${{user.rent.rentPrice}}<br>
                           <span ng-if="user.rent.rentPaid" ng-repeat="rent in user.rent.rentPaidConverted">Rent Paid: {{rent}}<br></span>
                         </span>
 

@@ -101,7 +101,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
           loadUsers();
         });
       };
-      
+
 
       $scope.confirmTheUpdate = (cohortFilter, adminPW) => {
         let login = {email: user.email, password: adminPW};
@@ -112,8 +112,21 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
             $scope.setCurrentToFuture(cohortFilter);
           }
         })
-        
+
       }
+
+      //SAVE CURRENT USER TO FUTURE HOUSING
+       $scope.saveCurrentUsertoFuture = function(unit, user, index){
+         user.inFutureHousing = true;
+         var id = unit.futureBedrooms[index]._id;
+         unitSvc.addUserToUnitFuture(user, id).then(function(response) {
+           userSvc.update(user).then(function(response){
+             loadUsers();
+             loadHousing();
+         });
+        });
+       }
+
 
       $scope.setCurrentToFuture = function(filter) {
         let currentCampusUsers = [];
@@ -176,7 +189,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         };
         console.log(combinedObj);
         unitSvc.setCurrentToFuture(combinedObj).then(function(response){
-          //TODO display modal that says you must update cohort IDs and force redirect to options
+          $state.go('admin-options');
           loadHousing();
           loadUsers();
         })
