@@ -8,7 +8,7 @@
     <div class="pending_users_container">
         <div class="pending_header"><p>Pending Users</p></div>
         <div ng-repeat="user in pendingUsers | orderByCampus:'campus'" class="pending_content">
-            <p>{{user.firstName}} {{user.lastName}}&nbsp;&nbsp;<i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-plus"></i></p>
+            <p>{{user.firstName}} {{user.lastName}}&nbsp;&mdash;&nbsp;{{user.campus}}&nbsp;<i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-plus"></i></p>
             <div class="pending_edit_user" ng-show="toggleUpdate">
                 <textarea ng-model="user.cohortId" placeholder="Add a Cohort"></textarea><br>
                 <button ng-click="setCohortId(user._id, user.cohortId)">Set</button>

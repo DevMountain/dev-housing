@@ -30,17 +30,24 @@
                       {{unit.propertyName}} {{unit.address.street1}} &nbsp; <i class="fa fa-pencil"></i>
                     </div>
                 </div>
-                  {{unit.currentBedrooms.roomNumber}}<br>
-
-                    <div ng-repeat="bedroom in unit.currentBedrooms">
-                        Room: {{bedroom.roomNumber}} - Max occupants: {{bedroom.maxOccupants}}
+                <div>
+                  bedrooms: {{unit.currentBedrooms.length}} <!--spots: {{unit.currentBedrooms}}-->
+                </div>
+                  <div ng-repeat="bedroom in unit.currentBedrooms">
+                        <span ng-hide="unit.currentBedrooms.length <= 1">Room {{bedroom.roomNumber}}:</span>
+                        <span ng-hide="bedroom.currentOccupants.length === bedroom.maxOccupants">
+                          Occupants: {{bedroom.currentOccupants.length}}/{{bedroom.maxOccupants}}
+                        </span>
+                        <span ng-show="bedroom.currentOccupants.length === bedroom.maxOccupants">
+                          Bedroom full!
+                        </span>
                         <div ng-hide="bedroom.maxOccupants <= bedroom.currentOccupants.length">
                           <br> Add occupant:
                           <select class="add_user_select" ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                           </select>
                           <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
                         </div>
-                        <div ng-repeat="user in bedroom.currentOccupants">
+                        <div class="bold" ng-repeat="user in bedroom.currentOccupants">
                             {{user.firstName}}
                             {{user.lastName}}
                             <i ng-click="removeUser(bedroom, user)" class="fa fa-times"></i>

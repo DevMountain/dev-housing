@@ -26,8 +26,13 @@
 
     <div class="users_cards_container">
 
-        <div ng-repeat="user in users | filter: userSearch | filter: {campus: cohortFilter.name} | filter: cohortSearch" class="users_cards white_background_color">
-            <div class="users_cards_head"><div><p>{{user.firstName}} {{user.lastName}} &mdash; {{user.role}} {{user.campus}}</p></div><div><i ng-click="editUser = !editUser;" class="fa fa-pencil"></i><i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div></div>
+        <div ng-click="showInfo = !showInfo" ng-repeat="user in users | filter: userSearch | filter: {campus: cohortFilter.name} | filter: cohortSearch" class="users_cards white_background_color">
+            <div class="users_cards_head">
+              <div>{{user.firstName}} {{user.lastName}}</div>
+              <div>
+                <i ng-click="editUser = !editUser;" class="fa fa-pencil"></i>
+                <i ng-click="deleteModal = !deleteModal" class="fa fa-times"></i></div>
+            </div>
 
             <div class="user_short_info" ng-hide="editUser">
                       <div class="basic_info">
@@ -35,7 +40,7 @@
                         Name: {{user.firstName}} {{user.lastName}}<br>
                         Age: {{user.age}}<br>
                         Home City/State: {{user.currentAddress.city}}, {{user.currentAddress.state}}<br><br>
-                        <i ng-hide="showInfo" ng-click="showInfo = !showInfo" class="fa fa-caret-down">&nbsp;<span class="caret">Expand</span></i>
+                        <i ng-hide="showInfo" class="fa fa-caret-down">&nbsp;<span class="caret">Expand</span></i>
                         <!-- <i ng-show="showInfo" ng-click="showInfo = !showInfo" class="fa fa-caret-up">&nbsp;<span class="caret">Hide</span></i> -->
                       </div>
                       <div class="basic_info">
@@ -60,7 +65,7 @@
                       </div>
 
                     </div>
-                <div class="user_full_info" ng-show="showInfo" ng-click="showInfo = !showInfo">
+                <div class="user_full_info" ng-show="showInfo" >
                   <div class="basic_info">
                         <span class="bold">Contact</span><br>
                         Email: {{user.email}}<br>
@@ -77,10 +82,10 @@
                         Default Campus: {{user.adminDefaultView}}<br><br>
                         </span>
                       </div>
-                      <div class="basic_info">
+                      <div class="basic_info" ng-if="user.rent.isRenter">
                         <span ng-if="user.rent.isRenter">
                           <span class="bold">Rent</span><br>
-                          Rent Amount: {{user.rent.rentPrice}}<br>
+                          Rent Amount: ${{user.rent.rentPrice}}<br>
                           <span ng-if="user.rent.rentPaid" ng-repeat="rent in user.rent.rentPaidConverted">Rent Paid: {{rent}}<br></span>
                         </span>
 
@@ -103,7 +108,7 @@
                 </div>
 
                 <div>
-                    <i id="hide_caret" ng-show="showInfo" ng-click="showInfo = !showInfo" class="fa fa-caret-up">&nbsp;<span class="caret">Hide</span></i>
+                    <i id="hide_caret" ng-show="showInfo" class="fa fa-caret-up">&nbsp;<span class="caret">Hide</span></i>
                 </div>
 
                 <!-- TODO: fix this mess -->
@@ -132,9 +137,11 @@
                         <p>Renter Status&nbsp;&nbsp;</p><input ng-model="user.rent.isRenter" placeholder="pays rent"></input><br>
                         <p>Rent Amount&nbsp;&nbsp;</p><input ng-model="user.rent.rentPrice" placeholder="rent amount"></input><br>
                         <p>Rent Paid&nbsp;&nbsp;</p><input ng-model="user.rent.rentPaid" placeholder="rent paid"></input></br>
+                        <p>Deposit Paid &nbsp;&nbsp;</p><input ng-model="user.deposit.depositPaid" placeholder="deposit paid"></input></br>
+                        <p>Contract Signed&nbsp;&nbsp;</p><input ng-model="user.contractSigned" placeholder="contract signed"></input></br>
                     </div>
 
-                    <div class="user_edit_right"
+                    <div class="user_edit_right">
                         <p>Private Room Requested&nbsp;&nbsp;</p><input ng-model="user.singleRoom.wantsSingleRoom" placeholder="private room requested"></input></br>
                         <p>Private Room Occupant&nbsp;&nbsp;</p><input ng-model="user.singleRoom.hasSingleRoom" placeholder="private room occupant"></input><br>
                         <p>Checkin Date&nbsp;&nbsp;</p><input ng-model="user.checkInOut.checkInDate" placeholder="check in date"></input></br>
