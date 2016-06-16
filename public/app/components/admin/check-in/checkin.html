@@ -44,16 +44,16 @@
     </div>
     <div class="checkin_timeslots_container" ng-hide="!allCheckins.length">
         <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckins">
-            <div class="checkin_create_header"><span>{{check.checkinDay}}&nbsp;<i ng-click="deleteCheckins(check)" class="fa fa-times"></i></span></div>
-            <p>{{check.checkinStart}}-{{check.checkinEnd}}</p>
-            <p>Duration: {{check.slotInterval}} min</p>
-            <p>Campus: {{check.campus}}</p>
-            <p>Cohort: {{check.cohort}}</p>
+            <div class="checkin_create_header"><span><strong>{{check.checkinDay}}</strong>&nbsp;<i ng-click="deleteCheckins(check)" class="fa fa-times"></i></span></div>
+            <p class="time_range"><strong>{{check.checkinStart}}-{{check.checkinEnd}}</strong></p>
+            <p><strong>Duration: </strong>{{check.slotInterval}} min</p>
+            <p><strong>Campus: </strong>{{check.campus}}</p>
+            <p><strong>Cohort: </strong>{{check.cohort}}</p>
             <!-- <br>
             <hr>
             <p>Appointments</p> -->
             <div class="checkin_timeslots" ng-repeat="slot in check.checkinAppointments">
-                <span>{{slot.timeSlot}}</span>&nbsp;<span ng-click="showUserModal = !showUserModal">{{slot.user.firstName}} {{slot.user.lastName}}&nbsp;<i ng-if="slot.user.firstName" class="fa fa-caret-down"></i><!--&nbsp;{{slot.room}}-{{slot.unit}}--></span>
+                <span><strong>{{slot.timeSlot}}</strong></span>&nbsp;<span ng-click="showUserModal = !showUserModal">{{slot.user.firstName}} {{slot.user.lastName}}&nbsp;<i ng-if="slot.user.firstName" class="fa fa-caret-down"></i><!--&nbsp;{{slot.room}}-{{slot.unit}}--></span>
                 <div class="user_info_modal" ng-init="showUserModal=false">
                     <!-- <button ng-if="slot.user.firstName" class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button> -->
                     <div class="checkin_modal_fade_in checkin_create_block" aria-hidden="false" ng-show="showUserModal">
