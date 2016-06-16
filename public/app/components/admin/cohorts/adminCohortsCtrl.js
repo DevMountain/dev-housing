@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminOptionsCtrl', function($scope, cohortSvc, user) {
+angular.module('devHousing').controller('adminCohortsCtrl', function($scope, cohortSvc, user) {
 
     $scope.user = user;
 
