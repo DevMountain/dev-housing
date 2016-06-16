@@ -22,7 +22,7 @@ angular.module('devHousing').controller('adminCohortsCtrl', function($scope, coh
     //save updated cohorts
     $scope.saveCohorts = function(cohorts) {
         cohortSvc.saveCohorts(cohorts).then(function(response) {
-            //add saved indicator
+            callCohorts();
         });
     };
 
