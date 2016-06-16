@@ -33,12 +33,12 @@ $scope.displayUsers();
 $scope.updateUser = function(user) {
     // this is to update multiple cohorts to an array
     var cohorts = [];
-    cohorts.push(user.cohortID[0]);
+    cohorts.push(user.cohortID[0].toUpperCase().trim());
     if (user.cohortID[1]) {
-        cohorts.push(user.cohortID[1]);
+        cohorts.push(user.cohortID[1].toUpperCase().trim());
     }
     if (user.cohortID[2]) {
-        cohorts.push(user.cohortID[2]);
+        cohorts.push(user.cohortID[2].toUpperCase().trim());
     }
     user.cohortID = cohorts;
     userSvc.update(user).then(function(response) {
