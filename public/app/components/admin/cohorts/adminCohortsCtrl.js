@@ -18,23 +18,4 @@ angular.module('devHousing').controller('adminCohortsCtrl', function($scope, coh
     });
     };
 
-
-    //show save button to edit cohorts
-    $scope.editProvo = false;
-    $scope.edit_Provo = function() {
-        $scope.editProvo = !$scope.editProvo;
-    };
-
-
-    $scope.editSLC = false;
-    $scope.edit_SLC = function() {
-        $scope.editSLC = !$scope.editSLC;
-    };
-
-
-    $scope.editDallas = false;
-    $scope.edit_Dallas = function() {
-        $scope.editDallas = !$scope.editDallas;
-    };
-
 });
