@@ -51,12 +51,16 @@
         justify-content: space-between
 
 .pending_container
-    margin: 20px
+    // margin: 20px
+    margin: auto
+    width: 900px
     padding: 20px
     display: flex
     flex-direction: row
     @media(max-width: 500px)
         display: block
+    @media(max-width: 768px)
+        width: 80%
 
 .pending_users_container
     display: flex
