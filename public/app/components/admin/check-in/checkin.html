@@ -25,7 +25,19 @@
             <input type="number" name="name" ng-model="checkin.interval" placeholder="Minutes"></input>
             <br>
             <p>Cohort</p>
-            <input ng-model="checkin.cohort" placeholder="Ex: DM-10"></input>
+            <select ng-model="checkin.cohort">
+              <option value="">select cohort</option>
+              <option value="{{allCohorts.Provo.senior}}">Provo: {{allCohorts.Provo.senior}}</option>
+              <option value="{{allCohorts.Provo.junior}}">Provo: {{allCohorts.Provo.junior}}</option>
+              <option value="{{allCohorts.Provo.future}}">Provo: {{allCohorts.Provo.future}}</option>
+              <option value="{{allCohorts.SLC.senior}}">SLC: {{allCohorts.SLC.senior}}</option>
+              <option value="{{allCohorts.SLC.junior}}">SLC: {{allCohorts.SLC.junior}}</option>
+              <option value="{{allCohorts.SLC.future}}">SLC: {{allCohorts.SLC.future}}</option>
+              <option value="{{allCohorts.Dallas.senior}}">Dallas: {{allCohorts.Dallas.senior}}</option>
+              <option value="{{allCohorts.Dallas.junior}}">Dallas: {{allCohorts.Dallas.junior}}</option>
+              <option value="{{allCohorts.Dallas.future}}">Dallas: {{allCohorts.Dallas.future}}</option>
+
+            </select>
             <br>
             <button ng-if="checkin.campus" id="create_checkin" type="button" name="button" ng-click="createCheckin(checkin)">Add</button>
         </div>
