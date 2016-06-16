@@ -1,4 +1,4 @@
-angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc){
+angular.module('devHousing').controller('adminFutureHousingCtrl', function($scope, unitSvc, userSvc, user, cohortSvc, $state){
 
   //LOADS CURRENT USER INFO.
   $scope.user = user;
@@ -193,7 +193,6 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
             futureUsers: tempUsers
 
         };
-        console.log(combinedObj);
         unitSvc.setCurrentToFuture(combinedObj).then(function(response){
           $state.go('admin-cohorts');
           loadHousing();
