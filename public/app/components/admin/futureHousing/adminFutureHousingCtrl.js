@@ -22,6 +22,12 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
           response[prop].name = prop;
           $scope.allCohorts.push(response[prop]);
         }
+        //SETS DEFAULT CAMPUS VIEW TO ADMIN DEFAULT VIEW
+        for (var i = 0; i < $scope.allCohorts.length; i++){
+          if ($scope.user.adminDefaultView === $scope.allCohorts[i].name) {
+            $scope.cohortFilter = $scope.allCohorts[i];
+          }
+        }
       });
     };
     loadCohorts();
