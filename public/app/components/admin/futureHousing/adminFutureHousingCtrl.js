@@ -195,7 +195,7 @@ angular.module('devHousing').controller('adminFutureHousingCtrl', function($scop
         };
         console.log(combinedObj);
         unitSvc.setCurrentToFuture(combinedObj).then(function(response){
-          $state.go('admin-options');
+          $state.go('admin-cohorts');
           loadHousing();
           loadUsers();
         })
