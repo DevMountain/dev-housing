@@ -29,14 +29,16 @@
                         <span ng-hide="bedroom.currentOccupants.length === bedroom.maxOccupants">
                           Occupants: {{bedroom.currentOccupants.length}}/{{bedroom.maxOccupants}}
                         </span>
-                        <span ng-show="bedroom.currentOccupants.length === bedroom.maxOccupants">
-                          Bedroom full!
+                        <span class="bold_all_good" ng-show="bedroom.currentOccupants.length === bedroom.maxOccupants">
+                          Bedroom full
                         </span>
                         <div ng-hide="bedroom.maxOccupants <= bedroom.currentOccupants.length">
+                          <span ng-hide="needHousing.length == 0">
                           <br> Add occupant:
                           <select class="add_user_select" ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                           </select>
                           <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
+                        </span>
                         </div>
                         <div class="bold" ng-repeat="user in bedroom.currentOccupants">
                             {{user.firstName}}
