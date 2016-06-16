@@ -43,7 +43,13 @@ $scope.updateUser = function(user) {
     user.cohortID = cohorts;
     userSvc.update(user).then(function(response) {
         $scope.displayUsers();
+
     });
+};
+
+$scope.paidRent = function(user) {
+    user.rent.rentPaid.push(new Date());
+    $scope.updateUser(user);
 };
 
 // delete single user
