@@ -15,16 +15,12 @@
                  <option value="SLC">SLC</option>
                  <option value="Dallas">Dallas</option>
                  </select>
-                 <p>Start time</p>
                  <input type="datetime-local" name="name" ng-model="checkout.start" placeholder="Start time"></input>
                  <br>
-                 <p>End time</p>
                  <input type="datetime-local" name="name" ng-model="checkout.end" placeholder="End time"></input>
                  <br>
-                 <p>Duration</p>
                  <input type="number" name="name" ng-model="checkout.interval" placeholder="Minutes"></input>
                  <br>
-                 <p>Cohort</p>
                  <select ng-model="checkout.cohort">
                    <option value="">select cohort</option>
                    <option value="{{allCohorts.Provo.senior}}">Provo: {{allCohorts.Provo.senior}}</option>

@@ -21,8 +21,7 @@
 	<div class="default_cards_container">
    	 <div ng-repeat="faqs in Faq | filter: FAQ | orderBy: '-'" class="default_repeat_cards white_background_color">
      	   <div class="default_cards_head"><div><p>FAQ</p></div></div>
-        <!-- <div class="student_cards_head"><div class="student_cards_title_adjust"><p>FAQ</p></div><div><img src="./assets/img/add_icon.svg" ng-click="toggleUpdate = !toggleUpdate; faq.answer = faqs.answer; faq.question = faqs.question; faq._id = faqs._id"></img><img src="./assets/img/delete_icon.svg" ng-click="selectFaq(faqs); deleteFaq(selected)"></img></div></div> -->
-      	  <p class="default_cards_text"><span class="bold">Question:</span>&nbsp;&nbsp;{{faqs.question}}</p><br><p><span class="bold">Answer:</span>&nbsp;&nbsp;{{faqs.answer}}</p>
+      	  <p class="default_cards_text"><span class="bold">Question:</span>&nbsp;&nbsp;{{faqs.question}}</p><br><p class="default_cards_text"><span class="bold">Answer:</span>&nbsp;&nbsp;{{faqs.answer}}</p>
    	 </div>
 	</div>
 
