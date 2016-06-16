@@ -58,7 +58,7 @@
             <div class="admin_workorder_cards_divider_container">
                 <div class="workorder_cards_text left">
                     <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p><br>
-                    <span class="bold">Date: </span>{{workorder.dateSubmitted}}</p>
+                    <span class="bold">Date: </span>{{workorder.dateSubmittedFormatted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description: </span>&nbsp;&nbsp;{{workorder.description}}</p>
                 </div>
@@ -70,7 +70,7 @@
                         <div><p class="pointer"ng-click="selectStatus('Completed', workorder._id)" ng-class="{workorderStatus: workorder.status === 'Completed'}">Completed</p></div>
                     </div>
                     <p class="bold">Admin Notes</p>
-                    <textarea ng-model="workorder.adminNotes"></textarea>
+                    <p>{{workorder.adminNotes}}</p>
                 </div>
             </div>
 
@@ -86,6 +86,10 @@
                 </select>
                 <br>
                 <br>
+                <p class="bold">Admin Notes</p>
+                <textarea ng-model="workorder.adminNotes">{{workorder.adminNotes}}</textarea>
+                <br/>
+                <br/>
                 <button ng-click="workorderUpdate(workorder)">save</button>
             </div>
         </div>
