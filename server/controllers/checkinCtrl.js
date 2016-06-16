@@ -39,7 +39,6 @@ module.exports = {
             if (err) {
                 res.status(500).send(err);
             } else {
-                console.log("Reading Checkin by id: ", req.params.id);
                 res.send(response);
             }
         });

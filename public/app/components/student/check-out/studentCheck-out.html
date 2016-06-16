@@ -18,18 +18,15 @@
        </div>
    </div>
 
-   <div class="checkin_timeslots_container">
+   <div class="checkin_timeslots_container" ng-hide="!allCheckouts.length">
        <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckouts">
-           <div class="checkin_create_header"><span>{{check.checkoutDay}}</span></div>
-           <p>{{check.checkoutStart}}-{{check.checkoutEnd}}</p>
-           <p>Duration: {{check.slotInterval}} min</p>
-           <p>Campus: {{check.campus}}</p>
-           <p>Cohort: {{check.cohort}}</p>
+           <div class="checkin_create_header"><span><strong>{{check.checkoutDay}}</strong></span></div>
+           <p class="time_range"><strong>{{check.checkoutStart}}-{{check.checkoutEnd}}</strong></p>
            <br>
            <hr>
-           <p>Appointments</p>
+           <p><strong>Appointments</strong></p>
            <div class="checkin_timeslots" ng-repeat="slot in check.checkoutAppointments">
-               <span>{{slot.timeSlot}}</span>&nbsp;<span>{{slot.user.firstName}} {{slot.user.lastName}}</span><button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="updateCheckouts(slot, check)">Select</button>
+               <span><strong>{{slot.timeSlot}}</strong></span>&nbsp;<span>{{slot.user.firstName}} {{slot.user.lastName}}</span><button type="button" name="button" ng-hide="slot.user" ng-if="hasSlot" ng-click="updateCheckouts(slot, check)">Select</button>
            </div>
        </div>
    </div>
