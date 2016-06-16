@@ -19,7 +19,7 @@ angular.module('devHousing')
     $scope.setCohortId = (userId, cohortID) => {
       let obj = {};
       obj._id = userId;
-      obj.cohortID = cohortID.toUpperCase().trim();
+      obj.cohortID = cohortID;
       userSvc.setCohortId(obj).then( (response) => {
         getPendingUsers();
       })
