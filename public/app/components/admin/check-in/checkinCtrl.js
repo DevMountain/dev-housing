@@ -14,7 +14,6 @@ angular.module('devHousing').controller('adminCheckinCtrl', function($scope, use
 //LOAD ALL COHORTS FOR NG-OPTIONS
     var getCohorts = function(){
       cohortSvc.getCohorts().then(function(response){
-        console.log(`Receiving cohort info: ${JSON.stringify(response.Provo)}`);
         $scope.allCohorts = response;
         });
     };
