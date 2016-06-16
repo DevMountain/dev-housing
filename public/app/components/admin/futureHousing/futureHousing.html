@@ -50,27 +50,42 @@
                      <span ng-if="unit.currentBedrooms.length > 1">{{unit.futureBedrooms.length}} bedrooms.</span>
                      <br><br>
                    </div>
-                     <div ng-repeat="currentBedroom in unit.currentBedrooms track by $index">
-                       Room: {{currentBedroom.roomNumber}} - Max occupants: {{currentBedroom.maxOccupants}}
-                       <br> Current Occupant:
+                   <div class="housing_layout">
 
-                      <p ng-repeat="user in currentBedroom.currentOccupants track by $index">{{user.firstName}} {{user.lastName}}
-                        <button ng-click="saveCurrentUsertoFuture(unit, user, $parent.$index)">Save Current Occupant</button>
-                          <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
-                          <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Update User</button>
-                      </p>
+                     <div>
+
+                       <div ng-repeat="currentBedroom in unit.currentBedrooms track by $index">
+                         <span class="bold">Room: {{currentBedroom.roomNumber}} &mdash; Max occupants: {{currentBedroom.maxOccupants}}</span>
+                         <br> Current Occupants:
+
+                         <p ng-repeat="user in currentBedroom.currentOccupants track by $index">{{user.firstName}} {{user.lastName}}
+                           <button ng-click="saveCurrentUsertoFuture(unit, user, $parent.$index)">Save {{user.firstName}}</button>
+                           <br>
+                           <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
+                           <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Replace {{user.firstName}}</button>
+                           <br><br>
+                         </p>
+                       </div>
                      </div>
 
-                     <div ng-repeat="futureBedroom in unit.futureBedrooms">
-                       <br>
-                       <span class="bold_all_good" ng-show="futureBedroom.futureOccupants.length === futureBedroom.maxOccupants">
-                         Bedroom full
-                       </span>
-                       <p ng-repeat="user in futureBedroom.futureOccupants">
-                         Future Occupant: {{user.firstName}} {{user.lastName}}&nbsp;
-                         <i ng-click="removeUser(unit.futureBedrooms[$parent.$index], user)" class="fa fa-times"></i>
-                       </p>
+                     <div class="future_housing_layout">
+
+                       <div ng-repeat="futureBedroom in unit.futureBedrooms">
+                         <br>
+                         <span class="bold"> Future room {{futureBedroom.roomNumber}}: </span>
+                         <span class="bold_all_good" ng-show="futureBedroom.futureOccupants.length === futureBedroom.maxOccupants">
+                           Bedroom full
+                         </span>
+                         <span ng-show="futureBedroom.futureOccupants.length !== futureBedroom.maxOccupants">
+                           {{futureBedroom.futureOccupants.length}}/{{futureBedroom.maxOccupants}}
+                         </span>
+                         <p class="bold" ng-repeat="user in futureBedroom.futureOccupants">
+                           {{user.firstName}} {{user.lastName}}&nbsp;
+                           <i ng-click="removeUser(unit.futureBedrooms[$parent.$index], user)" class="fa fa-times"></i>
+                         </p>
+                       </div>
                      </div>
+                   </div>
 
 
 
@@ -85,7 +100,7 @@
                           </div>
                       </div>
                       <div class="wants_housing_list">
-                          <p class="bold">Men &#9794;</p>
+                          <p class="bold wants_housing_subheader">Men &#9794;</p>
                           <p ng-click="showDetails = !showDetails" ng-repeat="user in needHousing | filter: {gender: 'M'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}">
                             {{user.firstName}} {{user.lastName}} &mdash; {{user.age}}
                             <span class="wants_housing_user_details"ng-show="showDetails"><br>&nbsp;&nbsp;&nbsp;&nbsp;{{user.role}} <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br>
@@ -100,7 +115,7 @@
                           </p>
                           <hr>
                           <br>
-                          <p class="bold">Women &#9792;</p>
+                          <p class="bold wants_housing_subheader">Women &#9792;</p>
                           <p ng-click="showDetails = !showDetails" ng-repeat="user in needHousing | filter: {gender: 'F'} | filter: {singleRoom: {wantsSingleRoom: false}} | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}">
                             {{user.firstName}} {{user.lastName}} &mdash; {{user.age}}
                             <span class="wants_housing_user_details" ng-show="showDetails"><br>&nbsp;&nbsp;&nbsp;&nbsp;{{user.role}} <span ng-repeat="cohort in user.cohortID">{{cohort}} </span><br>

@@ -39,13 +39,11 @@
                             <i ng-click="removeUser(bedroom, user)" class="fa fa-times"></i>
                         </div>
                         <div ng-hide="bedroom.maxOccupants <= bedroom.currentOccupants.length">
-                          <span ng-hide="needHousing.length == 0">
                           Add occupant:
                           <select class="add_user_select" ng-model="bedroom.user" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterFutureCohorts | filter: {campus: cohortFilter.name}">
                           </select>
                           <button type="button" name="button" ng-click="saveUnit(bedroom, bedroom.user)">save user</button>
                           <br><br>
-                        </span>
                         </div>
                         <br>
                     </div>
