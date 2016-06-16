@@ -1,0 +1,60 @@
+<side-bar-nav></side-bar-nav>
+<admin-mobile-side-bar-nav></admin-mobile-side-bar-nav>
+<user-info></user-info>
+
+<!--PROVO CAMPUS-->
+<div class="main-wrapper">
+
+<div class="options_arrangement">
+
+	<div class="default_cards_container">
+	    <div class="default_repeat_cards white_background_color">
+	        <div class="default_cards_head"><div><p>Provo Cohorts</p></div><div><i ng-click="editProvo = !editProvo;" class="fa fa-plus"></i></div></div>
+	        <div class="options_input">
+						<p>Senior</p>
+	          <p>{{allCohorts.Provo.senior}}&nbsp;&nbsp;<input ng-model="allCohorts.Provo.senior" ng-show="editProvo"></p>
+	          <p>Junior</p>
+						<p>{{allCohorts.Provo.junior}}&nbsp;&nbsp;<input ng-model="allCohorts.Provo.junior" ng-show="editProvo"></p>
+	          <p>Future</p>
+						<p>{{allCohorts.Provo.future}}&nbsp;&nbsp;<input ng-model="allCohorts.Provo.future" ng-show="editProvo"></p>
+	          <button ng-show="editProvo" class="options-button" ng-click="saveCohorts(allCohorts)">Update</button>
+	        </div>
+	    </div>
+	</div>
+
+	<!--SLC CAMPUS-->
+	<div class="default_cards_container">
+	    <div class="default_repeat_cards white_background_color">
+	        <div class="default_cards_head"><div><p>SLC Cohorts</p></div><div><i ng-click="editSLC = !editSLC;" class="fa fa-plus"></i></div></div>
+	        <div class="options_input">
+						<p>Senior</p>
+	          <p>{{allCohorts.SLC.senior}}&nbsp;&nbsp;<input ng-model="allCohorts.SLC.senior" ng-show="editSLC"></p>
+	          <p>Junior</p>
+						<p>{{allCohorts.SLC.junior}}&nbsp;&nbsp;<input ng-model="allCohorts.SLC.junior" ng-show="editSLC"></p>
+	          <p>Future</p>
+						<p>{{allCohorts.SLC.future}}&nbsp;&nbsp;<input ng-model="allCohorts.SLC.future" ng-show="editSLC"></p>
+	          <button ng-show="editSLC" class="options-button" ng-click="saveCohorts(allCohorts)">Update</button>
+	        </div>
+	    </div>
+	</div>
+
+	<!--DALLAS CAMPUS-->
+	<div class="default_cards_container">
+	    <div class="default_repeat_cards white_background_color">
+	        <div class="default_cards_head"><div><p>Dallas Cohorts</p></div><div><i ng-click="editDallas = !editDallas;" class="fa fa-plus"></i></div></div>
+					<!-- TODO ADD NEW DALLAS IOS COHORT -->
+	        <div class="options_input">
+						<p>Senior</p>
+	          <p>{{allCohorts.Dallas.senior}}&nbsp;&nbsp;<input ng-model="allCohorts.Dallas.senior" ng-show="editDallas"></p>
+	          <p>Junior</p>
+						<p>{{allCohorts.Dallas.junior}}&nbsp;&nbsp;<input ng-model="allCohorts.Dallas.junior" ng-show="editDallas"></p>
+	          <p>Future</p>
+						<p>{{allCohorts.Dallas.future}}&nbsp;&nbsp;<input ng-model="allCohorts.Dallas.future" ng-show="editDallas"></p>
+	          <button ng-show="editDallas" class="options-button" ng-click="saveCohorts(allCohorts)">Update</button>
+	        </div>
+	    </div>
+	</div>
+
+</div>
+
+</div> <!--main-wrapper closing div -->

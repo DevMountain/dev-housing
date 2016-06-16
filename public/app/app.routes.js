@@ -9,26 +9,6 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
 
     //STUDENT ROUTES ============================
 
-    .state('student-home', {
-      url: '/student/home',
-      templateUrl: './app/components/student/home/studentHome.html',
-      controller: 'studentWorkorderCtrl',
-      resolve: {
-        user: function(userSvc, $state) {
-          return userSvc.getCurrentUser().then(function(response) {
-            if (!response.data) {
-              $state.go('login');
-            } else if (response.data.role === 'student' || response.data.role === 'mentor' || response.data.role === 'graduate') {
-              return response.data;
-            }
-              $state.go('login');
-          }).catch(function(err) {
-            $state.go('login');
-          });
-        }
-      }
-    })
-
     .state('student-workorders', {
       url: '/student/workorders',
       templateUrl: './app/components/student/workorder/studentWorkorder.html',
@@ -227,26 +207,6 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
 
     })
 
-    .state('admin-rent', {
-      url: '/admin/rent',
-      templateUrl: './app/components/admin/rent/rent.html',
-      // controller: 'adminRentCtrl',
-      resolve: {
-        user: function(userSvc, $state) {
-          return userSvc.getCurrentUser().then(function(response) {
-            if (!response.data) {
-              $state.go('login');
-            } else if (response.data.role === 'admin') {
-              return response.data;
-            }
-              $state.go('login');
-          }).catch(function(err) {
-            $state.go('login');
-          });
-        }
-      }
-    })
-
     .state('admin-check-in', {
       url: '/admin/checkin',
       templateUrl: './app/components/admin/check-in/checkin.html',
@@ -327,10 +287,10 @@ angular.module("devHousing").config(function($stateProvider, $urlRouterProvider)
       }
     })
 
-    .state('admin-options', {
-      url: '/admin/options',
-      templateUrl: './app/components/admin/options/options.html',
-      controller: 'adminOptionsCtrl',
+    .state('admin-cohorts', {
+      url: '/admin/cohorts',
+      templateUrl: './app/components/admin/cohorts/cohorts.html',
+      controller: 'adminCohortsCtrl',
       resolve: {
         user: function(userSvc, $state) {
           return userSvc.getCurrentUser().then(function(response) {
