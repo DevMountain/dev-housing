@@ -18,7 +18,7 @@
        </div>
    </div>
 
-   <div class="checkin_timeslots_container">
+   <div class="checkin_timeslots_container" ng-hide="!allCheckouts.length">
        <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckouts">
            <div class="checkin_create_header"><span>{{check.checkoutDay}}</span></div>
            <p>{{check.checkoutStart}}-{{check.checkoutEnd}}</p>

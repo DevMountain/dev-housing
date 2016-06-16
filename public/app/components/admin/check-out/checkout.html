@@ -41,7 +41,7 @@
                  <button ng-if="checkout.campus" id="create_checkin" type="button" name="button" ng-click="createCheckout(checkout)">Add</button>
              </div>
          </div>
-    <div class="checkin_timeslots_container">
+    <div class="checkin_timeslots_container" ng-hide="!allCheckouts.length">
         <div class="checkin_timeslots_repeat white_background_color" ng-repeat="check in allCheckouts">
             <div class="checkin_create_header"><span>{{check.checkoutDay}}&nbsp;<i ng-click="deleteCheckouts(check)" class="fa fa-times"></i></span></div>
             <p>{{check.checkoutStart}}-{{check.checkoutEnd}}</p>
