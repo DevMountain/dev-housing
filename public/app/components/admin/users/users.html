@@ -55,7 +55,7 @@
                         <span ng-if="user.inHousing" class="bold_all_good">{{user.firstName}} is housed.<br></span>
                         <span ng-if="!user.inHousing" class="bold_warning">{{user.firstName}} is homeless!<br></span>
 
-                        <span ng-if="user.singleRoom.wantsSingleRoom">Private room requested: {{user.singleRoom.wantsSingleRoom}}<br>
+                        <span ng-if="user.singleRoom.wantsSingleRoom">{{user.firstName}} wants a private room.<br>
                         </span>
                         <span ng-if="user.singleRoom.hasSingleRoom">
                           Has private room: {{user.singleRoom.hasSingleRoom}}<br>
