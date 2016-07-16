@@ -22,16 +22,15 @@
     <div ng-show="pendingWO.length > 0" class="pending_workorders_container">
         <div class="pending_header"><p>Pending Workorders</p></div>
         <div ng-repeat="wo in pendingWO | orderByCampus: 'campus'" class="pending_content">
-            <p><span class="bold">{{wo.unit}}</span>&nbsp;&mdash;&nbsp;{{wo.problemType}}</p>
+            <p><span class="bold">{{wo.unit}}</span>&nbsp;&mdash;&nbsp;{{wo.submittedBy.firstName}} {{wo.submittedBy.lastName}}</p>
             <p>{{wo.description}}</p>
-            {{wo.submittedBy}}
             <select ng-model="workorder.status" name="type" required>
-                <option value="" selected>Select</option>
+                <option value="" selected>Select status</option>
                 <option value="Received">Recieved</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select><br>
-            <button ng-click="setWOStatus(wo._id, workorder.status)">Set</button>
+            <button ng-click="setWOStatus(wo._id, workorder.status)">Set status</button>
             <hr ng-show="pendingWO.length > 1" style="width: 90%">
         </div>
     </div>
