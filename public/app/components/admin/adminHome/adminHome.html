@@ -25,12 +25,12 @@
             <p><span class="bold">{{wo.unit}}</span>&nbsp;&mdash;&nbsp;{{wo.submittedBy.firstName}} {{wo.submittedBy.lastName}}</p>
             <p>{{wo.description}}</p>
             <select ng-model="workorder.status" name="type" required>
-                <option value="" selected>Select status</option>
+                <option value="" selected>Select Status</option>
                 <option value="Received">Recieved</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select><br>
-            <button ng-click="setWOStatus(wo._id, workorder.status)">Set status</button>
+            <button ng-click="setWOStatus(wo._id, workorder.status)">Set Status</button>
             <hr ng-show="pendingWO.length > 1" style="width: 90%">
         </div>
     </div>
