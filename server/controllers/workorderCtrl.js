@@ -6,18 +6,6 @@ module.exports = {
 
     create: function(req, res, next) {
 
-        // Unit.find(req.query)
-        //     .populate('currentBedrooms.currentOccupants', '-password')
-        //     .populate('allCurrentOccupants', '-password')
-        //     .exec(function(err, res2) {
-        //       if (err) {
-        //           res1.status(500).send(err);
-        //       } else {
-        //         var bb8 = res2;
-        //         //Put workorder.create function in the else.
-        //       }
-        //     });
-
         Workorder.create(req.body, function(err, response) {
             if (err) {
               return res.status(500).send(err);
@@ -64,10 +52,12 @@ module.exports = {
     },
 
     pending: function(req, res, next) {
-        Workorder.find(req.query, function(err, response) {
-            if (err) {
-                return res.status(500).send(err);
-            } else {
+      Workorder.find(req.query)
+          .populate("submittedBy")
+          .exec(function(err, response) {
+              if (err) {
+                  res.status(500).send(err)
+              } else {
                 for (let i = response.length - 1; i >= 0; i--) {
                     if (response[i].status !== 'Pending') {
                         response.splice(i, 1);
@@ -95,7 +85,7 @@ module.exports = {
             } else {
                 res.status(200).send(response);
             }
-        });
+        })
     },
 
     delete: function(req, res, next) {

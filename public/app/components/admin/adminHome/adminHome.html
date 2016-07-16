@@ -11,7 +11,7 @@
     <div ng-show="pendingUsers.length > 0" class="pending_users_container">
         <div class="pending_header"><p>Pending Users</p></div>
         <div ng-repeat="user in pendingUsers | orderByCampus:'campus'" class="pending_content">
-            <p>{{user.firstName}} {{user.lastName}}&nbsp;&mdash;&nbsp;{{user.campus}}&nbsp;<i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-plus"></i></p>
+            <p><span class="bold">{{user.firstName}} {{user.lastName}}</span>&nbsp;&mdash;&nbsp;{{user.campus}}&nbsp;<i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-plus"></i></p>
             <div class="pending_edit_user" ng-show="toggleUpdate">
                 <textarea ng-model="user.cohortId" placeholder="Add a Cohort"></textarea><br>
                 <button ng-click="setCohortId(user._id, user.cohortId)">Set</button>
@@ -22,17 +22,15 @@
     <div ng-show="pendingWO.length > 0" class="pending_workorders_container">
         <div class="pending_header"><p>Pending Workorders</p></div>
         <div ng-repeat="wo in pendingWO | orderByCampus: 'campus'" class="pending_content">
-            <p>Unit: {{wo.unit}}</p>
-            <p>Category: {{wo.problemType}}</p>
+            <p><span class="bold">{{wo.unit}}</span>&nbsp;&mdash;&nbsp;{{wo.submittedBy.firstName}} {{wo.submittedBy.lastName}}</p>
             <p>{{wo.description}}</p>
-            <p>Status: {{wo.status}}</p>
             <select ng-model="workorder.status" name="type" required>
-                <option value="" selected>Select</option>
+                <option value="" selected>Select Status</option>
                 <option value="Received">Recieved</option>
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
             </select><br>
-            <button ng-click="setWOStatus(wo._id, workorder.status)">Set</button>
+            <button ng-click="setWOStatus(wo._id, workorder.status)">Set Status</button>
             <hr ng-show="pendingWO.length > 1" style="width: 90%">
         </div>
     </div>

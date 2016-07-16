@@ -9,15 +9,15 @@
         <div class="workorder_repeat_cards white_background_color">
             <div class="default_cards_head"><div id="student_workorder_header_text"><p>Workorders</p></div></div>
             <div class="student_workorder_sort_container default_cards_text">
-                <div><input ng-model="workorder" placeholder="Search workorders"></input></div>
+                <div><input ng-model="workorder" placeholder="Search Workorders"></input></div>
                 <br>
                 <div>
                     <select ng-model="workorder.problemType">
                         <option value="" disabled selected>Select Category</option>
-                        <option value="appliance">appliance</option>
-                        <option value="electrical">electrical</option>
-                        <option value="plumbing">plumbing</option>
-                        <option value="other">other</option>
+                        <option value="appliance">Appliance</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="other">Other</option>
                     </select>
                     <br>
                     <br>
@@ -36,10 +36,10 @@
                 <br>
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Select</option>
-                    <option value="appliance">appliance</option>
-                    <option value="electrical">electrical</option>
-                    <option value="plumbing">plumbing</option>
-                    <option value="other">other</option>
+                    <option value="appliance">Appliance</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="other">Other</option>
                 </select>
                 <button ng-if="adminWorkorder.unit" ng-click="workorderCreate(adminWorkorder)">Create</button>
             </div>
@@ -57,17 +57,17 @@
 
             <div class="admin_workorder_cards_divider_container">
                 <div class="workorder_cards_text left">
-                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p><br>
+                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p>
                     <span class="bold">Date: </span>{{workorder.dateSubmittedFormatted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description: </span>&nbsp;&nbsp;{{workorder.description}}</p>
                 </div>
                 <div class="workorder_cards_text">
-                    <p class="bold">Admin Update</p>
+                    <!-- <p class="bold">Admin Update</p> -->
                     <div class="workorder_admin_status">
-                        <div><p class="pointer"ng-click="selectStatus('Recieved', workorder._id)" ng-class="{workorderStatus: workorder.status === 'Recieved'}">Received</p></div>
-                        <div><p class="pointer" ng-click="selectStatus('In Progress', workorder._id)" ng-class="{workorderStatus: workorder.status === 'In Progress'}">In Progress</p></div>
-                        <div><p class="pointer"ng-click="selectStatus('Completed', workorder._id)" ng-class="{workorderStatus: workorder.status === 'Completed'}">Completed</p></div>
+                        <div><p class="pointer"ng-click="selectStatus('Recieved', workorder._id)" ng-class="{workorderReceived: workorder.status === 'Recieved'}">Received</p></div>
+                        <div><p class="pointer" ng-click="selectStatus('In Progress', workorder._id)" ng-class="{workorderInProgress: workorder.status === 'In Progress'}">In Progress</p></div>
+                        <div><p class="pointer"ng-click="selectStatus('Completed', workorder._id)" ng-class="{bold_all_good: workorder.status === 'Completed'}">Completed</p></div>
                     </div>
                     <p class="bold">Admin Notes</p>
                     <p>{{workorder.adminNotes}}</p>
