@@ -9,15 +9,15 @@
         <div class="workorder_repeat_cards white_background_color">
             <div class="default_cards_head"><div id="student_workorder_header_text"><p>Workorders</p></div></div>
             <div class="student_workorder_sort_container default_cards_text">
-                <div><input ng-model="workorder" placeholder="Search workorders"></input></div>
+                <div><input ng-model="workorder" placeholder="Search Workorders"></input></div>
                 <br>
                 <div>
                     <select ng-model="workorder.problemType">
                         <option value="" disabled selected>Select Category</option>
-                        <option value="appliance">appliance</option>
-                        <option value="electrical">electrical</option>
-                        <option value="plumbing">plumbing</option>
-                        <option value="other">other</option>
+                        <option value="appliance">Appliance</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="other">Other</option>
                     </select>
                     <br>
                     <br>
@@ -36,10 +36,10 @@
                 <br>
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Select</option>
-                    <option value="appliance">appliance</option>
-                    <option value="electrical">electrical</option>
-                    <option value="plumbing">plumbing</option>
-                    <option value="other">other</option>
+                    <option value="appliance">Appliance</option>
+                    <option value="electrical">Electrical</option>
+                    <option value="plumbing">Plumbing</option>
+                    <option value="other">Other</option>
                 </select>
                 <button ng-if="adminWorkorder.unit" ng-click="workorderCreate(adminWorkorder)">Create</button>
             </div>
