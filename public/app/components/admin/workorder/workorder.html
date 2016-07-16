@@ -57,17 +57,17 @@
 
             <div class="admin_workorder_cards_divider_container">
                 <div class="workorder_cards_text left">
-                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p><br>
+                    <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p>
                     <span class="bold">Date: </span>{{workorder.dateSubmittedFormatted}}</p>
                     <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                     <p><span class="bold">Description: </span>&nbsp;&nbsp;{{workorder.description}}</p>
                 </div>
                 <div class="workorder_cards_text">
-                    <p class="bold">Admin Update</p>
+                    <!-- <p class="bold">Admin Update</p> -->
                     <div class="workorder_admin_status">
-                        <div><p class="pointer"ng-click="selectStatus('Recieved', workorder._id)" ng-class="{workorderStatus: workorder.status === 'Recieved'}">Received</p></div>
-                        <div><p class="pointer" ng-click="selectStatus('In Progress', workorder._id)" ng-class="{workorderStatus: workorder.status === 'In Progress'}">In Progress</p></div>
-                        <div><p class="pointer"ng-click="selectStatus('Completed', workorder._id)" ng-class="{workorderStatus: workorder.status === 'Completed'}">Completed</p></div>
+                        <div><p class="pointer"ng-click="selectStatus('Recieved', workorder._id)" ng-class="{workorderReceived: workorder.status === 'Recieved'}">Received</p></div>
+                        <div><p class="pointer" ng-click="selectStatus('In Progress', workorder._id)" ng-class="{workorderInProgress: workorder.status === 'In Progress'}">In Progress</p></div>
+                        <div><p class="pointer"ng-click="selectStatus('Completed', workorder._id)" ng-class="{bold_all_good: workorder.status === 'Completed'}">Completed</p></div>
                     </div>
                     <p class="bold">Admin Notes</p>
                     <p>{{workorder.adminNotes}}</p>
