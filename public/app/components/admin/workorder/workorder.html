@@ -9,19 +9,18 @@
         <div class="workorder_repeat_cards white_background_color">
             <div class="default_cards_head"><div id="student_workorder_header_text"><p>Workorders</p></div></div>
             <div class="student_workorder_sort_container default_cards_text">
-                <div><input ng-model="workorder" placeholder="Search Workorders"></input></div>
-                <br>
-                <div>
+                <div class="workorder_header_box">
+                  <div>
+                  <input ng-model="workorder" placeholder="Search Workorders"></input>
                     <select ng-model="workorder.problemType">
-                        <option value="" disabled selected>Select Category</option>
+                        <option value="" disabled selected>Filter Category</option>
                         <option value="appliance">Appliance</option>
                         <option value="electrical">Electrical</option>
                         <option value="plumbing">Plumbing</option>
                         <option value="other">Other</option>
                     </select>
-                    <br>
-                    <br>
-                <button ng-click="toggleWorkorderDashboard = !toggleWorkorderDashboard; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id">New Workorder</button>
+                  </div>
+                      <button class="button_standard createWO_button" ng-click="toggleWorkorderDashboard = !toggleWorkorderDashboard; workorders.description = workorder.description;workorders.problemType = workorder.problemType; workorders._id = workorder._id">New Workorder</button>
             </div>
             </div>
             <div class="workorder_faq_cards_edit" ng-show="toggleWorkorderDashboard">
@@ -57,10 +56,10 @@
 
             <div class="admin_workorder_cards_divider_container">
                 <div class="workorder_cards_text left">
+                  <p><span class="bold">Description: </span>&nbsp;&nbsp;{{workorder.description}}</p>
                     <p><span class="bold">Submitted by: </span>{{workorder.submittedBy.firstName}} {{workorder.submittedBy.lastName}}</p>
                     <span class="bold">Date: </span>{{workorder.dateSubmittedFormatted}}</p>
-                    <span class="bold">Selected Issue</span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
-                    <p><span class="bold">Description: </span>&nbsp;&nbsp;{{workorder.description}}</p>
+                    <span class="bold">Selected Issue: </span>&nbsp;&nbsp;<span>{{workorder.problemType}}</span>
                 </div>
                 <div class="workorder_cards_text">
                     <!-- <p class="bold">Admin Update</p> -->
