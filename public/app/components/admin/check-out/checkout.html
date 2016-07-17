@@ -34,7 +34,7 @@
                    <option value="{{allCohorts.Dallas.future}}">Dallas: {{allCohorts.Dallas.future}}</option>
 
                  </select>
-                 <button ng-if="checkout.campus" id="create_checkin" type="button" name="button" ng-click="createCheckout(checkout)">Add</button>
+                 <button class="button_standard" ng-if="checkout.campus" id="create_checkin" type="button" name="button" ng-click="createCheckout(checkout)">Add</button>
              </div>
          </div>
     <div class="checkin_timeslots_container" ng-hide="!allCheckouts.length">
