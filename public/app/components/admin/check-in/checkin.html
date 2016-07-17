@@ -35,7 +35,7 @@
 
             </select>
             <br>
-            <button ng-if="checkin.campus" id="create_checkin" type="button" name="button" ng-click="createCheckin(checkin)">Add</button>
+            <button class="button_standard" ng-if="checkin.campus" id="create_checkin" type="button" name="button" ng-click="createCheckin(checkin)">Add</button>
         </div>
     </div>
     <div class="checkin_timeslots_container" ng-hide="!allCheckins.length">
@@ -92,7 +92,7 @@
                                       <input type="radio" ng-model="slot.user.checkInOut.checkInStatus" value="true">Yes</input>&nbsp;&nbsp;<input type="radio" ng-model="slot.user.checkInOut.checkInStatus" value="false">No</input>
                                       <br>
                                       <br>
-                                      <button ng-click="updateUser(slot.user)">Update</button>
+                                      <button class="button_standard" ng-click="updateUser(slot.user)">Update</button>
                                       <br>
                                       <br>
                                       <br>

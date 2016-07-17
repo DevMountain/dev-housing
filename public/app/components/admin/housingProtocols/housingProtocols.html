@@ -10,7 +10,7 @@
           <div class="admin_protocol_cards_new">
               <textarea ng-model="newProtocol.title" placeholder="Add a new protocol title"></textarea>
               <textarea ng-model="newProtocol.textBody" placeholder="Add a new protocol"></textarea><br>
-              <button ng-click="addNewProtocol(newProtocol)">Submit</button>
+              <button class="button_standard" ng-click="addNewProtocol(newProtocol)">Submit</button>
           </div>
       </div>
   </div>
@@ -23,7 +23,7 @@
           <div class="admin_protocol_cards_wrench" ng-show="toggleUpdate">
               <textarea ng-model="protocol.title" placeholder="Edit title"></textarea>
               <textarea ng-model="protocol.textBody" placeholder="Edit protocol"></textarea><br>
-              <button ng-click="updateProtocol(protocol)">Edit</button>
+              <button class="button_standard" ng-click="updateProtocol(protocol)">Edit</button>
           </div>
       </div>
   </div>

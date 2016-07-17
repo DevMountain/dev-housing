@@ -10,7 +10,7 @@
             <div class="admin_faq_cards_new">
                 <textarea ng-model="newFaq.question" placeholder="Add a new question"></textarea>
                 <textarea ng-model="newFaq.answer" placeholder="Add a new answer"></textarea><br>
-                <button ng-click="addNewFaq(newFaq)">Submit</button>
+                <button class="button_standard" ng-click="addNewFaq(newFaq)">Submit</button>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
             <div class="admin_faq_cards_wrench" ng-show="toggleUpdate">
                 <textarea ng-model="faq.question" placeholder="Edit question"></textarea>
                 <textarea ng-model="faq.answer" placeholder="Edit answer"></textarea><br>
-                <button ng-click="updateFaq(faq)">Edit</button>
+                <button class="button_standard" ng-click="updateFaq(faq)">Edit</button>
             </div>
         </div>
     </div>

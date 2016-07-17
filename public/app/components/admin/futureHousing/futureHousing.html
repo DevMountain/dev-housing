@@ -9,7 +9,7 @@
          <select ng-model="cohortFilter" ng-options="cohort as cohort.name for cohort in allCohorts"></select></p>
 
        <div class="update-current-button" class="user_info_modal" ng-init="showConfirmModal=false" ng-if="cohortFilter">
-          <button  ng-click="showConfirmModal = !showConfirmModal">Update Current</button>  <!-- confirmTheUpdate(cohortFilter) -->
+          <button class="button_standard" ng-click="showConfirmModal = !showConfirmModal">Update Current</button>  <!-- confirmTheUpdate(cohortFilter) -->
 
 
            <!-- <button class="user_info_button" ng-click="showUserModal = !showUserModal" hide-Modal="hideUserModal">User Info</button> -->
