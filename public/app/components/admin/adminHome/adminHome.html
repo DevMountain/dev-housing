@@ -14,7 +14,7 @@
             <p><span class="bold">{{user.firstName}} {{user.lastName}}</span>&nbsp;&mdash;&nbsp;{{user.campus}}&nbsp;<i ng-click="toggleUpdate = !toggleUpdate" class="fa fa-plus"></i></p>
             <div class="pending_edit_user" ng-show="toggleUpdate">
                 <textarea ng-model="user.cohortId" placeholder="Add a Cohort"></textarea><br>
-                <button ng-click="setCohortId(user._id, user.cohortId)">Set</button>
+                <button class="button_standard" ng-click="setCohortId(user._id, user.cohortId)">Set</button>
             </div>
         </div>
     </div>
