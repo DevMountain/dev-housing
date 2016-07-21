@@ -34,6 +34,7 @@
                 <option value="" disabled selected>Select Unit</option>
                 <option ng-repeat="unit in units" value="{{unit.campus}} {{unit.unitNumber}}">{{unit.campus}} {{unit.unitNumber}}</option>
             </select>
+            <br>
                 <textarea ng-model="adminWorkorder.description" placeholder="Description"></textarea><br>
                 <select ng-model="adminWorkorder.problemType" name="type" required>
                     <option value="" disabled selected>Issue Type</option>
