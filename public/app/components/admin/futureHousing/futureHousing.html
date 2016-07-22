@@ -61,14 +61,19 @@
                          <p ng-repeat="user in currentBedroom.currentOccupants track by $index"><span class="bold">{{user.firstName}} {{user.lastName}}</span>
                            <button ng-click="saveCurrentUsertoFuture(unit, user, $parent.$index)">Save {{user.firstName}}</button>
                            <br>
-                           <!-- TODO can't add new user if user's aren't already in unit -->
                            <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
                            <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Replace {{user.firstName}}</button>
                          </p>
 
-                         <div ng-if="currentBedroom.currentOccupants.length === 0 && futureBedrooms.futureOccupants.length < futureBedrooms.maxOccupants">
+                         <!-- TODO can't add new user if user's aren't already in unit -->
+                         <div ng-if="currentBedroom.currentOccupants.length === 0 ">
+                           <div class="test">
+
+                           <!-- <p>
+                           {{unit.futureBedrooms.roomNumber}}</p> -->
                            <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
                            <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Add New</button>
+                         </div>
                          </div>
 
 
