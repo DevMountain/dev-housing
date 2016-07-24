@@ -66,14 +66,16 @@
                          </p>
 
                          <!-- TODO can't add new user if user's aren't already in unit -->
-                         <div ng-if="currentBedroom.currentOccupants.length === 0 ">
-                           <div class="test">
+                         <div ng-if="currentBedroom.currentOccupants.length === 0">
+                           <div ng-if="unit.futureBedrooms[$parent.$index].futureOccupants.length < unit.futureBedrooms[$parent.$index].maxOccupants">
 
-                           <!-- <p>
-                           {{unit.futureBedrooms.roomNumber}}</p> -->
-                           <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
-                           <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Add New</button>
-                         </div>
+                             <select ng-model="currentBedroom.user[$index]" ng-options="user.firstName + ' ' + user.lastName group by user.gender for user in needHousing | filter: filterCurrentCohorts | filter: {campus: cohortFilter.name}"></select>
+                             <button type="button" name="button" ng-click="saveUnit(unit.futureBedrooms[$parent.$index], currentBedroom.user[$index])">Add New</button>
+                           </div>
+
+
+
+
                          </div>
 
 
